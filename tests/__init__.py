@@ -1,0 +1,1 @@
+"""StockmarketAgent test suite."""

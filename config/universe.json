@@ -1,0 +1,621 @@
+{
+  "schema_version": "1.0.0",
+  "universe_version": "proposal-2026-08-27",
+  "updated_at": "2026-08-27T00:00:00Z",
+  "review_status": "owner_approval_required",
+  "instruments": [
+    {
+      "instrument_id": "TW:STOCK:2330",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "2330",
+      "slug": "tsmc",
+      "name_zh": "台積電",
+      "name_en": "Taiwan Semiconductor Manufacturing Co.",
+      "asset_type": "stock",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "ai",
+        "semiconductor",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "大型半導體製造候選；需確認資料授權、流動性與主題集中度。",
+      "source_policy_id": "TW_STOCK_V1"
+    },
+    {
+      "instrument_id": "TW:STOCK:2454",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "2454",
+      "slug": "mediatek",
+      "name_zh": "聯發科",
+      "name_en": "MediaTek Inc.",
+      "asset_type": "stock",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "ai",
+        "semiconductor",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "IC 設計候選；需驗證財報與產業循環資料可得性。",
+      "source_policy_id": "TW_STOCK_V1"
+    },
+    {
+      "instrument_id": "TW:STOCK:2308",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "2308",
+      "slug": "delta-electronics",
+      "name_zh": "台達電",
+      "name_en": "Delta Electronics, Inc.",
+      "asset_type": "stock",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "ai",
+        "utilities",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "電源與基礎設施候選；需評估主題曝險與來源完整性。",
+      "source_policy_id": "TW_STOCK_V1"
+    },
+    {
+      "instrument_id": "TW:STOCK:2412",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "2412",
+      "slug": "chunghwa-telecom",
+      "name_zh": "中華電信",
+      "name_en": "Chunghwa Telecom Co., Ltd.",
+      "asset_type": "stock",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "telecom",
+        "defensive",
+        "dividend"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "電信防禦候選；需確認股利與估值資料的 point-in-time 可得性。",
+      "source_policy_id": "TW_STOCK_V1"
+    },
+    {
+      "instrument_id": "TW:STOCK:2891",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "2891",
+      "slug": "ctbc-financial",
+      "name_zh": "中信金",
+      "name_en": "CTBC Financial Holding Co., Ltd.",
+      "asset_type": "stock",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "value",
+        "dividend",
+        "defensive"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "金融價值候選；需另定金融業適用模型。",
+      "source_policy_id": "TW_STOCK_V1"
+    },
+    {
+      "instrument_id": "TW:ETF:0050",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "0050",
+      "slug": "yuanta-taiwan-50",
+      "name_zh": "元大台灣50",
+      "name_en": "Yuanta/P-shares Taiwan Top 50 ETF",
+      "asset_type": "etf",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "broad_market",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "大型股基準型 ETF 候選；需核對持股歷史與費用。",
+      "source_policy_id": "TW_ETF_V1"
+    },
+    {
+      "instrument_id": "TW:ETF:006208",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "006208",
+      "slug": "fubon-taiwan-50",
+      "name_zh": "富邦台50",
+      "name_en": "Fubon Taiwan 50 ETF",
+      "asset_type": "etf",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "broad_market",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "大型股 ETF 候選；需評估與 0050 的重疊度。",
+      "source_policy_id": "TW_ETF_V1"
+    },
+    {
+      "instrument_id": "TW:ETF:00878",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "00878",
+      "slug": "cathay-esg-high-dividend",
+      "name_zh": "國泰永續高股息",
+      "name_en": "Cathay MSCI Taiwan ESG Sustainability High Dividend Yield ETF",
+      "asset_type": "etf",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "dividend",
+        "defensive"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "高股息 ETF 候選；需驗證指數規則與持股穿透。",
+      "source_policy_id": "TW_ETF_V1"
+    },
+    {
+      "instrument_id": "TW:ETF:00919",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "00919",
+      "slug": "capital-tip-customized-high-dividend",
+      "name_zh": "群益台灣精選高息",
+      "name_en": "Capital TIP Customized Taiwan Select High Dividend ETF",
+      "asset_type": "etf",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "dividend",
+        "value"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "高股息 ETF 候選；需評估策略重疊與完整歷史。",
+      "source_policy_id": "TW_ETF_V1"
+    },
+    {
+      "instrument_id": "TW:ETF:00965",
+      "country": "TW",
+      "market": "TWSE",
+      "symbol": "00965",
+      "slug": "yuanta-global-aerospace-defense",
+      "name_zh": "元大全球航太與防衛科技",
+      "name_en": "Yuanta Global Aerospace and Defense Technology ETF",
+      "asset_type": "etf",
+      "currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "themes": [
+        "defense",
+        "aerospace",
+        "ai",
+        "cybersecurity"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "跨市場主題 ETF 候選；僅承接視覺參考，不沿用既有報告數字。",
+      "source_policy_id": "TW_ETF_V1"
+    },
+    {
+      "instrument_id": "JP:STOCK:7203",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "7203",
+      "slug": "toyota",
+      "name_zh": "豐田汽車",
+      "name_en": "Toyota Motor Corporation",
+      "asset_type": "stock",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "quality",
+        "value"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "大型製造候選；需核對匯率與全球營收曝險。",
+      "source_policy_id": "JP_STOCK_V1"
+    },
+    {
+      "instrument_id": "JP:STOCK:6758",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "6758",
+      "slug": "sony-group",
+      "name_zh": "索尼集團",
+      "name_en": "Sony Group Corporation",
+      "asset_type": "stock",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "ai",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "科技與內容候選；需定義跨事業部特徵。",
+      "source_policy_id": "JP_STOCK_V1"
+    },
+    {
+      "instrument_id": "JP:STOCK:8035",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "8035",
+      "slug": "tokyo-electron",
+      "name_zh": "東京威力科創",
+      "name_en": "Tokyo Electron Limited",
+      "asset_type": "stock",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "semiconductor",
+        "ai",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "半導體設備候選；需驗證產業循環與訂單資料。",
+      "source_policy_id": "JP_STOCK_V1"
+    },
+    {
+      "instrument_id": "JP:STOCK:7011",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "7011",
+      "slug": "mitsubishi-heavy-industries",
+      "name_zh": "三菱重工",
+      "name_en": "Mitsubishi Heavy Industries, Ltd.",
+      "asset_type": "stock",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "defense",
+        "aerospace"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "國防與重工候選；需追蹤正式採購與交付來源。",
+      "source_policy_id": "JP_STOCK_V1"
+    },
+    {
+      "instrument_id": "JP:STOCK:9432",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "9432",
+      "slug": "ntt",
+      "name_zh": "日本電信電話",
+      "name_en": "Nippon Telegraph and Telephone Corporation",
+      "asset_type": "stock",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "telecom",
+        "defensive",
+        "dividend"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "電信防禦候選；需核對公司行動與股利歷史。",
+      "source_policy_id": "JP_STOCK_V1"
+    },
+    {
+      "instrument_id": "JP:ETF:1306",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "1306",
+      "slug": "next-funds-topix",
+      "name_zh": "NEXT FUNDS TOPIX連動型上市投資信託",
+      "name_en": "NEXT FUNDS TOPIX Exchange Traded Fund",
+      "asset_type": "etf",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "broad_market"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "TOPIX 廣泛市場候選；需核對追蹤誤差與費用。",
+      "source_policy_id": "JP_ETF_V1"
+    },
+    {
+      "instrument_id": "JP:ETF:1321",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "1321",
+      "slug": "next-funds-nikkei-225",
+      "name_zh": "NEXT FUNDS 日經225連動型上市投資信託",
+      "name_en": "NEXT FUNDS Nikkei 225 Exchange Traded Fund",
+      "asset_type": "etf",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "broad_market",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "日經 225 候選；需評估與 TOPIX 的基準差異。",
+      "source_policy_id": "JP_ETF_V1"
+    },
+    {
+      "instrument_id": "JP:ETF:1475",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "1475",
+      "slug": "ishares-core-topix",
+      "name_zh": "iShares Core TOPIX ETF",
+      "name_en": "iShares Core TOPIX ETF",
+      "asset_type": "etf",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "broad_market"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "低成本 TOPIX 候選；需驗證持股歷史可得性。",
+      "source_policy_id": "JP_ETF_V1"
+    },
+    {
+      "instrument_id": "JP:ETF:1489",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "1489",
+      "slug": "next-funds-nikkei-high-dividend",
+      "name_zh": "NEXT FUNDS 日經平均高股息股票50指數連動型上市投資信託",
+      "name_en": "NEXT FUNDS Nikkei 225 High Dividend Yield Stock 50 Index ETF",
+      "asset_type": "etf",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "dividend",
+        "value"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "高股息因子候選；需驗證指數規則與換股資料。",
+      "source_policy_id": "JP_ETF_V1"
+    },
+    {
+      "instrument_id": "JP:ETF:2568",
+      "country": "JP",
+      "market": "TSE",
+      "symbol": "2568",
+      "slug": "listed-index-fund-nasdaq100",
+      "name_zh": "上場インデックスファンド米国株式 NASDAQ100 為替ヘッジなし",
+      "name_en": "Listed Index Fund US Equity NASDAQ100 No Currency Hedge",
+      "asset_type": "etf",
+      "currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "themes": [
+        "ai",
+        "broad_market",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "日圓計價海外科技曝險候選；需明確處理匯率。",
+      "source_policy_id": "JP_ETF_V1"
+    },
+    {
+      "instrument_id": "US:STOCK:NVDA",
+      "country": "US",
+      "market": "NASDAQ",
+      "symbol": "NVDA",
+      "slug": "nvidia",
+      "name_zh": "輝達",
+      "name_en": "NVIDIA Corporation",
+      "asset_type": "stock",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "ai",
+        "semiconductor",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "AI 與半導體候選；需驗證估值與供應鏈資料。",
+      "source_policy_id": "US_STOCK_V1"
+    },
+    {
+      "instrument_id": "US:STOCK:MSFT",
+      "country": "US",
+      "market": "NASDAQ",
+      "symbol": "MSFT",
+      "slug": "microsoft",
+      "name_zh": "微軟",
+      "name_en": "Microsoft Corporation",
+      "asset_type": "stock",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "ai",
+        "cybersecurity",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "大型軟體與雲端候選；需定義事件與財報權重。",
+      "source_policy_id": "US_STOCK_V1"
+    },
+    {
+      "instrument_id": "US:STOCK:GOOGL",
+      "country": "US",
+      "market": "NASDAQ",
+      "symbol": "GOOGL",
+      "slug": "alphabet",
+      "name_zh": "Alphabet Inc.",
+      "name_en": "Alphabet Inc.",
+      "asset_type": "stock",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "ai",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "大型科技候選；需評估多事業營運特徵。",
+      "source_policy_id": "US_STOCK_V1"
+    },
+    {
+      "instrument_id": "US:STOCK:LMT",
+      "country": "US",
+      "market": "NYSE",
+      "symbol": "LMT",
+      "slug": "lockheed-martin",
+      "name_zh": "洛克希德馬丁",
+      "name_en": "Lockheed Martin Corporation",
+      "asset_type": "stock",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "defense",
+        "aerospace",
+        "dividend"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "國防航太候選；需追蹤採購、積壓訂單與交付。",
+      "source_policy_id": "US_STOCK_V1"
+    },
+    {
+      "instrument_id": "US:STOCK:JNJ",
+      "country": "US",
+      "market": "NYSE",
+      "symbol": "JNJ",
+      "slug": "johnson-johnson",
+      "name_zh": "嬌生",
+      "name_en": "Johnson & Johnson",
+      "asset_type": "stock",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "healthcare",
+        "defensive",
+        "dividend"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "醫療防禦候選；需定義訴訟事件的風險處理。",
+      "source_policy_id": "US_STOCK_V1"
+    },
+    {
+      "instrument_id": "US:ETF:SPY",
+      "country": "US",
+      "market": "NYSE_ARCA",
+      "symbol": "SPY",
+      "slug": "spdr-sp500",
+      "name_zh": "SPDR S&P 500 ETF Trust",
+      "name_en": "SPDR S&P 500 ETF Trust",
+      "asset_type": "etf",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "broad_market",
+        "quality"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "美國大型股基準候選；需核對持股與費用。",
+      "source_policy_id": "US_ETF_V1"
+    },
+    {
+      "instrument_id": "US:ETF:QQQ",
+      "country": "US",
+      "market": "NASDAQ",
+      "symbol": "QQQ",
+      "slug": "invesco-qqq",
+      "name_zh": "Invesco QQQ",
+      "name_en": "Invesco QQQ Trust",
+      "asset_type": "etf",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "ai",
+        "quality",
+        "broad_market"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "大型成長科技候選；需評估集中度與估值。",
+      "source_policy_id": "US_ETF_V1"
+    },
+    {
+      "instrument_id": "US:ETF:SMH",
+      "country": "US",
+      "market": "NASDAQ",
+      "symbol": "SMH",
+      "slug": "vaneck-semiconductor",
+      "name_zh": "VanEck 半導體 ETF",
+      "name_en": "VanEck Semiconductor ETF",
+      "asset_type": "etf",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "semiconductor",
+        "ai"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "半導體產業候選；需持股穿透與循環模型。",
+      "source_policy_id": "US_ETF_V1"
+    },
+    {
+      "instrument_id": "US:ETF:CIBR",
+      "country": "US",
+      "market": "NASDAQ",
+      "symbol": "CIBR",
+      "slug": "first-trust-nasdaq-cybersecurity",
+      "name_zh": "First Trust NASDAQ Cybersecurity ETF",
+      "name_en": "First Trust NASDAQ Cybersecurity ETF",
+      "asset_type": "etf",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "cybersecurity",
+        "ai"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "資安主題候選；需核對指數分類與重疊。",
+      "source_policy_id": "US_ETF_V1"
+    },
+    {
+      "instrument_id": "US:ETF:USMV",
+      "country": "US",
+      "market": "BATS",
+      "symbol": "USMV",
+      "slug": "ishares-msci-usa-min-vol",
+      "name_zh": "iShares MSCI USA Min Vol Factor ETF",
+      "name_en": "iShares MSCI USA Min Vol Factor ETF",
+      "asset_type": "etf",
+      "currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "themes": [
+        "low_volatility",
+        "defensive"
+      ],
+      "status": "proposed",
+      "enabled": false,
+      "selection_rationale": "低波動因子候選；需檢驗因子與市場狀態適用性。",
+      "source_policy_id": "US_ETF_V1"
+    }
+  ]
+}

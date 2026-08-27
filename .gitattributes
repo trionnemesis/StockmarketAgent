@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.png binary
+docs/*.html linguist-generated=true
+docs/markets/*.html linguist-generated=true
+docs/instruments/*.html linguist-generated=true
+docs/data/*.json linguist-generated=true
+signals/*.json linguist-generated=true
+signals/archive/*.json linguist-generated=true
+reports/archive/*.md linguist-generated=true

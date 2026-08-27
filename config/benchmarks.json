@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "benchmarks": [
+    {
+      "benchmark_id": "TW:BROAD_MARKET",
+      "country": "TW",
+      "status": "policy_pending"
+    },
+    {
+      "benchmark_id": "JP:BROAD_MARKET",
+      "country": "JP",
+      "status": "policy_pending"
+    },
+    {
+      "benchmark_id": "US:BROAD_MARKET",
+      "country": "US",
+      "status": "policy_pending"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="StockmarketAgent 的市場資料狀態、執行紀錄、錯誤與來源清單。">
+  <meta name="theme-color" content="#09182e">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="StockmarketAgent">
+  <meta property="og:title" content="資料與執行狀態｜StockmarketAgent">
+  <meta property="og:description" content="StockmarketAgent 的市場資料狀態、執行紀錄、錯誤與來源清單。">
+  <meta property="og:url" content="https://trionnemesis.github.io/StockmarketAgent/status.html">
+  <meta name="twitter:title" content="資料與執行狀態｜StockmarketAgent">
+  <meta name="twitter:description" content="StockmarketAgent 的市場資料狀態、執行紀錄、錯誤與來源清單。">
+  <meta property="og:image" content="https://trionnemesis.github.io/StockmarketAgent/assets/og.png"><meta property="og:image:alt" content="StockmarketAgent 三市場股票研究情報"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://trionnemesis.github.io/StockmarketAgent/assets/og.png">
+  <link rel="canonical" href="https://trionnemesis.github.io/StockmarketAgent/status.html">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <title>資料與執行狀態｜StockmarketAgent</title>
+</head><body><nav class="site-nav" aria-label="主要導覽">
+  <div class="shell nav-inner">
+    <a class="brand" href="index.html" aria-label="StockmarketAgent 首頁">
+      <span aria-hidden="true">SA</span><strong>StockmarketAgent</strong>
+    </a>
+    <div class="nav-links"><a href="index.html">總覽</a><a href="markets/tw.html">台灣</a><a href="markets/jp.html">日本</a><a href="markets/us.html">美國</a><a href="methodology.html">方法</a><a href="status.html" aria-current="page">狀態</a><a href="history.html">歷史</a></div>
+  </div>
+</nav>
+<header class="subhero"><div class="shell"><p class="eyebrow">SYSTEM STATUS</p><h1>每一個缺口都應該可見。</h1><p>目前成功產生 fixture 版本；這不代表 live sources、模型或市場資料已就緒。</p></div></header>
+<main class="shell main-content">
+  <section class="status-strip status-strip-flat"><div><span>Run</span><strong>20260827T120000Z-fixture-f7c1c115</strong></div><div><span>Mode</span><strong>research_only</strong></div><div><span>Data</span><strong>fixture</strong></div><div><span>Critical</span><strong>2</strong></div></section>
+  <section class="section-card"><p class="kicker">MARKETS</p><h2>市場資料狀態</h2><div class="table-wrap"><table><thead><tr><th>市場</th><th>狀態</th><th>交易日</th><th>說明</th></tr></thead><tbody><tr><td>台灣</td><td>fixture</td><td>未提供</td><td>未連線市場資料；本頁僅驗證資料契約與呈現。</td></tr><tr><td>日本</td><td>fixture</td><td>未提供</td><td>未連線市場資料；本頁僅驗證資料契約與呈現。</td></tr><tr><td>美國</td><td>fixture</td><td>未提供</td><td>未連線市場資料；本頁僅驗證資料契約與呈現。</td></tr></tbody></table></div></section>
+  <section class="section-card"><p class="kicker">EVENTS</p><h2>高優先缺口</h2><div class="table-wrap"><table><thead><tr><th>Priority</th><th>類型</th><th>事件</th><th>說明</th></tr></thead><tbody><tr><td>100</td><td>governance</td><td>30 個候選標的等待 Owner 核准</td><td>目前清單全部為 proposed 且 disabled；不會進入 production signal。</td></tr><tr><td>95</td><td>data_quality</td><td>Live source adapters 尚未啟用</td><td>行情、財報、新聞與 ETF 持股皆未抓取；Risk Gate 將所有期間輸出為 NO_SIGNAL。</td></tr></tbody></table></div></section>
+  <section class="section-card"><p class="kicker">SOURCE MANIFEST</p><h2>來源清單</h2><div class="code-block"><code>tests/fixtures/research_snapshot.json</code><span>sha256:58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17</span></div></section>
+</main><footer class="site-footer">
+  <div class="shell footer-grid">
+    <div><strong>StockmarketAgent</strong><p>Evidence before direction.</p></div>
+    <p>Fixture research preview · <a href="methodology.html">非個人化投資建議</a> · <a href="https://github.com/trionnemesis/StockmarketAgent">GitHub repository</a></p>
+  </div>
+</footer><script src="assets/js/app.js" defer></script></body></html>

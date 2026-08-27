@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "model_version": "0.1.0-fixture",
+  "status": "uncalibrated",
+  "horizons": {
+    "week_1": {
+      "technical": 0.45,
+      "events": 0.25,
+      "macro": 0.1,
+      "fundamental": 0.05,
+      "valuation": 0.05,
+      "cycle": 0.1
+    },
+    "month_1": {
+      "technical": 0.3,
+      "events": 0.2,
+      "macro": 0.15,
+      "fundamental": 0.1,
+      "valuation": 0.1,
+      "cycle": 0.15
+    },
+    "month_3": {
+      "technical": 0.15,
+      "events": 0.15,
+      "macro": 0.2,
+      "fundamental": 0.2,
+      "valuation": 0.15,
+      "cycle": 0.15
+    },
+    "month_12": {
+      "technical": 0.05,
+      "events": 0.1,
+      "macro": 0.2,
+      "fundamental": 0.25,
+      "valuation": 0.25,
+      "cycle": 0.15
+    }
+  }
+}

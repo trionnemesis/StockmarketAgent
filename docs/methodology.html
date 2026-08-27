@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="StockmarketAgent 的資料、模型、Risk Gate、NO_SIGNAL 與公開限制。">
+  <meta name="theme-color" content="#09182e">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="StockmarketAgent">
+  <meta property="og:title" content="研究方法與限制｜StockmarketAgent">
+  <meta property="og:description" content="StockmarketAgent 的資料、模型、Risk Gate、NO_SIGNAL 與公開限制。">
+  <meta property="og:url" content="https://trionnemesis.github.io/StockmarketAgent/methodology.html">
+  <meta name="twitter:title" content="研究方法與限制｜StockmarketAgent">
+  <meta name="twitter:description" content="StockmarketAgent 的資料、模型、Risk Gate、NO_SIGNAL 與公開限制。">
+  <meta property="og:image" content="https://trionnemesis.github.io/StockmarketAgent/assets/og.png"><meta property="og:image:alt" content="StockmarketAgent 三市場股票研究情報"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://trionnemesis.github.io/StockmarketAgent/assets/og.png">
+  <link rel="canonical" href="https://trionnemesis.github.io/StockmarketAgent/methodology.html">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <title>研究方法與限制｜StockmarketAgent</title>
+</head><body><nav class="site-nav" aria-label="主要導覽">
+  <div class="shell nav-inner">
+    <a class="brand" href="index.html" aria-label="StockmarketAgent 首頁">
+      <span aria-hidden="true">SA</span><strong>StockmarketAgent</strong>
+    </a>
+    <div class="nav-links"><a href="index.html">總覽</a><a href="markets/tw.html">台灣</a><a href="markets/jp.html">日本</a><a href="markets/us.html">美國</a><a href="methodology.html" aria-current="page">方法</a><a href="status.html">狀態</a><a href="history.html">歷史</a></div>
+  </div>
+</nav>
+<header class="subhero"><div class="shell"><p class="eyebrow">METHODOLOGY</p><h1>先證明資料，再討論方向。</h1><p>Renderer 只讀取已驗證 JSON；它不在 HTML 或瀏覽器內重算研究分數。</p></div></header>
+<main class="shell main-content">
+  <section class="section-card">
+    <p class="kicker">PIPELINE</p><h2>可重現的七道關卡</h2>
+    <ol class="process">
+      <li><span>01</span><div><strong>Source policy</strong><p>官方、授權或明確允許的來源優先。</p></div></li>
+      <li><span>02</span><div><strong>Normalization</strong><p>日期、幣別、單位與公司行動分層處理。</p></div></li>
+      <li><span>03</span><div><strong>Point-in-time features</strong><p>只使用當時已公開的資料，避免前視偏誤。</p></div></li>
+      <li><span>04</span><div><strong>Deterministic model</strong><p>權重與門檻版本化；LLM 不決定數值或態度。</p></div></li>
+      <li><span>05</span><div><strong>Risk Gate</strong><p>缺資料、過期、矛盾或未校準時強制 NO_SIGNAL。</p></div></li>
+      <li><span>06</span><div><strong>Strict JSON</strong><p>拒絕未定義欄位、NaN、Infinity 與不合法日期。</p></div></li>
+      <li><span>07</span><div><strong>Derived outputs</strong><p>同一份 JSON 產生 Markdown 與靜態 HTML。</p></div></li>
+    </ol>
+  </section>
+  <section class="split-grid">
+    <article class="section-card"><p class="kicker">STANCE</p><h2>四種研究態度</h2><dl class="definition-list"><div><dt>BUY</dt><dd>經校準後的買入傾向。</dd></div><div><dt>HOLD</dt><dd>方向不足或風險報酬中性。</dd></div><div><dt>SELL</dt><dd>經校準後的減碼傾向。</dd></div><div><dt>NO_SIGNAL</dt><dd>資料或模型條件不允許方向性結論。</dd></div></dl></article>
+    <article class="section-card"><p class="kicker">PUBLIC MVP</p><h2>目前刻意不做</h2><ul class="risk-list"><li>即時行情與新聞抓取</li><li>正式 Universe 核准</li><li>回測、校準與 p_outperform</li><li>個人化建議或自動下單</li><li>自動調權與模型自我修改</li></ul></article>
+  </section>
+  <section class="disclaimer"><p class="kicker">IMPORTANT</p><h2>非個人化投資建議。</h2><p>分數與態度是版本化研究模型的輸出，不等於獲利機率，也不能取代個人的財務、稅務或風險評估。</p></section>
+</main><footer class="site-footer">
+  <div class="shell footer-grid">
+    <div><strong>StockmarketAgent</strong><p>Evidence before direction.</p></div>
+    <p>Fixture research preview · <a href="methodology.html">非個人化投資建議</a> · <a href="https://github.com/trionnemesis/StockmarketAgent">GitHub repository</a></p>
+  </div>
+</footer><script src="assets/js/app.js" defer></script></body></html>

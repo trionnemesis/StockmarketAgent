@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trionnemesis.github.io/StockmarketAgent/schemas/event.schema.json",
+  "title": "StockmarketAgent event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "event_type", "title", "summary", "priority", "materiality", "source_confidence", "published_at", "instrument_ids"],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "event_type": {"enum": ["governance", "data_quality", "market", "company", "policy", "earnings", "news"]},
+    "title": {"type": "string", "minLength": 1},
+    "summary": {"type": "string", "minLength": 1},
+    "priority": {"type": "integer", "minimum": 0, "maximum": 100},
+    "materiality": {"enum": ["low", "medium", "high", "unknown"]},
+    "source_confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+    "published_at": {"type": "string", "format": "date-time"},
+    "instrument_ids": {"type": "array", "items": {"type": "string"}}
+  }
+}

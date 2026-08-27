@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="台灣、日本、美國三市場的可追溯研究情報與 Risk Gate 儀表板。首版為 research-only fixture。">
+  <meta name="theme-color" content="#09182e">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="StockmarketAgent">
+  <meta property="og:title" content="StockmarketAgent｜三市場股票研究情報">
+  <meta property="og:description" content="台灣、日本、美國三市場的可追溯研究情報與 Risk Gate 儀表板。首版為 research-only fixture。">
+  <meta property="og:url" content="https://trionnemesis.github.io/StockmarketAgent/">
+  <meta name="twitter:title" content="StockmarketAgent｜三市場股票研究情報">
+  <meta name="twitter:description" content="台灣、日本、美國三市場的可追溯研究情報與 Risk Gate 儀表板。首版為 research-only fixture。">
+  <meta property="og:image" content="https://trionnemesis.github.io/StockmarketAgent/assets/og.png"><meta property="og:image:alt" content="StockmarketAgent 三市場股票研究情報"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://trionnemesis.github.io/StockmarketAgent/assets/og.png">
+  <link rel="canonical" href="https://trionnemesis.github.io/StockmarketAgent/">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <title>StockmarketAgent｜三市場股票研究情報</title>
+</head><body><nav class="site-nav" aria-label="主要導覽">
+  <div class="shell nav-inner">
+    <a class="brand" href="index.html" aria-label="StockmarketAgent 首頁">
+      <span aria-hidden="true">SA</span><strong>StockmarketAgent</strong>
+    </a>
+    <div class="nav-links"><a href="index.html" aria-current="page">總覽</a><a href="markets/tw.html">台灣</a><a href="markets/jp.html">日本</a><a href="markets/us.html">美國</a><a href="methodology.html">方法</a><a href="status.html">狀態</a><a href="history.html">歷史</a></div>
+  </div>
+</nav>
+<header class="hero">
+  <div class="shell hero-grid">
+    <div>
+      <p class="eyebrow">TRI-MARKET RESEARCH INTELLIGENCE</p>
+      <h1>三個市場，一套可追溯的研究語言。</h1>
+      <p class="hero-copy">把台灣、日本、美國的候選標的放進同一個資料品質、證據與 Risk Gate 框架。這是固定 fixture 的公開工程預覽，不是即時行情。</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#universe">檢視候選標的</a>
+        <a class="button button-ghost" href="methodology.html">了解方法與限制</a>
+      </div>
+    </div>
+    <aside class="mode-card" aria-label="目前執行模式">
+      <div><span class="status-dot" aria-hidden="true"></span><p>PUBLIC PREVIEW</p></div>
+      <strong>RESEARCH ONLY</strong>
+      <small>Fixture data · Owner approval required</small>
+    </aside>
+  </div>
+</header>
+<main class="shell main-content">
+  <section class="status-strip" aria-label="資料狀態">
+    <div><span>最新成功執行</span><strong>2026-08-27T12:00:00Z</strong></div>
+    <div><span>資料型態</span><strong>Fixed fixture</strong></div>
+    <div><span>正式核准標的</span><strong>0 / 30</strong></div>
+    <div><span>方向性訊號</span><strong>已關閉</strong></div>
+  </section>
+  <section class="section-card">
+    <div class="section-heading">
+      <div><p class="kicker">SIGNAL GATE</p><h2>研究態度分布</h2></div>
+      <span class="pill pill-neutral">模型尚未校準</span>
+    </div>
+    <div class="metric-grid"><article class="metric-card">
+  <span>BUY</span><strong>0</strong>
+  <small>已停用</small>
+</article><article class="metric-card">
+  <span>HOLD</span><strong>0</strong>
+  <small>已停用</small>
+</article><article class="metric-card">
+  <span>SELL</span><strong>0</strong>
+  <small>已停用</small>
+</article><article class="metric-card">
+  <span>NO_SIGNAL</span><strong>30</strong>
+  <small>Risk Gate</small>
+</article></div>
+    <div class="notice" role="note"><strong>為什麼全部是 NO_SIGNAL？</strong><span>Universe 尚未核准、live sources 尚未啟用、模型尚未完成回測。Risk Gate 因此禁止方向性結論。</span></div>
+  </section>
+  <section class="section-card">
+    <div class="section-heading">
+      <div><p class="kicker">MARKET STATUS</p><h2>跨市場狀態</h2></div>
+      <a class="text-link" href="status.html">完整資料狀態 →</a>
+    </div>
+    <div class="market-grid"><a class="market-card" href="markets/tw.html">
+  <span class="market-code">TW</span>
+  <div><h3>台灣市場</h3><p>未連線市場資料；本頁僅驗證資料契約與呈現。</p></div>
+  <strong>10 <small>proposed</small></strong>
+</a><a class="market-card" href="markets/jp.html">
+  <span class="market-code">JP</span>
+  <div><h3>日本市場</h3><p>未連線市場資料；本頁僅驗證資料契約與呈現。</p></div>
+  <strong>10 <small>proposed</small></strong>
+</a><a class="market-card" href="markets/us.html">
+  <span class="market-code">US</span>
+  <div><h3>美國市場</h3><p>未連線市場資料；本頁僅驗證資料契約與呈現。</p></div>
+  <strong>10 <small>proposed</small></strong>
+</a></div>
+  </section>
+  <section class="section-card">
+    <div class="section-heading">
+      <div><p class="kicker">PRIORITY QUEUE</p><h2>先處理證據缺口</h2></div>
+      <span class="pill pill-risk">2 high materiality</span>
+    </div>
+    <div class="event-grid"><article class="event-card">
+  <div><span class="priority">P100</span><span class="tag">governance</span></div>
+  <h3>30 個候選標的等待 Owner 核准</h3><p>目前清單全部為 proposed 且 disabled；不會進入 production signal。</p>
+</article><article class="event-card">
+  <div><span class="priority">P95</span><span class="tag">data_quality</span></div>
+  <h3>Live source adapters 尚未啟用</h3><p>行情、財報、新聞與 ETF 持股皆未抓取；Risk Gate 將所有期間輸出為 NO_SIGNAL。</p>
+</article></div>
+  </section>
+  <section class="section-card" id="universe">
+    <div class="section-heading">
+      <div><p class="kicker">PROPOSED UNIVERSE</p><h2>30 個候選標的</h2></div>
+      <span class="pill pill-neutral">全部 proposed · disabled</span>
+    </div>
+    <form class="filters" data-filter-form>
+      <label><span>搜尋</span><input type="search" name="search" placeholder="代號或名稱" autocomplete="off"></label>
+      <label><span>市場</span><select name="country"><option value="">全部市場</option><option value="TW">台灣</option><option value="JP">日本</option><option value="US">美國</option></select></label>
+      <label><span>資產</span><select name="asset"><option value="">全部類型</option><option value="stock">個股</option><option value="etf">ETF</option></select></label>
+      <label><span>主題</span><select name="theme"><option value="">全部主題</option><option value="aerospace">航太</option><option value="ai">AI</option><option value="broad_market">廣泛市場</option><option value="cybersecurity">資安</option><option value="defense">國防</option><option value="defensive">防禦</option><option value="dividend">股息</option><option value="healthcare">醫療</option><option value="low_volatility">低波動</option><option value="quality">品質</option><option value="semiconductor">半導體</option><option value="telecom">電信</option><option value="utilities">公用事業</option><option value="value">價值</option></select></label>
+      <button type="reset" class="button button-muted">清除</button>
+    </form>
+    <p class="result-count" aria-live="polite"><strong data-result-count>30</strong> 個候選符合條件</p>
+    <noscript><div class="notice"><strong>JavaScript 已停用。</strong><span>完整 30 筆表格仍可閱讀；篩選功能需要 JavaScript。</span></div></noscript>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>標的</th><th>市場</th><th>類型</th><th>主題</th><th>3M 態度</th><th class="num">信心</th></tr></thead>
+        <tbody data-instrument-body><tr data-instrument
+              data-country="TW"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="ai semiconductor quality"
+              data-search="2330 台積電 taiwan semiconductor manufacturing co.">
+  <td><a class="instrument-link" href="instruments/tsmc.html"><strong>2330</strong><span>台積電</span></a></td>
+  <td>台灣</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">AI</span><span class="tag">半導體</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="TW"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="ai semiconductor quality"
+              data-search="2454 聯發科 mediatek inc.">
+  <td><a class="instrument-link" href="instruments/mediatek.html"><strong>2454</strong><span>聯發科</span></a></td>
+  <td>台灣</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">AI</span><span class="tag">半導體</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="TW"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="ai utilities quality"
+              data-search="2308 台達電 delta electronics, inc.">
+  <td><a class="instrument-link" href="instruments/delta-electronics.html"><strong>2308</strong><span>台達電</span></a></td>
+  <td>台灣</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">AI</span><span class="tag">公用事業</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="TW"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="telecom defensive dividend"
+              data-search="2412 中華電信 chunghwa telecom co., ltd.">
+  <td><a class="instrument-link" href="instruments/chunghwa-telecom.html"><strong>2412</strong><span>中華電信</span></a></td>
+  <td>台灣</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">電信</span><span class="tag">防禦</span><span class="tag">股息</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="TW"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="value dividend defensive"
+              data-search="2891 中信金 ctbc financial holding co., ltd.">
+  <td><a class="instrument-link" href="instruments/ctbc-financial.html"><strong>2891</strong><span>中信金</span></a></td>
+  <td>台灣</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">價值</span><span class="tag">股息</span><span class="tag">防禦</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="TW"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="broad_market quality"
+              data-search="0050 元大台灣50 yuanta/p-shares taiwan top 50 etf">
+  <td><a class="instrument-link" href="instruments/yuanta-taiwan-50.html"><strong>0050</strong><span>元大台灣50</span></a></td>
+  <td>台灣</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">廣泛市場</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="TW"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="broad_market quality"
+              data-search="006208 富邦台50 fubon taiwan 50 etf">
+  <td><a class="instrument-link" href="instruments/fubon-taiwan-50.html"><strong>006208</strong><span>富邦台50</span></a></td>
+  <td>台灣</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">廣泛市場</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="TW"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="dividend defensive"
+              data-search="00878 國泰永續高股息 cathay msci taiwan esg sustainability high dividend yield etf">
+  <td><a class="instrument-link" href="instruments/cathay-esg-high-dividend.html"><strong>00878</strong><span>國泰永續高股息</span></a></td>
+  <td>台灣</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">股息</span><span class="tag">防禦</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="TW"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="dividend value"
+              data-search="00919 群益台灣精選高息 capital tip customized taiwan select high dividend etf">
+  <td><a class="instrument-link" href="instruments/capital-tip-customized-high-dividend.html"><strong>00919</strong><span>群益台灣精選高息</span></a></td>
+  <td>台灣</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">股息</span><span class="tag">價值</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="TW"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="defense aerospace ai cybersecurity"
+              data-search="00965 元大全球航太與防衛科技 yuanta global aerospace and defense technology etf">
+  <td><a class="instrument-link" href="instruments/yuanta-global-aerospace-defense.html"><strong>00965</strong><span>元大全球航太與防衛科技</span></a></td>
+  <td>台灣</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">國防</span><span class="tag">航太</span><span class="tag">AI</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="quality value"
+              data-search="7203 豐田汽車 toyota motor corporation">
+  <td><a class="instrument-link" href="instruments/toyota.html"><strong>7203</strong><span>豐田汽車</span></a></td>
+  <td>日本</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">品質</span><span class="tag">價值</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="ai quality"
+              data-search="6758 索尼集團 sony group corporation">
+  <td><a class="instrument-link" href="instruments/sony-group.html"><strong>6758</strong><span>索尼集團</span></a></td>
+  <td>日本</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">AI</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="semiconductor ai quality"
+              data-search="8035 東京威力科創 tokyo electron limited">
+  <td><a class="instrument-link" href="instruments/tokyo-electron.html"><strong>8035</strong><span>東京威力科創</span></a></td>
+  <td>日本</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">半導體</span><span class="tag">AI</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="defense aerospace"
+              data-search="7011 三菱重工 mitsubishi heavy industries, ltd.">
+  <td><a class="instrument-link" href="instruments/mitsubishi-heavy-industries.html"><strong>7011</strong><span>三菱重工</span></a></td>
+  <td>日本</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">國防</span><span class="tag">航太</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="telecom defensive dividend"
+              data-search="9432 日本電信電話 nippon telegraph and telephone corporation">
+  <td><a class="instrument-link" href="instruments/ntt.html"><strong>9432</strong><span>日本電信電話</span></a></td>
+  <td>日本</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">電信</span><span class="tag">防禦</span><span class="tag">股息</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="broad_market"
+              data-search="1306 next funds topix連動型上市投資信託 next funds topix exchange traded fund">
+  <td><a class="instrument-link" href="instruments/next-funds-topix.html"><strong>1306</strong><span>NEXT FUNDS TOPIX連動型上市投資信託</span></a></td>
+  <td>日本</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">廣泛市場</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="broad_market quality"
+              data-search="1321 next funds 日經225連動型上市投資信託 next funds nikkei 225 exchange traded fund">
+  <td><a class="instrument-link" href="instruments/next-funds-nikkei-225.html"><strong>1321</strong><span>NEXT FUNDS 日經225連動型上市投資信託</span></a></td>
+  <td>日本</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">廣泛市場</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="broad_market"
+              data-search="1475 ishares core topix etf ishares core topix etf">
+  <td><a class="instrument-link" href="instruments/ishares-core-topix.html"><strong>1475</strong><span>iShares Core TOPIX ETF</span></a></td>
+  <td>日本</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">廣泛市場</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="dividend value"
+              data-search="1489 next funds 日經平均高股息股票50指數連動型上市投資信託 next funds nikkei 225 high dividend yield stock 50 index etf">
+  <td><a class="instrument-link" href="instruments/next-funds-nikkei-high-dividend.html"><strong>1489</strong><span>NEXT FUNDS 日經平均高股息股票50指數連動型上市投資信託</span></a></td>
+  <td>日本</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">股息</span><span class="tag">價值</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="JP"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="ai broad_market quality"
+              data-search="2568 上場インデックスファンド米国株式 nasdaq100 為替ヘッジなし listed index fund us equity nasdaq100 no currency hedge">
+  <td><a class="instrument-link" href="instruments/listed-index-fund-nasdaq100.html"><strong>2568</strong><span>上場インデックスファンド米国株式 NASDAQ100 為替ヘッジなし</span></a></td>
+  <td>日本</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">AI</span><span class="tag">廣泛市場</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="ai semiconductor quality"
+              data-search="nvda 輝達 nvidia corporation">
+  <td><a class="instrument-link" href="instruments/nvidia.html"><strong>NVDA</strong><span>輝達</span></a></td>
+  <td>美國</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">AI</span><span class="tag">半導體</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="ai cybersecurity quality"
+              data-search="msft 微軟 microsoft corporation">
+  <td><a class="instrument-link" href="instruments/microsoft.html"><strong>MSFT</strong><span>微軟</span></a></td>
+  <td>美國</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">AI</span><span class="tag">資安</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="ai quality"
+              data-search="googl alphabet inc. alphabet inc.">
+  <td><a class="instrument-link" href="instruments/alphabet.html"><strong>GOOGL</strong><span>Alphabet Inc.</span></a></td>
+  <td>美國</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">AI</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="defense aerospace dividend"
+              data-search="lmt 洛克希德馬丁 lockheed martin corporation">
+  <td><a class="instrument-link" href="instruments/lockheed-martin.html"><strong>LMT</strong><span>洛克希德馬丁</span></a></td>
+  <td>美國</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">國防</span><span class="tag">航太</span><span class="tag">股息</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="stock"
+              data-stance="NO_SIGNAL"
+              data-themes="healthcare defensive dividend"
+              data-search="jnj 嬌生 johnson &amp; johnson">
+  <td><a class="instrument-link" href="instruments/johnson-johnson.html"><strong>JNJ</strong><span>嬌生</span></a></td>
+  <td>美國</td>
+  <td>個股</td>
+  <td><div class="tag-row"><span class="tag">醫療</span><span class="tag">防禦</span><span class="tag">股息</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="broad_market quality"
+              data-search="spy spdr s&amp;p 500 etf trust spdr s&amp;p 500 etf trust">
+  <td><a class="instrument-link" href="instruments/spdr-sp500.html"><strong>SPY</strong><span>SPDR S&amp;P 500 ETF Trust</span></a></td>
+  <td>美國</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">廣泛市場</span><span class="tag">品質</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="ai quality broad_market"
+              data-search="qqq invesco qqq invesco qqq trust">
+  <td><a class="instrument-link" href="instruments/invesco-qqq.html"><strong>QQQ</strong><span>Invesco QQQ</span></a></td>
+  <td>美國</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">AI</span><span class="tag">品質</span><span class="tag">廣泛市場</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="semiconductor ai"
+              data-search="smh vaneck 半導體 etf vaneck semiconductor etf">
+  <td><a class="instrument-link" href="instruments/vaneck-semiconductor.html"><strong>SMH</strong><span>VanEck 半導體 ETF</span></a></td>
+  <td>美國</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">半導體</span><span class="tag">AI</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="cybersecurity ai"
+              data-search="cibr first trust nasdaq cybersecurity etf first trust nasdaq cybersecurity etf">
+  <td><a class="instrument-link" href="instruments/first-trust-nasdaq-cybersecurity.html"><strong>CIBR</strong><span>First Trust NASDAQ Cybersecurity ETF</span></a></td>
+  <td>美國</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">資安</span><span class="tag">AI</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr><tr data-instrument
+              data-country="US"
+              data-asset="etf"
+              data-stance="NO_SIGNAL"
+              data-themes="low_volatility defensive"
+              data-search="usmv ishares msci usa min vol factor etf ishares msci usa min vol factor etf">
+  <td><a class="instrument-link" href="instruments/ishares-msci-usa-min-vol.html"><strong>USMV</strong><span>iShares MSCI USA Min Vol Factor ETF</span></a></td>
+  <td>美國</td>
+  <td>ETF</td>
+  <td><div class="tag-row"><span class="tag">低波動</span><span class="tag">防禦</span></div></td>
+  <td><span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span></td>
+  <td class="num">0</td>
+</tr></tbody>
+      </table>
+    </div>
+  </section>
+  <section class="disclaimer" aria-label="重要聲明">
+    <p class="kicker">RESEARCH BOUNDARY</p>
+    <h2>證據先於方向。</h2>
+    <p>本網站不提供個人化投資建議、下單或保證報酬。公開 fixture 只用來證明 JSON → Markdown → HTML 的一致性與發布流程。</p>
+  </section>
+</main><footer class="site-footer">
+  <div class="shell footer-grid">
+    <div><strong>StockmarketAgent</strong><p>Evidence before direction.</p></div>
+    <p>Fixture research preview · <a href="methodology.html">非個人化投資建議</a> · <a href="https://github.com/trionnemesis/StockmarketAgent">GitHub repository</a></p>
+  </div>
+</footer><script src="assets/js/app.js" defer></script></body></html>

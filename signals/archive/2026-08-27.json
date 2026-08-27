@@ -1,0 +1,4898 @@
+{
+  "events": [
+    {
+      "event_id": "governance-universe-approval",
+      "event_type": "governance",
+      "instrument_ids": [],
+      "materiality": "high",
+      "priority": 100,
+      "published_at": "2026-08-27T12:00:00Z",
+      "source_confidence": 100,
+      "summary": "目前清單全部為 proposed 且 disabled；不會進入 production signal。",
+      "title": "30 個候選標的等待 Owner 核准"
+    },
+    {
+      "event_id": "data-live-adapters-disabled",
+      "event_type": "data_quality",
+      "instrument_ids": [],
+      "materiality": "high",
+      "priority": 95,
+      "published_at": "2026-08-27T12:00:00Z",
+      "source_confidence": 100,
+      "summary": "行情、財報、新聞與 ETF 持股皆未抓取；Risk Gate 將所有期間輸出為 NO_SIGNAL。",
+      "title": "Live source adapters 尚未啟用"
+    }
+  ],
+  "instruments": [
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:STOCK:2330",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Taiwan Semiconductor Manufacturing Co.",
+      "name_zh": "台積電",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "tsmc",
+      "status": "proposed",
+      "symbol": "2330",
+      "themes": [
+        "ai",
+        "semiconductor",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:STOCK:2454",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "MediaTek Inc.",
+      "name_zh": "聯發科",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "mediatek",
+      "status": "proposed",
+      "symbol": "2454",
+      "themes": [
+        "ai",
+        "semiconductor",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:STOCK:2308",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Delta Electronics, Inc.",
+      "name_zh": "台達電",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "delta-electronics",
+      "status": "proposed",
+      "symbol": "2308",
+      "themes": [
+        "ai",
+        "utilities",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:STOCK:2412",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Chunghwa Telecom Co., Ltd.",
+      "name_zh": "中華電信",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "chunghwa-telecom",
+      "status": "proposed",
+      "symbol": "2412",
+      "themes": [
+        "telecom",
+        "defensive",
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:STOCK:2891",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "CTBC Financial Holding Co., Ltd.",
+      "name_zh": "中信金",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "ctbc-financial",
+      "status": "proposed",
+      "symbol": "2891",
+      "themes": [
+        "value",
+        "dividend",
+        "defensive"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:ETF:0050",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Yuanta/P-shares Taiwan Top 50 ETF",
+      "name_zh": "元大台灣50",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "yuanta-taiwan-50",
+      "status": "proposed",
+      "symbol": "0050",
+      "themes": [
+        "broad_market",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:ETF:006208",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Fubon Taiwan 50 ETF",
+      "name_zh": "富邦台50",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "fubon-taiwan-50",
+      "status": "proposed",
+      "symbol": "006208",
+      "themes": [
+        "broad_market",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:ETF:00878",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Cathay MSCI Taiwan ESG Sustainability High Dividend Yield ETF",
+      "name_zh": "國泰永續高股息",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "cathay-esg-high-dividend",
+      "status": "proposed",
+      "symbol": "00878",
+      "themes": [
+        "dividend",
+        "defensive"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:ETF:00919",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Capital TIP Customized Taiwan Select High Dividend ETF",
+      "name_zh": "群益台灣精選高息",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "capital-tip-customized-high-dividend",
+      "status": "proposed",
+      "symbol": "00919",
+      "themes": [
+        "dividend",
+        "value"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "TW:ETF:00965",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Yuanta Global Aerospace and Defense Technology ETF",
+      "name_zh": "元大全球航太與防衛科技",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "yuanta-global-aerospace-defense",
+      "status": "proposed",
+      "symbol": "00965",
+      "themes": [
+        "defense",
+        "aerospace",
+        "ai",
+        "cybersecurity"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:STOCK:7203",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Toyota Motor Corporation",
+      "name_zh": "豐田汽車",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "toyota",
+      "status": "proposed",
+      "symbol": "7203",
+      "themes": [
+        "quality",
+        "value"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:STOCK:6758",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Sony Group Corporation",
+      "name_zh": "索尼集團",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "sony-group",
+      "status": "proposed",
+      "symbol": "6758",
+      "themes": [
+        "ai",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:STOCK:8035",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Tokyo Electron Limited",
+      "name_zh": "東京威力科創",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "tokyo-electron",
+      "status": "proposed",
+      "symbol": "8035",
+      "themes": [
+        "semiconductor",
+        "ai",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:STOCK:7011",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Mitsubishi Heavy Industries, Ltd.",
+      "name_zh": "三菱重工",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "mitsubishi-heavy-industries",
+      "status": "proposed",
+      "symbol": "7011",
+      "themes": [
+        "defense",
+        "aerospace"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:STOCK:9432",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Nippon Telegraph and Telephone Corporation",
+      "name_zh": "日本電信電話",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "ntt",
+      "status": "proposed",
+      "symbol": "9432",
+      "themes": [
+        "telecom",
+        "defensive",
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:ETF:1306",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "NEXT FUNDS TOPIX Exchange Traded Fund",
+      "name_zh": "NEXT FUNDS TOPIX連動型上市投資信託",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "next-funds-topix",
+      "status": "proposed",
+      "symbol": "1306",
+      "themes": [
+        "broad_market"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:ETF:1321",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "NEXT FUNDS Nikkei 225 Exchange Traded Fund",
+      "name_zh": "NEXT FUNDS 日經225連動型上市投資信託",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "next-funds-nikkei-225",
+      "status": "proposed",
+      "symbol": "1321",
+      "themes": [
+        "broad_market",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:ETF:1475",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "iShares Core TOPIX ETF",
+      "name_zh": "iShares Core TOPIX ETF",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "ishares-core-topix",
+      "status": "proposed",
+      "symbol": "1475",
+      "themes": [
+        "broad_market"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:ETF:1489",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "NEXT FUNDS Nikkei 225 High Dividend Yield Stock 50 Index ETF",
+      "name_zh": "NEXT FUNDS 日經平均高股息股票50指數連動型上市投資信託",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "next-funds-nikkei-high-dividend",
+      "status": "proposed",
+      "symbol": "1489",
+      "themes": [
+        "dividend",
+        "value"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "JP:ETF:2568",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Listed Index Fund US Equity NASDAQ100 No Currency Hedge",
+      "name_zh": "上場インデックスファンド米国株式 NASDAQ100 為替ヘッジなし",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "listed-index-fund-nasdaq100",
+      "status": "proposed",
+      "symbol": "2568",
+      "themes": [
+        "ai",
+        "broad_market",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:STOCK:NVDA",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "NVIDIA Corporation",
+      "name_zh": "輝達",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "nvidia",
+      "status": "proposed",
+      "symbol": "NVDA",
+      "themes": [
+        "ai",
+        "semiconductor",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:STOCK:MSFT",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Microsoft Corporation",
+      "name_zh": "微軟",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "microsoft",
+      "status": "proposed",
+      "symbol": "MSFT",
+      "themes": [
+        "ai",
+        "cybersecurity",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:STOCK:GOOGL",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Alphabet Inc.",
+      "name_zh": "Alphabet Inc.",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "alphabet",
+      "status": "proposed",
+      "symbol": "GOOGL",
+      "themes": [
+        "ai",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:STOCK:LMT",
+      "market": "NYSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Lockheed Martin Corporation",
+      "name_zh": "洛克希德馬丁",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "lockheed-martin",
+      "status": "proposed",
+      "symbol": "LMT",
+      "themes": [
+        "defense",
+        "aerospace",
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:STOCK:JNJ",
+      "market": "NYSE",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Johnson & Johnson",
+      "name_zh": "嬌生",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "johnson-johnson",
+      "status": "proposed",
+      "symbol": "JNJ",
+      "themes": [
+        "healthcare",
+        "defensive",
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:ETF:SPY",
+      "market": "NYSE_ARCA",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "SPDR S&P 500 ETF Trust",
+      "name_zh": "SPDR S&P 500 ETF Trust",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "spdr-sp500",
+      "status": "proposed",
+      "symbol": "SPY",
+      "themes": [
+        "broad_market",
+        "quality"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:ETF:QQQ",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "Invesco QQQ Trust",
+      "name_zh": "Invesco QQQ",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "invesco-qqq",
+      "status": "proposed",
+      "symbol": "QQQ",
+      "themes": [
+        "ai",
+        "quality",
+        "broad_market"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:ETF:SMH",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "VanEck Semiconductor ETF",
+      "name_zh": "VanEck 半導體 ETF",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "vaneck-semiconductor",
+      "status": "proposed",
+      "symbol": "SMH",
+      "themes": [
+        "semiconductor",
+        "ai"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:ETF:CIBR",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "First Trust NASDAQ Cybersecurity ETF",
+      "name_zh": "First Trust NASDAQ Cybersecurity ETF",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "first-trust-nasdaq-cybersecurity",
+      "status": "proposed",
+      "symbol": "CIBR",
+      "themes": [
+        "cybersecurity",
+        "ai"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "events": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "fundamental": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "macro": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "technical": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        },
+        "valuation": {
+          "confidence": 0,
+          "score": null,
+          "status": "not_evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "live_market_data",
+          "point_in_time_fundamentals",
+          "approved_universe",
+          "calibrated_model"
+        ],
+        "last_market_session": null,
+        "status": "fixture",
+        "warnings": [
+          "FIXTURE_DATA_ONLY",
+          "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        },
+        {
+          "calibration_status": "not_available",
+          "confidence": 0,
+          "contrary_evidence": [],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Owner approves a versioned universe and model after required validation."
+          ],
+          "risk_flags": [
+            "UNAPPROVED_UNIVERSE",
+            "LIVE_DATA_MISSING",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": null,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": []
+        }
+      ],
+      "instrument_id": "US:ETF:USMV",
+      "market": "BATS",
+      "model_applicability": {
+        "applicable": false,
+        "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
+      },
+      "name_en": "iShares MSCI USA Min Vol Factor ETF",
+      "name_zh": "iShares MSCI USA Min Vol Factor ETF",
+      "provenance": [
+        {
+          "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "fixture-tri-market-v1",
+          "source_type": "fixture",
+          "source_url": "tests/fixtures/research_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "slug": "ishares-msci-usa-min-vol",
+      "status": "proposed",
+      "symbol": "USMV",
+      "themes": [
+        "low_volatility",
+        "defensive"
+      ]
+    }
+  ],
+  "markets": [
+    {
+      "country": "TW",
+      "instrument_count": 10,
+      "last_market_session": null,
+      "name_zh": "台灣",
+      "notice": "未連線市場資料；本頁僅驗證資料契約與呈現。",
+      "status": "fixture"
+    },
+    {
+      "country": "JP",
+      "instrument_count": 10,
+      "last_market_session": null,
+      "name_zh": "日本",
+      "notice": "未連線市場資料；本頁僅驗證資料契約與呈現。",
+      "status": "fixture"
+    },
+    {
+      "country": "US",
+      "instrument_count": 10,
+      "last_market_session": null,
+      "name_zh": "美國",
+      "notice": "未連線市場資料；本頁僅驗證資料契約與呈現。",
+      "status": "fixture"
+    }
+  ],
+  "run": {
+    "as_of": "2026-08-27",
+    "data_kind": "fixture",
+    "generated_at": "2026-08-27T12:00:00Z",
+    "git_sha": "fixture",
+    "input_hash": "f7c1c1151a6fb56d6f6c350c58ad6aaeabfebf619a2d201cb5dcaf6903135e6e",
+    "mode": "research_only",
+    "model_version": "0.1.0-fixture",
+    "run_id": "20260827T120000Z-fixture-f7c1c115"
+  },
+  "schema_version": "1.0.0",
+  "source_manifest": [
+    {
+      "content_hash": "58520b4462351740202517edd65baf6f75ed2c4df40e7f282378d456481a0f17",
+      "kind": "fixture",
+      "path": "tests/fixtures/research_snapshot.json",
+      "source_id": "fixture-tri-market-v1"
+    }
+  ],
+  "summary": {
+    "approved_enabled_count": 0,
+    "critical_events": 2,
+    "proposed_count": 30,
+    "stances": {
+      "BUY": 0,
+      "HOLD": 0,
+      "NO_SIGNAL": 30,
+      "SELL": 0
+    },
+    "tracked_count": 30
+  }
+}

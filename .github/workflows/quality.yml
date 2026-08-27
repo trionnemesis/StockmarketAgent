@@ -1,0 +1,28 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Show Python version
+        run: python3 --version
+      - name: Rebuild deterministic artifacts
+        run: python3 -m src.pipeline build
+      - name: Run contracts and integration tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Validate published contracts
+        run: python3 -m src.pipeline validate
+      - name: Ensure generated artifacts are committed
+        run: git diff --exit-code

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "timezone": "Asia/Taipei",
+  "automation_enabled": false,
+  "schedules": [
+    {
+      "id": "us_morning",
+      "cron": "30 7 * * *",
+      "status": "proposal_only"
+    },
+    {
+      "id": "tw_jp_close",
+      "cron": "30 18 * * 1-5",
+      "status": "proposal_only"
+    },
+    {
+      "id": "weekly_validation",
+      "cron": "0 9 * * 6",
+      "status": "proposal_only"
+    }
+  ]
+}

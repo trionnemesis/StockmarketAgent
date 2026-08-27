@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "policies": [
+    "TW_STOCK_V1",
+    "TW_ETF_V1",
+    "JP_STOCK_V1",
+    "JP_ETF_V1",
+    "US_STOCK_V1",
+    "US_ETF_V1"
+  ],
+  "live_adapters_enabled": false,
+  "note": "Source adapters require separate official-document, license, and rate-limit review."
+}

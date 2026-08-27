@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "themes": [
+    "ai",
+    "semiconductor",
+    "defense",
+    "aerospace",
+    "cybersecurity",
+    "consumer_staples",
+    "defensive",
+    "healthcare",
+    "telecom",
+    "utilities",
+    "broad_market",
+    "quality",
+    "value",
+    "dividend",
+    "low_volatility"
+  ]
+}

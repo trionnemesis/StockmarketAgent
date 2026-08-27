@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://trionnemesis.github.io/StockmarketAgent/sitemap.xml

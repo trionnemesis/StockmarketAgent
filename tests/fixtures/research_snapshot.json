@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_id": "tri-market-research-only-v1",
+  "as_of": "2026-08-27",
+  "generated_at": "2026-08-27T12:00:00Z",
+  "git_sha": "fixture",
+  "model_version": "0.1.0-fixture",
+  "market_context": [
+    {
+      "country": "TW",
+      "name_zh": "台灣",
+      "status": "fixture",
+      "last_market_session": null,
+      "instrument_count": 10,
+      "notice": "未連線市場資料；本頁僅驗證資料契約與呈現。"
+    },
+    {
+      "country": "JP",
+      "name_zh": "日本",
+      "status": "fixture",
+      "last_market_session": null,
+      "instrument_count": 10,
+      "notice": "未連線市場資料；本頁僅驗證資料契約與呈現。"
+    },
+    {
+      "country": "US",
+      "name_zh": "美國",
+      "status": "fixture",
+      "last_market_session": null,
+      "instrument_count": 10,
+      "notice": "未連線市場資料；本頁僅驗證資料契約與呈現。"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "governance-universe-approval",
+      "event_type": "governance",
+      "title": "30 個候選標的等待 Owner 核准",
+      "summary": "目前清單全部為 proposed 且 disabled；不會進入 production signal。",
+      "priority": 100,
+      "materiality": "high",
+      "source_confidence": 100,
+      "published_at": "2026-08-27T12:00:00Z",
+      "instrument_ids": []
+    },
+    {
+      "event_id": "data-live-adapters-disabled",
+      "event_type": "data_quality",
+      "title": "Live source adapters 尚未啟用",
+      "summary": "行情、財報、新聞與 ETF 持股皆未抓取；Risk Gate 將所有期間輸出為 NO_SIGNAL。",
+      "priority": 95,
+      "materiality": "high",
+      "source_confidence": 100,
+      "published_at": "2026-08-27T12:00:00Z",
+      "instrument_ids": []
+    }
+  ],
+  "required_missing": [
+    "live_market_data",
+    "point_in_time_fundamentals",
+    "approved_universe",
+    "calibrated_model"
+  ],
+  "warnings": [
+    "FIXTURE_DATA_ONLY",
+    "NOT_PERSONALIZED_INVESTMENT_ADVICE"
+  ],
+  "source": {
+    "source_id": "fixture-tri-market-v1",
+    "publisher": "StockmarketAgent test suite",
+    "source_type": "fixture",
+    "source_url": "tests/fixtures/research_snapshot.json",
+    "published_at": null,
+    "observed_at": "2026-08-27T12:00:00Z",
+    "fetched_at": "2026-08-27T12:00:00Z",
+    "market_session_date": null,
+    "parser_version": "1.0.0",
+    "license_class": "project_fixture",
+    "raw_retained": false
+  }
+}

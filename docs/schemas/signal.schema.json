@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trionnemesis.github.io/StockmarketAgent/schemas/signal.schema.json",
+  "title": "StockmarketAgent research signal bundle",
+  "$defs": {
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "confidence", "status"],
+      "properties": {
+        "score": {"type": ["number", "null"], "minimum": -100, "maximum": 100},
+        "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+        "status": {"enum": ["evaluated", "not_evaluated", "not_applicable"]}
+      }
+    },
+    "horizon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["horizon", "score", "stance", "confidence", "calibration_status", "supporting_evidence", "contrary_evidence", "risk_flags", "invalidation_conditions"],
+      "properties": {
+        "horizon": {"enum": ["1W", "1M", "3M", "12M"]},
+        "score": {"type": ["number", "null"], "minimum": -100, "maximum": 100},
+        "stance": {"enum": ["BUY", "HOLD", "SELL", "NO_SIGNAL"]},
+        "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+        "calibration_status": {"enum": ["calibrated", "uncalibrated", "not_available"]},
+        "supporting_evidence": {"type": "array", "items": {"type": "string"}},
+        "contrary_evidence": {"type": "array", "items": {"type": "string"}},
+        "risk_flags": {"type": "array", "items": {"type": "string"}},
+        "invalidation_conditions": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "publisher", "source_type", "source_url", "published_at", "observed_at", "fetched_at", "market_session_date", "content_hash", "parser_version", "license_class", "raw_retained"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "publisher": {"type": "string", "minLength": 1},
+        "source_type": {"const": "fixture"},
+        "source_url": {"type": "string", "minLength": 1},
+        "published_at": {"type": ["string", "null"], "format": "date-time"},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "fetched_at": {"type": "string", "format": "date-time"},
+        "market_session_date": {"type": ["string", "null"], "format": "date"},
+        "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "parser_version": {"type": "string", "minLength": 1},
+        "license_class": {"const": "project_fixture"},
+        "raw_retained": {"const": false}
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run", "summary", "markets", "instruments", "events", "source_manifest"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "as_of", "generated_at", "git_sha", "input_hash", "model_version", "mode", "data_kind"],
+      "properties": {
+        "run_id": {"type": "string", "minLength": 8},
+        "as_of": {"type": "string", "format": "date"},
+        "generated_at": {"type": "string", "format": "date-time"},
+        "git_sha": {"type": "string", "minLength": 1},
+        "input_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "model_version": {"type": "string", "minLength": 1},
+        "mode": {"const": "research_only"},
+        "data_kind": {"const": "fixture"}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tracked_count", "proposed_count", "approved_enabled_count", "stances", "critical_events"],
+      "properties": {
+        "tracked_count": {"type": "integer", "const": 30},
+        "proposed_count": {"type": "integer", "const": 30},
+        "approved_enabled_count": {"type": "integer", "const": 0},
+        "stances": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["BUY", "HOLD", "SELL", "NO_SIGNAL"],
+          "properties": {
+            "BUY": {"type": "integer", "const": 0},
+            "HOLD": {"type": "integer", "const": 0},
+            "SELL": {"type": "integer", "const": 0},
+            "NO_SIGNAL": {"type": "integer", "const": 30}
+          }
+        },
+        "critical_events": {"type": "integer", "minimum": 0}
+      }
+    },
+    "markets": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["country", "name_zh", "status", "last_market_session", "instrument_count", "notice"],
+        "properties": {
+          "country": {"enum": ["TW", "JP", "US"]},
+          "name_zh": {"type": "string", "minLength": 1},
+          "status": {"enum": ["fresh", "market_closed", "delayed", "stale", "failed", "fixture"]},
+          "last_market_session": {"type": ["string", "null"], "format": "date"},
+          "instrument_count": {"type": "integer", "const": 10},
+          "notice": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "instruments": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["instrument_id", "symbol", "slug", "name_zh", "name_en", "country", "market", "asset_type", "currency", "status", "enabled", "themes", "benchmark_id", "data_status", "horizons", "components", "relative_performance", "model_applicability", "provenance"],
+        "properties": {
+          "instrument_id": {"type": "string", "pattern": "^(TW|JP|US):(STOCK|ETF):[A-Z0-9.-]+$"},
+          "symbol": {"type": "string", "minLength": 1},
+          "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "name_zh": {"type": "string", "minLength": 1},
+          "name_en": {"type": "string", "minLength": 1},
+          "country": {"enum": ["TW", "JP", "US"]},
+          "market": {"type": "string", "minLength": 2},
+          "asset_type": {"enum": ["stock", "etf"]},
+          "currency": {"enum": ["TWD", "JPY", "USD"]},
+          "status": {"const": "proposed"},
+          "enabled": {"const": false},
+          "themes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+          "benchmark_id": {"type": "string", "minLength": 1},
+          "data_status": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["status", "last_market_session", "critical_missing", "warnings"],
+            "properties": {
+              "status": {"const": "fixture"},
+              "last_market_session": {"type": ["string", "null"], "format": "date"},
+              "critical_missing": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "warnings": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "horizons": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/horizon"}},
+          "components": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["macro", "fundamental", "valuation", "technical", "cycle", "events"],
+            "properties": {
+              "macro": {"$ref": "#/$defs/component"},
+              "fundamental": {"$ref": "#/$defs/component"},
+              "valuation": {"$ref": "#/$defs/component"},
+              "technical": {"$ref": "#/$defs/component"},
+              "cycle": {"$ref": "#/$defs/component"},
+              "events": {"$ref": "#/$defs/component"}
+            }
+          },
+          "relative_performance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["period", "value", "benchmark_id", "status"],
+            "properties": {
+              "period": {"const": "3M"},
+              "value": {"type": ["number", "null"]},
+              "benchmark_id": {"type": "string", "minLength": 1},
+              "status": {"const": "not_available"}
+            }
+          },
+          "model_applicability": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["applicable", "reason"],
+            "properties": {
+              "applicable": {"const": false},
+              "reason": {"type": "string", "minLength": 1}
+            }
+          },
+          "provenance": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/provenance"}}
+        }
+      }
+    },
+    "events": {"type": "array", "items": {"$ref": "event.schema.json"}},
+    "source_manifest": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "path", "content_hash", "kind"],
+        "properties": {
+          "source_id": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "kind": {"const": "fixture"}
+        }
+      }
+    }
+  }
+}

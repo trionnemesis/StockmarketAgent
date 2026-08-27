@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "status": "engineering_defaults_uncalibrated",
+  "confidence_no_signal_below": 50,
+  "hold_min": -24,
+  "hold_max": 24,
+  "buy_min": 25,
+  "sell_max": -25,
+  "contradiction_penalty_max": 30
+}
