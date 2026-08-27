@@ -1,0 +1,2741 @@
+{
+  "schema_version": "1.0.0",
+  "review_version": "b1-2026-08-27",
+  "universe_version": "proposal-2026-08-27",
+  "evidence_as_of": "2026-08-27",
+  "review_status": "owner_decision_required",
+  "instruments": [
+    {
+      "instrument_id": "TW:STOCK:2330",
+      "listing_status": "active",
+      "verification_status": "verified_after_correction",
+      "symbol": "2330",
+      "exchange": "TWSE",
+      "legal_name": "Taiwan Semiconductor Manufacturing Company Limited",
+      "asset_type": "stock",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "大型半導體製造候選；需確認資料授權、流動性與主題集中度。",
+      "official_url": "https://www.tsmc.com/english/aboutTSMC/company_profile",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "ai",
+        "semiconductor"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_COMPANY",
+          "url": "https://www.tsmc.com/english/aboutTSMC/company_profile",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "TW:STOCK:2454",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "2454",
+      "exchange": "TWSE",
+      "legal_name": "MediaTek Inc.",
+      "asset_type": "stock",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "IC 設計候選；需驗證財報與產業循環資料可得性。",
+      "official_url": "https://corp.mediatek.com/about",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "ai",
+        "semiconductor"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_COMPANY",
+          "url": "https://corp.mediatek.com/about",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "TW:STOCK:2308",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "2308",
+      "exchange": "TWSE",
+      "legal_name": "Delta Electronics, Inc.",
+      "asset_type": "stock",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "電源與基礎設施候選；需評估主題曝險與來源完整性。",
+      "official_url": "https://www.deltaww.com/en-US/about/aboutDelta",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "ai_infrastructure"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_COMPANY",
+          "url": "https://www.deltaww.com/en-US/about/aboutDelta",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "TW:STOCK:2412",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "2412",
+      "exchange": "TWSE",
+      "legal_name": "Chunghwa Telecom Co., Ltd.",
+      "asset_type": "stock",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "電信與股息候選；需確認股利與估值資料的 point-in-time 可得性。",
+      "official_url": "https://www.cht.com.tw/en/home/cht/about-cht/company-profile",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "telecom",
+        "dividend"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_COMPANY",
+          "url": "https://www.cht.com.tw/en/home/cht/about-cht/company-profile",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "TW:STOCK:2891",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "2891",
+      "exchange": "TWSE",
+      "legal_name": "CTBC Financial Holding Co., Ltd.",
+      "asset_type": "stock",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "金融與股息候選；需另定金融業適用模型。",
+      "official_url": "https://www.ctbcholding.com/en/en_abo_intro.html",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "financials",
+        "dividend"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_COMPANY",
+          "url": "https://www.ctbcholding.com/en/en_abo_intro.html",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "TW:ETF:0050",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "0050",
+      "exchange": "TWSE",
+      "legal_name": "Yuanta/P-shares Taiwan Top 50 ETF",
+      "asset_type": "etf",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "大型股基準型 ETF 候選；需核對持股歷史與費用。",
+      "official_url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "broad_market"
+      ],
+      "replacement_assessment": "replacement_candidate",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_ETF",
+          "url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "FTSE_TWSE_INDEX_REFERENCE",
+          "url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "FTSE TWSE Taiwan 50 Index",
+        "source_id": "FTSE_TWSE_INDEX_REFERENCE",
+        "official_url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "TW:ETF:006208",
+      "listing_status": "active",
+      "verification_status": "verified_after_correction",
+      "symbol": "006208",
+      "exchange": "TWSE",
+      "legal_name": "Fubon FTSE TWSE Taiwan 50 ETF",
+      "asset_type": "etf",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "大型股 ETF 候選；需評估與 0050 的重疊度。",
+      "official_url": "https://www.twse.com.tw/en/ETFortune-institute/etfInfo/006208",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "broad_market"
+      ],
+      "replacement_assessment": "replacement_candidate",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_ETF",
+          "url": "https://www.twse.com.tw/en/ETFortune-institute/etfInfo/006208",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "FTSE_TWSE_INDEX_REFERENCE",
+          "url": "https://www.twse.com.tw/en/ETFortune-institute/etfInfo/006208",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "FTSE TWSE Taiwan 50 Index",
+        "source_id": "FTSE_TWSE_INDEX_REFERENCE",
+        "official_url": "https://www.twse.com.tw/en/ETFortune-institute/etfInfo/006208",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "TW:ETF:00878",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "00878",
+      "exchange": "TWSE",
+      "legal_name": "Cathay MSCI Taiwan ESG Sustainability High Dividend Yield ETF",
+      "asset_type": "etf",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "高股息 ETF 候選；需驗證指數規則與持股穿透。",
+      "official_url": "https://www.twse.com.tw/en/ETFortune-institute/etfInfo/00878",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "dividend",
+        "esg"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_ETF",
+          "url": "https://www.twse.com.tw/en/ETFortune-institute/etfInfo/00878",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "MSCI_INDEX_REFERENCE",
+          "url": "https://www.twse.com.tw/en/ETFortune-institute/etfInfo/00878",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "MSCI Taiwan Select ESG Sustainability High Yield Top 30 Index",
+        "source_id": "MSCI_INDEX_REFERENCE",
+        "official_url": "https://www.twse.com.tw/en/ETFortune-institute/etfInfo/00878",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "TW:ETF:00919",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "00919",
+      "exchange": "TWSE",
+      "legal_name": "Capital TIP Customized Taiwan Select High Dividend ETF",
+      "asset_type": "etf",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "高股息 ETF 候選；需評估策略重疊與完整歷史。",
+      "official_url": "https://taiwanindex.com.tw/en/indexes/IX0170",
+      "history": {
+        "live_age_status": "limited",
+        "start_date": "2022-10-20",
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "dividend"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED",
+        "SHORT_LIVE_HISTORY"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_ETF",
+          "url": "https://taiwanindex.com.tw/en/indexes/IX0170",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "TIP_INDEX_REFERENCE",
+          "url": "https://taiwanindex.com.tw/en/indexes/IX0170",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "TIP Customized Taiwan Select High Dividend Index",
+        "source_id": "TIP_INDEX_REFERENCE",
+        "official_url": "https://taiwanindex.com.tw/en/indexes/IX0170",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "TW:ETF:00965",
+      "listing_status": "active",
+      "verification_status": "verified_after_correction",
+      "symbol": "00965",
+      "exchange": "TWSE",
+      "legal_name": "Yuanta Global Aerospace and Defense Technology ETF",
+      "asset_type": "etf",
+      "trading_currency": "TWD",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "selection_rationale": "跨市場主題 ETF 候選；僅承接視覺參考，不沿用既有報告數字。",
+      "official_url": "https://www.yuantaetfs.com/product/detail/00965/Basic_information",
+      "history": {
+        "live_age_status": "limited",
+        "start_date": "2024-11-26",
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "conditional",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "defense",
+        "aerospace",
+        "semiconductor",
+        "cybersecurity"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED",
+        "SHORT_LIVE_HISTORY"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_ETF",
+          "url": "https://www.yuantaetfs.com/product/detail/00965/Basic_information",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "NYSE_FACTSET_INDEX_REFERENCE",
+          "url": "https://www.yuantaetfs.com/product/detail/00965/Basic_information",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "NYSE FactSet Global Aerospace and Defense Technology Index",
+        "source_id": "NYSE_FACTSET_INDEX_REFERENCE",
+        "official_url": "https://www.yuantaetfs.com/product/detail/00965/Basic_information",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "JP:STOCK:7203",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "7203",
+      "exchange": "TSE",
+      "legal_name": "Toyota Motor Corporation",
+      "asset_type": "stock",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "大型製造候選；需核對匯率與全球營收曝險。",
+      "official_url": "https://global.toyota/en/company/profile/overview/",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "automotive"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_LISTING_REFERENCE",
+          "url": "https://global.toyota/en/company/profile/overview/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "JP:STOCK:6758",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "6758",
+      "exchange": "TSE",
+      "legal_name": "Sony Group Corporation",
+      "asset_type": "stock",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "科技與內容候選；需定義跨事業部特徵。",
+      "official_url": "https://www.sony.com/en/SonyInfo/CorporateInfo/",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "ai",
+        "entertainment"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_LISTING_REFERENCE",
+          "url": "https://www.sony.com/en/SonyInfo/CorporateInfo/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "JP:STOCK:8035",
+      "listing_status": "active",
+      "verification_status": "verified_after_correction",
+      "symbol": "8035",
+      "exchange": "TSE",
+      "legal_name": "Tokyo Electron Ltd.",
+      "asset_type": "stock",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "半導體設備候選；需驗證產業循環與訂單資料。",
+      "official_url": "https://www.tel.com/about/profile/",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "semiconductor",
+        "ai"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_LISTING_REFERENCE",
+          "url": "https://www.tel.com/about/profile/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "JP:STOCK:7011",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "7011",
+      "exchange": "TSE",
+      "legal_name": "Mitsubishi Heavy Industries, Ltd.",
+      "asset_type": "stock",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "國防與重工候選；需追蹤正式採購與交付來源。",
+      "official_url": "https://www.mhi.com/company/overview",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "defense",
+        "aerospace"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_LISTING_REFERENCE",
+          "url": "https://www.mhi.com/company/overview",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "JP:STOCK:9432",
+      "listing_status": "active",
+      "verification_status": "verified_after_correction",
+      "symbol": "9432",
+      "exchange": "TSE",
+      "legal_name": "NTT, Inc.",
+      "asset_type": "stock",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "電信與股息候選；需核對公司行動與股利歷史。",
+      "official_url": "https://group.ntt/en/group/at-a-glance.html",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "telecom",
+        "dividend"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_LISTING_REFERENCE",
+          "url": "https://group.ntt/en/group/at-a-glance.html",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "JP:ETF:1306",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "1306",
+      "exchange": "TSE",
+      "legal_name": "NEXT FUNDS TOPIX Exchange Traded Fund",
+      "asset_type": "etf",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "TOPIX 廣泛市場候選；需核對追蹤誤差與費用。",
+      "official_url": "https://nextfunds.jp/en/lineup/1306/",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "broad_market"
+      ],
+      "replacement_assessment": "replacement_candidate",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_ETF_REFERENCE",
+          "url": "https://nextfunds.jp/en/lineup/1306/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "JPX_BENCHMARK_CONTRACT",
+          "url": "https://nextfunds.jp/en/lineup/1306/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "TOPIX Total Return Index",
+        "source_id": "JPX_BENCHMARK_CONTRACT",
+        "official_url": "https://nextfunds.jp/en/lineup/1306/",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "JP:ETF:1321",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "1321",
+      "exchange": "TSE",
+      "legal_name": "NEXT FUNDS Nikkei 225 Exchange Traded Fund",
+      "asset_type": "etf",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "日經 225 候選；需評估與 TOPIX 的基準差異。",
+      "official_url": "https://nextfunds.jp/en/lineup/1321/",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "broad_market"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_ETF_REFERENCE",
+          "url": "https://nextfunds.jp/en/lineup/1321/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "NIKKEI_INDEX_REFERENCE",
+          "url": "https://nextfunds.jp/en/lineup/1321/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "Nikkei 225 Total Return Index",
+        "source_id": "NIKKEI_INDEX_REFERENCE",
+        "official_url": "https://nextfunds.jp/en/lineup/1321/",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "JP:ETF:1475",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "1475",
+      "exchange": "TSE",
+      "legal_name": "iShares Core TOPIX ETF",
+      "asset_type": "etf",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "低成本 TOPIX 候選；需驗證持股歷史可得性。",
+      "official_url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "broad_market"
+      ],
+      "replacement_assessment": "replacement_candidate",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED",
+        "BENCHMARK_CHANGE_2022"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_ETF_REFERENCE",
+          "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "JPX_BENCHMARK_CONTRACT",
+          "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "TOPIX Total Return Index",
+        "source_id": "JPX_BENCHMARK_CONTRACT",
+        "official_url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "JP:ETF:1489",
+      "listing_status": "active",
+      "verification_status": "verified_after_correction",
+      "symbol": "1489",
+      "exchange": "TSE",
+      "legal_name": "NEXT FUNDS Nikkei 225 High Dividend Yield Stock 50 Index Exchange Traded Fund",
+      "asset_type": "etf",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "高股息因子候選；需驗證指數規則與換股資料。",
+      "official_url": "https://nextfunds.jp/en/lineup/1489/",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "dividend"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_ETF_REFERENCE",
+          "url": "https://nextfunds.jp/en/lineup/1489/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "NIKKEI_INDEX_REFERENCE",
+          "url": "https://nextfunds.jp/en/lineup/1489/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "Nikkei 225 High Dividend Yield Stock 50 Index (Total Return)",
+        "source_id": "NIKKEI_INDEX_REFERENCE",
+        "official_url": "https://nextfunds.jp/en/lineup/1489/",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "JP:ETF:2568",
+      "listing_status": "active",
+      "verification_status": "verified_after_correction",
+      "symbol": "2568",
+      "exchange": "TSE",
+      "legal_name": "Listed Index Fund US Equity (NASDAQ100) No Currency Hedge",
+      "asset_type": "etf",
+      "trading_currency": "JPY",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "selection_rationale": "日圓計價海外科技曝險候選；需明確處理匯率。",
+      "official_url": "https://global.amova-am.com/general/etf/detail/2568-us-equity-nasdaq100-no-currency-hedge",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "large_cap_growth",
+        "technology_tilt",
+        "fx_unhedged"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "JPX_ETF_REFERENCE",
+          "url": "https://global.amova-am.com/general/etf/detail/2568-us-equity-nasdaq100-no-currency-hedge",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "NASDAQ_INDEX_REFERENCE",
+          "url": "https://global.amova-am.com/general/etf/detail/2568-us-equity-nasdaq100-no-currency-hedge",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "NASDAQ-100 JPY-converted Index",
+        "source_id": "NASDAQ_INDEX_REFERENCE",
+        "official_url": "https://global.amova-am.com/general/etf/detail/2568-us-equity-nasdaq100-no-currency-hedge",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "US:STOCK:NVDA",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "NVDA",
+      "exchange": "NASDAQ",
+      "legal_name": "NVIDIA Corporation",
+      "asset_type": "stock",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "AI 與半導體候選；需驗證估值與供應鏈資料。",
+      "official_url": "https://www.sec.gov/edgar/browse/?CIK=1045810&owner=exclude",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "ai",
+        "semiconductor"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "SEC_OPEN",
+          "url": "https://www.sec.gov/edgar/browse/?CIK=1045810&owner=exclude",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "US:STOCK:MSFT",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "MSFT",
+      "exchange": "NASDAQ",
+      "legal_name": "Microsoft Corporation",
+      "asset_type": "stock",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "大型軟體與雲端候選；需定義事件與財報權重。",
+      "official_url": "https://www.sec.gov/edgar/browse/?CIK=789019&owner=exclude",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "ai",
+        "cybersecurity"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "SEC_OPEN",
+          "url": "https://www.sec.gov/edgar/browse/?CIK=789019&owner=exclude",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "US:STOCK:GOOGL",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "GOOGL",
+      "exchange": "NASDAQ",
+      "legal_name": "Alphabet Inc.",
+      "asset_type": "stock",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "大型科技候選；需評估多事業營運特徵。",
+      "official_url": "https://www.sec.gov/edgar/browse/?CIK=1652044&owner=exclude",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "ai"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "SEC_OPEN",
+          "url": "https://www.sec.gov/edgar/browse/?CIK=1652044&owner=exclude",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "US:STOCK:LMT",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "LMT",
+      "exchange": "NYSE",
+      "legal_name": "Lockheed Martin Corporation",
+      "asset_type": "stock",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "國防航太候選；需追蹤採購、積壓訂單與交付。",
+      "official_url": "https://www.sec.gov/edgar/browse/?CIK=936468&owner=exclude",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "defense",
+        "aerospace",
+        "dividend"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "SEC_OPEN",
+          "url": "https://www.sec.gov/edgar/browse/?CIK=936468&owner=exclude",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "US:STOCK:JNJ",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "JNJ",
+      "exchange": "NYSE",
+      "legal_name": "Johnson & Johnson",
+      "asset_type": "stock",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "醫療與股息候選；需定義訴訟事件的風險處理。",
+      "official_url": "https://www.sec.gov/edgar/browse/?CIK=200406&owner=exclude",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "healthcare",
+        "dividend"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "reverse_dcf": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "etf_look_through": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "SEC_OPEN",
+          "url": "https://www.sec.gov/edgar/browse/?CIK=200406&owner=exclude",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "instrument_id": "US:ETF:SPY",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "SPY",
+      "exchange": "NYSE_ARCA",
+      "legal_name": "SPDR S&P 500 ETF Trust",
+      "asset_type": "etf",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "美國大型股基準候選；需核對持股與費用。",
+      "official_url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "broad_market"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "STATE_STREET_ETF_REFERENCE",
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "SPDJI_BENCHMARK_CONTRACT",
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "S&P 500 Index",
+        "source_id": "SPDJI_BENCHMARK_CONTRACT",
+        "official_url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "US:ETF:QQQ",
+      "listing_status": "active",
+      "verification_status": "verified_after_correction",
+      "symbol": "QQQ",
+      "exchange": "NASDAQ",
+      "legal_name": "Invesco QQQ Trust, Series 1",
+      "asset_type": "etf",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "大型成長科技候選；需評估集中度與估值。",
+      "official_url": "https://www.invesco.com/qqq-etf/en/about.html",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "large_cap_growth",
+        "technology_tilt"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "INVESCO_ETF_REFERENCE",
+          "url": "https://www.invesco.com/qqq-etf/en/about.html",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "NASDAQ_INDEX_REFERENCE",
+          "url": "https://www.invesco.com/qqq-etf/en/about.html",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "Nasdaq-100 Index",
+        "source_id": "NASDAQ_INDEX_REFERENCE",
+        "official_url": "https://www.invesco.com/qqq-etf/en/about.html",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "US:ETF:SMH",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "SMH",
+      "exchange": "NASDAQ",
+      "legal_name": "VanEck Semiconductor ETF",
+      "asset_type": "etf",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "半導體產業候選；需持股穿透與循環模型。",
+      "official_url": "https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/overview/",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "semiconductor"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "VANECK_ETF_REFERENCE",
+          "url": "https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/overview/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "MVIS_INDEX_REFERENCE",
+          "url": "https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/overview/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "MVIS US Listed Semiconductor 25 Index",
+        "source_id": "MVIS_INDEX_REFERENCE",
+        "official_url": "https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/overview/",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "US:ETF:CIBR",
+      "listing_status": "active",
+      "verification_status": "verified_after_correction",
+      "symbol": "CIBR",
+      "exchange": "NASDAQ",
+      "legal_name": "First Trust NASDAQ Cybersecurity ETF",
+      "asset_type": "etf",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "資安主題候選；需核對指數分類與重疊。",
+      "official_url": "https://www.ftportfolios.com/Retail/Etf/EtfSummary.aspx?Ticker=CIBR",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "cybersecurity"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "FIRST_TRUST_ETF_REFERENCE",
+          "url": "https://www.ftportfolios.com/Retail/Etf/EtfSummary.aspx?Ticker=CIBR",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "NASDAQ_INDEX_REFERENCE",
+          "url": "https://www.ftportfolios.com/Retail/Etf/EtfSummary.aspx?Ticker=CIBR",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "Nasdaq CTA Cybersecurity Index",
+        "source_id": "NASDAQ_INDEX_REFERENCE",
+        "official_url": "https://www.ftportfolios.com/Retail/Etf/EtfSummary.aspx?Ticker=CIBR",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    },
+    {
+      "instrument_id": "US:ETF:USMV",
+      "listing_status": "active",
+      "verification_status": "verified",
+      "symbol": "USMV",
+      "exchange": "CBOE_BZX",
+      "legal_name": "iShares MSCI USA Min Vol Factor ETF",
+      "asset_type": "etf",
+      "trading_currency": "USD",
+      "benchmark_id": "US:BROAD_MARKET",
+      "selection_rationale": "低波動因子候選；需檢驗因子與市場狀態適用性。",
+      "official_url": "https://www.ishares.com/us/products/239695/ishares-msci-usa-minimum-volatility-etf",
+      "history": {
+        "live_age_status": "sufficient",
+        "start_date": null,
+        "basis": "官方上市／基金頁面與交易所 reference metadata。",
+        "note": "年齡判定不代表資料供應商可提供同長度的 point-in-time 歷史。",
+        "usable_history_status": "blocked",
+        "usable_history_note": "需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。"
+      },
+      "liquidity": {
+        "status": "quantitative_review_pending",
+        "note": "已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。"
+      },
+      "theme_evidence": [
+        "low_volatility"
+      ],
+      "replacement_assessment": "retain_for_owner_review",
+      "review_flags": [
+        "LIQUIDITY_THRESHOLD_PENDING",
+        "OWNER_APPROVAL_REQUIRED"
+      ],
+      "models": {
+        "h_model": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "reverse_dcf": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        },
+        "etf_look_through": {
+          "status": "conditional",
+          "reason": "待 point-in-time 資料、回測與 owner 核准後才可適用。"
+        },
+        "cobweb_supply_demand": {
+          "status": "not_applicable",
+          "reason": "此模型不適用此資產類型或目前研究問題。"
+        }
+      },
+      "evidence": [
+        {
+          "source_id": "ISHARES_ETF_REFERENCE",
+          "url": "https://www.ishares.com/us/products/239695/ishares-msci-usa-minimum-volatility-etf",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "identity",
+            "listing",
+            "currency",
+            "asset_type",
+            "live_age",
+            "liquidity",
+            "themes",
+            "selection_rationale"
+          ],
+          "publication_use": "metadata_link_only"
+        },
+        {
+          "source_id": "MSCI_INDEX_REFERENCE",
+          "url": "https://www.ishares.com/us/products/239695/ishares-msci-usa-minimum-volatility-etf",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "tracking_index",
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ],
+      "tracking_index": {
+        "verification_status": "verified",
+        "name": "MSCI USA Minimum Volatility (USD) Index",
+        "source_id": "MSCI_INDEX_REFERENCE",
+        "official_url": "https://www.ishares.com/us/products/239695/ishares-msci-usa-minimum-volatility-etf",
+        "note": "追蹤指數與投資組合績效基準分開保存。"
+      }
+    }
+  ],
+  "overlap_groups": [
+    {
+      "overlap_id": "TW_TAIWAN50_DUPLICATION",
+      "country": "TW",
+      "severity": "high",
+      "members": [
+        "TW:ETF:0050",
+        "TW:ETF:006208"
+      ],
+      "basis": "兩檔追蹤相同 FTSE TWSE Taiwan 50 Index。",
+      "owner_question": "是否只保留一個 wrapper？",
+      "evidence": [
+        {
+          "source_id": "FTSE_TWSE_INDEX_REFERENCE",
+          "url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "overlap_id": "TW_TAIWAN50_SINGLE_STOCK_LOOKTHROUGH",
+      "country": "TW",
+      "severity": "high",
+      "members": [
+        "TW:ETF:0050",
+        "TW:ETF:006208",
+        "TW:STOCK:2330",
+        "TW:STOCK:2454",
+        "TW:STOCK:2308"
+      ],
+      "basis": "大型股 ETF 與三檔成分股存在 look-through 集中風險。",
+      "owner_question": "可接受的單一股票穿透上限為何？",
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_ETF",
+          "url": "https://www.twse.com.tw/en/ETFortune-institute/etfInfo/006208",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "overlap_id": "TW_HIGH_DIVIDEND_FACTOR",
+      "country": "TW",
+      "severity": "medium",
+      "members": [
+        "TW:ETF:00878",
+        "TW:ETF:00919"
+      ],
+      "basis": "兩檔皆屬台灣高股息策略但指數規則不同。",
+      "owner_question": "是否同時保留兩種高股息方法？",
+      "evidence": [
+        {
+          "source_id": "TIP_INDEX_REFERENCE",
+          "url": "https://taiwanindex.com.tw/en/indexes/IX0170",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "overlap_id": "JP_TOPIX_DUPLICATION",
+      "country": "JP",
+      "severity": "high",
+      "members": [
+        "JP:ETF:1306",
+        "JP:ETF:1475"
+      ],
+      "basis": "兩檔目前均以 TOPIX Total Return Index 為基準。",
+      "owner_question": "是否只保留一個 TOPIX wrapper？",
+      "evidence": [
+        {
+          "source_id": "JPX_BENCHMARK_CONTRACT",
+          "url": "https://nextfunds.jp/en/lineup/1306/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "overlap_id": "JP_BROAD_LARGE_CAP_OVERLAP",
+      "country": "JP",
+      "severity": "medium",
+      "members": [
+        "JP:ETF:1306",
+        "JP:ETF:1321",
+        "JP:ETF:1475"
+      ],
+      "basis": "TOPIX 與 Nikkei 225 broad-market 曝險存在交集。",
+      "owner_question": "broad-market 配額與重疊容忍度為何？",
+      "evidence": [
+        {
+          "source_id": "JPX_ETF_REFERENCE",
+          "url": "https://nextfunds.jp/en/lineup/1321/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "overlap_id": "US_MEGA_CAP_TECH_LOOKTHROUGH",
+      "country": "US",
+      "severity": "high",
+      "members": [
+        "US:ETF:SPY",
+        "US:ETF:QQQ",
+        "US:ETF:SMH",
+        "US:STOCK:NVDA",
+        "US:STOCK:MSFT",
+        "US:STOCK:GOOGL"
+      ],
+      "basis": "ETF look-through 與個股直接持有造成大型科技集中。",
+      "owner_question": "應採何種 issuer／主題曝險上限？",
+      "evidence": [
+        {
+          "source_id": "INVESCO_ETF_REFERENCE",
+          "url": "https://www.invesco.com/qqq-etf/en/about.html",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "overlap"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    }
+  ],
+  "issuer_concentration": [
+    {
+      "country": "TW",
+      "issuer": "Yuanta Securities Investment Trust",
+      "fund_count": 2,
+      "share_of_market_etfs": "2 of 5 (40%)",
+      "assessment": "同一發行人占兩檔；owner 應決定發行人上限。",
+      "evidence": [
+        {
+          "source_id": "TWSE_OGL_ETF",
+          "url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "issuer_concentration"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "country": "JP",
+      "issuer": "Nomura Asset Management",
+      "fund_count": 3,
+      "share_of_market_etfs": "3 of 5 (60%)",
+      "assessment": "同一發行人占三檔，為三市場中最高。",
+      "evidence": [
+        {
+          "source_id": "JPX_ETF_REFERENCE",
+          "url": "https://nextfunds.jp/en/lineup/1306/",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "issuer_concentration"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    },
+    {
+      "country": "US",
+      "issuer": "No repeated issuer",
+      "fund_count": 1,
+      "share_of_market_etfs": "maximum 1 of 5 (20%)",
+      "assessment": "五檔 ETF 發行人皆不同；仍需追蹤服務供應鏈集中。",
+      "evidence": [
+        {
+          "source_id": "STATE_STREET_ETF_REFERENCE",
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+          "observed_at": "2026-08-27",
+          "claims": [
+            "issuer_concentration"
+          ],
+          "publication_use": "metadata_link_only"
+        }
+      ]
+    }
+  ],
+  "owner_decisions": [
+    {
+      "decision_id": "ACCEPT_METADATA_AND_THEME_CORRECTIONS",
+      "question": "是否接受本次名稱、交易所與主題修正？",
+      "affected_instrument_ids": [
+        "JP:ETF:1489",
+        "JP:ETF:2568",
+        "JP:STOCK:8035",
+        "JP:STOCK:9432",
+        "TW:ETF:006208",
+        "TW:ETF:00965",
+        "TW:STOCK:2330",
+        "US:ETF:CIBR",
+        "US:ETF:QQQ"
+      ],
+      "evidence_gap": "需要 owner 對 scope 與命名政策簽核。"
+    },
+    {
+      "decision_id": "RESOLVE_DUPLICATE_INDEX_WRAPPERS",
+      "question": "0050/006208 與 1306/1475 是否各只保留一檔？",
+      "affected_instrument_ids": [
+        "JP:ETF:1306",
+        "JP:ETF:1475",
+        "TW:ETF:0050",
+        "TW:ETF:006208"
+      ],
+      "evidence_gap": "尚未取得費用、價差與可交易容量的可比較資料。"
+    },
+    {
+      "decision_id": "APPROVE_SHORT_HISTORY_POLICY",
+      "question": "是否允許 live age 未滿五年的候選？",
+      "affected_instrument_ids": [
+        "TW:ETF:00919",
+        "TW:ETF:00965"
+      ],
+      "evidence_gap": "00919 與 00965 無完整五年 live history。"
+    },
+    {
+      "decision_id": "DEFINE_EXACT_BENCHMARK_SERIES",
+      "question": "三市場應採 price、total-return 或 net-return 哪一條精確序列？",
+      "affected_instrument_ids": [
+        "TW:STOCK:2330",
+        "TW:STOCK:2454",
+        "TW:STOCK:2308",
+        "TW:STOCK:2412",
+        "TW:STOCK:2891",
+        "TW:ETF:0050",
+        "TW:ETF:006208",
+        "TW:ETF:00878",
+        "TW:ETF:00919",
+        "TW:ETF:00965",
+        "JP:STOCK:7203",
+        "JP:STOCK:6758",
+        "JP:STOCK:8035",
+        "JP:STOCK:7011",
+        "JP:STOCK:9432",
+        "JP:ETF:1306",
+        "JP:ETF:1321",
+        "JP:ETF:1475",
+        "JP:ETF:1489",
+        "JP:ETF:2568",
+        "US:STOCK:NVDA",
+        "US:STOCK:MSFT",
+        "US:STOCK:GOOGL",
+        "US:STOCK:LMT",
+        "US:STOCK:JNJ",
+        "US:ETF:SPY",
+        "US:ETF:QQQ",
+        "US:ETF:SMH",
+        "US:ETF:CIBR",
+        "US:ETF:USMV"
+      ],
+      "evidence_gap": "精確 series ID、point-in-time 與再發布權尚未簽約。"
+    },
+    {
+      "decision_id": "PROCURE_LIVE_SOURCE_RIGHTS",
+      "question": "是否採購並核准 live/PIT 資料來源？",
+      "affected_instrument_ids": [
+        "TW:STOCK:2330",
+        "TW:STOCK:2454",
+        "TW:STOCK:2308",
+        "TW:STOCK:2412",
+        "TW:STOCK:2891",
+        "TW:ETF:0050",
+        "TW:ETF:006208",
+        "TW:ETF:00878",
+        "TW:ETF:00919",
+        "TW:ETF:00965",
+        "JP:STOCK:7203",
+        "JP:STOCK:6758",
+        "JP:STOCK:8035",
+        "JP:STOCK:7011",
+        "JP:STOCK:9432",
+        "JP:ETF:1306",
+        "JP:ETF:1321",
+        "JP:ETF:1475",
+        "JP:ETF:1489",
+        "JP:ETF:2568",
+        "US:STOCK:NVDA",
+        "US:STOCK:MSFT",
+        "US:STOCK:GOOGL",
+        "US:STOCK:LMT",
+        "US:STOCK:JNJ",
+        "US:ETF:SPY",
+        "US:ETF:QQQ",
+        "US:ETF:SMH",
+        "US:ETF:CIBR",
+        "US:ETF:USMV"
+      ],
+      "evidence_gap": "來源矩陣顯示 EOD、公司行動、ETF holdings 與 benchmark 仍有條件或阻擋。"
+    },
+    {
+      "decision_id": "SET_LIQUIDITY_AND_OVERLAP_THRESHOLDS",
+      "question": "最低成交額、最大價差、issuer 與 look-through 上限為何？",
+      "affected_instrument_ids": [
+        "TW:STOCK:2330",
+        "TW:STOCK:2454",
+        "TW:STOCK:2308",
+        "TW:STOCK:2412",
+        "TW:STOCK:2891",
+        "TW:ETF:0050",
+        "TW:ETF:006208",
+        "TW:ETF:00878",
+        "TW:ETF:00919",
+        "TW:ETF:00965",
+        "JP:STOCK:7203",
+        "JP:STOCK:6758",
+        "JP:STOCK:8035",
+        "JP:STOCK:7011",
+        "JP:STOCK:9432",
+        "JP:ETF:1306",
+        "JP:ETF:1321",
+        "JP:ETF:1475",
+        "JP:ETF:1489",
+        "JP:ETF:2568",
+        "US:STOCK:NVDA",
+        "US:STOCK:MSFT",
+        "US:STOCK:GOOGL",
+        "US:STOCK:LMT",
+        "US:STOCK:JNJ",
+        "US:ETF:SPY",
+        "US:ETF:QQQ",
+        "US:ETF:SMH",
+        "US:ETF:CIBR",
+        "US:ETF:USMV"
+      ],
+      "evidence_gap": "尚未有 owner 核准的量化門檻。"
+    },
+    {
+      "decision_id": "APPROVE_MODEL_ROUTING",
+      "question": "是否接受個股、ETF 與金融股的模型分流？",
+      "affected_instrument_ids": [
+        "TW:STOCK:2330",
+        "TW:STOCK:2454",
+        "TW:STOCK:2308",
+        "TW:STOCK:2412",
+        "TW:STOCK:2891",
+        "TW:ETF:0050",
+        "TW:ETF:006208",
+        "TW:ETF:00878",
+        "TW:ETF:00919",
+        "TW:ETF:00965",
+        "JP:STOCK:7203",
+        "JP:STOCK:6758",
+        "JP:STOCK:8035",
+        "JP:STOCK:7011",
+        "JP:STOCK:9432",
+        "JP:ETF:1306",
+        "JP:ETF:1321",
+        "JP:ETF:1475",
+        "JP:ETF:1489",
+        "JP:ETF:2568",
+        "US:STOCK:NVDA",
+        "US:STOCK:MSFT",
+        "US:STOCK:GOOGL",
+        "US:STOCK:LMT",
+        "US:STOCK:JNJ",
+        "US:ETF:SPY",
+        "US:ETF:QQQ",
+        "US:ETF:SMH",
+        "US:ETF:CIBR",
+        "US:ETF:USMV"
+      ],
+      "evidence_gap": "模型仍待 point-in-time 回測、校準與 owner 核准。"
+    }
+  ]
+}

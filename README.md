@@ -1,6 +1,6 @@
 # StockmarketAgent
 
-[公開儀表板](https://trionnemesis.github.io/StockmarketAgent/) · [研究方法](https://trionnemesis.github.io/StockmarketAgent/methodology.html) · [資料狀態](https://trionnemesis.github.io/StockmarketAgent/status.html)
+[公開儀表板](https://trionnemesis.github.io/StockmarketAgent/) · [Universe 證據審查](https://trionnemesis.github.io/StockmarketAgent/universe-review.html) · [來源可行性](https://trionnemesis.github.io/StockmarketAgent/source-feasibility.html) · [研究方法](https://trionnemesis.github.io/StockmarketAgent/methodology.html) · [資料狀態](https://trionnemesis.github.io/StockmarketAgent/status.html)
 
 台灣、日本、美國三市場的可追溯股票研究情報系統。Repository 以嚴格 JSON 為唯一事實來源，再由同一份已驗證資料產生 Markdown 與 GitHub Pages 靜態 HTML。
 
@@ -20,9 +20,32 @@
 - 零 Python 第三方依賴的 contract、integration、link、consistency 與 secret-pattern tests。
 - GitHub Actions quality gate 與 GitHub Pages deployment。
 
+## B.1 Universe evidence review
+
+30 個候選已逐筆以官方發行人、交易所、監管機關或指數提供者頁面查證。結果仍是「owner decision required」，不是 Universe 核准：
+
+- 30 / 30 已確認 active listing、代號、交易場所、交易幣別與資產類型；其中 9 筆名稱、交易所或主題 metadata 經修正。
+- 15 / 15 ETF 的實際 tracking index 已獨立保存，不與市場績效 benchmark 混用。
+- 00919 與 00965 的 live age 未滿五年；其餘標示為 sufficient 只代表上市／基金年齡，不代表已取得同長度的可用 point-in-time 歷史。
+- 30 / 30 流動性仍為 `quantitative_review_pending`；成交額、價差與容量不能由目前公開 reference metadata 推導。
+- 找出 6 組明確重疊，以及台灣 Yuanta 2/5、日本 Nomura 3/5、美國無重複 ETF issuer 的候選集中情形。
+- H-model、reverse DCF、ETF look-through 與 cobweb model 已逐檔標示 conditional / not applicable 及理由；尚未回測或啟用。
+
+機器可讀事實來源為 [`config/universe-review.json`](config/universe-review.json)、[`config/sources.json`](config/sources.json) 與相對應 strict schemas；人類可讀輸出為 [`docs/universe-review.md`](docs/universe-review.md) 與 [`docs/source-feasibility.md`](docs/source-feasibility.md)。
+
+### Owner 尚需決定
+
+1. 接受本次 metadata / theme corrections。
+2. 是否在 0050 / 006208 與 1306 / 1475 各只保留一個重複 index wrapper。
+3. 是否允許 live history 未滿五年的 00919、00965。
+4. 三市場 benchmark 的精確 price / total-return / net-return series。
+5. Live、歷史、corporate actions、ETF holdings 與 benchmark 的資料授權／採購。
+6. 最低成交額、最大價差、issuer concentration 與 look-through overlap 門檻。
+7. 資產類型與產業別的模型 routing。
+
 ## 安全邊界
 
-- 不抓 live market data，不使用 provider key。
+- 不抓 live market data；provider key 只允許由 GitHub Actions secret store 注入，絕不提交 repository 或送到瀏覽器。
 - 不執行券商下單、自動交易或個人資產配置。
 - 不以 LLM 決定價格、分數、信心或研究態度。
 - 不用空值假裝 0 分；資料不足時強制 NO_SIGNAL。
@@ -64,7 +87,7 @@ Renderer 只讀取已驗證 JSON，不重算模型。相同 fixture、設定與�
 
 | Path | Responsibility |
 |---|---|
-| config/ | Universe、approval、source、schedule 與 model policy |
+| config/ | Universe、evidence review、benchmark、source、approval、schedule 與 model policy |
 | schemas/ | Strict JSON contracts |
 | src/validation/ | Zero-dependency schema and domain validation |
 | src/render/ | Markdown and static HTML renderers |
@@ -76,4 +99,4 @@ Renderer 只讀取已驗證 JSON，不重算模型。相同 fixture、設定與�
 
 ## 下一階段
 
-正式資料功能必須拆成可審查變更：先核准 Universe，再逐一查證各市場官方來源、授權與速率限制，接著實作 point-in-time adapter、last-known-good、回測與校準。Owner 核准模型版本前，不會開啟 production BUY／SELL。
+正式資料功能必須拆成可審查變更：先由 Owner 回覆上述 7 個決策，再另開 PR 實作獲授權的 point-in-time adapter、last-known-good、回測與校準。本 PR 不包含 live adapter、排程、模型分數或 BUY／SELL；Owner 核准前 `production_signal_enabled` 維持 `false`。

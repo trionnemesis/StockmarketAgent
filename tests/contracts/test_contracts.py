@@ -20,6 +20,8 @@ from src.validation.contracts import (
     load_json_strict,
     validate_document,
     validate_signal_contract,
+    validate_source_contract,
+    validate_review_contract,
     validate_universe_contract,
 )
 
@@ -27,7 +29,8 @@ from src.validation.contracts import (
 class UniverseContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.universe, cls.approvals, cls.model, cls.fixture = load_inputs()
+        (cls.universe, cls.approvals, cls.model, cls.fixture, cls.themes,
+         cls.benchmarks, cls.sources, cls.review) = load_inputs()
 
     def test_exact_market_and_asset_counts(self) -> None:
         counts = Counter(
@@ -111,9 +114,11 @@ class StrictJsonTests(unittest.TestCase):
 class SignalContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.universe, cls.approvals, cls.model, cls.fixture = load_inputs()
+        (cls.universe, cls.approvals, cls.model, cls.fixture, cls.themes,
+         cls.benchmarks, cls.sources, cls.review) = load_inputs()
         cls.signal = build_signal(
-            cls.universe, cls.approvals, cls.model, cls.fixture
+            cls.universe, cls.approvals, cls.model, cls.fixture,
+            cls.themes, cls.benchmarks, cls.sources, cls.review
         )
 
     def test_signal_schema_and_domain_contract(self) -> None:
@@ -130,7 +135,8 @@ class SignalContractTests(unittest.TestCase):
 
     def test_generation_is_deterministic(self) -> None:
         again = build_signal(
-            self.universe, self.approvals, self.model, self.fixture
+            self.universe, self.approvals, self.model, self.fixture,
+            self.themes, self.benchmarks, self.sources, self.review
         )
         self.assertEqual(canonical_json(self.signal), canonical_json(again))
 
@@ -142,6 +148,36 @@ class SignalContractTests(unittest.TestCase):
         )
         self.assertNotIn("content_hash", fixture["source"])
 
+    def test_selection_rationale_is_schema_bound(self) -> None:
+        for candidate, signal_item in zip(self.universe["instruments"], self.signal["instruments"]):
+            self.assertEqual(candidate["selection_rationale"], signal_item["selection_rationale"])
+
     def test_latest_signal_matches_contract(self) -> None:
         latest = load_json_strict(ROOT / "signals" / "latest.json")
         self.assertEqual(canonical_json(latest), canonical_json(self.signal))
+
+
+class EvidenceReviewContractTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        (cls.universe, _, _, _, _, cls.benchmarks, cls.sources, cls.review) = load_inputs()
+
+    def test_all_thirty_have_structured_evidence(self) -> None:
+        self.assertEqual(len(self.review["instruments"]), 30)
+        for item in self.review["instruments"]:
+            self.assertTrue(item["evidence"])
+            self.assertEqual(item["liquidity"]["status"], "quantitative_review_pending")
+
+    def test_source_and_review_domain_contracts(self) -> None:
+        validate_source_contract(self.sources)
+        validate_review_contract(self.universe, self.benchmarks, self.sources, self.review)
+
+    def test_etfs_have_exact_tracking_index_source(self) -> None:
+        for item in self.review["instruments"]:
+            self.assertEqual("tracking_index" in item, item["asset_type"] == "etf")
+
+    def test_rejects_unbound_evidence_source(self) -> None:
+        mutated = copy.deepcopy(self.review)
+        mutated["instruments"][0]["evidence"][0]["source_id"] = "UNKNOWN"
+        with self.assertRaises(ContractError):
+            validate_review_contract(self.universe, self.benchmarks, self.sources, mutated)
