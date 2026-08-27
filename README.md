@@ -28,7 +28,7 @@
 - 不用空值假裝 0 分；資料不足時強制 NO_SIGNAL。
 - config/approvals.json 的 production_signal_enabled 預設且維持 false。
 
-候選清單與核准條件見 [Universe proposal](docs/universe-proposal.md)。完整產品契約見 [SPEC.md](SPEC.md)，參考資料的採用／排除邊界見 [references/README.md](references/README.md)。
+候選清單與核准條件見 [Universe proposal](docs/universe-proposal.md)，Owner 決策入口為 [Issue #1](https://github.com/trionnemesis/StockmarketAgent/issues/1)。完整產品契約見 [SPEC.md](SPEC.md)，參考資料的採用／排除邊界見 [references/README.md](references/README.md)，初次發布證據見 [VERIFICATION.md](VERIFICATION.md)。
 
 ## 本機執行
 
