@@ -138,7 +138,7 @@ def _footer(prefix: str) -> str:
 
 def _scenario_warning() -> str:
     return """<aside class="scenario-warning" role="note" aria-label="研究情境警示">
-  <div class="shell"><strong>研究模擬資料</strong><span>本網站顯示 synthetic scenario fixture 與未校準研究態度；不含即時或當前市場事實，也不是投資建議。</span></div>
+  <div class="shell"><strong>研究模擬資料</strong><span>分數與研究態度使用 synthetic scenario fixture；另行標示的官方觀測事實不會進入訊號，也不是投資建議。</span></div>
 </aside>"""
 
 
@@ -399,7 +399,7 @@ def render_market(signal: dict[str, Any], country: str) -> str:
 <main class="shell main-content">
   <section class="section-card">
     <div class="section-heading"><div><p class="kicker">MARKET UNIVERSE</p><h2>{asset_counts['stock']} 個股 + {asset_counts['etf']} ETF</h2></div><span class="pill pill-neutral">proposed · disabled</span></div>
-    <div class="notice notice-warning" role="note"><strong>無 live 市場事實</strong><span>市場狀態、研究分數與態度都來自 synthetic scenario fixture；不可解讀為現在的行情、新鮮度或投資建議。</span></div>
+    <div class="notice notice-warning" role="note"><strong>研究訊號不使用 live 市場事實</strong><span>市場清單、研究分數與態度都來自 synthetic scenario fixture；個別標的頁若另列官方觀測快照，也不會被混入訊號或解讀為投資建議。</span></div>
   </section>
   <section class="section-card">
     <div class="section-heading"><div><p class="kicker">SIGNAL GATE · 3M</p><h2>3M 研究態度分布</h2></div><span class="pill pill-neutral">uncalibrated</span></div>
@@ -425,7 +425,66 @@ def render_market(signal: dict[str, Any], country: str) -> str:
     )
 
 
-def render_instrument(signal: dict[str, Any], item: dict[str, Any], review_item: dict[str, Any]) -> str:
+def _formatted_number(value: int | float, decimals: int = 2) -> str:
+    rendered = f"{value:,.{decimals}f}"
+    return rendered.rstrip("0").rstrip(".")
+
+
+def _render_observed_facts(observation: dict[str, Any] | None) -> str:
+    if observation is None:
+        return ""
+    facts = observation["facts"]
+    market = facts["market_session"]
+    valuation = facts["valuation"]
+    revenue = facts["monthly_revenue"]
+    income = facts["quarterly_income"]
+    balance = facts["balance_sheet"]
+    resource_links = " · ".join(
+        f'<a href="{_e(resource["dataset_url"])}">{_e(resource["resource_id"])}</a>'
+        for resource in observation["resources"]
+    )
+    cards = (
+        f'<article class="metric-card" data-observed-fact="close"><span>{_e(market["date"])} 收盤</span><strong>NT$ {_formatted_number(market["close"])}</strong><small>漲跌 {_formatted_number(market["change"], 4)}</small></article>'
+        f'<article class="metric-card" data-observed-fact="volume"><span>成交股數</span><strong>{_formatted_number(market["volume_shares"] / 1_000_000)}M</strong><small>{market["transaction_count"]:,} 筆</small></article>'
+        f'<article class="metric-card" data-observed-fact="valuation"><span>本益比 / 股價淨值比</span><strong>{_formatted_number(valuation["pe_ratio"])} / {_formatted_number(valuation["pb_ratio"])}</strong><small>殖利率 {_formatted_number(valuation["dividend_yield_percent"])}%</small></article>'
+        f'<article class="metric-card" data-observed-fact="monthly-revenue"><span>{_e(revenue["period"])} 月營收</span><strong>NT$ {_formatted_number(revenue["revenue_twd_million"], 3)}M</strong><small>YoY {_formatted_number(revenue["year_over_year_percent"])}%</small></article>'
+        f'<article class="metric-card" data-observed-fact="ytd-revenue"><span>{_e(revenue["period"])} 累計營收</span><strong>NT$ {_formatted_number(revenue["year_to_date_twd_million"], 3)}M</strong><small>YoY {_formatted_number(revenue["year_to_date_yoy_percent"])}%</small></article>'
+        f'<article class="metric-card" data-observed-fact="eps"><span>{_e(income["period"])} 累計 EPS</span><strong>NT$ {_formatted_number(income["basic_eps_twd"])}</strong><small>year-to-date</small></article>'
+        f'<article class="metric-card" data-observed-fact="gross-margin"><span>{_e(income["period"])} 累計毛利率</span><strong>{_formatted_number(income["gross_margin_percent"])}%</strong><small>營業利益率 {_formatted_number(income["operating_margin_percent"])}%</small></article>'
+        f'<article class="metric-card" data-observed-fact="balance"><span>{_e(balance["period"])} 權益</span><strong>NT$ {_formatted_number(balance["total_equity_twd_million"], 3)}M</strong><small>每股淨值 {_formatted_number(balance["book_value_per_share_twd"])} 元</small></article>'
+    )
+    return f"""
+  <section class="section-card" data-observed-snapshot="{_e(observation['as_of'])}">
+    <div class="section-heading"><div><p class="kicker">OFFICIAL OBSERVED FACTS</p><h2>TWSE 官方開放資料快照</h2></div><span class="pill pill-neutral">OGL attribution · not used in signal</span></div>
+    <div class="notice" role="note"><strong>事實與訊號分流</strong><span>以下是 {_e(observation['fetched_at'])} 取得的官方 OpenAPI 正規化事實；不會改寫上方 synthetic 分數、研究態度或 production gate，也不是即時報價。</span></div>
+    <div class="metric-grid">{cards}</div>
+    <div class="split-grid">
+      <article class="section-card">
+        <p class="kicker">FUNDAMENTAL DETAIL</p><h2>{_e(income['period'])} 累計財務</h2>
+        <dl class="fact-list">
+          <div><dt>營業收入</dt><dd>NT$ {_formatted_number(income['revenue_twd_million'], 3)}M</dd></div>
+          <div><dt>母公司業主淨利</dt><dd>NT$ {_formatted_number(income['net_income_parent_twd_million'], 3)}M</dd></div>
+          <div><dt>母公司淨利率</dt><dd>{_formatted_number(income['net_margin_parent_percent'])}%</dd></div>
+          <div><dt>負債 / 資產</dt><dd>{_formatted_number(balance['liabilities_to_assets_percent'])}%</dd></div>
+        </dl>
+      </article>
+      <article class="section-card">
+        <p class="kicker">PROVENANCE</p><h2>可追溯、可再建</h2>
+        <p>介面：{_e(observation['collection_policy']['interface'])}；HTML scraping：{str(observation['collection_policy']['html_scraping']).lower()}；自動排程：{str(observation['automated_refresh_enabled']).lower()}。</p>
+        <p>{_e(observation['attribution']['statement'])}</p>
+        <p>{resource_links}</p>
+        <p><a href="../data/observations/tsmc.json">下載 strict observation JSON</a> · <a href="{_e(observation['attribution']['license_url'])}">授權條款</a> · <a href="{_e(observation['attribution']['terms_url'])}">TWSE 使用條款</a></p>
+      </article>
+    </div>
+  </section>"""
+
+
+def render_instrument(
+    signal: dict[str, Any],
+    item: dict[str, Any],
+    review_item: dict[str, Any],
+    observation: dict[str, Any] | None = None,
+) -> str:
     primary_horizon = _horizon(item)
     horizon_cards = "".join(
         f"""<article class="horizon-card" data-horizon="{_e(entry['horizon'])}" data-score="{_e(_score(entry['score']))}" data-stance="{_e(entry['stance'])}" data-confidence="{entry['confidence']}" data-calibration="{_e(entry['calibration_status'])}">
@@ -458,6 +517,7 @@ def render_instrument(signal: dict[str, Any], item: dict[str, Any], review_item:
     risks = "".join(
         f"<li>{_e(flag)}</li>" for flag in risk_flags
     )
+    observed_facts = _render_observed_facts(observation)
     body = f"""
 <header class="subhero instrument-hero">
   <div class="shell">
@@ -470,9 +530,10 @@ def render_instrument(signal: dict[str, Any], item: dict[str, Any], review_item:
   </div>
 </header>
 <main class="shell main-content">
+{observed_facts}
   <section class="section-card">
     <div class="section-heading"><div><p class="kicker">MULTI-HORIZON</p><h2>四個期間研究態度</h2></div><span class="pill pill-neutral">uncalibrated · synthetic scenario</span></div>
-    <div class="notice notice-warning" role="note"><strong>研究態度，不是市場建議</strong><span>下列 score、confidence 與 BUY／HOLD／SELL／NO_SIGNAL 都取自 research fixture；沒有 live 市場資料，也未經模型校準。</span></div>
+    <div class="notice notice-warning" role="note"><strong>研究態度，不是市場建議</strong><span>下列 score、confidence 與 BUY／HOLD／SELL／NO_SIGNAL 都取自 research fixture；不讀取另行標示的官方觀測快照，也未經模型校準。</span></div>
     <div class="horizon-grid">{horizon_cards}</div>
   </section>
   <section class="section-card">
@@ -507,7 +568,12 @@ def render_instrument(signal: dict[str, Any], item: dict[str, Any], review_item:
 </main>"""
     return _layout(
         title=f"{item['symbol']} {item['name_zh']}｜StockmarketAgent",
-        description=f"{item['symbol']} {item['name_zh']} 的未校準合成情境研究態度；目前為 proposed、disabled，並非即時市場建議。",
+        description=(
+            f"{item['symbol']} {item['name_zh']} 的官方開放資料快照與未校準合成情境研究態度；"
+            "觀測事實不進入訊號，目前仍為 proposed、disabled。"
+            if observation is not None
+            else f"{item['symbol']} {item['name_zh']} 的未校準合成情境研究態度；目前為 proposed、disabled，並非即時市場建議。"
+        ),
         body=body,
         prefix="../",
         canonical_path=f"instruments/{item['slug']}.html",
@@ -650,6 +716,10 @@ def render_universe_review(review: dict[str, Any]) -> str:
 
 def render_source_feasibility(sources: dict[str, Any]) -> str:
     rows = "".join(f"<tr><td><a href='{_e(item['documentation_url'])}'>{_e(item['source_id'])}</a></td><td>{_e(', '.join(item['countries']))}</td><td>{_e(', '.join(item['data_classes']))}</td><td>{_e(item['authentication'])} / {_e(item['key_required'])}</td><td>{_e(item['point_in_time_status'])}</td><td><a href='{_e(item['license_url'])}'>{_e(item['license_status'])}</a> / {_e(item['pages_policy'])}</td><td>{_e(item['feasibility'])}</td></tr>" for item in sources["sources"])
-    details = "".join(f"<article class='section-card'><p class='kicker'>{_e(item['source_id'])}</p><h2>{_e(item['publisher'])}</h2><p><strong>Limits:</strong> {_e(item['rate_limit'])}</p><p><strong>History:</strong> {_e(item['history_depth'])}</p><p><strong>Retention:</strong> {_e(item['retention'])}</p><p><strong>Redistribution:</strong> {_e(item['redistribution'])}</p><p><strong>Fallback:</strong> {_e(item['fallback'])}</p><p><strong>Gaps:</strong> {_e('; '.join(item['gaps']))}</p></article>" for item in sources["sources"])
-    body = f"""<header class="subhero"><div class="shell"><p class="eyebrow">SOURCE FEASIBILITY</p><h1>來源、授權與發布邊界</h1><p>Reviewed {_e(sources['reviewed_at'])} · live adapters disabled</p></div></header><main class="shell main-content"><section class="section-card"><p>{_e(sources['publication_boundary'])}</p><div class="table-wrap"><table><thead><tr><th>來源</th><th>市場</th><th>資料類別</th><th>Auth / key</th><th>PIT</th><th>授權 / Pages</th><th>可行性</th></tr></thead><tbody>{rows}</tbody></table></div></section>{details}</main>"""
+    details = "".join(f"<article class='section-card'><p class='kicker'>{_e(item['source_id'])}</p><h2>{_e(item['publisher'])}</h2><p><strong>Access:</strong> {_e(item['access_method'])}</p><p><strong>Limits:</strong> {_e(item['rate_limit'])}</p><p><strong>History:</strong> {_e(item['history_depth'])}</p><p><strong>Retention:</strong> {_e(item['retention'])}</p><p><strong>Redistribution:</strong> {_e(item['redistribution'])}</p><p><strong>Fallback:</strong> {_e(item['fallback'])}</p><p><strong>Gaps:</strong> {_e('; '.join(item['gaps']))}</p></article>" for item in sources["sources"])
+    boundaries = "".join(
+        f"<li><strong>{_e(key)}</strong> — {_e(value)}</li>"
+        for key, value in sources["publication_boundary"].items()
+    )
+    body = f"""<header class="subhero"><div class="shell"><p class="eyebrow">SOURCE FEASIBILITY</p><h1>來源、授權與發布邊界</h1><p>Reviewed {_e(sources['reviewed_at'])} · live adapters disabled · manual OGL snapshots only</p></div></header><main class="shell main-content"><section class="section-card"><div class="notice notice-warning" role="note"><strong>自動取得邊界</strong><span>只允許文件化 API 與明確開放授權；一般 TWSE／MOPS HTML 爬蟲、Yahoo 與 yfinance 不在核准路徑。</span></div><ul class="risk-list">{boundaries}</ul><div class="table-wrap"><table><thead><tr><th>來源</th><th>市場</th><th>資料類別</th><th>Auth / key</th><th>PIT</th><th>授權 / Pages</th><th>可行性</th></tr></thead><tbody>{rows}</tbody></table></div></section>{details}</main>"""
     return _layout(title="Source feasibility｜StockmarketAgent", description="三市場官方資料來源的驗證、授權、PIT、保留、再發布與 fallback 矩陣。", body=body, current="sources", canonical_path="source-feasibility.html", root_social_card=True)

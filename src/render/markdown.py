@@ -224,6 +224,7 @@ def render_source_feasibility(sources: dict[str, Any]) -> str:
             f"{item['authentication']} / {item['key_required']} | {item['point_in_time_status']} | "
             f"[{item['license_status']}]({item['license_url']}) / {item['pages_policy']} | {item['feasibility']} |"
         )
+        lines.append(f"  - Access: {item['access_method']}")
         lines.append(f"  - Limits: {item['rate_limit']} History: {item['history_depth']}")
         lines.append(f"  - Retention: {item['retention']} Redistribution: {item['redistribution']}")
         lines.append(f"  - Fallback: {item['fallback']} Gaps: {'; '.join(item['gaps'])}")

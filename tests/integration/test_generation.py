@@ -7,7 +7,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from src.pipeline import ROOT, build_outputs, build_signal, load_inputs
+from src.pipeline import ROOT, build_outputs, build_signal, load_inputs, load_tsmc_observation
+from src.validation.contracts import canonical_json, load_json_strict
 from src.render.markdown import render_report
 from src.render.site import render_history, render_home
 
@@ -33,6 +34,7 @@ class GeneratedArtifactTests(unittest.TestCase):
         universe, approvals, model, fixture, themes, benchmarks, sources, review = load_inputs()
         cls.review = review
         cls.sources = sources
+        cls.observation = load_tsmc_observation(sources)
         cls.signal = build_signal(universe, approvals, model, fixture, themes, benchmarks, sources, review)
         cls.outputs, cls.run_record = build_outputs(cls.signal, sources, review)
 
@@ -163,10 +165,56 @@ class GeneratedArtifactTests(unittest.TestCase):
         self.assertGreater(len(html_outputs), 30)
         for page, html in html_outputs.items():
             self.assertIn("研究模擬資料", html, str(page.relative_to(ROOT)))
-            self.assertIn("不含即時或當前市場事實", html, str(page.relative_to(ROOT)))
+            self.assertIn("另行標示的官方觀測事實不會進入訊號", html, str(page.relative_to(ROOT)))
         report = render_report(self.signal)
         self.assertIn("研究模擬資料", report)
         self.assertIn("未校準研究態度", report)
+
+    def test_tsmc_page_exposes_official_snapshot_without_changing_signal(self) -> None:
+        page = self.outputs[
+            ROOT / "docs" / "instruments" / "tsmc.html"
+        ].decode("utf-8")
+        self.assertIn(
+            f'data-observed-snapshot="{self.observation["as_of"]}"', page
+        )
+        for fact_name in (
+            "close",
+            "volume",
+            "valuation",
+            "monthly-revenue",
+            "ytd-revenue",
+            "eps",
+            "gross-margin",
+            "balance",
+        ):
+            self.assertIn(f'data-observed-fact="{fact_name}"', page)
+        self.assertIn("not used in signal", page)
+        self.assertIn("HTML scraping：false", page)
+        self.assertIn("NT$ 2,410", page)
+        self.assertIn("NT$ 467,580.548M", page)
+        self.assertIn("NT$ 49.33", page)
+
+        docs_observation = load_json_strict(
+            ROOT / "docs" / "data" / "observations" / "tsmc.json"
+        )
+        self.assertEqual(
+            canonical_json(docs_observation), canonical_json(self.observation)
+        )
+        tsmc_signal = next(
+            item
+            for item in self.signal["instruments"]
+            if item["instrument_id"] == "TW:STOCK:2330"
+        )
+        self.assertTrue(
+            all(
+                provenance["source_type"] == "synthetic_research_fixture"
+                for provenance in tsmc_signal["provenance"]
+            )
+        )
+        alphabet = self.outputs[
+            ROOT / "docs" / "instruments" / "alphabet.html"
+        ].decode("utf-8")
+        self.assertNotIn("data-observed-snapshot", alphabet)
 
     def test_all_internal_site_links_resolve(self) -> None:
         docs_root = (ROOT / "docs").resolve()

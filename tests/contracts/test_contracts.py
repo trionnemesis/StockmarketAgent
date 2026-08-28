@@ -15,9 +15,11 @@ from src.pipeline import (
     ROOT,
     SCHEMAS,
     SOURCE_REVISION_PATHS,
+    TSMC_OBSERVATION_PATH,
     build_run_record,
     build_signal,
     load_inputs,
+    load_tsmc_observation,
     source_revision,
 )
 from src.validation.contracts import (
@@ -29,6 +31,7 @@ from src.validation.contracts import (
     validate_approvals_contract,
     validate_document,
     validate_model_weights_contract,
+    validate_observed_facts_contract,
     validate_schedules_contract,
     validate_signal_contract,
     validate_source_contract,
@@ -456,6 +459,20 @@ class EvidenceReviewContractTests(unittest.TestCase):
     def test_source_and_review_domain_contracts(self) -> None:
         validate_source_contract(self.sources)
         validate_review_contract(self.universe, self.benchmarks, self.sources, self.review)
+
+    def test_tsmc_official_observation_is_open_and_signal_isolated(self) -> None:
+        observation = load_tsmc_observation(self.sources)
+        validate_document(observation, SCHEMAS / "observed-facts.schema.json")
+        validate_observed_facts_contract(observation, self.sources)
+        self.assertEqual(TSMC_OBSERVATION_PATH.name, "2330.json")
+        self.assertFalse(observation["used_in_signal"])
+        self.assertFalse(observation["automated_refresh_enabled"])
+        self.assertFalse(observation["collection_policy"]["html_scraping"])
+        source_map = {item["source_id"]: item for item in self.sources["sources"]}
+        for resource in observation["resources"]:
+            source = source_map[resource["source_id"]]
+            self.assertEqual(source["license_status"], "open_with_attribution")
+            self.assertEqual(source["pages_policy"], "raw_with_attribution_allowed")
 
     def test_rejects_incompatible_fallback_source(self) -> None:
         mutated = copy.deepcopy(self.sources)

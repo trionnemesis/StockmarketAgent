@@ -11,3 +11,9 @@
 - [x] Run local validation and independent review.
 - [x] Create and push the public GitHub repository.
 - [x] Verify GitHub Actions, remote main, and public Pages.
+- [x] Verify documented TWSE OpenAPI datasets and Taiwan OGL attribution requirements.
+- [x] Add a manual, rate-limited 2330 official-data ingestion adapter.
+- [x] Keep official observations outside synthetic scores, production routing, and schedules.
+- [x] Publish strict 2330 observed facts and provenance on the instrument page.
+- [ ] Build a revision-aware 2330 historical observation archive.
+- [ ] Add an approved exact TAIEX benchmark series and corporate-action history.
