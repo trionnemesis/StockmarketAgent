@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="006208 富邦台50 的未校準合成情境研究態度；目前為 proposed、disabled，並非即時市場建議。">
+  <meta name="description" content="006208 富邦台50 的官方開放資料快照與未校準合成情境研究態度；觀測事實不進入訊號，目前仍為 proposed、disabled。">
   <meta name="theme-color" content="#09182e">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
   <meta property="og:site_name" content="StockmarketAgent">
   <meta property="og:title" content="006208 富邦台50｜StockmarketAgent">
-  <meta property="og:description" content="006208 富邦台50 的未校準合成情境研究態度；目前為 proposed、disabled，並非即時市場建議。">
+  <meta property="og:description" content="006208 富邦台50 的官方開放資料快照與未校準合成情境研究態度；觀測事實不進入訊號，目前仍為 proposed、disabled。">
   <meta property="og:url" content="https://trionnemesis.github.io/StockmarketAgent/instruments/fubon-taiwan-50.html">
   <meta name="twitter:title" content="006208 富邦台50｜StockmarketAgent">
-  <meta name="twitter:description" content="006208 富邦台50 的未校準合成情境研究態度；目前為 proposed、disabled，並非即時市場建議。">
+  <meta name="twitter:description" content="006208 富邦台50 的官方開放資料快照與未校準合成情境研究態度；觀測事實不進入訊號，目前仍為 proposed、disabled。">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://trionnemesis.github.io/StockmarketAgent/instruments/fubon-taiwan-50.html">
   <link rel="stylesheet" href="../assets/css/site.css">
@@ -39,6 +39,32 @@
 </header>
 <main class="shell main-content">
 
+  <section class="section-card" data-observed-snapshot="2026-08-27">
+    <div class="section-heading"><div><p class="kicker">OFFICIAL OBSERVED FACTS</p><h2>TWSE 官方開放資料快照</h2></div><span class="pill pill-neutral">OGL attribution · not used in signal</span></div>
+    <div class="notice" role="note"><strong>事實與訊號分流</strong><span>以下是 2026-08-28T05:56:32Z 取得的官方 OpenAPI 正規化事實；不會改寫上方 synthetic 分數、研究態度或 production gate，也不是即時報價。</span></div>
+    <div class="metric-grid"><article class="metric-card" data-observed-fact="close"><span>2026-08-27 收盤</span><strong>NT$ 243.15</strong><small>漲跌 0.3</small></article><article class="metric-card" data-observed-fact="volume"><span>成交股數</span><strong>1.87M</strong><small>8,191 筆</small></article><article class="metric-card" data-observed-fact="tracking-index"><span>官方追蹤指數</span><strong>臺灣50指數</strong><small>國內成分證券指數股票型基金</small></article><article class="metric-card" data-observed-fact="listing"><span>上市 / 成立</span><strong>2012-07-17</strong><small>成立 2012-06-22</small></article><article class="metric-card" data-observed-fact="issued-units"><span>發行單位數</span><strong>1,860,040,000</strong><small>官方月度基本資料</small></article><article class="metric-card" data-observed-fact="foreign-constituents"><span>國外成分股</span><strong>否</strong><small>客製／特別揭露指數：否</small></article></div>
+    <div class="split-grid">
+      <article class="section-card">
+        <p class="kicker">OBSERVATION DETAIL</p><h2>ETF 官方基金基本資料</h2>
+        <dl class="fact-list"><div><dt>官方基金名稱</dt><dd>富邦台灣釆吉50 證券投資信託基金</dd></div><div><dt>基金類型</dt><dd>國內成分證券指數股票型基金</dd></div><div><dt>追蹤指數</dt><dd>臺灣50指數</dd></div><div><dt>公司財務欄位</dt><dd>不適用；未以個股基本面硬比</dd></div></dl>
+      </article>
+      <article class="section-card">
+        <p class="kicker">PROVENANCE</p><h2>可追溯、可再建</h2>
+        <p>介面：documented_openapi；HTML scraping：false；自動排程：false。</p>
+        <p>金融監督管理委員會證券期貨局／臺灣證券交易所（2026）開放資料；依政府資料開放授權條款－第1版使用。</p>
+        <p><a href="https://data.gov.tw/dataset/11549">eod_prices</a> · <a href="https://data.gov.tw/dataset/157399">fund_profile</a></p>
+        <p><a href="../data/observations/fubon-taiwan-50.json">下載 strict observation JSON</a> · <a href="https://data.gov.tw/license">授權條款</a> · <a href="https://www.twse.com.tw/zh/terms/use.html">TWSE 使用條款</a></p>
+      </article>
+    </div>
+    <div class="section-heading"><div><p class="kicker">DATA-QUALITY EVIDENCE</p><h2>支持、反向證據與失效條件</h2></div><span class="pill pill-neutral">context only · not directional</span></div>
+    <div class="event-grid"><article class="event-card" data-official-evidence="supporting_evidence">
+  <h3>支持證據</h3><ul class="risk-list"><li>官方 EOD 單一代號紀錄已通過日期、OHLC、成交量與來源雜湊驗證。</li><li>基金代號、基金類型、上市日與追蹤指數皆有同代號官方紀錄。</li></ul>
+</article><article class="event-card" data-official-evidence="contrary_evidence">
+  <h3>反向證據</h3><ul class="risk-list"><li>ETF 不適用公司月營收與公司財務報表，不能以個股基本面欄位比較。</li><li>尚缺 PIT 持股、NAV、折溢價與可再發布的 benchmark 報酬序列。</li></ul>
+</article><article class="event-card" data-official-evidence="invalidation_conditions">
+  <h3>失效條件</h3><ul class="risk-list"><li>代號、資產類型或來源綁定不一致時，整份快照失效。</li><li>官方後續修訂改變已保存事實時，必須以新版本取代並保留修訂紀錄。</li><li>資源日期晚於取得時間、必要紀錄不是唯一一筆或契約驗證失敗時，拒絕發布。</li></ul>
+</article></div>
+  </section>
   <section class="section-card">
     <div class="section-heading"><div><p class="kicker">MULTI-HORIZON</p><h2>四個期間研究態度</h2></div><span class="pill pill-neutral">uncalibrated · synthetic scenario</span></div>
     <div class="notice notice-warning" role="note"><strong>研究態度，不是市場建議</strong><span>下列 score、confidence 與 BUY／HOLD／SELL／NO_SIGNAL 都取自 research fixture；不讀取另行標示的官方觀測快照，也未經模型校準。</span></div>

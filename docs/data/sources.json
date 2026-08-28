@@ -524,8 +524,8 @@
     "raw_data_commit": "Commit only official open-data fixtures with attribution; contract feeds and bulk archives stay out of the repository.",
     "secrets": "Credentials belong only in GitHub Actions repository/environment secret stores, never repository files or browser assets."
   },
-  "review_version": "b2-2026-08-28",
-  "reviewed_at": "2026-08-28T04:45:00Z",
+  "review_version": "b3-2026-08-28",
+  "reviewed_at": "2026-08-28T06:00:30Z",
   "schema_version": "1.0.0",
   "sources": [
     {
@@ -556,7 +556,7 @@
       "source_id": "TWSE_OGL_COMPANY"
     },
     {
-      "access_method": "Documented TWSE OpenAPI monthly revenue, general-industry income-statement, and balance-sheet endpoints; no MOPS HTML scraping.",
+      "access_method": "Documented TWSE OpenAPI monthly revenue plus separate general-industry and financial-holding income-statement and balance-sheet endpoints; no MOPS HTML scraping.",
       "authentication": "none",
       "countries": [
         "TW"
@@ -577,7 +577,7 @@
       "pages_policy": "raw_with_attribution_allowed",
       "point_in_time_status": "partial",
       "publisher": "Taiwan Stock Exchange",
-      "rate_limit": "No numeric limit is documented; the research adapter uses five sequential requests, a declared User-Agent, at least two seconds between requests, caching, and backoff.",
+      "rate_limit": "No numeric limit is documented; retrieve sequentially with a declared User-Agent, at least two seconds between requests, caching, and backoff.",
       "redistribution": "Normalized facts may be published with OGL attribution and source links.",
       "retention": "Normalized OGL facts and response hashes may be retained with attribution; raw full-market payloads are not committed.",
       "source_id": "TWSE_OGL_FINANCIALS"
@@ -637,7 +637,7 @@
       "source_id": "TWSE_OGL_ACTIONS"
     },
     {
-      "access_method": "Monthly TWSE ETF issuance snapshot",
+      "access_method": "Documented TWSE OpenAPI /opendata/t187ap47_L ETF fund-profile snapshot; no generic HTML scraping.",
       "authentication": "none",
       "countries": [
         "TW"
@@ -650,16 +650,16 @@
       "fallback": "Official issuer product pages as metadata-only references.",
       "feasibility": "conditional",
       "gaps": [
-        "No complete PIT holdings history."
+        "No complete PIT holdings, NAV, premium-discount, or benchmark-return history."
       ],
       "history_depth": "Current monthly snapshot; immutable historical versions are not promised.",
       "key_required": false,
       "license_status": "open_with_attribution",
-      "license_url": "https://data.gov.tw/en/license",
+      "license_url": "https://data.gov.tw/license",
       "pages_policy": "raw_with_attribution_allowed",
       "point_in_time_status": "partial",
       "publisher": "Taiwan Stock Exchange",
-      "rate_limit": "Not documented; monthly retrieval is sufficient.",
+      "rate_limit": "No numeric limit is documented; retrieve sequentially with a declared User-Agent, at least two seconds between requests, caching, and backoff.",
       "redistribution": "OGL metadata may be redistributed with attribution.",
       "retention": "Observed OGL snapshots may be retained with attribution.",
       "source_id": "TWSE_OGL_ETF"

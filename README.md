@@ -7,7 +7,7 @@
 
 > 將台灣、日本、美國 30 個候選標的的證據審查、確定性分析與多期間研究態度，整理成可重建、可追溯的 GitHub Pages 研究原型。
 
-**[開啟 GitHub Pages](https://trionnemesis.github.io/StockmarketAgent/)** · [2330 台積電官方資料快照](https://trionnemesis.github.io/StockmarketAgent/instruments/tsmc.html) · [Universe 證據審查](https://trionnemesis.github.io/StockmarketAgent/universe-review.html) · [來源可行性](https://trionnemesis.github.io/StockmarketAgent/source-feasibility.html) · [研究方法](https://trionnemesis.github.io/StockmarketAgent/methodology.html) · [驗證紀錄](VERIFICATION.md)
+**[開啟 GitHub Pages](https://trionnemesis.github.io/StockmarketAgent/)** · [台灣 10 檔官方觀測矩陣](https://trionnemesis.github.io/StockmarketAgent/markets/tw.html) · [2330 台積電](https://trionnemesis.github.io/StockmarketAgent/instruments/tsmc.html) · [Universe 證據審查](https://trionnemesis.github.io/StockmarketAgent/universe-review.html) · [來源可行性](https://trionnemesis.github.io/StockmarketAgent/source-feasibility.html) · [驗證紀錄](VERIFICATION.md)
 
 ![StockmarketAgent social preview](docs/assets/og.png)
 
@@ -15,7 +15,7 @@
 
 跨市場研究不能只顯示一個方向性標籤。StockmarketAgent 將候選 Universe、總體經濟、基本面、估值、技術面、循環與事件拆成可驗證欄位，再由版本化設定產生 1W／1M／3M／12M 的研究態度與風險理由。JSON 是唯一事實來源；Markdown 與靜態 HTML 只呈現同一份通過契約驗證的結果。
 
-目前完整分析路徑使用 **deterministic synthetic research snapshot**。研究頁可出現 `BUY`、`HOLD`、`SELL`、`NO_SIGNAL`，但這些態度尚未完成 point-in-time（PIT）回測與校準，不能解讀為正式投資訊號。2330 台積電頁另有一條完全分流的 **TWSE 官方 OGL observation snapshot**：它只呈現日期、價格、估值、月營收與季度財務事實，不會進入分數或態度。Risk Gate、Universe approval 與 production gate 仍然有效。
+目前完整分析路徑使用 **deterministic synthetic research snapshot**。研究頁可出現 `BUY`、`HOLD`、`SELL`、`NO_SIGNAL`，但這些態度尚未完成 point-in-time（PIT）回測與校準，不能解讀為正式投資訊號。台灣 10 檔候選另有一條完全分流的 **TWSE 官方 OGL observation snapshot**：5 檔個股呈現行情、估值、月營收與適用產業別財報；5 檔 ETF 呈現行情、基金身分與追蹤指數。每檔同時列出資料品質層級的支持證據、反向證據與失效條件，全部不會進入分數或態度。
 
 > **研究邊界：分數與態度是未校準的合成資料研究輸出；另行標示的 TWSE 官方快照不是即時報價，也不會升級為投資訊號或交易指令。**
 
@@ -25,7 +25,7 @@
 |---|---|---|
 | Universe | 台／日／美各 5 個股 + 5 ETF，共 30 個候選；逐筆保存 listing、代號、交易場所、幣別、資產類型與選擇理由 | 30 個標的仍為 `proposed`、`disabled`，尚未取得 Owner 核准 |
 | Evidence review | 15 個 ETF tracking index、37 筆來源紀錄、6 組重疊與 issuer concentration 可供 Pages 閱讀 | reference metadata 不等於可用行情、PIT 歷史或再發布授權 |
-| 2330 official facts | TWSE OpenAPI 的 EOD、估值、月營收、一般業綜合損益與資產負債共 5 個 OGL 資源；保存正規化事實、來源 URL、response hash、取得時間與顯名聲明 | `used_in_signal=false`、自動排程關閉；不宣稱完整 PIT history、correction stream 或即時報價 |
+| Taiwan official matrix | 台灣 10 檔皆有 TWSE OGL 快照與證據矩陣；個股使用 EOD、估值、月營收與正確財報模板，ETF 使用 EOD 與基金基本資料 | `used_in_signal=false`、自動排程關閉；不宣稱完整 PIT history、benchmark return、correction stream 或即時報價 |
 | Deterministic analysis | 以固定 synthetic fixture 計算 macro、fundamental、valuation、technical、cycle、events 研究元件 | 不包含 live provider observations；數值只供管線、契約與呈現驗證 |
 | Research attitudes | 1W／1M／3M／12M 可呈現 `BUY`、`HOLD`、`SELL`、`NO_SIGNAL`、信心、支持／反向證據與失效條件 | 態度為 `uncalibrated` research output，不是 production signal |
 | Risk Gate | 保留風險旗標、資料品質與核准狀態，阻止研究輸出被提升為正式訊號 | `production_signal_enabled` 維持 `false`；不因研究態度出現方向就放行 |
@@ -44,7 +44,7 @@ flowchart TD
   P[Owner approval and PIT calibration] -. production prerequisite .-> G
   G --> J[Versioned signal JSON]
   J --> O[Markdown and GitHub Pages]
-  T[TWSE OGL snapshot] --> Q[Observed-facts contract]
+  T[TWSE OGL 10-candidate snapshots] --> Q[Observed-facts contract]
   Q --> O
   Q -. never enters signal .-> G
 ```
@@ -53,7 +53,7 @@ flowchart TD
 
 ## 快速開始
 
-需求：Python 3.11+。一般研究 build 不連外、不需第三方套件、API key 或資料供應商帳號。只有人工更新 2330 官方快照時才會依序呼叫 5 個文件化 TWSE OpenAPI 端點。
+需求：Python 3.11+。一般研究 build 不連外、不需第三方套件、API key 或資料供應商帳號。只有人工更新台灣 10 檔官方快照時才會依序呼叫 8 個文件化 TWSE OpenAPI 端點。
 
 ```bash
 git clone https://github.com/trionnemesis/StockmarketAgent.git
@@ -68,7 +68,7 @@ python3 -m http.server 8765 --directory docs
 
 開啟 `http://127.0.0.1:8765/`。重新執行相同版本的 build，應得到相同的核心 JSON 與 input hash。
 
-人工更新台積電官方資料快照：
+人工更新台灣 10 檔官方資料快照：
 
 ```bash
 python3 -m src.ingestion.twse_openapi
@@ -84,7 +84,7 @@ python3 -m src.pipeline validate
 |---|---|
 | `python3 -m src.pipeline build` | 驗證 versioned config 與 synthetic fixture，產生 signal、run record、Markdown 與 Pages artifact |
 | `python3 -m src.pipeline validate` | 驗證既有 latest、archive、Pages JSON 與 Agent Run 契約一致性 |
-| `python3 -m src.ingestion.twse_openapi` | 手動擷取 2330 的 5 個 TWSE OGL 資源，正規化後原子寫入 observation snapshot；不啟用排程或訊號 |
+| `python3 -m src.ingestion.twse_openapi` | 以 8 次共用請求手動更新台灣 10 檔 TWSE OGL 快照，正規化後逐檔原子寫入；不啟用排程或訊號 |
 | `python3 -m unittest discover -s tests -p 'test_*.py' -v` | 執行 contract、integration、link、consistency 與 secret-pattern tests |
 | `python3 -m http.server 8765 --directory docs` | 在本機預覽生成後的 GitHub Pages 靜態網站 |
 
@@ -93,11 +93,12 @@ python3 -m src.pipeline validate
 | Route | 內容 |
 |---|---|
 | [`/`](https://trionnemesis.github.io/StockmarketAgent/) | 三市場摘要、研究態度、Risk Gate 與 evidence review 入口 |
-| `/markets/tw.html` | 台灣 5 個股 + 5 ETF 的研究摘要 |
+| [`/markets/tw.html`](https://trionnemesis.github.io/StockmarketAgent/markets/tw.html) | 台灣 5 個股 + 5 ETF 的官方觀測／證據矩陣與合成研究摘要 |
 | `/markets/jp.html` | 日本 5 個股 + 5 ETF 的研究摘要 |
 | `/markets/us.html` | 美國 5 個股 + 5 ETF 的研究摘要 |
-| [`/instruments/tsmc.html`](https://trionnemesis.github.io/StockmarketAgent/instruments/tsmc.html) | 2330 官方 OGL 快照與完全分流的 synthetic 多期間研究態度 |
-| `/instruments/<slug>.html` | 其餘候選標的的多期間態度、研究元件、風險與來源 |
+| [`/instruments/tsmc.html`](https://trionnemesis.github.io/StockmarketAgent/instruments/tsmc.html) | 2330 官方 OGL 快照、資料品質證據與完全分流的 synthetic 多期間研究態度 |
+| `/instruments/<tw-slug>.html` | 其餘 9 個台灣候選的資產別官方快照、支持／反向證據、失效條件與 synthetic 態度 |
+| `/instruments/<jp-or-us-slug>.html` | 日本、美國候選的多期間態度、研究元件、風險與來源；目前沒有官方 observation |
 | `/universe-review.html` | 逐檔 listing、ETF index、歷史、流動性、重疊與模型適用性審查 |
 | `/source-feasibility.html` | 37 筆來源紀錄與採用、條件式使用、阻擋理由 |
 | `/methodology.html` | 分數、研究態度、Risk Gate、限制與非目標 |
@@ -106,15 +107,15 @@ python3 -m src.pipeline validate
 | `/data/latest.json` | 網站使用的最新 strict signal JSON |
 | `/data/universe-review.json` | Universe evidence review 的機器可讀版本 |
 | `/data/sources.json` | Source feasibility 的機器可讀版本 |
-| `/data/observations/tsmc.json` | 2330 官方 observation snapshot、授權、response hashes 與正規化事實 |
+| `/data/observations/<tw-slug>.json` | 台灣 10 檔官方 observation snapshot、覆蓋／缺口、授權、response hashes、正規化事實與證據條件 |
 
 ## 資料信任邊界
 
 - 分數與研究態度的輸入仍是固定、可重現的 synthetic research fixture；它不讀取台灣、日本或美國市場的行情、財報、新聞或 ETF holdings。
-- 2330 頁的官方 observation snapshot 是獨立資料產品，只採用 TWSE OpenAPI 對應的政府開放資料；`used_in_signal=false`、`automated_refresh_enabled=false`。
+- 台灣 10 檔的官方 observation snapshots 是獨立資料產品，只採用 TWSE OpenAPI 對應的政府開放資料；`used_in_signal=false`、`automated_refresh_enabled=false`。
 - 30 個標的全部維持 `proposed`、`disabled`；evidence review 完成不代表 Owner 已核准正式 Universe。
 - `BUY`、`HOLD`、`SELL`、`NO_SIGNAL` 是未校準研究態度。Risk Gate 明確阻止它們成為 production signal。
-- Repository 未啟用 live adapters、外部 provider credentials 或排程；唯一提交的 provider facts 是具有 OGL 顯名與 Pages 再發布依據的 2330 正規化快照。
+- Repository 未啟用 live adapters、外部 provider credentials 或排程；唯一提交的 provider facts 是具有 OGL 顯名與 Pages 再發布依據的台灣 10 檔正規化快照。
 - 不執行券商下單、自動交易、個人資產配置或報酬保證。
 - JSON 是唯一事實來源；Renderer 只讀取已驗證 JSON，不從 HTML、Markdown 或 LLM 回推分數與態度。
 - 資料不足、契約不符或 gate 未通過時，系統不得用空值冒充有效觀測，也不得把研究結果提升為正式訊號。
@@ -149,7 +150,7 @@ VERIFICATION.md         本地與遠端驗證證據
 |---|---:|---|
 | 候選標的 | 30 / 30 已審查；其中 9 筆 metadata 或 theme 經修正 | Owner 尚未核准 production Universe |
 | ETF tracking index | 15 / 15 已獨立保存 | 不等同市場績效 benchmark series 已選定 |
-| Source records | 37 | 其中 TWSE OGL 已完成 2330 最小 observation slice；其餘不等同已整合 provider、取得 credentials 或再發布權 |
+| Source records | 37 | TWSE OGL 已映射台灣 10 檔：個股 5 組 fact groups、ETF 2 組；其餘來源紀錄不等同已整合 provider、取得 credentials 或再發布權 |
 | Live age 未滿五年 | 2：00919、00965 | `sufficient` 也不代表已有同長度可用 PIT history |
 | 流動性 | 30 / 30 為 `quantitative_review_pending` | 成交額、價差、容量門檻仍待獲授權資料量化 |
 | 明確重疊 | 6 組 | wrapper 與 look-through 上限尚未決定 |
@@ -175,9 +176,9 @@ Owner 尚需決定：
 | Risk Gate | 已啟用 | `production_signal_enabled` 維持 `false`，不放行正式訊號 |
 | GitHub Pages | 已啟用 | 發布生成後的靜態 HTML 與公開 JSON |
 | Universe evidence review | 30 / 30 已完成 | 仍有 7 項 Owner decisions，全部標的維持 proposed／disabled |
-| 2330 official observation | 已啟用手動快照 | 5 個 TWSE OGL 資源；不進入訊號、不自動排程、不提供完整 PIT history |
+| Taiwan 10-candidate observations | 已啟用手動快照 | 8 個共用 TWSE OGL 端點、10 份 strict JSON 與證據矩陣；不進入訊號、不自動排程、不提供完整 PIT history |
 | Live adapters and scheduled provider data | 未啟用 | Repository 沒有 live credentials、排程或 production routing |
 | PIT backtest and calibration | 未完成 | 研究態度不得視為已驗證的預測能力 |
 | Production signals and trading | 未啟用 | 沒有正式 BUY／SELL、券商 API 或自動下單 |
 
-正式資料功能必須以獨立、可審查的 PR 推進。下一個高優先缺口是建立 2330 可重播的歷史 snapshot／revision archive，再補 TAIEX 精確 benchmark 與 corporate actions；Owner 決策、完整 PIT dataset、回測與校準未完成前，系統維持 `research_only`。
+正式資料功能必須以獨立、可審查的 PR 推進。下一個高優先缺口是建立台灣 10 檔可重播的歷史 snapshot／revision archive，再補 TAIEX 精確 benchmark、ETF NAV／折溢價與 corporate actions；Owner 決策、完整 PIT dataset、回測與校準未完成前，系統維持 `research_only`。

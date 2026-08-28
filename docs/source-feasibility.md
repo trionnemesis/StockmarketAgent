@@ -1,6 +1,6 @@
 # Source feasibility matrix
 
-- Reviewed at: `2026-08-28T04:45:00Z`
+- Reviewed at: `2026-08-28T06:00:30Z`
 - Live adapters enabled: `false`
 - Publication boundary: {'raw_data_commit': 'Commit only official open-data fixtures with attribution; contract feeds and bulk archives stay out of the repository.', 'github_pages': 'Publish evidence metadata, citations, fixtures, and expressly reusable summaries only; licensed prices, holdings, and index values stay off Pages.', 'secrets': 'Credentials belong only in GitHub Actions repository/environment secret stores, never repository files or browser assets.'}
 
@@ -14,8 +14,8 @@
   - Retention: Versioned normalized snapshots may be retained with attribution and retrieval time. Redistribution: Raw and adapted OGL records may be redistributed with attribution.
   - Fallback: Manual official issuer identity review. Gaps: No immutable correction stream or complete historical identity vintages.
 | [TWSE_OGL_FINANCIALS](https://data.gov.tw/dataset/91998) | TW | filings_financials | none / False | partial | [open_with_attribution](https://data.gov.tw/license) / raw_with_attribution_allowed | conditional |
-  - Access: Documented TWSE OpenAPI monthly revenue, general-industry income-statement, and balance-sheet endpoints; no MOPS HTML scraping.
-  - Limits: No numeric limit is documented; the research adapter uses five sequential requests, a declared User-Agent, at least two seconds between requests, caching, and backoff. History: Current monthly and quarterly published snapshots; every observed version must be archived for future PIT use.
+  - Access: Documented TWSE OpenAPI monthly revenue plus separate general-industry and financial-holding income-statement and balance-sheet endpoints; no MOPS HTML scraping.
+  - Limits: No numeric limit is documented; retrieve sequentially with a declared User-Agent, at least two seconds between requests, caching, and backoff. History: Current monthly and quarterly published snapshots; every observed version must be archived for future PIT use.
   - Retention: Normalized OGL facts and response hashes may be retained with attribution; raw full-market payloads are not committed. Redistribution: Normalized facts may be published with OGL attribution and source links.
   - Fallback: Official issuer releases as manual cross-checks; a separately licensed feed is required for complete PIT backfill. Gaps: Historical revisions, correction semantics, taxonomy drift, and complete PIT backfill are not provided by the current snapshot endpoints.
 | [TWSE_OGL_EOD](https://data.gov.tw/dataset/11549) | TW | eod_prices | none / False | partial | [open_with_attribution](https://data.gov.tw/license) / raw_with_attribution_allowed | conditional |
@@ -28,11 +28,11 @@
   - Limits: Not documented; cache and back off conservatively. History: Current and forecast snapshots; complete action history is not documented.
   - Retention: Preserve every observed version with retrieval time. Redistribution: OGL snapshots may be redistributed with attribution.
   - Fallback: Issuer notices, filings, then a licensed golden source. Gaps: Not a complete split, rename, suspension, and delisting golden source.
-| [TWSE_OGL_ETF](https://data.gov.tw/dataset/157399) | TW | listing_metadata, etf_fund_data | none / False | partial | [open_with_attribution](https://data.gov.tw/en/license) / raw_with_attribution_allowed | conditional |
-  - Access: Monthly TWSE ETF issuance snapshot
-  - Limits: Not documented; monthly retrieval is sufficient. History: Current monthly snapshot; immutable historical versions are not promised.
+| [TWSE_OGL_ETF](https://data.gov.tw/dataset/157399) | TW | listing_metadata, etf_fund_data | none / False | partial | [open_with_attribution](https://data.gov.tw/license) / raw_with_attribution_allowed | conditional |
+  - Access: Documented TWSE OpenAPI /opendata/t187ap47_L ETF fund-profile snapshot; no generic HTML scraping.
+  - Limits: No numeric limit is documented; retrieve sequentially with a declared User-Agent, at least two seconds between requests, caching, and backoff. History: Current monthly snapshot; immutable historical versions are not promised.
   - Retention: Observed OGL snapshots may be retained with attribution. Redistribution: OGL metadata may be redistributed with attribution.
-  - Fallback: Official issuer product pages as metadata-only references. Gaps: No complete PIT holdings history.
+  - Fallback: Official issuer product pages as metadata-only references. Gaps: No complete PIT holdings, NAV, premium-discount, or benchmark-return history.
 | [SITCA_OGL_ETF](https://data.gov.tw/dataset/11109) | TW | etf_fund_data, filings_financials | none / False | partial | [open_with_attribution](https://data.gov.tw/en/license) / raw_with_attribution_allowed | conditional |
   - Access: Official ETF NAV open-data files plus fee datasets
   - Limits: Not documented; one daily cached retrieval is sufficient. History: Current published files; complete historical retention is not promised.

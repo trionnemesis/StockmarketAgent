@@ -7,7 +7,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from src.pipeline import ROOT, build_outputs, build_signal, load_inputs, load_tsmc_observation
+from src.pipeline import ROOT, build_outputs, build_signal, load_inputs, load_tw_observations
 from src.validation.contracts import canonical_json, load_json_strict
 from src.render.markdown import render_report
 from src.render.site import render_history, render_home
@@ -34,7 +34,7 @@ class GeneratedArtifactTests(unittest.TestCase):
         universe, approvals, model, fixture, themes, benchmarks, sources, review = load_inputs()
         cls.review = review
         cls.sources = sources
-        cls.observation = load_tsmc_observation(sources)
+        cls.observations = load_tw_observations(universe, sources)
         cls.signal = build_signal(universe, approvals, model, fixture, themes, benchmarks, sources, review)
         cls.outputs, cls.run_record = build_outputs(cls.signal, sources, review)
 
@@ -170,47 +170,68 @@ class GeneratedArtifactTests(unittest.TestCase):
         self.assertIn("研究模擬資料", report)
         self.assertIn("未校準研究態度", report)
 
-    def test_tsmc_page_exposes_official_snapshot_without_changing_signal(self) -> None:
-        page = self.outputs[
-            ROOT / "docs" / "instruments" / "tsmc.html"
-        ].decode("utf-8")
-        self.assertIn(
-            f'data-observed-snapshot="{self.observation["as_of"]}"', page
-        )
-        for fact_name in (
-            "close",
-            "volume",
-            "valuation",
-            "monthly-revenue",
-            "ytd-revenue",
-            "eps",
-            "gross-margin",
-            "balance",
-        ):
-            self.assertIn(f'data-observed-fact="{fact_name}"', page)
-        self.assertIn("not used in signal", page)
-        self.assertIn("HTML scraping：false", page)
-        self.assertIn("NT$ 2,410", page)
-        self.assertIn("NT$ 467,580.548M", page)
-        self.assertIn("NT$ 49.33", page)
-
-        docs_observation = load_json_strict(
-            ROOT / "docs" / "data" / "observations" / "tsmc.json"
-        )
-        self.assertEqual(
-            canonical_json(docs_observation), canonical_json(self.observation)
-        )
-        tsmc_signal = next(
-            item
-            for item in self.signal["instruments"]
-            if item["instrument_id"] == "TW:STOCK:2330"
-        )
-        self.assertTrue(
-            all(
-                provenance["source_type"] == "synthetic_research_fixture"
-                for provenance in tsmc_signal["provenance"]
+    def test_all_taiwan_pages_expose_official_evidence_without_changing_signal(self) -> None:
+        for instrument_id, observation in self.observations.items():
+            page = self.outputs[
+                ROOT / "docs" / "instruments" / f"{observation['slug']}.html"
+            ].decode("utf-8")
+            self.assertIn(
+                f'data-observed-snapshot="{observation["as_of"]}"', page
             )
+            for fact_name in ("close", "volume"):
+                self.assertIn(f'data-observed-fact="{fact_name}"', page)
+            for evidence_name in (
+                "supporting_evidence",
+                "contrary_evidence",
+                "invalidation_conditions",
+            ):
+                self.assertIn(f'data-official-evidence="{evidence_name}"', page)
+                for statement in observation["evidence_assessment"][evidence_name]:
+                    self.assertIn(statement, page)
+            if observation["asset_type"] == "stock":
+                self.assertIn('data-observed-fact="valuation"', page)
+                self.assertIn('data-observed-fact="monthly-revenue"', page)
+                self.assertNotIn('data-observed-fact="tracking-index"', page)
+            else:
+                self.assertIn('data-observed-fact="tracking-index"', page)
+                self.assertNotIn('data-observed-fact="valuation"', page)
+                self.assertIn("不適用；未以個股基本面硬比", page)
+            self.assertIn("not used in signal", page)
+            self.assertIn("HTML scraping：false", page)
+            docs_observation = load_json_strict(
+                ROOT
+                / "docs"
+                / "data"
+                / "observations"
+                / f"{observation['slug']}.json"
+            )
+            self.assertEqual(
+                canonical_json(docs_observation), canonical_json(observation)
+            )
+            signal_item = next(
+                item for item in self.signal["instruments"]
+                if item["instrument_id"] == instrument_id
+            )
+            self.assertTrue(
+                all(
+                    provenance["source_type"] == "synthetic_research_fixture"
+                    for provenance in signal_item["provenance"]
+                )
+            )
+
+        tw_market = self.outputs[ROOT / "docs" / "markets" / "tw.html"].decode(
+            "utf-8"
         )
+        self.assertIn('data-tw-observation-matrix="10"', tw_market)
+        self.assertEqual(tw_market.count('data-observation-matrix="'), 10)
+        for observation in self.observations.values():
+            self.assertIn(
+                f'data-observation-matrix="{observation["symbol"]}"', tw_market
+            )
+        self.assertIn("支持證據", tw_market)
+        self.assertIn("反向證據", tw_market)
+        self.assertIn("失效條件", tw_market)
+
         alphabet = self.outputs[
             ROOT / "docs" / "instruments" / "alphabet.html"
         ].decode("utf-8")

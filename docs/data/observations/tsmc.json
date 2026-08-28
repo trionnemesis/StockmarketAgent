@@ -1,5 +1,6 @@
 {
   "as_of": "2026-08-28",
+  "asset_type": "stock",
   "attribution": {
     "api_documentation_url": "https://openapi.twse.com.tw/v1/swagger.json",
     "license_name": "政府資料開放授權條款－第1版",
@@ -16,7 +17,42 @@
     "minimum_interval_seconds": 2,
     "robots_status": "not_published_404_checked_2026-08-28",
     "robots_url": "https://openapi.twse.com.tw/robots.txt",
-    "user_agent": "StockmarketAgent/0.2 (+https://github.com/trionnemesis/StockmarketAgent; research-only)"
+    "user_agent": "StockmarketAgent/0.3 (+https://github.com/trionnemesis/StockmarketAgent; research-only)"
+  },
+  "coverage": {
+    "available_fact_groups": [
+      "market_session",
+      "valuation",
+      "monthly_revenue",
+      "quarterly_income",
+      "balance_sheet"
+    ],
+    "gaps": [
+      "immutable_revision_history",
+      "full_eod_history",
+      "benchmark_return_series",
+      "corporate_action_history"
+    ],
+    "not_applicable_fact_groups": [
+      "fund_profile"
+    ]
+  },
+  "evidence_assessment": {
+    "contrary_evidence": [
+      "目前只保存最新快照，缺少完整修訂與更正歷史，不能作為 PIT 趨勢證據。",
+      "單日行情與未基準化估值不足以支持方向性投資結論。"
+    ],
+    "invalidation_conditions": [
+      "代號、資產類型或來源綁定不一致時，整份快照失效。",
+      "官方後續修訂改變已保存事實時，必須以新版本取代並保留修訂紀錄。",
+      "資源日期晚於取得時間、必要紀錄不是唯一一筆或契約驗證失敗時，拒絕發布。"
+    ],
+    "scope": "data_quality_context_only",
+    "supporting_evidence": [
+      "官方 EOD 單一代號紀錄已通過日期、OHLC、成交量與來源雜湊驗證。",
+      "估值、月營收與適用產業別的季度財務皆有同代號官方紀錄。"
+    ],
+    "used_in_signal": false
   },
   "facts": {
     "balance_sheet": {
@@ -26,6 +62,7 @@
       "period": "2026-Q2",
       "published_date": "2026-08-28",
       "source_resource_id": "balance_sheet",
+      "statement_type": "general_industry",
       "total_assets_twd_million": 9375654.727,
       "total_equity_twd_million": 6474470.981,
       "total_liabilities_twd_million": 2901183.746,
@@ -70,9 +107,11 @@
       "operating_margin_percent": 59.29,
       "period": "2026-Q2",
       "period_scope": "year_to_date",
+      "pre_tax_income_twd_million": 1550229.773,
       "published_date": "2026-08-28",
       "revenue_twd_million": 2404483.69,
       "source_resource_id": "quarterly_income",
+      "statement_type": "general_industry",
       "unit": "million"
     },
     "valuation": {
@@ -83,7 +122,7 @@
       "source_resource_id": "valuation"
     }
   },
-  "fetched_at": "2026-08-28T04:54:39Z",
+  "fetched_at": "2026-08-28T05:56:32Z",
   "instrument_id": "TW:STOCK:2330",
   "mode": "observed_research_snapshot",
   "name_zh": "台積電",
@@ -155,12 +194,13 @@
       "source_id": "TWSE_OGL_FINANCIALS"
     }
   ],
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
+  "slug": "tsmc",
   "symbol": "2330",
   "used_in_signal": false,
   "warnings": [
     "Point-in-time revision history is incomplete.",
-    "Snapshot facts are not used to calculate or upgrade research attitudes.",
+    "Snapshot facts and evidence assessment are not used to calculate or upgrade research attitudes.",
     "No automatic refresh schedule is enabled."
   ]
 }
