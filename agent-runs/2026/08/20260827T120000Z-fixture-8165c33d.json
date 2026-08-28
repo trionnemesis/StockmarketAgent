@@ -1,0 +1,31 @@
+{
+  "as_of_date": "2026-08-27",
+  "completed_at": "2026-08-27T12:00:00Z",
+  "errors": [],
+  "git_sha": "fixture",
+  "input_hash": "8165c33d01674d11e5768c0641432a5aa5c1f169a4d3f708b69dce90cbe36e9f",
+  "manual_review_required": true,
+  "model_version": "0.1.0-fixture",
+  "outputs": [
+    "signals/runs/20260827T120000Z-fixture-8165c33d.json",
+    "reports/runs/20260827T120000Z-fixture-8165c33d.md",
+    "docs/data/runs/20260827T120000Z-fixture-8165c33d.json",
+    "agent-runs/2026/08/20260827T120000Z-fixture-8165c33d.json"
+  ],
+  "run_id": "20260827T120000Z-fixture-8165c33d",
+  "run_type": "fixture_build",
+  "schema_versions": {
+    "agent_run": "1.0.0",
+    "event": "1.0.0",
+    "signal": "1.0.0",
+    "universe": "1.0.0"
+  },
+  "source_manifest_hash": "84f9b8bbf5f2caa7648082c549aa298dae84dec44eea83e5dbf0c8f2a79582df",
+  "started_at": "2026-08-27T12:00:00Z",
+  "status": "success",
+  "warnings": [
+    "FIXTURE_DATA_ONLY",
+    "UNIVERSE_OWNER_APPROVAL_REQUIRED",
+    "PRODUCTION_SIGNALS_DISABLED"
+  ]
+}

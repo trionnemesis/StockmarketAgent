@@ -116,7 +116,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["instrument_id", "symbol", "slug", "name_zh", "name_en", "country", "market", "asset_type", "currency", "status", "enabled", "themes", "benchmark_id", "data_status", "horizons", "components", "relative_performance", "model_applicability", "provenance"],
+        "required": ["instrument_id", "symbol", "slug", "name_zh", "name_en", "country", "market", "asset_type", "currency", "status", "enabled", "themes", "benchmark_id", "selection_rationale", "data_status", "horizons", "components", "relative_performance", "model_applicability", "provenance"],
         "properties": {
           "instrument_id": {"type": "string", "pattern": "^(TW|JP|US):(STOCK|ETF):[A-Z0-9.-]+$"},
           "symbol": {"type": "string", "minLength": 1},
@@ -131,6 +131,7 @@
           "enabled": {"const": false},
           "themes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
           "benchmark_id": {"type": "string", "minLength": 1},
+          "selection_rationale": {"type": "string", "minLength": 1},
           "data_status": {
             "type": "object",
             "additionalProperties": false,

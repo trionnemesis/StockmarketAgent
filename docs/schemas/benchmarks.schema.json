@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trionnemesis.github.io/StockmarketAgent/schemas/benchmarks.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "benchmarks"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "benchmarks": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["benchmark_id", "country", "status", "proposed_name", "series_decision", "source_ids", "publication_policy"],
+        "properties": {
+          "benchmark_id": {"type": "string", "minLength": 1},
+          "country": {"enum": ["TW", "JP", "US"]},
+          "status": {"const": "owner_decision_required"},
+          "proposed_name": {"type": "string", "minLength": 1},
+          "series_decision": {"type": "string", "minLength": 1},
+          "source_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "publication_policy": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

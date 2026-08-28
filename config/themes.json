@@ -1,20 +1,28 @@
 {
   "schema_version": "1.0.0",
   "themes": [
-    "ai",
-    "semiconductor",
-    "defense",
     "aerospace",
-    "cybersecurity",
+    "ai",
+    "ai_infrastructure",
+    "automotive",
+    "broad_market",
     "consumer_staples",
+    "cybersecurity",
+    "defense",
     "defensive",
+    "dividend",
+    "entertainment",
+    "esg",
+    "financials",
+    "fx_unhedged",
     "healthcare",
+    "large_cap_growth",
+    "low_volatility",
+    "quality",
+    "semiconductor",
+    "technology_tilt",
     "telecom",
     "utilities",
-    "broad_market",
-    "quality",
-    "value",
-    "dividend",
-    "low_volatility"
+    "value"
   ]
 }

@@ -22,7 +22,7 @@
     <a class="brand" href="../index.html" aria-label="StockmarketAgent 首頁">
       <span aria-hidden="true">SA</span><strong>StockmarketAgent</strong>
     </a>
-    <div class="nav-links"><a href="../index.html" aria-current="page">總覽</a><a href="../markets/tw.html">台灣</a><a href="../markets/jp.html">日本</a><a href="../markets/us.html">美國</a><a href="../methodology.html">方法</a><a href="../status.html">狀態</a><a href="../history.html">歷史</a></div>
+    <div class="nav-links"><a href="../index.html" aria-current="page">總覽</a><a href="../markets/tw.html">台灣</a><a href="../markets/jp.html">日本</a><a href="../markets/us.html">美國</a><a href="../methodology.html">方法</a><a href="../universe-review.html">審查</a><a href="../source-feasibility.html">來源</a><a href="../status.html">狀態</a><a href="../history.html">歷史</a></div>
   </div>
 </nav>
 <header class="subhero instrument-hero">
@@ -32,7 +32,7 @@
       <div><p class="eyebrow">JP · STOCK · TSE</p><h1>6758 <span>索尼集團</span></h1><p>Sony Group Corporation</p></div>
       <span class="stance stance-no-signal"><span aria-hidden="true">○</span> NO_SIGNAL</span>
     </div>
-    <div class="tag-row"><span class="tag">AI</span><span class="tag">品質</span></div>
+    <div class="tag-row"><span class="tag">AI</span><span class="tag">entertainment</span></div>
   </div>
 </header>
 <main class="shell main-content">
@@ -85,8 +85,12 @@
   </section>
   <section class="section-card">
     <p class="kicker">EVIDENCE</p><h2>證據與來源</h2>
-    <div class="notice"><strong>Fixture provenance only.</strong><span>tests/fixtures/research_snapshot.json · hash 58520b446235…</span></div>
-    <p>Live 行情、財報、ETF 持股、事件與相對績效尚未取得；頁面不會從缺失資料推導數值。</p>
+    <p><strong>選取理由：</strong>科技與內容候選；需定義跨事業部特徵。</p>
+    <p><strong>身分：</strong>verified · <a href="https://www.sony.com/en/SonyInfo/CorporateInfo/">官方頁面</a></p>
+    <p><strong>歷史：</strong>live age sufficient；可用 PIT 歷史 blocked。需完成授權、覆蓋期間與 point-in-time 欄位驗證；目前不可供模型使用。</p>
+    <p><strong>流動性：</strong>quantitative_review_pending。已確認仍在交易；成交額、價差與容量門檻需由獲授權資料量化。</p>
+    <ul class="risk-list"><li>h_model: conditional — 待 point-in-time 資料、回測與 owner 核准後才可適用。</li><li>reverse_dcf: conditional — 待 point-in-time 資料、回測與 owner 核准後才可適用。</li><li>etf_look_through: not_applicable — 此模型不適用此資產類型或目前研究問題。</li><li>cobweb_supply_demand: not_applicable — 此模型不適用此資產類型或目前研究問題。</li></ul>
+    <p><a href="https://www.sony.com/en/SonyInfo/CorporateInfo/">JPX_LISTING_REFERENCE</a></p>
   </section>
 </main><footer class="site-footer">
   <div class="shell footer-grid">

@@ -77,6 +77,8 @@ def _nav(prefix: str, current: str) -> str:
         ("jp", f"{prefix}markets/jp.html", "日本"),
         ("us", f"{prefix}markets/us.html", "美國"),
         ("methodology", f"{prefix}methodology.html", "方法"),
+        ("review", f"{prefix}universe-review.html", "審查"),
+        ("sources", f"{prefix}source-feasibility.html", "來源"),
         ("status", f"{prefix}status.html", "狀態"),
         ("history", f"{prefix}history.html", "歷史"),
     ]
@@ -321,7 +323,7 @@ def render_market(signal: dict[str, Any], country: str) -> str:
     )
 
 
-def render_instrument(signal: dict[str, Any], item: dict[str, Any]) -> str:
+def render_instrument(signal: dict[str, Any], item: dict[str, Any], review_item: dict[str, Any]) -> str:
     horizon_cards = "".join(
         f"""<article class="horizon-card">
   <span>{entry['horizon']}</span>{_stance_badge(entry['stance'])}
@@ -379,8 +381,12 @@ def render_instrument(signal: dict[str, Any], item: dict[str, Any]) -> str:
   </section>
   <section class="section-card">
     <p class="kicker">EVIDENCE</p><h2>證據與來源</h2>
-    <div class="notice"><strong>Fixture provenance only.</strong><span>{_e(item['provenance'][0]['source_url'])} · hash {_e(item['provenance'][0]['content_hash'][:12])}…</span></div>
-    <p>Live 行情、財報、ETF 持股、事件與相對績效尚未取得；頁面不會從缺失資料推導數值。</p>
+    <p><strong>選取理由：</strong>{_e(review_item['selection_rationale'])}</p>
+    <p><strong>身分：</strong>{_e(review_item['verification_status'])} · <a href="{_e(review_item['official_url'])}">官方頁面</a></p>
+    <p><strong>歷史：</strong>live age {_e(review_item['history']['live_age_status'])}；可用 PIT 歷史 {_e(review_item['history']['usable_history_status'])}。{_e(review_item['history']['usable_history_note'])}</p>
+    <p><strong>流動性：</strong>{_e(review_item['liquidity']['status'])}。{_e(review_item['liquidity']['note'])}</p>
+    <ul class="risk-list">{''.join(f'<li>{_e(name)}: {_e(value["status"])} — {_e(value["reason"])}</li>' for name, value in review_item['models'].items())}</ul>
+    <p>{' · '.join(f'<a href="{_e(ref["url"])}">{_e(ref["source_id"])}</a>' for ref in review_item['evidence'])}</p>
   </section>
 </main>"""
     return _layout(
@@ -478,11 +484,46 @@ def render_history(signals: list[dict[str, Any]]) -> str:
 
 
 def render_not_found() -> str:
-    body = """
-<main class="shell not-found"><p class="eyebrow">404</p><h1>找不到這個研究頁。</h1><p>標的可能尚未納入候選 Universe，或連結已更新。</p><a class="button button-primary" href="index.html">返回總覽</a></main>"""
+    body = f"""
+<main class="shell not-found"><p class="eyebrow">404</p><h1>找不到這個研究頁。</h1><p>標的可能尚未納入候選 Universe，或連結已更新。</p><a class="button button-primary" href="{SITE_URL}">返回總覽</a></main>"""
     return _layout(
         title="找不到頁面｜StockmarketAgent",
         description="找不到要求的 StockmarketAgent 頁面。",
         body=body,
         canonical_path="404.html",
     )
+
+
+def render_universe_review(review: dict[str, Any]) -> str:
+    rows = "".join(
+        f"<tr><td><code>{_e(item['instrument_id'])}</code></td><td>{_e(item['verification_status'])}</td><td>{_e(item['history']['live_age_status'])}</td><td>{_e(item['history']['usable_history_status'])}</td><td>{_e(item['liquidity']['status'])}</td><td>{_e(item['replacement_assessment'])}</td></tr>"
+        for item in review["instruments"]
+    )
+    detail_parts = []
+    for item in review["instruments"]:
+        model_text = "；".join(
+            f"{_e(name)}={_e(value['status'])}（{_e(value['reason'])}）"
+            for name, value in item["models"].items()
+        )
+        evidence_links = " · ".join(
+            f'<a href="{_e(ref["url"])}">{_e(ref["source_id"])}</a>'
+            for ref in item["evidence"]
+        )
+        detail_parts.append(
+            f"<article class='section-card'><p class='kicker'>{_e(item['instrument_id'])}</p>"
+            f"<h2>{_e(item['legal_name'])}</h2><p><strong>選取理由：</strong>{_e(item['selection_rationale'])}</p>"
+            f"<p><strong>模型：</strong>{model_text}</p><p>{evidence_links}</p></article>"
+        )
+    details = "".join(detail_parts)
+    overlap = "".join(f"<li><strong>{_e(item['overlap_id'])}</strong> ({_e(item['severity'])}) — {_e(item['basis'])} <a href='{_e(item['evidence'][0]['url'])}'>evidence</a></li>" for item in review["overlap_groups"])
+    concentration = "".join(f"<li><strong>{_e(item['country'])} {_e(item['issuer'])}</strong> — {_e(item['share_of_market_etfs'])}. {_e(item['assessment'])} <a href='{_e(item['evidence'][0]['url'])}'>evidence</a></li>" for item in review["issuer_concentration"])
+    decisions = "".join(f"<li><strong>{_e(item['decision_id'])}</strong> — {_e(item['question'])} Gap: {_e(item['evidence_gap'])}</li>" for item in review["owner_decisions"])
+    body = f"""<header class="subhero"><div class="shell"><p class="eyebrow">B.1 EVIDENCE REVIEW</p><h1>30 檔候選逐筆查證</h1><p>Review {_e(review['review_version'])} · evidence as of {_e(review['evidence_as_of'])} · owner decision required</p></div></header><main class="shell main-content"><section class="section-card"><p>所有候選仍為 proposed / disabled；此頁不包含 live adapter、方向性訊號或受限來源數值。</p><div class="table-wrap"><table><thead><tr><th>ID</th><th>身分</th><th>Live age</th><th>可用 PIT history</th><th>流動性</th><th>替代評估</th></tr></thead><tbody>{rows}</tbody></table></div></section><section class="section-card"><h2>重疊證據</h2><ul class="risk-list">{overlap}</ul><h2>ETF 發行人集中</h2><ul class="risk-list">{concentration}</ul><h2>Owner decisions</h2><ul class="risk-list">{decisions}</ul></section>{details}</main>"""
+    return _layout(title="Universe evidence review｜StockmarketAgent", description="30 檔候選的身分、歷史、流動性、重疊、發行人與模型適用性查證。", body=body, current="review", canonical_path="universe-review.html", root_social_card=True)
+
+
+def render_source_feasibility(sources: dict[str, Any]) -> str:
+    rows = "".join(f"<tr><td><a href='{_e(item['documentation_url'])}'>{_e(item['source_id'])}</a></td><td>{_e(', '.join(item['countries']))}</td><td>{_e(', '.join(item['data_classes']))}</td><td>{_e(item['authentication'])} / {_e(item['key_required'])}</td><td>{_e(item['point_in_time_status'])}</td><td><a href='{_e(item['license_url'])}'>{_e(item['license_status'])}</a> / {_e(item['pages_policy'])}</td><td>{_e(item['feasibility'])}</td></tr>" for item in sources["sources"])
+    details = "".join(f"<article class='section-card'><p class='kicker'>{_e(item['source_id'])}</p><h2>{_e(item['publisher'])}</h2><p><strong>Limits:</strong> {_e(item['rate_limit'])}</p><p><strong>History:</strong> {_e(item['history_depth'])}</p><p><strong>Retention:</strong> {_e(item['retention'])}</p><p><strong>Redistribution:</strong> {_e(item['redistribution'])}</p><p><strong>Fallback:</strong> {_e(item['fallback'])}</p><p><strong>Gaps:</strong> {_e('; '.join(item['gaps']))}</p></article>" for item in sources["sources"])
+    body = f"""<header class="subhero"><div class="shell"><p class="eyebrow">SOURCE FEASIBILITY</p><h1>來源、授權與發布邊界</h1><p>Reviewed {_e(sources['reviewed_at'])} · live adapters disabled</p></div></header><main class="shell main-content"><section class="section-card"><p>{_e(sources['publication_boundary'])}</p><div class="table-wrap"><table><thead><tr><th>來源</th><th>市場</th><th>資料類別</th><th>Auth / key</th><th>PIT</th><th>授權 / Pages</th><th>可行性</th></tr></thead><tbody>{rows}</tbody></table></div></section>{details}</main>"""
+    return _layout(title="Source feasibility｜StockmarketAgent", description="三市場官方資料來源的驗證、授權、PIT、保留、再發布與 fallback 矩陣。", body=body, current="sources", canonical_path="source-feasibility.html", root_social_card=True)

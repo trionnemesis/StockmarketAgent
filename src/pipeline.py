@@ -7,7 +7,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from src.render.markdown import render_report
+from src.render.markdown import render_report, render_source_feasibility as render_source_feasibility_md, render_universe_review as render_universe_review_md
 from src.render.site import (
     SITE_URL,
     render_history,
@@ -17,6 +17,8 @@ from src.render.site import (
     render_methodology,
     render_not_found,
     render_status,
+    render_source_feasibility,
+    render_universe_review,
 )
 from src.validation.contracts import (
     ContractError,
@@ -25,6 +27,9 @@ from src.validation.contracts import (
     load_json_strict,
     validate_document,
     validate_signal_contract,
+    validate_source_contract,
+    validate_theme_contract,
+    validate_review_contract,
     validate_universe_contract,
 )
 
@@ -76,13 +81,20 @@ def build_signal(
     approvals: dict[str, Any],
     model: dict[str, Any],
     fixture: dict[str, Any],
+    themes: dict[str, Any] | None = None,
+    benchmarks: dict[str, Any] | None = None,
+    sources: dict[str, Any] | None = None,
+    review: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    support_inputs = {"themes": themes, "benchmarks": benchmarks, "sources": sources, "review": review}
     input_hash = content_hash(
         {
             "universe": universe,
             "approvals": approvals,
             "model": model,
             "fixture": fixture,
+            **support_inputs,
+            "build_fingerprint": build_fingerprint(),
         }
     )
     timestamp = fixture["generated_at"].replace("-", "").replace(":", "")
@@ -109,6 +121,7 @@ def build_signal(
                 "enabled": candidate["enabled"],
                 "themes": candidate["themes"],
                 "benchmark_id": candidate["benchmark_id"],
+                "selection_rationale": candidate["selection_rationale"],
                 "data_status": {
                     "status": "fixture",
                     "last_market_session": None,
@@ -186,6 +199,12 @@ def build_signal(
     }
 
 
+def build_fingerprint() -> str:
+    files = sorted((ROOT / "src").rglob("*.py")) + sorted(SCHEMAS.glob("*.json")) + sorted(ASSET_DIR.rglob("*"))
+    manifest = {str(path.relative_to(ROOT)): content_hash(path.read_text(encoding="utf-8")) for path in files if path.is_file()}
+    return content_hash(manifest)
+
+
 def build_run_record(signal: dict[str, Any], outputs: list[str]) -> dict[str, Any]:
     run = signal["run"]
     return {
@@ -222,6 +241,8 @@ def _sitemap(signal: dict[str, Any]) -> str:
         "methodology.html",
         "status.html",
         "history.html",
+        "universe-review.html",
+        "source-feasibility.html",
         "markets/tw.html",
         "markets/jp.html",
         "markets/us.html",
@@ -239,6 +260,8 @@ def load_history(current: dict[str, Any]) -> list[dict[str, Any]]:
     by_date: dict[str, dict[str, Any]] = {}
     archive_dir = ROOT / "signals" / "archive"
     for path in sorted(archive_dir.glob("*.json")):
+        if path.name == f"{current['run']['as_of']}.json":
+            continue
         archived = load_json_strict(path)
         validate_document(archived, SCHEMAS / "signal.schema.json")
         by_date[archived["run"]["as_of"]] = archived
@@ -246,19 +269,27 @@ def load_history(current: dict[str, Any]) -> list[dict[str, Any]]:
     return [by_date[key] for key in sorted(by_date, reverse=True)]
 
 
-def build_outputs(signal: dict[str, Any]) -> tuple[dict[Path, bytes], dict[str, Any]]:
+def build_outputs(signal: dict[str, Any], sources: dict[str, Any], review: dict[str, Any]) -> tuple[dict[Path, bytes], dict[str, Any]]:
     as_of = signal["run"]["as_of"]
     run_id = signal["run"]["run_id"]
     year, month, _ = as_of.split("-")
     signal_json = _pretty_json(signal).encode("utf-8")
     report = (render_report(signal) + "\n").encode("utf-8")
+    review_md = (render_universe_review_md(review) + "\n").encode("utf-8")
+    sources_md = (render_source_feasibility_md(sources) + "\n").encode("utf-8")
     history = load_history(signal)
 
     outputs: dict[Path, bytes] = {
         ROOT / "signals" / "latest.json": signal_json,
         ROOT / "signals" / "archive" / f"{as_of}.json": signal_json,
+        ROOT / "signals" / "runs" / f"{run_id}.json": signal_json,
         ROOT / "reports" / "latest.md": report,
         ROOT / "reports" / "archive" / f"{as_of}.md": report,
+        ROOT / "reports" / "runs" / f"{run_id}.md": report,
+        ROOT / "docs" / "universe-review.md": review_md,
+        ROOT / "docs" / "source-feasibility.md": sources_md,
+        ROOT / "docs" / "universe-review.html": render_universe_review(review).encode("utf-8"),
+        ROOT / "docs" / "source-feasibility.html": render_source_feasibility(sources).encode("utf-8"),
         ROOT / "docs" / "index.html": render_home(signal).encode("utf-8"),
         ROOT / "docs" / "methodology.html": render_methodology(signal).encode("utf-8"),
         ROOT / "docs" / "status.html": render_status(signal).encode("utf-8"),
@@ -266,6 +297,9 @@ def build_outputs(signal: dict[str, Any]) -> tuple[dict[Path, bytes], dict[str, 
         ROOT / "docs" / "404.html": render_not_found().encode("utf-8"),
         ROOT / "docs" / ".nojekyll": b"",
         ROOT / "docs" / "data" / "latest.json": signal_json,
+        ROOT / "docs" / "data" / "runs" / f"{run_id}.json": signal_json,
+        ROOT / "docs" / "data" / "universe-review.json": _pretty_json(review).encode("utf-8"),
+        ROOT / "docs" / "data" / "sources.json": _pretty_json(sources).encode("utf-8"),
         ROOT / "docs" / "data" / "archive" / f"{as_of}.json": signal_json,
         ROOT / "docs" / "assets" / "css" / "site.css": (
             ASSET_DIR / "site.css"
@@ -290,17 +324,21 @@ def build_outputs(signal: dict[str, Any]) -> tuple[dict[Path, bytes], dict[str, 
         )
     for item in signal["instruments"]:
         outputs[ROOT / "docs" / "instruments" / f"{item['slug']}.html"] = (
-            render_instrument(signal, item).encode("utf-8")
+            render_instrument(signal, item, next(review_item for review_item in review["instruments"] if review_item["instrument_id"] == item["instrument_id"])).encode("utf-8")
         )
     for schema_path in sorted(SCHEMAS.glob("*.schema.json")):
         outputs[ROOT / "docs" / "schemas" / schema_path.name] = schema_path.read_bytes()
 
-    relative_outputs = sorted(str(path.relative_to(ROOT)) for path in outputs)
     run_record_path = (
         ROOT / "agent-runs" / year / month / f"{run_id}.json"
     )
-    relative_outputs.append(str(run_record_path.relative_to(ROOT)))
-    run_record = build_run_record(signal, relative_outputs)
+    immutable_outputs = [
+        f"signals/runs/{run_id}.json",
+        f"reports/runs/{run_id}.md",
+        f"docs/data/runs/{run_id}.json",
+        str(run_record_path.relative_to(ROOT)),
+    ]
+    run_record = build_run_record(signal, immutable_outputs)
     outputs[run_record_path] = _pretty_json(run_record).encode("utf-8")
     return outputs, run_record
 
@@ -368,22 +406,33 @@ def publish_atomically(outputs: dict[Path, bytes]) -> None:
             path.unlink(missing_ok=True)
 
 
-def load_inputs() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], dict[str, Any]]:
+def load_inputs() -> tuple[dict[str, Any], ...]:
     universe = load_json_strict(CONFIG / "universe.json")
     approvals = load_json_strict(CONFIG / "approvals.json")
     model = load_json_strict(CONFIG / "model_weights.json")
     fixture = load_json_strict(FIXTURE_PATH)
+    themes = load_json_strict(CONFIG / "themes.json")
+    benchmarks = load_json_strict(CONFIG / "benchmarks.json")
+    sources = load_json_strict(CONFIG / "sources.json")
+    review = load_json_strict(CONFIG / "universe-review.json")
     validate_document(universe, SCHEMAS / "universe.schema.json")
+    validate_document(themes, SCHEMAS / "themes.schema.json")
+    validate_document(benchmarks, SCHEMAS / "benchmarks.schema.json")
+    validate_document(sources, SCHEMAS / "sources.schema.json")
+    validate_document(review, SCHEMAS / "universe-review.schema.json")
     validate_universe_contract(universe, approvals)
-    return universe, approvals, model, fixture
+    validate_theme_contract(universe, themes)
+    validate_source_contract(sources)
+    validate_review_contract(universe, benchmarks, sources, review)
+    return universe, approvals, model, fixture, themes, benchmarks, sources, review
 
 
 def command_build() -> dict[str, Any]:
-    universe, approvals, model, fixture = load_inputs()
-    signal = build_signal(universe, approvals, model, fixture)
+    universe, approvals, model, fixture, themes, benchmarks, sources, review = load_inputs()
+    signal = build_signal(universe, approvals, model, fixture, themes, benchmarks, sources, review)
     validate_document(signal, SCHEMAS / "signal.schema.json")
     validate_signal_contract(signal, approvals)
-    outputs, run_record = build_outputs(signal)
+    outputs, run_record = build_outputs(signal, sources, review)
     validate_document(run_record, SCHEMAS / "agent-run.schema.json")
     publish_atomically(outputs)
     validate_existing()
@@ -397,7 +446,7 @@ def command_build() -> dict[str, Any]:
 
 
 def validate_existing() -> None:
-    _, approvals, _, _ = load_inputs()
+    _, approvals, _, _, _, _, _, _ = load_inputs()
     signal = load_json_strict(ROOT / "signals" / "latest.json")
     validate_document(signal, SCHEMAS / "signal.schema.json")
     validate_signal_contract(signal, approvals)

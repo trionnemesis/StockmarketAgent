@@ -152,7 +152,7 @@
         "applicable": false,
         "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
       },
-      "name_en": "Taiwan Semiconductor Manufacturing Co.",
+      "name_en": "Taiwan Semiconductor Manufacturing Company Limited",
       "name_zh": "台積電",
       "provenance": [
         {
@@ -176,13 +176,13 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "大型半導體製造候選；需確認資料授權、流動性與主題集中度。",
       "slug": "tsmc",
       "status": "proposed",
       "symbol": "2330",
       "themes": [
         "ai",
-        "semiconductor",
-        "quality"
+        "semiconductor"
       ]
     },
     {
@@ -337,13 +337,13 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "IC 設計候選；需驗證財報與產業循環資料可得性。",
       "slug": "mediatek",
       "status": "proposed",
       "symbol": "2454",
       "themes": [
         "ai",
-        "semiconductor",
-        "quality"
+        "semiconductor"
       ]
     },
     {
@@ -498,13 +498,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "電源與基礎設施候選；需評估主題曝險與來源完整性。",
       "slug": "delta-electronics",
       "status": "proposed",
       "symbol": "2308",
       "themes": [
-        "ai",
-        "utilities",
-        "quality"
+        "ai_infrastructure"
       ]
     },
     {
@@ -659,12 +658,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "電信與股息候選；需確認股利與估值資料的 point-in-time 可得性。",
       "slug": "chunghwa-telecom",
       "status": "proposed",
       "symbol": "2412",
       "themes": [
         "telecom",
-        "defensive",
         "dividend"
       ]
     },
@@ -820,13 +819,13 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "金融與股息候選；需另定金融業適用模型。",
       "slug": "ctbc-financial",
       "status": "proposed",
       "symbol": "2891",
       "themes": [
-        "value",
-        "dividend",
-        "defensive"
+        "financials",
+        "dividend"
       ]
     },
     {
@@ -981,12 +980,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "大型股基準型 ETF 候選；需核對持股歷史與費用。",
       "slug": "yuanta-taiwan-50",
       "status": "proposed",
       "symbol": "0050",
       "themes": [
-        "broad_market",
-        "quality"
+        "broad_market"
       ]
     },
     {
@@ -1117,7 +1116,7 @@
         "applicable": false,
         "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
       },
-      "name_en": "Fubon Taiwan 50 ETF",
+      "name_en": "Fubon FTSE TWSE Taiwan 50 ETF",
       "name_zh": "富邦台50",
       "provenance": [
         {
@@ -1141,12 +1140,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "大型股 ETF 候選；需評估與 0050 的重疊度。",
       "slug": "fubon-taiwan-50",
       "status": "proposed",
       "symbol": "006208",
       "themes": [
-        "broad_market",
-        "quality"
+        "broad_market"
       ]
     },
     {
@@ -1301,12 +1300,13 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "高股息 ETF 候選；需驗證指數規則與持股穿透。",
       "slug": "cathay-esg-high-dividend",
       "status": "proposed",
       "symbol": "00878",
       "themes": [
         "dividend",
-        "defensive"
+        "esg"
       ]
     },
     {
@@ -1461,12 +1461,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "高股息 ETF 候選；需評估策略重疊與完整歷史。",
       "slug": "capital-tip-customized-high-dividend",
       "status": "proposed",
       "symbol": "00919",
       "themes": [
-        "dividend",
-        "value"
+        "dividend"
       ]
     },
     {
@@ -1621,13 +1621,14 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "跨市場主題 ETF 候選；僅承接視覺參考，不沿用既有報告數字。",
       "slug": "yuanta-global-aerospace-defense",
       "status": "proposed",
       "symbol": "00965",
       "themes": [
         "defense",
         "aerospace",
-        "ai",
+        "semiconductor",
         "cybersecurity"
       ]
     },
@@ -1783,12 +1784,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "大型製造候選；需核對匯率與全球營收曝險。",
       "slug": "toyota",
       "status": "proposed",
       "symbol": "7203",
       "themes": [
-        "quality",
-        "value"
+        "automotive"
       ]
     },
     {
@@ -1943,12 +1944,13 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "科技與內容候選；需定義跨事業部特徵。",
       "slug": "sony-group",
       "status": "proposed",
       "symbol": "6758",
       "themes": [
         "ai",
-        "quality"
+        "entertainment"
       ]
     },
     {
@@ -2079,7 +2081,7 @@
         "applicable": false,
         "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
       },
-      "name_en": "Tokyo Electron Limited",
+      "name_en": "Tokyo Electron Ltd.",
       "name_zh": "東京威力科創",
       "provenance": [
         {
@@ -2103,13 +2105,13 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "半導體設備候選；需驗證產業循環與訂單資料。",
       "slug": "tokyo-electron",
       "status": "proposed",
       "symbol": "8035",
       "themes": [
         "semiconductor",
-        "ai",
-        "quality"
+        "ai"
       ]
     },
     {
@@ -2264,6 +2266,7 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "國防與重工候選；需追蹤正式採購與交付來源。",
       "slug": "mitsubishi-heavy-industries",
       "status": "proposed",
       "symbol": "7011",
@@ -2400,7 +2403,7 @@
         "applicable": false,
         "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
       },
-      "name_en": "Nippon Telegraph and Telephone Corporation",
+      "name_en": "NTT, Inc.",
       "name_zh": "日本電信電話",
       "provenance": [
         {
@@ -2424,12 +2427,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "電信與股息候選；需核對公司行動與股利歷史。",
       "slug": "ntt",
       "status": "proposed",
       "symbol": "9432",
       "themes": [
         "telecom",
-        "defensive",
         "dividend"
       ]
     },
@@ -2585,6 +2588,7 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "TOPIX 廣泛市場候選；需核對追蹤誤差與費用。",
       "slug": "next-funds-topix",
       "status": "proposed",
       "symbol": "1306",
@@ -2744,12 +2748,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "日經 225 候選；需評估與 TOPIX 的基準差異。",
       "slug": "next-funds-nikkei-225",
       "status": "proposed",
       "symbol": "1321",
       "themes": [
-        "broad_market",
-        "quality"
+        "broad_market"
       ]
     },
     {
@@ -2904,6 +2908,7 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "低成本 TOPIX 候選；需驗證持股歷史可得性。",
       "slug": "ishares-core-topix",
       "status": "proposed",
       "symbol": "1475",
@@ -3039,7 +3044,7 @@
         "applicable": false,
         "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
       },
-      "name_en": "NEXT FUNDS Nikkei 225 High Dividend Yield Stock 50 Index ETF",
+      "name_en": "NEXT FUNDS Nikkei 225 High Dividend Yield Stock 50 Index Exchange Traded Fund",
       "name_zh": "NEXT FUNDS 日經平均高股息股票50指數連動型上市投資信託",
       "provenance": [
         {
@@ -3063,12 +3068,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "高股息因子候選；需驗證指數規則與換股資料。",
       "slug": "next-funds-nikkei-high-dividend",
       "status": "proposed",
       "symbol": "1489",
       "themes": [
-        "dividend",
-        "value"
+        "dividend"
       ]
     },
     {
@@ -3199,7 +3204,7 @@
         "applicable": false,
         "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
       },
-      "name_en": "Listed Index Fund US Equity NASDAQ100 No Currency Hedge",
+      "name_en": "Listed Index Fund US Equity (NASDAQ100) No Currency Hedge",
       "name_zh": "上場インデックスファンド米国株式 NASDAQ100 為替ヘッジなし",
       "provenance": [
         {
@@ -3223,13 +3228,14 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "日圓計價海外科技曝險候選；需明確處理匯率。",
       "slug": "listed-index-fund-nasdaq100",
       "status": "proposed",
       "symbol": "2568",
       "themes": [
-        "ai",
-        "broad_market",
-        "quality"
+        "large_cap_growth",
+        "technology_tilt",
+        "fx_unhedged"
       ]
     },
     {
@@ -3384,13 +3390,13 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "AI 與半導體候選；需驗證估值與供應鏈資料。",
       "slug": "nvidia",
       "status": "proposed",
       "symbol": "NVDA",
       "themes": [
         "ai",
-        "semiconductor",
-        "quality"
+        "semiconductor"
       ]
     },
     {
@@ -3545,13 +3551,13 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "大型軟體與雲端候選；需定義事件與財報權重。",
       "slug": "microsoft",
       "status": "proposed",
       "symbol": "MSFT",
       "themes": [
         "ai",
-        "cybersecurity",
-        "quality"
+        "cybersecurity"
       ]
     },
     {
@@ -3706,12 +3712,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "大型科技候選；需評估多事業營運特徵。",
       "slug": "alphabet",
       "status": "proposed",
       "symbol": "GOOGL",
       "themes": [
-        "ai",
-        "quality"
+        "ai"
       ]
     },
     {
@@ -3866,6 +3872,7 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "國防航太候選；需追蹤採購、積壓訂單與交付。",
       "slug": "lockheed-martin",
       "status": "proposed",
       "symbol": "LMT",
@@ -4027,12 +4034,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "醫療與股息候選；需定義訴訟事件的風險處理。",
       "slug": "johnson-johnson",
       "status": "proposed",
       "symbol": "JNJ",
       "themes": [
         "healthcare",
-        "defensive",
         "dividend"
       ]
     },
@@ -4188,12 +4195,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "美國大型股基準候選；需核對持股與費用。",
       "slug": "spdr-sp500",
       "status": "proposed",
       "symbol": "SPY",
       "themes": [
-        "broad_market",
-        "quality"
+        "broad_market"
       ]
     },
     {
@@ -4324,7 +4331,7 @@
         "applicable": false,
         "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
       },
-      "name_en": "Invesco QQQ Trust",
+      "name_en": "Invesco QQQ Trust, Series 1",
       "name_zh": "Invesco QQQ",
       "provenance": [
         {
@@ -4348,13 +4355,13 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "大型成長科技候選；需評估集中度與估值。",
       "slug": "invesco-qqq",
       "status": "proposed",
       "symbol": "QQQ",
       "themes": [
-        "ai",
-        "quality",
-        "broad_market"
+        "large_cap_growth",
+        "technology_tilt"
       ]
     },
     {
@@ -4509,12 +4516,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "半導體產業候選；需持股穿透與循環模型。",
       "slug": "vaneck-semiconductor",
       "status": "proposed",
       "symbol": "SMH",
       "themes": [
-        "semiconductor",
-        "ai"
+        "semiconductor"
       ]
     },
     {
@@ -4669,12 +4676,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "資安主題候選；需核對指數分類與重疊。",
       "slug": "first-trust-nasdaq-cybersecurity",
       "status": "proposed",
       "symbol": "CIBR",
       "themes": [
-        "cybersecurity",
-        "ai"
+        "cybersecurity"
       ]
     },
     {
@@ -4800,7 +4807,7 @@
         }
       ],
       "instrument_id": "US:ETF:USMV",
-      "market": "BATS",
+      "market": "CBOE_BZX",
       "model_applicability": {
         "applicable": false,
         "reason": "Universe 尚未核准，且 live 資料與模型校準尚未完成。"
@@ -4829,12 +4836,12 @@
         "status": "not_available",
         "value": null
       },
+      "selection_rationale": "低波動因子候選；需檢驗因子與市場狀態適用性。",
       "slug": "ishares-msci-usa-min-vol",
       "status": "proposed",
       "symbol": "USMV",
       "themes": [
-        "low_volatility",
-        "defensive"
+        "low_volatility"
       ]
     }
   ],
@@ -4869,10 +4876,10 @@
     "data_kind": "fixture",
     "generated_at": "2026-08-27T12:00:00Z",
     "git_sha": "fixture",
-    "input_hash": "f7c1c1151a6fb56d6f6c350c58ad6aaeabfebf619a2d201cb5dcaf6903135e6e",
+    "input_hash": "562e0e02da6c72f6f16e56fb88feabdee186437e61a534244311f42d54c3a51b",
     "mode": "research_only",
     "model_version": "0.1.0-fixture",
-    "run_id": "20260827T120000Z-fixture-f7c1c115"
+    "run_id": "20260827T120000Z-fixture-562e0e02"
   },
   "schema_version": "1.0.0",
   "source_manifest": [

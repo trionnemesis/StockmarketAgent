@@ -4,17 +4,29 @@
     {
       "benchmark_id": "TW:BROAD_MARKET",
       "country": "TW",
-      "status": "policy_pending"
+      "status": "owner_decision_required",
+      "proposed_name": "Taiwan Stock Exchange Capitalization Weighted Stock Index (TAIEX)",
+      "series_decision": "Owner must choose price versus total-return treatment and authorize reusable history.",
+      "source_ids": ["TWSE_OGL_BENCHMARK"],
+      "publication_policy": "Only TWSE OGL observations with attribution; licensed history stays off Pages."
     },
     {
       "benchmark_id": "JP:BROAD_MARKET",
       "country": "JP",
-      "status": "policy_pending"
+      "status": "owner_decision_required",
+      "proposed_name": "TOPIX",
+      "series_decision": "Owner must choose price versus total-return treatment, FX conversion, and constituent vintages.",
+      "source_ids": ["JPX_BENCHMARK_CONTRACT"],
+      "publication_policy": "Publish identity and links only until JPX rights explicitly allow derived display."
     },
     {
       "benchmark_id": "US:BROAD_MARKET",
       "country": "US",
-      "status": "policy_pending"
+      "status": "owner_decision_required",
+      "proposed_name": "S&P 500 Index",
+      "series_decision": "Owner must choose price, gross total return, or net total return and procure PIT history rights.",
+      "source_ids": ["SPDJI_BENCHMARK_CONTRACT"],
+      "publication_policy": "Publish identity and links only until S&P DJI derived-display rights are licensed."
     }
   ]
 }

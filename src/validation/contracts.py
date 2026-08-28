@@ -255,6 +255,117 @@ def validate_universe_contract(
             raise ContractError("unapproved instruments must remain proposed and disabled")
 
 
+def validate_theme_contract(universe: dict[str, Any], themes: dict[str, Any]) -> None:
+    allowed = set(themes["themes"])
+    used = {theme for item in universe["instruments"] for theme in item["themes"]}
+    if used - allowed:
+        raise ContractError(f"undefined themes: {sorted(used - allowed)}")
+
+
+def validate_source_contract(sources: dict[str, Any]) -> None:
+    source_map = {item["source_id"]: item for item in sources["sources"]}
+    if len(source_map) != len(sources["sources"]):
+        raise ContractError("duplicate source_id")
+    policies = sources["policies"]
+    expected = {(c, a) for c in ("TW", "JP", "US") for a in ("stock", "etf")}
+    actual = {(item["country"], item["asset_type"]) for item in policies}
+    if actual != expected or len(policies) != 6:
+        raise ContractError("source policies must cover the six country/asset pairs")
+    classes = {"listing_metadata", "eod_prices", "corporate_actions", "filings_financials", "etf_fund_data", "market_calendar", "fx", "benchmark"}
+    referenced: set[str] = set()
+    for policy in policies:
+        coverage = policy["coverage"]
+        if {item["data_class"] for item in coverage} != classes or len(coverage) != 8:
+            raise ContractError(f"{policy['source_policy_id']}: must cover exactly eight data classes")
+        for entry in coverage:
+            refs = entry["primary_source_ids"] + entry["fallback_source_ids"]
+            if entry["status"] == "not_applicable" and refs:
+                raise ContractError(f"{policy['source_policy_id']}/{entry['data_class']}: N/A cannot reference sources")
+            if entry["status"] != "not_applicable" and not refs:
+                raise ContractError(f"{policy['source_policy_id']}/{entry['data_class']}: missing source")
+            for source_id in refs:
+                if source_id not in source_map:
+                    raise ContractError(f"unknown source_id: {source_id}")
+                source = source_map[source_id]
+                if entry["data_class"] not in source["data_classes"]:
+                    raise ContractError(f"{source_id}: incompatible data class {entry['data_class']}")
+                if policy["country"] not in source["countries"] and "GLOBAL" not in source["countries"]:
+                    raise ContractError(f"{source_id}: incompatible country {policy['country']}")
+                referenced.add(source_id)
+            primary_feasibility = {source_map[source_id]["feasibility"] for source_id in entry["primary_source_ids"]}
+            status = entry["status"]
+            if status == "ready" and "ready" not in primary_feasibility:
+                raise ContractError(f"{policy['source_policy_id']}/{entry['data_class']}: ready without a ready source")
+            if status == "reference_only" and primary_feasibility != {"reference_only"}:
+                raise ContractError(f"{policy['source_policy_id']}/{entry['data_class']}: reference-only status mismatch")
+            if status == "blocked" and (not primary_feasibility or not primary_feasibility <= {"blocked", "reference_only"} or "blocked" not in primary_feasibility):
+                raise ContractError(f"{policy['source_policy_id']}/{entry['data_class']}: blocked status mismatch")
+            if status == "conditional" and not primary_feasibility.intersection({"ready", "conditional"}):
+                raise ContractError(f"{policy['source_policy_id']}/{entry['data_class']}: conditional status lacks feasible primary")
+    if set(source_map) != referenced:
+        raise ContractError(f"unreferenced sources: {sorted(set(source_map) - referenced)}")
+    for source in source_map.values():
+        if source["authentication"] == "none" and source["key_required"]:
+            raise ContractError(f"{source['source_id']}: auth/key inconsistency")
+        if source["feasibility"] in {"contract_required", "not_usable"} and source["pages_policy"] != "not_allowed":
+            raise ContractError(f"{source['source_id']}: restricted source cannot publish to Pages")
+        if source["license_status"] == "metadata_only" and source["pages_policy"] not in {"metadata_only", "not_allowed"}:
+            raise ContractError(f"{source['source_id']}: metadata-only license mismatch")
+
+
+def _validate_evidence_refs(refs: list[dict[str, Any]], source_ids: set[str], as_of: str) -> None:
+    for ref in refs:
+        if ref["source_id"] not in source_ids:
+            raise ContractError(f"evidence references unknown source {ref['source_id']}")
+        if ref["observed_at"] > as_of:
+            raise ContractError("evidence observed_at is after review evidence_as_of")
+
+
+def validate_review_contract(
+    universe: dict[str, Any], benchmarks: dict[str, Any], sources: dict[str, Any], review: dict[str, Any]
+) -> None:
+    if review["universe_version"] != universe["universe_version"]:
+        raise ContractError("review universe_version mismatch")
+    universe_map = {item["instrument_id"]: item for item in universe["instruments"]}
+    review_map = {item["instrument_id"]: item for item in review["instruments"]}
+    if list(review_map) != list(universe_map) or len(review_map) != 30:
+        raise ContractError("review membership/order must exactly match universe")
+    benchmark_ids = {item["benchmark_id"] for item in benchmarks["benchmarks"]}
+    source_ids = {item["source_id"] for item in sources["sources"]}
+    for iid, item in review_map.items():
+        candidate = universe_map[iid]
+        expected = {
+            "symbol": candidate["symbol"], "exchange": candidate["market"],
+            "legal_name": candidate["name_en"], "asset_type": candidate["asset_type"],
+            "trading_currency": candidate["currency"], "benchmark_id": candidate["benchmark_id"],
+            "selection_rationale": candidate["selection_rationale"], "theme_evidence": candidate["themes"],
+        }
+        for key, value in expected.items():
+            if item[key] != value:
+                raise ContractError(f"{iid}: review {key} diverges from universe")
+        if item["benchmark_id"] not in benchmark_ids:
+            raise ContractError(f"{iid}: unknown benchmark")
+        if (item["asset_type"] == "etf") != ("tracking_index" in item):
+            raise ContractError(f"{iid}: tracking index must exist only for ETFs")
+        if item["asset_type"] == "etf" and item["models"]["etf_look_through"]["status"] != "conditional":
+            raise ContractError(f"{iid}: ETF look-through routing mismatch")
+        claims = {claim for ref in item["evidence"] for claim in ref["claims"]}
+        required = {"identity", "listing", "currency", "asset_type", "live_age", "liquidity", "themes", "selection_rationale"}
+        if item["asset_type"] == "etf":
+            required.add("tracking_index")
+            if item["tracking_index"]["source_id"] not in source_ids:
+                raise ContractError(f"{iid}: unknown tracking-index source")
+        if not required <= claims:
+            raise ContractError(f"{iid}: missing evidence claims {sorted(required - claims)}")
+        _validate_evidence_refs(item["evidence"], source_ids, review["evidence_as_of"])
+    for group in review["overlap_groups"]:
+        if not set(group["members"]) <= set(universe_map):
+            raise ContractError(f"{group['overlap_id']}: unknown member")
+        _validate_evidence_refs(group["evidence"], source_ids, review["evidence_as_of"])
+    for concentration in review["issuer_concentration"]:
+        _validate_evidence_refs(concentration["evidence"], source_ids, review["evidence_as_of"])
+
+
 def validate_signal_contract(
     signal: dict[str, Any], approvals: dict[str, Any]
 ) -> None:

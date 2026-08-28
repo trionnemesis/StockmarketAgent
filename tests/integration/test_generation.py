@@ -29,9 +29,11 @@ class LinkCollector(HTMLParser):
 class GeneratedArtifactTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        universe, approvals, model, fixture = load_inputs()
-        cls.signal = build_signal(universe, approvals, model, fixture)
-        cls.outputs, cls.run_record = build_outputs(cls.signal)
+        universe, approvals, model, fixture, themes, benchmarks, sources, review = load_inputs()
+        cls.review = review
+        cls.sources = sources
+        cls.signal = build_signal(universe, approvals, model, fixture, themes, benchmarks, sources, review)
+        cls.outputs, cls.run_record = build_outputs(cls.signal, sources, review)
 
     def test_committed_generated_files_are_current(self) -> None:
         stale = [
@@ -139,6 +141,19 @@ class GeneratedArtifactTests(unittest.TestCase):
         self.assertTrue((ROOT / "signals" / "archive" / f"{as_of}.json").exists())
         self.assertTrue((ROOT / "reports" / "latest.md").exists())
         self.assertTrue((ROOT / "reports" / "archive" / f"{as_of}.md").exists())
+        run_id = self.signal["run"]["run_id"]
+        self.assertTrue((ROOT / "signals" / "runs" / f"{run_id}.json").exists())
+        self.assertTrue((ROOT / "reports" / "runs" / f"{run_id}.md").exists())
+
+    def test_run_record_claims_only_immutable_outputs(self) -> None:
+        self.assertTrue(all("/runs/" in path or path.startswith("agent-runs/") for path in self.run_record["outputs"]))
+
+    def test_review_and_source_pages_are_human_visible(self) -> None:
+        review = (ROOT / "docs" / "universe-review.html").read_text(encoding="utf-8")
+        sources = (ROOT / "docs" / "source-feasibility.html").read_text(encoding="utf-8")
+        self.assertIn(self.review["evidence_as_of"], review)
+        self.assertIn(self.review["instruments"][0]["selection_rationale"], review)
+        self.assertIn(self.sources["sources"][0]["source_id"], sources)
 
     def test_history_renderer_enumerates_dated_archives(self) -> None:
         older = {
