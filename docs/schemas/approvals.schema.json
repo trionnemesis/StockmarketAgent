@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trionnemesis.github.io/StockmarketAgent/schemas/approvals.schema.json",
+  "title": "StockmarketAgent research-only approvals",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "production_signal_enabled",
+    "research_analysis_enabled",
+    "approved_universe_version",
+    "approved_model_version",
+    "approved_by",
+    "approved_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "production_signal_enabled": {"const": false},
+    "research_analysis_enabled": {"const": true},
+    "approved_universe_version": {"type": "null"},
+    "approved_model_version": {"type": "null"},
+    "approved_by": {"type": "null"},
+    "approved_at": {"type": "null"}
+  }
+}

@@ -122,6 +122,34 @@ select:focus-visible {
   color: var(--white);
 }
 
+.scenario-warning {
+  border-bottom: 1px solid #e5b94f;
+  color: #5e3b00;
+  background: #fff1c7;
+}
+
+.scenario-warning > .shell {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-block: 12px;
+}
+
+.scenario-warning strong {
+  flex: 0 0 auto;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: #fff;
+  background: #8a5200;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+}
+
+.scenario-warning span {
+  font-size: 0.84rem;
+  font-weight: 680;
+}
+
 .hero,
 .subhero {
   color: var(--white);
@@ -403,6 +431,15 @@ select:focus-visible {
 
 .notice span {
   color: #47566e;
+}
+
+.notice-warning {
+  border-left-color: var(--amber);
+  background: var(--soft-amber);
+}
+
+.notice-warning span {
+  color: #624d24;
 }
 
 .market-grid,
@@ -1042,6 +1079,15 @@ tbody tr:hover {
 
   .notice {
     display: block;
+  }
+
+  .scenario-warning > .shell {
+    display: grid;
+    gap: 7px;
+  }
+
+  .scenario-warning strong {
+    justify-self: start;
   }
 
   .disclaimer {

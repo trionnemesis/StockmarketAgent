@@ -1,6 +1,26 @@
 # Verification record
 
-Observed on 2026-08-27. This record distinguishes generated, committed, pushed, deployed, and publicly reachable states.
+Observed on 2026-08-27 and re-verified on 2026-08-28. This record distinguishes generated, committed, pushed, deployed, and publicly reachable states.
+
+## Research-analysis candidate (2026-08-28)
+
+This candidate enables deterministic, synthetic research analysis without enabling live adapters or production signals. Its BUY/HOLD/SELL labels are uncalibrated scenario outputs, not current market facts or investment recommendations.
+
+### Local acceptance
+
+- `python3 -m src.pipeline build`
+  - success; run `20260827T120000Z-research-10ff9eb1`; 30 instruments; `research_only`; 73 generated outputs.
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py' -v`
+  - 67 tests passed. Mutation coverage includes threshold classification, Risk Gate overrides, event/provenance integrity, intraday no-lookahead, and source-revision mismatch; positive validation also covers immutable-history cross-binding and loading each research run's versioned policy config.
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m src.pipeline validate`
+  - strict schemas, configuration contracts, risk gates, and generated-artifact consistency passed.
+- `git diff --check`, tracked/untracked artifact checks, and Python compilation
+  - passed.
+- Local GitHub Pages smoke test
+  - HTTP 200 for home, all market pages, a representative instrument page, methodology, status, history, universe review, source feasibility, and latest JSON.
+  - synthetic-research warnings and `research_fixture` provenance were present.
+
+Remote PR checks, merge alignment, and the post-merge Pages deployment are verified separately before this candidate is called released.
 
 ## Scope
 

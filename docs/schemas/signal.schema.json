@@ -22,7 +22,7 @@
         "score": {"type": ["number", "null"], "minimum": -100, "maximum": 100},
         "stance": {"enum": ["BUY", "HOLD", "SELL", "NO_SIGNAL"]},
         "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
-        "calibration_status": {"enum": ["calibrated", "uncalibrated", "not_available"]},
+        "calibration_status": {"enum": ["uncalibrated", "not_available"]},
         "supporting_evidence": {"type": "array", "items": {"type": "string"}},
         "contrary_evidence": {"type": "array", "items": {"type": "string"}},
         "risk_flags": {"type": "array", "items": {"type": "string"}},
@@ -36,7 +36,7 @@
       "properties": {
         "source_id": {"type": "string", "minLength": 1},
         "publisher": {"type": "string", "minLength": 1},
-        "source_type": {"const": "fixture"},
+        "source_type": {"enum": ["fixture", "synthetic_research_fixture"]},
         "source_url": {"type": "string", "minLength": 1},
         "published_at": {"type": ["string", "null"], "format": "date-time"},
         "observed_at": {"type": "string", "format": "date-time"},
@@ -45,7 +45,8 @@
         "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
         "parser_version": {"type": "string", "minLength": 1},
         "license_class": {"const": "project_fixture"},
-        "raw_retained": {"const": false}
+        "raw_retained": {"const": false},
+        "disclaimer": {"const": "Synthetic research fixture inputs; not market facts or live market data."}
       }
     }
   },
@@ -53,7 +54,7 @@
   "additionalProperties": false,
   "required": ["schema_version", "run", "summary", "markets", "instruments", "events", "source_manifest"],
   "properties": {
-    "schema_version": {"const": "1.0.0"},
+    "schema_version": {"enum": ["1.0.0", "1.1.0"]},
     "run": {
       "type": "object",
       "additionalProperties": false,
@@ -62,11 +63,11 @@
         "run_id": {"type": "string", "minLength": 8},
         "as_of": {"type": "string", "format": "date"},
         "generated_at": {"type": "string", "format": "date-time"},
-        "git_sha": {"type": "string", "minLength": 1},
+        "git_sha": {"type": "string", "pattern": "^(fixture|[a-f0-9]{40})$"},
         "input_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
         "model_version": {"type": "string", "minLength": 1},
         "mode": {"const": "research_only"},
-        "data_kind": {"const": "fixture"}
+        "data_kind": {"enum": ["fixture", "research_fixture"]}
       }
     },
     "summary": {
@@ -82,10 +83,10 @@
           "additionalProperties": false,
           "required": ["BUY", "HOLD", "SELL", "NO_SIGNAL"],
           "properties": {
-            "BUY": {"type": "integer", "const": 0},
-            "HOLD": {"type": "integer", "const": 0},
-            "SELL": {"type": "integer", "const": 0},
-            "NO_SIGNAL": {"type": "integer", "const": 30}
+            "BUY": {"type": "integer", "minimum": 0, "maximum": 30},
+            "HOLD": {"type": "integer", "minimum": 0, "maximum": 30},
+            "SELL": {"type": "integer", "minimum": 0, "maximum": 30},
+            "NO_SIGNAL": {"type": "integer", "minimum": 0, "maximum": 30}
           }
         },
         "critical_events": {"type": "integer", "minimum": 0}
@@ -102,7 +103,7 @@
         "properties": {
           "country": {"enum": ["TW", "JP", "US"]},
           "name_zh": {"type": "string", "minLength": 1},
-          "status": {"enum": ["fresh", "market_closed", "delayed", "stale", "failed", "fixture"]},
+          "status": {"enum": ["fresh", "market_closed", "delayed", "stale", "failed", "fixture", "research_fixture"]},
           "last_market_session": {"type": ["string", "null"], "format": "date"},
           "instrument_count": {"type": "integer", "const": 10},
           "notice": {"type": "string", "minLength": 1}
@@ -137,9 +138,9 @@
             "additionalProperties": false,
             "required": ["status", "last_market_session", "critical_missing", "warnings"],
             "properties": {
-              "status": {"const": "fixture"},
+              "status": {"enum": ["fixture", "research_fixture", "stale"]},
               "last_market_session": {"type": ["string", "null"], "format": "date"},
-              "critical_missing": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "critical_missing": {"type": "array", "items": {"type": "string"}},
               "warnings": {"type": "array", "items": {"type": "string"}}
             }
           },
@@ -173,7 +174,7 @@
             "additionalProperties": false,
             "required": ["applicable", "reason"],
             "properties": {
-              "applicable": {"const": false},
+              "applicable": {"type": "boolean"},
               "reason": {"type": "string", "minLength": 1}
             }
           },
@@ -193,7 +194,7 @@
           "source_id": {"type": "string", "minLength": 1},
           "path": {"type": "string", "minLength": 1},
           "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-          "kind": {"const": "fixture"}
+          "kind": {"enum": ["fixture", "research_fixture"]}
         }
       }
     }

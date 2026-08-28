@@ -24,29 +24,32 @@
     </a>
     <div class="nav-links"><a href="index.html">總覽</a><a href="markets/tw.html">台灣</a><a href="markets/jp.html">日本</a><a href="markets/us.html">美國</a><a href="methodology.html" aria-current="page">方法</a><a href="universe-review.html">審查</a><a href="source-feasibility.html">來源</a><a href="status.html">狀態</a><a href="history.html">歷史</a></div>
   </div>
-</nav>
-<header class="subhero"><div class="shell"><p class="eyebrow">METHODOLOGY</p><h1>先證明資料，再討論方向。</h1><p>Renderer 只讀取已驗證 JSON；它不在 HTML 或瀏覽器內重算研究分數。</p></div></header>
+</nav><aside class="scenario-warning" role="note" aria-label="研究情境警示">
+  <div class="shell"><strong>研究模擬資料</strong><span>本網站顯示 synthetic scenario fixture 與未校準研究態度；不含即時或當前市場事實，也不是投資建議。</span></div>
+</aside>
+<header class="subhero"><div class="shell"><p class="eyebrow">METHODOLOGY</p><h1>先標示研究邊界，再閱讀態度。</h1><p>Renderer 只讀取已驗證 JSON；它不在 HTML 或瀏覽器內重算研究分數。現在的輸入是 synthetic scenario fixture，不是 live 市場資料。</p></div></header>
 <main class="shell main-content">
+  <section class="status-strip status-strip-flat"><div><span>Mode</span><strong>research_only</strong></div><div><span>Data</span><strong>research_fixture</strong></div><div><span>Model</span><strong>0.2.0-research-scenario</strong></div><div><span>Calibration</span><strong>uncalibrated</strong></div></section>
   <section class="section-card">
     <p class="kicker">PIPELINE</p><h2>可重現的七道關卡</h2>
     <ol class="process">
       <li><span>01</span><div><strong>Source policy</strong><p>官方、授權或明確允許的來源優先。</p></div></li>
       <li><span>02</span><div><strong>Normalization</strong><p>日期、幣別、單位與公司行動分層處理。</p></div></li>
-      <li><span>03</span><div><strong>Point-in-time features</strong><p>只使用當時已公開的資料，避免前視偏誤。</p></div></li>
-      <li><span>04</span><div><strong>Deterministic model</strong><p>權重與門檻版本化；LLM 不決定數值或態度。</p></div></li>
-      <li><span>05</span><div><strong>Risk Gate</strong><p>缺資料、過期、矛盾或未校準時強制 NO_SIGNAL。</p></div></li>
+      <li><span>03</span><div><strong>Point-in-time requirement</strong><p>未來正式資料路徑只能使用當時已公開的資料；synthetic fixture 不證明歷史覆蓋或無前視偏誤。</p></div></li>
+      <li><span>04</span><div><strong>Deterministic research model</strong><p>權重與門檻版本化；LLM 不決定數值或態度。此版本只處理合成研究情境。</p></div></li>
+      <li><span>05</span><div><strong>Risk Gate</strong><p>依資料與治理條件判斷是否必須輸出 NO_SIGNAL；即使輸出其他態度，未校準時仍不是市場建議。</p></div></li>
       <li><span>06</span><div><strong>Strict JSON</strong><p>拒絕未定義欄位、NaN、Infinity 與不合法日期。</p></div></li>
       <li><span>07</span><div><strong>Derived outputs</strong><p>同一份 JSON 產生 Markdown 與靜態 HTML。</p></div></li>
     </ol>
   </section>
   <section class="split-grid">
-    <article class="section-card"><p class="kicker">STANCE</p><h2>四種研究態度</h2><dl class="definition-list"><div><dt>BUY</dt><dd>經校準後的買入傾向。</dd></div><div><dt>HOLD</dt><dd>方向不足或風險報酬中性。</dd></div><div><dt>SELL</dt><dd>經校準後的減碼傾向。</dd></div><div><dt>NO_SIGNAL</dt><dd>資料或模型條件不允許方向性結論。</dd></div></dl></article>
-    <article class="section-card"><p class="kicker">PUBLIC MVP</p><h2>目前刻意不做</h2><ul class="risk-list"><li>即時行情與新聞抓取</li><li>正式 Universe 核准</li><li>回測、校準與 p_outperform</li><li>個人化建議或自動下單</li><li>自動調權與模型自我修改</li></ul></article>
+    <article class="section-card"><p class="kicker">STANCE</p><h2>四種未校準研究態度</h2><dl class="definition-list"><div><dt>BUY</dt><dd>合成情境分數高於研究門檻的方向標籤。</dd></div><div><dt>HOLD</dt><dd>合成情境中的中性研究標籤。</dd></div><div><dt>SELL</dt><dd>合成情境分數低於研究門檻的方向標籤。</dd></div><div><dt>NO_SIGNAL</dt><dd>Risk Gate 判定條件不足，不提供方向標籤。</dd></div></dl></article>
+    <article class="section-card"><p class="kicker">RESEARCH BOUNDARY</p><h2>目前沒有的能力</h2><ul class="risk-list"><li>即時行情、新聞或當前市場事實</li><li>正式 Universe 核准與 production signal</li><li>回測、校準與可驗證的勝率敘述</li><li>個人化建議或自動下單</li><li>自動調權與模型自我修改</li></ul></article>
   </section>
-  <section class="disclaimer"><p class="kicker">IMPORTANT</p><h2>非個人化投資建議。</h2><p>分數與態度是版本化研究模型的輸出，不等於獲利機率，也不能取代個人的財務、稅務或風險評估。</p></section>
+  <section class="disclaimer"><p class="kicker">IMPORTANT</p><h2>研究態度不等於投資建議。</h2><p>分數與態度是版本化 synthetic scenario 的未校準輸出，不等於獲利機率、當前市場判斷，也不能取代個人的財務、稅務或風險評估。</p></section>
 </main><footer class="site-footer">
   <div class="shell footer-grid">
     <div><strong>StockmarketAgent</strong><p>Evidence before direction.</p></div>
-    <p>Fixture research preview · <a href="methodology.html">非個人化投資建議</a> · <a href="https://github.com/trionnemesis/StockmarketAgent">GitHub repository</a></p>
+    <p>合成研究情境 · 模型未校準 · <a href="methodology.html">非個人化投資建議</a> · <a href="https://github.com/trionnemesis/StockmarketAgent">GitHub repository</a></p>
   </div>
 </footer><script src="assets/js/app.js" defer></script></body></html>
