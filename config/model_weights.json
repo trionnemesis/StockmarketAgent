@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.0-fixture",
-  "status": "uncalibrated",
+  "model_version": "0.2.0-research-scenario",
+  "status": "uncalibrated_research",
   "horizons": {
     "week_1": {
       "technical": 0.45,

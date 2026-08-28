@@ -4,6 +4,34 @@ from typing import Any
 
 
 MARKET_NAMES = {"TW": "台灣", "JP": "日本", "US": "美國"}
+STANCE_ORDER = ("BUY", "HOLD", "SELL", "NO_SIGNAL")
+COMPONENT_NAMES = {
+    "macro": "總體",
+    "fundamental": "基本面",
+    "valuation": "估值",
+    "technical": "技術",
+    "cycle": "循環",
+    "events": "事件",
+}
+
+
+def _score(value: Any) -> str:
+    if value is None:
+        return "—"
+    if isinstance(value, float) and value.is_integer():
+        return str(int(value))
+    return str(value)
+
+
+def _horizon(item: dict[str, Any], name: str) -> dict[str, Any]:
+    return next(entry for entry in item["horizons"] if entry["horizon"] == name)
+
+
+def _horizon_summary(entry: dict[str, Any]) -> str:
+    return (
+        f"{entry['stance']} / score {_score(entry['score'])} / "
+        f"confidence {entry['confidence']} / {entry['calibration_status']}"
+    )
 
 
 def render_report(signal: dict[str, Any]) -> str:
@@ -19,7 +47,7 @@ def render_report(signal: dict[str, Any]) -> str:
         f"- 追蹤候選：{summary['tracked_count']}",
         f"- 正式核准並啟用：{summary['approved_enabled_count']}",
         "",
-        "> 本報告使用固定 fixture 驗證資料契約與頁面產生流程，不是個人化投資建議。",
+        "> **研究模擬資料：** 本報告顯示 synthetic scenario fixture 與未校準研究態度；不含即時或當前市場事實，也不是投資建議。",
         "",
         "## 市場狀態",
         "",
@@ -29,7 +57,7 @@ def render_report(signal: dict[str, Any]) -> str:
     for market in signal["markets"]:
         lines.append(
             f"| {MARKET_NAMES[market['country']]} | {market['status']} | "
-            f"{market['last_market_session'] or '未提供（fixture）'} | {market['notice']} |"
+            f"{market['last_market_session'] or '未提供（research fixture）'} | {market['notice']} |"
         )
 
     lines.extend(
@@ -41,7 +69,7 @@ def render_report(signal: dict[str, Any]) -> str:
             "|---|---:|",
         ]
     )
-    for stance in ("BUY", "HOLD", "SELL", "NO_SIGNAL"):
+    for stance in STANCE_ORDER:
         lines.append(f"| {stance} | {summary['stances'][stance]} |")
 
     lines.extend(
@@ -49,15 +77,77 @@ def render_report(signal: dict[str, Any]) -> str:
             "",
             "## 候選標的",
             "",
+            "以下每格依序顯示 `態度 / score / confidence / calibration`。",
+            "",
             "| 市場 | 類型 | 代號 | 名稱 | 1W | 1M | 3M | 12M |",
             "|---|---|---|---|---|---|---|---|",
         ]
     )
     for item in signal["instruments"]:
-        stances = [entry["stance"] for entry in item["horizons"]]
+        horizons = [
+            _horizon_summary(_horizon(item, name))
+            for name in ("1W", "1M", "3M", "12M")
+        ]
         lines.append(
             f"| {item['country']} | {item['asset_type']} | {item['symbol']} | "
-            f"{item['name_zh']} | {' | '.join(stances)} |"
+            f"{item['name_zh']} | {' | '.join(horizons)} |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "## 六個研究元件",
+            "",
+            "| 代號 | 元件 | Score | Confidence | Status |",
+            "|---|---|---:|---:|---|",
+        ]
+    )
+    for item in signal["instruments"]:
+        for key, label in COMPONENT_NAMES.items():
+            component = item["components"][key]
+            lines.append(
+                f"| {item['symbol']} | {label} | {_score(component['score'])} | "
+                f"{component['confidence']} | {component['status']} |"
+            )
+
+    lines.extend(
+        [
+            "",
+            "## 支持、反向證據與失效條件",
+            "",
+            "| 代號 | 期間 | 支持證據 | 反向證據 | 失效條件 |",
+            "|---|---|---|---|---|",
+        ]
+    )
+    for item in signal["instruments"]:
+        for horizon in item["horizons"]:
+            lines.append(
+                f"| {item['symbol']} | {horizon['horizon']} | "
+                f"{'；'.join(horizon['supporting_evidence']) or '無'} | "
+                f"{'；'.join(horizon['contrary_evidence']) or '無'} | "
+                f"{'；'.join(horizon['invalidation_conditions']) or '無'} |"
+            )
+
+    lines.extend(
+        [
+            "",
+            "## Risk Gate 與資料狀態",
+            "",
+            "| 代號 | Data status | Risk flags（四期間聯集） |",
+            "|---|---|---|",
+        ]
+    )
+    for item in signal["instruments"]:
+        flags = list(
+            dict.fromkeys(
+                flag
+                for horizon in item["horizons"]
+                for flag in horizon["risk_flags"]
+            )
+        )
+        lines.append(
+            f"| {item['symbol']} | {item['data_status']['status']} | "
+            f"{', '.join(flags) or '無'} |"
         )
 
     lines.extend(["", "## 高優先事件", ""])
@@ -69,10 +159,10 @@ def render_report(signal: dict[str, Any]) -> str:
             "",
             "## 限制",
             "",
-            "- Live source adapters 尚未啟用。",
-            "- Universe 全部為 proposed，等待 Owner 核准。",
-            "- 模型尚未回測與校準。",
-            "- 所有方向性輸出均由 Risk Gate 強制為 NO_SIGNAL。",
+            "- 此 research fixture 不包含 live 市場事實；頁面不得稱為即時或當前市場分析。",
+            "- Universe 全部為 proposed、disabled，等待 Owner 核准。",
+            "- BUY／HOLD／SELL／NO_SIGNAL 是合成情境的未校準研究態度，不是可交易訊號。",
+            "- Risk Gate 在條件不足時輸出 NO_SIGNAL；其他態度也不代表獲利機率或投資建議。",
         ]
     )
     return "\n".join(lines)

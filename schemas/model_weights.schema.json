@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trionnemesis.github.io/StockmarketAgent/schemas/model_weights.schema.json",
+  "title": "StockmarketAgent uncalibrated research model weights",
+  "$defs": {
+    "weights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["technical", "events", "macro", "fundamental", "valuation", "cycle"],
+      "properties": {
+        "technical": {"type": "number", "minimum": 0, "maximum": 1},
+        "events": {"type": "number", "minimum": 0, "maximum": 1},
+        "macro": {"type": "number", "minimum": 0, "maximum": 1},
+        "fundamental": {"type": "number", "minimum": 0, "maximum": 1},
+        "valuation": {"type": "number", "minimum": 0, "maximum": 1},
+        "cycle": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "model_version", "status", "horizons"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "model_version": {"type": "string", "minLength": 1},
+    "status": {"const": "uncalibrated_research"},
+    "horizons": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["week_1", "month_1", "month_3", "month_12"],
+      "properties": {
+        "week_1": {"$ref": "#/$defs/weights"},
+        "month_1": {"$ref": "#/$defs/weights"},
+        "month_3": {"$ref": "#/$defs/weights"},
+        "month_12": {"$ref": "#/$defs/weights"}
+      }
+    }
+  }
+}
