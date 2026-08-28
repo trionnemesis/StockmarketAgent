@@ -22,12 +22,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - name: Rebuild deterministic site
         run: python3 -m src.pipeline build
       - name: Run release tests
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Ensure generated artifacts are committed
-        run: git diff --exit-code
+        run: |
+          git diff --exit-code
+          git status --porcelain --untracked-files=all | tee "${RUNNER_TEMP}/repository-status.txt"
+          test ! -s "${RUNNER_TEMP}/repository-status.txt"
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
       - name: Upload GitHub Pages artifact

@@ -14,6 +14,10 @@
     "materiality": {"enum": ["low", "medium", "high", "unknown"]},
     "source_confidence": {"type": "integer", "minimum": 0, "maximum": 100},
     "published_at": {"type": "string", "format": "date-time"},
-    "instrument_ids": {"type": "array", "items": {"type": "string"}}
+    "instrument_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^(TW|JP|US):(STOCK|ETF):[A-Z0-9.-]+$"}
+    }
   }
 }

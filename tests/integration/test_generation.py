@@ -46,12 +46,127 @@ class GeneratedArtifactTests(unittest.TestCase):
 
     def test_markdown_and_html_derive_from_same_instruments(self) -> None:
         report = render_report(self.signal)
-        home = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+        home = self.outputs[ROOT / "docs" / "index.html"].decode("utf-8")
         for item in self.signal["instruments"]:
             self.assertIn(item["symbol"], report)
             self.assertIn(item["symbol"], home)
-        self.assertIn("NO_SIGNAL | 30", report)
-        self.assertIn("30 個候選標的", home)
+        for stance, count in self.signal["summary"]["stances"].items():
+            self.assertIn(f"| {stance} | {count} |", report)
+            self.assertIn(
+                f'data-summary-horizon="3M" data-stance="{stance}" data-count="{count}"',
+                home,
+            )
+        self.assertIn(
+            f"{self.signal['summary']['tracked_count']} 個候選標的", home
+        )
+
+    def test_three_month_stance_summary_matches_instrument_json(self) -> None:
+        expected = {stance: 0 for stance in ("BUY", "HOLD", "SELL", "NO_SIGNAL")}
+        for item in self.signal["instruments"]:
+            horizon = next(
+                entry for entry in item["horizons"] if entry["horizon"] == "3M"
+            )
+            expected[horizon["stance"]] += 1
+        self.assertEqual(self.signal["summary"]["stances"], expected)
+
+        for country in ("TW", "JP", "US"):
+            market_page = self.outputs[
+                ROOT / "docs" / "markets" / f"{country.lower()}.html"
+            ].decode("utf-8")
+            market_counts = {stance: 0 for stance in expected}
+            for item in self.signal["instruments"]:
+                if item["country"] != country:
+                    continue
+                horizon = next(
+                    entry
+                    for entry in item["horizons"]
+                    if entry["horizon"] == "3M"
+                )
+                market_counts[horizon["stance"]] += 1
+            for stance, count in market_counts.items():
+                self.assertIn(
+                    f'data-market-horizon="3M" data-stance="{stance}" data-count="{count}"',
+                    market_page,
+                )
+
+    def test_instrument_html_and_markdown_expose_all_research_values(self) -> None:
+        report = render_report(self.signal)
+        component_labels = {
+            "macro": "總體",
+            "fundamental": "基本面",
+            "valuation": "估值",
+            "technical": "技術",
+            "cycle": "循環",
+            "events": "事件",
+        }
+        for item in self.signal["instruments"]:
+            page = self.outputs[
+                ROOT / "docs" / "instruments" / f"{item['slug']}.html"
+            ].decode("utf-8")
+            for horizon in item["horizons"]:
+                score = self._display_score(horizon["score"])
+                self.assertIn(
+                    f'data-horizon="{horizon["horizon"]}" data-score="{score}" '
+                    f'data-stance="{horizon["stance"]}" data-confidence="{horizon["confidence"]}" '
+                    f'data-calibration="{horizon["calibration_status"]}"',
+                    page,
+                )
+                self.assertIn(
+                    f"{horizon['stance']} / score {score} / confidence "
+                    f"{horizon['confidence']} / {horizon['calibration_status']}",
+                    report,
+                )
+                for field in (
+                    "supporting_evidence",
+                    "contrary_evidence",
+                    "invalidation_conditions",
+                ):
+                    for statement in horizon[field]:
+                        self.assertIn(statement, page)
+                        self.assertIn(statement, report)
+            for component_name, component in item["components"].items():
+                score = self._display_score(component["score"])
+                self.assertIn(
+                    f'data-component="{component_name}" data-score="{score}" '
+                    f'data-confidence="{component["confidence"]}" data-status="{component["status"]}"',
+                    page,
+                )
+                self.assertIn(
+                    f"| {item['symbol']} | {component_labels[component_name]} | "
+                    f"{score} | {component['confidence']} | {component['status']} |",
+                    report,
+                )
+            for required_flag in ("RESEARCH_FIXTURE", "MODEL_UNCALIBRATED"):
+                self.assertTrue(
+                    any(
+                        required_flag in horizon["risk_flags"]
+                        for horizon in item["horizons"]
+                    )
+                )
+                self.assertIn(required_flag, page)
+                self.assertIn(required_flag, report)
+
+    @staticmethod
+    def _display_score(value: object) -> str:
+        if value is None:
+            return "—"
+        if isinstance(value, float) and value.is_integer():
+            return str(int(value))
+        return str(value)
+
+    def test_synthetic_research_warning_is_visible_site_wide(self) -> None:
+        html_outputs = {
+            path: payload.decode("utf-8")
+            for path, payload in self.outputs.items()
+            if path.suffix == ".html"
+        }
+        self.assertGreater(len(html_outputs), 30)
+        for page, html in html_outputs.items():
+            self.assertIn("研究模擬資料", html, str(page.relative_to(ROOT)))
+            self.assertIn("不含即時或當前市場事實", html, str(page.relative_to(ROOT)))
+        report = render_report(self.signal)
+        self.assertIn("研究模擬資料", report)
+        self.assertIn("未校準研究態度", report)
 
     def test_all_internal_site_links_resolve(self) -> None:
         docs_root = (ROOT / "docs").resolve()
@@ -148,6 +263,14 @@ class GeneratedArtifactTests(unittest.TestCase):
 
     def test_run_record_claims_only_immutable_outputs(self) -> None:
         self.assertTrue(all("/runs/" in path or path.startswith("agent-runs/") for path in self.run_record["outputs"]))
+
+    def test_workflows_reject_untracked_generated_outputs(self) -> None:
+        for workflow in ("quality.yml", "deploy-pages.yml"):
+            content = (ROOT / ".github" / "workflows" / workflow).read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("git diff --exit-code", content)
+            self.assertIn("git status --porcelain --untracked-files=all", content)
 
     def test_review_and_source_pages_are_human_visible(self) -> None:
         home = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")

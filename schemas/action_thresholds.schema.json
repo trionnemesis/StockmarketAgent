@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trionnemesis.github.io/StockmarketAgent/schemas/action_thresholds.schema.json",
+  "title": "StockmarketAgent uncalibrated research action thresholds",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "confidence_no_signal_below",
+    "directional_confidence_min",
+    "hold_min",
+    "hold_max",
+    "buy_min",
+    "sell_max",
+    "contradiction_penalty_max"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "status": {"const": "engineering_defaults_uncalibrated"},
+    "confidence_no_signal_below": {"type": "integer", "minimum": 0, "maximum": 100},
+    "directional_confidence_min": {"type": "integer", "minimum": 70, "maximum": 100},
+    "hold_min": {"type": "number", "minimum": -100, "maximum": 100},
+    "hold_max": {"type": "number", "minimum": -100, "maximum": 100},
+    "buy_min": {"type": "number", "minimum": -100, "maximum": 100},
+    "sell_max": {"type": "number", "minimum": -100, "maximum": 100},
+    "contradiction_penalty_max": {"type": "number", "minimum": 0, "maximum": 30}
+  }
+}

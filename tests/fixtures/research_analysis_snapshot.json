@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_id": "tri-market-synthetic-analysis-v1",
+  "as_of": "2026-08-27",
+  "generated_at": "2026-08-27T12:00:00Z",
+  "model_version": "0.2.0-research-scenario",
+  "source": {
+    "source_id": "synthetic-research-scenarios-v1",
+    "publisher": "StockmarketAgent test suite",
+    "source_type": "synthetic_research_fixture",
+    "source_url": "tests/fixtures/research_analysis_snapshot.json",
+    "observed_at": "2026-08-27T12:00:00Z",
+    "fetched_at": "2026-08-27T12:00:00Z",
+    "parser_version": "1.0.0",
+    "license_class": "project_fixture",
+    "raw_retained": false,
+    "disclaimer": "Synthetic research fixture inputs; not market facts or live market data."
+  },
+  "profiles": [
+    {
+      "profile_id": "synthetic_positive",
+      "input_as_of": "2026-08-27",
+      "components": {
+        "macro": {"score": 35, "confidence": 85},
+        "fundamental": {"score": 45, "confidence": 88},
+        "valuation": {"score": 20, "confidence": 78},
+        "technical": {"score": 55, "confidence": 84},
+        "cycle": {"score": 30, "confidence": 75},
+        "events": {"score": 40, "confidence": 82}
+      },
+      "confidence_factors": {
+        "data_quality": 92,
+        "source_quality": 90,
+        "model_agreement": 86,
+        "calibration_quality": 0,
+        "regime_similarity": 80,
+        "contradiction_penalty": 0
+      },
+      "data_status": {
+        "freshness": "fresh",
+        "critical_missing": [],
+        "contradiction": false
+      },
+      "supporting_evidence": [
+        "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+      ],
+      "contrary_evidence": [
+        "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+      ],
+      "invalidation_conditions": [
+        "Discard if this fixture is presented as observed market data."
+      ]
+    },
+    {
+      "profile_id": "synthetic_neutral",
+      "input_as_of": "2026-08-27",
+      "components": {
+        "macro": {"score": 10, "confidence": 80},
+        "fundamental": {"score": 5, "confidence": 76},
+        "valuation": {"score": -5, "confidence": 74},
+        "technical": {"score": 8, "confidence": 79},
+        "cycle": {"score": -4, "confidence": 70},
+        "events": {"score": 0, "confidence": 72}
+      },
+      "confidence_factors": {
+        "data_quality": 85,
+        "source_quality": 82,
+        "model_agreement": 78,
+        "calibration_quality": 0,
+        "regime_similarity": 70,
+        "contradiction_penalty": 0
+      },
+      "data_status": {
+        "freshness": "fresh",
+        "critical_missing": [],
+        "contradiction": false
+      },
+      "supporting_evidence": [
+        "SYNTHETIC_SCENARIO: balanced test evidence."
+      ],
+      "contrary_evidence": [
+        "SYNTHETIC_SCENARIO: small positive and negative components offset."
+      ],
+      "invalidation_conditions": [
+        "Discard if this fixture is presented as observed market data."
+      ]
+    },
+    {
+      "profile_id": "synthetic_negative",
+      "input_as_of": "2026-08-27",
+      "components": {
+        "macro": {"score": -35, "confidence": 85},
+        "fundamental": {"score": -45, "confidence": 88},
+        "valuation": {"score": -30, "confidence": 80},
+        "technical": {"score": -55, "confidence": 86},
+        "cycle": {"score": -40, "confidence": 82},
+        "events": {"score": -35, "confidence": 84}
+      },
+      "confidence_factors": {
+        "data_quality": 88,
+        "source_quality": 86,
+        "model_agreement": 82,
+        "calibration_quality": 0,
+        "regime_similarity": 75,
+        "contradiction_penalty": 0
+      },
+      "data_status": {
+        "freshness": "fresh",
+        "critical_missing": [],
+        "contradiction": false
+      },
+      "supporting_evidence": [
+        "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+      ],
+      "contrary_evidence": [
+        "SYNTHETIC_SCENARIO: no live observations support this test direction."
+      ],
+      "invalidation_conditions": [
+        "Discard if this fixture is presented as observed market data."
+      ]
+    },
+    {
+      "profile_id": "synthetic_critical_missing",
+      "input_as_of": "2026-08-27",
+      "components": {
+        "macro": {"score": 35, "confidence": 85},
+        "fundamental": {"score": 45, "confidence": 88},
+        "valuation": {"score": 20, "confidence": 78},
+        "technical": {"score": 55, "confidence": 84},
+        "cycle": {"score": 30, "confidence": 75},
+        "events": {"score": 40, "confidence": 82}
+      },
+      "confidence_factors": {
+        "data_quality": 92,
+        "source_quality": 90,
+        "model_agreement": 86,
+        "calibration_quality": 0,
+        "regime_similarity": 80,
+        "contradiction_penalty": 0
+      },
+      "data_status": {
+        "freshness": "fresh",
+        "critical_missing": ["synthetic_required_feature"],
+        "contradiction": false
+      },
+      "supporting_evidence": [
+        "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+      ],
+      "contrary_evidence": [
+        "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+      ],
+      "invalidation_conditions": [
+        "Remove the gate only after all required inputs pass validation."
+      ]
+    },
+    {
+      "profile_id": "synthetic_stale",
+      "input_as_of": "2026-08-26",
+      "components": {
+        "macro": {"score": -35, "confidence": 85},
+        "fundamental": {"score": -45, "confidence": 88},
+        "valuation": {"score": -30, "confidence": 80},
+        "technical": {"score": -55, "confidence": 86},
+        "cycle": {"score": -40, "confidence": 82},
+        "events": {"score": -35, "confidence": 84}
+      },
+      "confidence_factors": {
+        "data_quality": 88,
+        "source_quality": 86,
+        "model_agreement": 82,
+        "calibration_quality": 0,
+        "regime_similarity": 75,
+        "contradiction_penalty": 0
+      },
+      "data_status": {
+        "freshness": "stale",
+        "critical_missing": [],
+        "contradiction": false
+      },
+      "supporting_evidence": [
+        "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+      ],
+      "contrary_evidence": [
+        "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+      ],
+      "invalidation_conditions": [
+        "Remove the gate only after freshness validation succeeds."
+      ]
+    },
+    {
+      "profile_id": "synthetic_contradiction",
+      "input_as_of": "2026-08-27",
+      "components": {
+        "macro": {"score": 20, "confidence": 70},
+        "fundamental": {"score": -60, "confidence": 80},
+        "valuation": {"score": -45, "confidence": 75},
+        "technical": {"score": 60, "confidence": 85},
+        "cycle": {"score": -20, "confidence": 65},
+        "events": {"score": 50, "confidence": 75}
+      },
+      "confidence_factors": {
+        "data_quality": 90,
+        "source_quality": 88,
+        "model_agreement": 55,
+        "calibration_quality": 0,
+        "regime_similarity": 60,
+        "contradiction_penalty": 20
+      },
+      "data_status": {
+        "freshness": "fresh",
+        "critical_missing": [],
+        "contradiction": true
+      },
+      "supporting_evidence": [
+        "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+      ],
+      "contrary_evidence": [
+        "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+      ],
+      "invalidation_conditions": [
+        "Remove the gate only after contradictory inputs are reconciled."
+      ]
+    }
+  ],
+  "assignments": [
+    {"instrument_id": "TW:STOCK:2330", "profile_id": "synthetic_positive"},
+    {"instrument_id": "TW:STOCK:2454", "profile_id": "synthetic_neutral"},
+    {"instrument_id": "TW:STOCK:2308", "profile_id": "synthetic_negative"},
+    {"instrument_id": "TW:STOCK:2412", "profile_id": "synthetic_critical_missing"},
+    {"instrument_id": "TW:STOCK:2891", "profile_id": "synthetic_stale"},
+    {"instrument_id": "TW:ETF:0050", "profile_id": "synthetic_contradiction"},
+    {"instrument_id": "TW:ETF:006208", "profile_id": "synthetic_positive"},
+    {"instrument_id": "TW:ETF:00878", "profile_id": "synthetic_neutral"},
+    {"instrument_id": "TW:ETF:00919", "profile_id": "synthetic_negative"},
+    {"instrument_id": "TW:ETF:00965", "profile_id": "synthetic_critical_missing"},
+    {"instrument_id": "JP:STOCK:7203", "profile_id": "synthetic_stale"},
+    {"instrument_id": "JP:STOCK:6758", "profile_id": "synthetic_contradiction"},
+    {"instrument_id": "JP:STOCK:8035", "profile_id": "synthetic_positive"},
+    {"instrument_id": "JP:STOCK:7011", "profile_id": "synthetic_neutral"},
+    {"instrument_id": "JP:STOCK:9432", "profile_id": "synthetic_negative"},
+    {"instrument_id": "JP:ETF:1306", "profile_id": "synthetic_critical_missing"},
+    {"instrument_id": "JP:ETF:1321", "profile_id": "synthetic_stale"},
+    {"instrument_id": "JP:ETF:1475", "profile_id": "synthetic_contradiction"},
+    {"instrument_id": "JP:ETF:1489", "profile_id": "synthetic_positive"},
+    {"instrument_id": "JP:ETF:2568", "profile_id": "synthetic_neutral"},
+    {"instrument_id": "US:STOCK:NVDA", "profile_id": "synthetic_negative"},
+    {"instrument_id": "US:STOCK:MSFT", "profile_id": "synthetic_critical_missing"},
+    {"instrument_id": "US:STOCK:GOOGL", "profile_id": "synthetic_stale"},
+    {"instrument_id": "US:STOCK:LMT", "profile_id": "synthetic_contradiction"},
+    {"instrument_id": "US:STOCK:JNJ", "profile_id": "synthetic_positive"},
+    {"instrument_id": "US:ETF:SPY", "profile_id": "synthetic_neutral"},
+    {"instrument_id": "US:ETF:QQQ", "profile_id": "synthetic_negative"},
+    {"instrument_id": "US:ETF:SMH", "profile_id": "synthetic_critical_missing"},
+    {"instrument_id": "US:ETF:CIBR", "profile_id": "synthetic_stale"},
+    {"instrument_id": "US:ETF:USMV", "profile_id": "synthetic_contradiction"}
+  ]
+}

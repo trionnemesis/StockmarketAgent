@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - name: Show Python version
         run: python3 --version
       - name: Rebuild deterministic artifacts
@@ -25,4 +27,7 @@ jobs:
       - name: Validate published contracts
         run: python3 -m src.pipeline validate
       - name: Ensure generated artifacts are committed
-        run: git diff --exit-code
+        run: |
+          git diff --exit-code
+          git status --porcelain --untracked-files=all | tee "${RUNNER_TEMP}/repository-status.txt"
+          test ! -s "${RUNNER_TEMP}/repository-status.txt"

@@ -2,6 +2,7 @@
   "schema_version": "1.0.0",
   "status": "engineering_defaults_uncalibrated",
   "confidence_no_signal_below": 50,
+  "directional_confidence_min": 70,
   "hold_min": -24,
   "hold_max": 24,
   "buy_min": 25,

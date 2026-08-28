@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trionnemesis.github.io/StockmarketAgent/schemas/research-analysis.schema.json",
+  "title": "StockmarketAgent deterministic synthetic research analysis",
+  "$defs": {
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "confidence", "status"],
+      "properties": {
+        "score": {"type": "number", "minimum": -100, "maximum": 100},
+        "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+        "status": {"const": "evaluated"}
+      }
+    },
+    "horizon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "horizon",
+        "score",
+        "stance",
+        "confidence",
+        "calibration_status",
+        "supporting_evidence",
+        "contrary_evidence",
+        "risk_flags",
+        "invalidation_conditions"
+      ],
+      "properties": {
+        "horizon": {"enum": ["1W", "1M", "3M", "12M"]},
+        "score": {"type": "number", "minimum": -100, "maximum": 100},
+        "stance": {"enum": ["BUY", "HOLD", "SELL", "NO_SIGNAL"]},
+        "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+        "calibration_status": {"const": "uncalibrated"},
+        "supporting_evidence": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "contrary_evidence": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "risk_flags": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "invalidation_conditions": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "publisher",
+        "source_type",
+        "source_url",
+        "published_at",
+        "observed_at",
+        "fetched_at",
+        "market_session_date",
+        "content_hash",
+        "parser_version",
+        "license_class",
+        "raw_retained",
+        "disclaimer"
+      ],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "publisher": {"type": "string", "minLength": 1},
+        "source_type": {"const": "synthetic_research_fixture"},
+        "source_url": {"type": "string", "minLength": 1},
+        "published_at": {"type": "null"},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "fetched_at": {"type": "string", "format": "date-time"},
+        "market_session_date": {"type": "null"},
+        "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "parser_version": {"type": "string", "minLength": 1},
+        "license_class": {"const": "project_fixture"},
+        "raw_retained": {"const": false},
+        "disclaimer": {
+          "const": "Synthetic research fixture inputs; not market facts or live market data."
+        }
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "fixture_id", "run", "provenance", "instruments"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "fixture_id": {"type": "string", "minLength": 1},
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "as_of",
+        "generated_at",
+        "mode",
+        "data_kind",
+        "model_version",
+        "calibration_status"
+      ],
+      "properties": {
+        "as_of": {"type": "string", "format": "date"},
+        "generated_at": {"type": "string", "format": "date-time"},
+        "mode": {"const": "research_only"},
+        "data_kind": {"const": "research_fixture"},
+        "model_version": {"type": "string", "minLength": 1},
+        "calibration_status": {"const": "uncalibrated"}
+      }
+    },
+    "provenance": {"$ref": "#/$defs/provenance"},
+    "instruments": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "instrument_id",
+          "scenario_profile_id",
+          "data_status",
+          "components",
+          "horizons",
+          "provenance"
+        ],
+        "properties": {
+          "instrument_id": {
+            "type": "string",
+            "pattern": "^(TW|JP|US):(STOCK|ETF):[A-Z0-9.-]+$"
+          },
+          "scenario_profile_id": {"type": "string", "minLength": 1},
+          "data_status": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "freshness",
+              "critical_missing",
+              "contradiction",
+              "risk_gate_triggered",
+              "risk_gate_reasons"
+            ],
+            "properties": {
+              "status": {"const": "research_fixture"},
+              "freshness": {"enum": ["fresh", "stale"]},
+              "critical_missing": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1}
+              },
+              "contradiction": {"type": "boolean"},
+              "risk_gate_triggered": {"type": "boolean"},
+              "risk_gate_reasons": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "enum": ["CRITICAL_MISSING", "STALE_DATA", "SOURCE_CONTRADICTION"]
+                }
+              }
+            }
+          },
+          "components": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["macro", "fundamental", "valuation", "technical", "cycle", "events"],
+            "properties": {
+              "macro": {"$ref": "#/$defs/component"},
+              "fundamental": {"$ref": "#/$defs/component"},
+              "valuation": {"$ref": "#/$defs/component"},
+              "technical": {"$ref": "#/$defs/component"},
+              "cycle": {"$ref": "#/$defs/component"},
+              "events": {"$ref": "#/$defs/component"}
+            }
+          },
+          "horizons": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {"$ref": "#/$defs/horizon"}
+          },
+          "provenance": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 1,
+            "items": {"$ref": "#/$defs/provenance"}
+          }
+        }
+      }
+    }
+  }
+}

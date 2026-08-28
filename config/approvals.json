@@ -1,5 +1,6 @@
 {
   "schema_version": "1.0.0",
+  "research_analysis_enabled": true,
   "production_signal_enabled": false,
   "approved_universe_version": null,
   "approved_model_version": null,
