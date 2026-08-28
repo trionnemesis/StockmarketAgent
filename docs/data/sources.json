@@ -35,9 +35,9 @@
         {
           "data_class": "filings_financials",
           "fallback_source_ids": [],
-          "note": "Archive every revision for PIT use.",
+          "note": "Manual OGL snapshots are publishable with attribution; archive every revision before PIT model use.",
           "primary_source_ids": [
-            "TWSE_OGL_COMPANY"
+            "TWSE_OGL_FINANCIALS"
           ],
           "status": "conditional"
         },
@@ -524,40 +524,66 @@
     "raw_data_commit": "Commit only official open-data fixtures with attribution; contract feeds and bulk archives stay out of the repository.",
     "secrets": "Credentials belong only in GitHub Actions repository/environment secret stores, never repository files or browser assets."
   },
-  "review_version": "b1-2026-08-27",
-  "reviewed_at": "2026-08-27T16:33:55Z",
+  "review_version": "b2-2026-08-28",
+  "reviewed_at": "2026-08-28T04:45:00Z",
   "schema_version": "1.0.0",
   "sources": [
     {
-      "access_method": "TWSE OpenAPI listed-company and financial endpoints",
+      "access_method": "Documented TWSE OpenAPI /opendata/t187ap03_L only; generic TWSE/MOPS HTML crawling is excluded.",
       "authentication": "none",
       "countries": [
         "TW"
       ],
       "data_classes": [
-        "listing_metadata",
-        "filings_financials"
+        "listing_metadata"
       ],
-      "documentation_url": "https://openapi.twse.com.tw/v1/swagger.json",
-      "fallback": "Manual official filings or a separately licensed feed.",
+      "documentation_url": "https://data.gov.tw/dataset/18419",
+      "fallback": "Manual official issuer identity review.",
       "feasibility": "conditional",
       "gaps": [
-        "Revision semantics and full backfill are undocumented."
+        "No immutable correction stream or complete historical identity vintages."
       ],
-      "history_depth": "Current published snapshots; complete revision history is not promised.",
+      "history_depth": "Current published company snapshot; complete revision history is not promised.",
       "key_required": false,
       "license_status": "open_with_attribution",
-      "license_url": "https://data.gov.tw/en/license",
+      "license_url": "https://data.gov.tw/license",
       "pages_policy": "raw_with_attribution_allowed",
       "point_in_time_status": "partial",
       "publisher": "Taiwan Stock Exchange",
-      "rate_limit": "Not documented; cache and back off conservatively.",
+      "rate_limit": "No numeric limit is documented; identify the client, retrieve sequentially, cache snapshots, and back off on errors.",
       "redistribution": "Raw and adapted OGL records may be redistributed with attribution.",
-      "retention": "Versioned snapshots may be retained with attribution and retrieval time.",
+      "retention": "Versioned normalized snapshots may be retained with attribution and retrieval time.",
       "source_id": "TWSE_OGL_COMPANY"
     },
     {
-      "access_method": "TWSE OpenAPI current daily market snapshot",
+      "access_method": "Documented TWSE OpenAPI monthly revenue, general-industry income-statement, and balance-sheet endpoints; no MOPS HTML scraping.",
+      "authentication": "none",
+      "countries": [
+        "TW"
+      ],
+      "data_classes": [
+        "filings_financials"
+      ],
+      "documentation_url": "https://data.gov.tw/dataset/91998",
+      "fallback": "Official issuer releases as manual cross-checks; a separately licensed feed is required for complete PIT backfill.",
+      "feasibility": "conditional",
+      "gaps": [
+        "Historical revisions, correction semantics, taxonomy drift, and complete PIT backfill are not provided by the current snapshot endpoints."
+      ],
+      "history_depth": "Current monthly and quarterly published snapshots; every observed version must be archived for future PIT use.",
+      "key_required": false,
+      "license_status": "open_with_attribution",
+      "license_url": "https://data.gov.tw/license",
+      "pages_policy": "raw_with_attribution_allowed",
+      "point_in_time_status": "partial",
+      "publisher": "Taiwan Stock Exchange",
+      "rate_limit": "No numeric limit is documented; the research adapter uses five sequential requests, a declared User-Agent, at least two seconds between requests, caching, and backoff.",
+      "redistribution": "Normalized facts may be published with OGL attribution and source links.",
+      "retention": "Normalized OGL facts and response hashes may be retained with attribution; raw full-market payloads are not committed.",
+      "source_id": "TWSE_OGL_FINANCIALS"
+    },
+    {
+      "access_method": "Documented TWSE OpenAPI /exchangeReport/STOCK_DAY_ALL and /exchangeReport/BWIBBU_ALL; no generic HTML scraping.",
       "authentication": "none",
       "countries": [
         "TW"
@@ -569,18 +595,18 @@
       "fallback": "Separately licensed historical market-data feed.",
       "feasibility": "conditional",
       "gaps": [
-        "No verified OGL full-history API or immutable correction stream."
+        "No verified OGL full-history API, total-return series, or immutable correction stream."
       ],
-      "history_depth": "Current daily snapshot; official historical UI is not an approved bulk API.",
+      "history_depth": "Current daily market and valuation snapshots; the official historical UI is not an approved bulk API.",
       "key_required": false,
       "license_status": "open_with_attribution",
-      "license_url": "https://data.gov.tw/en/license",
+      "license_url": "https://data.gov.tw/license",
       "pages_policy": "raw_with_attribution_allowed",
       "point_in_time_status": "partial",
       "publisher": "Taiwan Stock Exchange",
-      "rate_limit": "Not documented; cache and back off conservatively.",
-      "redistribution": "OGL records may be redistributed with attribution.",
-      "retention": "Observed OGL snapshots may be retained with attribution.",
+      "rate_limit": "No numeric limit is documented; identify the client, retrieve sequentially, use at least two seconds between requests, cache ETag/Last-Modified, and back off.",
+      "redistribution": "OGL records and normalized facts may be redistributed with attribution.",
+      "retention": "Observed OGL snapshots and response hashes may be retained with attribution.",
       "source_id": "TWSE_OGL_EOD"
     },
     {

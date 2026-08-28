@@ -5200,11 +5200,11 @@
     "as_of": "2026-08-27",
     "data_kind": "research_fixture",
     "generated_at": "2026-08-27T12:00:00Z",
-    "git_sha": "6d1bb572eaa5cd19802dd66ad105a2ea6560b79f",
-    "input_hash": "10ff9eb1fadc07ec378ddde4228090446dfe2fd06602adc42994ff943faf2c52",
+    "git_sha": "89522477741adb23613e5844cc22176e4de2d78b",
+    "input_hash": "17b9049da3e66091cbd42a8a70e31aa63d903f4afc73003535c5b8df429ead34",
     "mode": "research_only",
     "model_version": "0.2.0-research-scenario",
-    "run_id": "20260827T120000Z-research-10ff9eb1"
+    "run_id": "20260827T120000Z-research-17b9049d"
   },
   "schema_version": "1.1.0",
   "source_manifest": [

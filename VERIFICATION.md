@@ -2,6 +2,28 @@
 
 Observed on 2026-08-27 and re-verified on 2026-08-28. This record distinguishes generated, committed, pushed, deployed, and publicly reachable states.
 
+## TSMC official-observation candidate (2026-08-28)
+
+This candidate adds a manually refreshed, policy-gated snapshot of five documented TWSE OpenAPI resources to the 2330 page. The normalized facts are separately labeled, attributed under Taiwan Open Government Data License 1.0, and contractually excluded from synthetic scores, research attitudes, production routing, and trade execution.
+
+### Local acceptance
+
+- `python3 -m src.ingestion.twse_openapi`
+  - success; one `TW:STOCK:2330` record selected from each of five official resources; fetched at `2026-08-28T04:54:39Z`; response hashes and source metadata retained without retaining full-market payloads.
+- `python3 -m src.pipeline build`
+  - success from remote source revision `89522477741adb23613e5844cc22176e4de2d78b`; run `20260827T120000Z-research-17b9049d`; 30 instruments; `research_only`; 75 generated outputs.
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py'`
+  - 69 tests passed, including response normalization, missing/duplicate-record rejection, observed-facts schema and domain contracts, Pages isolation, and signal-provenance invariance.
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m src.pipeline validate`
+  - strict signal, source, observed-facts, generated-artifact, and source-revision consistency passed.
+- Python compilation, workflow YAML parsing, and `git diff --check`
+  - passed.
+- Local GitHub Pages smoke test
+  - HTTP 200 with expected content types for home, Taiwan market, 2330, source feasibility, status, the strict TSMC observation JSON, and latest signal JSON.
+  - the 2330 page showed the official observation section while the observation remained `used_in_signal=false`, `automated_refresh_enabled=false`, and `html_scraping=false`.
+
+Remote PR checks and the post-merge Pages deployment remain separate release gates.
+
 ## Research-analysis candidate (2026-08-28)
 
 This candidate enables deterministic, synthetic research analysis without enabling live adapters or production signals. Its BUY/HOLD/SELL labels are uncalibrated scenario outputs, not current market facts or investment recommendations.
