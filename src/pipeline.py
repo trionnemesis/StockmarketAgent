@@ -34,6 +34,7 @@ from src.validation.contracts import (
     validate_action_thresholds_contract,
     validate_approvals_contract,
     validate_model_weights_contract,
+    validate_observed_facts_contract,
     validate_schedules_contract,
     validate_signal_contract,
     validate_source_contract,
@@ -50,7 +51,14 @@ FIXTURE_PATH = ROOT / "tests" / "fixtures" / "research_snapshot.json"
 ANALYSIS_FIXTURE_PATH = ROOT / "tests" / "fixtures" / "research_analysis_snapshot.json"
 ASSET_DIR = ROOT / "src" / "render" / "assets"
 SOCIAL_PREVIEW_PATH = ROOT / "docs" / "assets" / "og.png"
-SOURCE_REVISION_PATHS = ("config", "schemas", "src", "tests/fixtures")
+TSMC_OBSERVATION_PATH = ROOT / "data" / "observations" / "twse" / "2330.json"
+SOURCE_REVISION_PATHS = (
+    "config",
+    "data/observations",
+    "schemas",
+    "src",
+    "tests/fixtures",
+)
 LEGACY_GLOBAL_AGENT_RUN_IDS = {"20260827T120000Z-fixture-f7c1c115"}
 
 
@@ -426,7 +434,20 @@ def load_history(current: dict[str, Any]) -> list[dict[str, Any]]:
     return [by_date[key] for key in sorted(by_date, reverse=True)]
 
 
-def build_outputs(signal: dict[str, Any], sources: dict[str, Any], review: dict[str, Any]) -> tuple[dict[Path, bytes], dict[str, Any]]:
+def load_tsmc_observation(sources: dict[str, Any]) -> dict[str, Any]:
+    observation = load_json_strict(TSMC_OBSERVATION_PATH)
+    validate_document(observation, SCHEMAS / "observed-facts.schema.json")
+    validate_observed_facts_contract(observation, sources)
+    return observation
+
+
+def build_outputs(
+    signal: dict[str, Any],
+    sources: dict[str, Any],
+    review: dict[str, Any],
+    observation: dict[str, Any] | None = None,
+) -> tuple[dict[Path, bytes], dict[str, Any]]:
+    observation = observation or load_tsmc_observation(sources)
     as_of = signal["run"]["as_of"]
     run_id = signal["run"]["run_id"]
     year, month, _ = as_of.split("-")
@@ -457,6 +478,9 @@ def build_outputs(signal: dict[str, Any], sources: dict[str, Any], review: dict[
         ROOT / "docs" / "data" / "runs" / f"{run_id}.json": signal_json,
         ROOT / "docs" / "data" / "universe-review.json": _pretty_json(review).encode("utf-8"),
         ROOT / "docs" / "data" / "sources.json": _pretty_json(sources).encode("utf-8"),
+        ROOT / "docs" / "data" / "observations" / "tsmc.json": _pretty_json(
+            observation
+        ).encode("utf-8"),
         ROOT / "docs" / "data" / "archive" / f"{as_of}.json": signal_json,
         ROOT / "docs" / "assets" / "css" / "site.css": (
             ASSET_DIR / "site.css"
@@ -480,8 +504,20 @@ def build_outputs(signal: dict[str, Any], sources: dict[str, Any], review: dict[
             render_market(signal, country).encode("utf-8")
         )
     for item in signal["instruments"]:
+        item_observation = (
+            observation if item["instrument_id"] == observation["instrument_id"] else None
+        )
         outputs[ROOT / "docs" / "instruments" / f"{item['slug']}.html"] = (
-            render_instrument(signal, item, next(review_item for review_item in review["instruments"] if review_item["instrument_id"] == item["instrument_id"])).encode("utf-8")
+            render_instrument(
+                signal,
+                item,
+                next(
+                    review_item
+                    for review_item in review["instruments"]
+                    if review_item["instrument_id"] == item["instrument_id"]
+                ),
+                item_observation,
+            ).encode("utf-8")
         )
     for schema_path in sorted(SCHEMAS.glob("*.schema.json")):
         outputs[ROOT / "docs" / "schemas" / schema_path.name] = schema_path.read_bytes()
@@ -600,7 +636,8 @@ def command_build() -> dict[str, Any]:
     validate_document(signal, SCHEMAS / "signal.schema.json")
     thresholds = load_json_strict(CONFIG / "action_thresholds.json")
     validate_signal_contract(signal, approvals, thresholds)
-    outputs, run_record = build_outputs(signal, sources, review)
+    observation = load_tsmc_observation(sources)
+    outputs, run_record = build_outputs(signal, sources, review, observation)
     validate_document(run_record, SCHEMAS / "agent-run.schema.json")
     validate_agent_run_contract(run_record)
     publish_atomically(outputs)
@@ -759,7 +796,8 @@ def _validate_immutable_run_history(
 
 
 def validate_existing() -> None:
-    _, approvals, _, _, _, _, _, _ = load_inputs()
+    _, approvals, _, _, _, _, sources, _ = load_inputs()
+    observation = load_tsmc_observation(sources)
     signal = load_json_strict(ROOT / "signals" / "latest.json")
     validate_document(signal, SCHEMAS / "signal.schema.json")
     thresholds = load_json_strict(CONFIG / "action_thresholds.json")
@@ -772,6 +810,13 @@ def validate_existing() -> None:
         raise ContractError("docs/data/latest.json diverges from signals/latest.json")
     if canonical_json(signal) != canonical_json(archive_signal):
         raise ContractError("archive signal diverges from latest signal")
+    docs_observation = load_json_strict(
+        ROOT / "docs" / "data" / "observations" / "tsmc.json"
+    )
+    validate_document(docs_observation, SCHEMAS / "observed-facts.schema.json")
+    validate_observed_facts_contract(docs_observation, sources)
+    if canonical_json(observation) != canonical_json(docs_observation):
+        raise ContractError("TSMC Pages observation diverges from source snapshot")
     run_id = signal["run"]["run_id"]
     year, month, _ = signal["run"]["as_of"].split("-")
     run_record = load_json_strict(

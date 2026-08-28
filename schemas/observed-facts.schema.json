@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trionnemesis.github.io/StockmarketAgent/schemas/observed-facts.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "instrument_id", "symbol", "name_zh", "as_of", "fetched_at", "mode", "used_in_signal", "automated_refresh_enabled", "attribution", "collection_policy", "normalization", "resources", "facts", "warnings"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "instrument_id": {"const": "TW:STOCK:2330"},
+    "symbol": {"const": "2330"},
+    "name_zh": {"const": "台積電"},
+    "as_of": {"type": "string", "format": "date"},
+    "fetched_at": {"type": "string", "format": "date-time"},
+    "mode": {"const": "observed_research_snapshot"},
+    "used_in_signal": {"const": false},
+    "automated_refresh_enabled": {"const": false},
+    "attribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publisher", "license_name", "license_url", "terms_url", "api_documentation_url", "statement"],
+      "properties": {
+        "publisher": {"type": "string", "minLength": 1},
+        "license_name": {"const": "政府資料開放授權條款－第1版"},
+        "license_url": {"const": "https://data.gov.tw/license"},
+        "terms_url": {"const": "https://www.twse.com.tw/zh/terms/use.html"},
+        "api_documentation_url": {"const": "https://openapi.twse.com.tw/v1/swagger.json"},
+        "statement": {"type": "string", "minLength": 1}
+      }
+    },
+    "collection_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["interface", "html_scraping", "minimum_interval_seconds", "user_agent", "robots_url", "robots_status", "basis"],
+      "properties": {
+        "interface": {"const": "documented_openapi"},
+        "html_scraping": {"const": false},
+        "minimum_interval_seconds": {"type": "integer", "minimum": 1},
+        "user_agent": {"type": "string", "minLength": 1},
+        "robots_url": {"type": "string", "pattern": "^https://"},
+        "robots_status": {"enum": ["not_published_404_checked_2026-08-28"]},
+        "basis": {"type": "string", "minLength": 1}
+      }
+    },
+    "normalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["roc_calendar", "financial_source_unit", "financial_display_unit", "ratio_rounding_decimals"],
+      "properties": {
+        "roc_calendar": {"type": "string", "minLength": 1},
+        "financial_source_unit": {"const": "TWD thousands"},
+        "financial_display_unit": {"const": "TWD millions"},
+        "ratio_rounding_decimals": {"const": 2}
+      }
+    },
+    "resources": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["resource_id", "source_id", "endpoint", "dataset_url", "observed_at", "records_received", "content_sha256", "etag", "last_modified", "raw_retained"],
+        "properties": {
+          "resource_id": {"enum": ["eod_prices", "valuation", "monthly_revenue", "quarterly_income", "balance_sheet"]},
+          "source_id": {"enum": ["TWSE_OGL_EOD", "TWSE_OGL_FINANCIALS"]},
+          "endpoint": {"type": "string", "pattern": "^https://openapi\\.twse\\.com\\.tw/v1/"},
+          "dataset_url": {"type": "string", "pattern": "^https://data\\.gov\\.tw/dataset/"},
+          "observed_at": {"type": "string", "format": "date"},
+          "records_received": {"type": "integer", "minimum": 1},
+          "content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "etag": {"type": ["string", "null"]},
+          "last_modified": {"type": ["string", "null"]},
+          "raw_retained": {"const": false}
+        }
+      }
+    },
+    "facts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["market_session", "valuation", "monthly_revenue", "quarterly_income", "balance_sheet"],
+      "properties": {
+        "market_session": {
+          "type": "object", "additionalProperties": false,
+          "required": ["source_resource_id", "date", "currency", "open", "high", "low", "close", "change", "volume_shares", "trade_value_twd", "transaction_count"],
+          "properties": {
+            "source_resource_id": {"const": "eod_prices"}, "date": {"type": "string", "format": "date"}, "currency": {"const": "TWD"},
+            "open": {"type": "number", "minimum": 0}, "high": {"type": "number", "minimum": 0}, "low": {"type": "number", "minimum": 0}, "close": {"type": "number", "minimum": 0}, "change": {"type": "number"},
+            "volume_shares": {"type": "integer", "minimum": 0}, "trade_value_twd": {"type": "integer", "minimum": 0}, "transaction_count": {"type": "integer", "minimum": 0}
+          }
+        },
+        "valuation": {
+          "type": "object", "additionalProperties": false,
+          "required": ["source_resource_id", "date", "pe_ratio", "pb_ratio", "dividend_yield_percent"],
+          "properties": {
+            "source_resource_id": {"const": "valuation"}, "date": {"type": "string", "format": "date"},
+            "pe_ratio": {"type": "number", "minimum": 0}, "pb_ratio": {"type": "number", "minimum": 0}, "dividend_yield_percent": {"type": "number", "minimum": 0}
+          }
+        },
+        "monthly_revenue": {
+          "type": "object", "additionalProperties": false,
+          "required": ["source_resource_id", "published_date", "period", "currency", "unit", "revenue_twd_million", "previous_month_twd_million", "prior_year_month_twd_million", "month_over_month_percent", "year_over_year_percent", "year_to_date_twd_million", "year_to_date_yoy_percent", "audit_status"],
+          "properties": {
+            "source_resource_id": {"const": "monthly_revenue"}, "published_date": {"type": "string", "format": "date"}, "period": {"type": "string", "pattern": "^\\d{4}-\\d{2}$"}, "currency": {"const": "TWD"}, "unit": {"const": "million"},
+            "revenue_twd_million": {"type": "number", "minimum": 0}, "previous_month_twd_million": {"type": "number", "minimum": 0}, "prior_year_month_twd_million": {"type": "number", "minimum": 0},
+            "month_over_month_percent": {"type": "number"}, "year_over_year_percent": {"type": "number"}, "year_to_date_twd_million": {"type": "number", "minimum": 0}, "year_to_date_yoy_percent": {"type": "number"},
+            "audit_status": {"const": "company_reported_unaudited"}
+          }
+        },
+        "quarterly_income": {
+          "type": "object", "additionalProperties": false,
+          "required": ["source_resource_id", "published_date", "period", "period_scope", "currency", "unit", "revenue_twd_million", "gross_profit_twd_million", "operating_income_twd_million", "net_income_parent_twd_million", "basic_eps_twd", "gross_margin_percent", "operating_margin_percent", "net_margin_parent_percent"],
+          "properties": {
+            "source_resource_id": {"const": "quarterly_income"}, "published_date": {"type": "string", "format": "date"}, "period": {"type": "string", "pattern": "^\\d{4}-Q[1-4]$"}, "period_scope": {"const": "year_to_date"}, "currency": {"const": "TWD"}, "unit": {"const": "million"},
+            "revenue_twd_million": {"type": "number", "minimum": 0}, "gross_profit_twd_million": {"type": "number"}, "operating_income_twd_million": {"type": "number"}, "net_income_parent_twd_million": {"type": "number"}, "basic_eps_twd": {"type": "number"},
+            "gross_margin_percent": {"type": "number"}, "operating_margin_percent": {"type": "number"}, "net_margin_parent_percent": {"type": "number"}
+          }
+        },
+        "balance_sheet": {
+          "type": "object", "additionalProperties": false,
+          "required": ["source_resource_id", "published_date", "period", "currency", "unit", "total_assets_twd_million", "total_liabilities_twd_million", "total_equity_twd_million", "book_value_per_share_twd", "liabilities_to_assets_percent"],
+          "properties": {
+            "source_resource_id": {"const": "balance_sheet"}, "published_date": {"type": "string", "format": "date"}, "period": {"type": "string", "pattern": "^\\d{4}-Q[1-4]$"}, "currency": {"const": "TWD"}, "unit": {"const": "million"},
+            "total_assets_twd_million": {"type": "number", "minimum": 0}, "total_liabilities_twd_million": {"type": "number", "minimum": 0}, "total_equity_twd_million": {"type": "number", "minimum": 0}, "book_value_per_share_twd": {"type": "number"}, "liabilities_to_assets_percent": {"type": "number", "minimum": 0, "maximum": 100}
+          }
+        }
+      }
+    },
+    "warnings": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}

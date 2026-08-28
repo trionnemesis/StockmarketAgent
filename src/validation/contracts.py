@@ -327,6 +327,75 @@ def validate_source_contract(sources: dict[str, Any]) -> None:
             raise ContractError(f"{source['source_id']}: metadata-only license mismatch")
 
 
+def validate_observed_facts_contract(
+    observation: dict[str, Any], sources: dict[str, Any]
+) -> None:
+    if observation["used_in_signal"] or observation["automated_refresh_enabled"]:
+        raise ContractError("official observation must remain outside signals and schedules")
+    if observation["collection_policy"]["html_scraping"]:
+        raise ContractError("official observation cannot use generic HTML scraping")
+    if observation["collection_policy"]["minimum_interval_seconds"] < 2:
+        raise ContractError("TWSE OpenAPI collection interval must be at least two seconds")
+
+    fetched_at = _parse_aware_datetime(observation["fetched_at"], "observation fetched_at")
+    as_of = date.fromisoformat(observation["as_of"])
+    if as_of > fetched_at.date():
+        raise ContractError("observation as_of cannot be after fetched_at")
+
+    source_map = {item["source_id"]: item for item in sources["sources"]}
+    expected_bindings = {
+        "eod_prices": "TWSE_OGL_EOD",
+        "valuation": "TWSE_OGL_EOD",
+        "monthly_revenue": "TWSE_OGL_FINANCIALS",
+        "quarterly_income": "TWSE_OGL_FINANCIALS",
+        "balance_sheet": "TWSE_OGL_FINANCIALS",
+    }
+    resource_map = {item["resource_id"]: item for item in observation["resources"]}
+    if len(resource_map) != len(observation["resources"]):
+        raise ContractError("official observation resource_id values must be unique")
+    if set(resource_map) != set(expected_bindings):
+        raise ContractError("official observation resource set is incomplete")
+    for resource_id, expected_source_id in expected_bindings.items():
+        resource = resource_map[resource_id]
+        if resource["source_id"] != expected_source_id:
+            raise ContractError(f"{resource_id}: source binding mismatch")
+        source = source_map.get(expected_source_id)
+        if source is None:
+            raise ContractError(f"{resource_id}: source is missing from source policy")
+        if source["license_status"] != "open_with_attribution":
+            raise ContractError(f"{resource_id}: source is not open with attribution")
+        if source["pages_policy"] != "raw_with_attribution_allowed":
+            raise ContractError(f"{resource_id}: source cannot be published to Pages")
+        if date.fromisoformat(resource["observed_at"]) > as_of:
+            raise ContractError(f"{resource_id}: resource observation is after as_of")
+        if resource["raw_retained"]:
+            raise ContractError(f"{resource_id}: full-market raw payload cannot be retained")
+
+    facts = observation["facts"]
+    for fact_name, fact in facts.items():
+        resource_id = fact["source_resource_id"]
+        if resource_id not in resource_map:
+            raise ContractError(f"{fact_name}: fact references an unknown resource")
+        fact_date = fact.get("date", fact.get("published_date"))
+        if date.fromisoformat(fact_date) > as_of:
+            raise ContractError(f"{fact_name}: fact date is after as_of")
+
+    market = facts["market_session"]
+    if not (
+        market["low"] <= market["open"] <= market["high"]
+        and market["low"] <= market["close"] <= market["high"]
+    ):
+        raise ContractError("market OHLC values are inconsistent")
+    if facts["valuation"]["date"] != market["date"]:
+        raise ContractError("valuation and EOD snapshots must use the same session")
+    if facts["quarterly_income"]["period"] != facts["balance_sheet"]["period"]:
+        raise ContractError("income statement and balance sheet periods disagree")
+    if facts["monthly_revenue"]["period"] > observation["as_of"][:7]:
+        raise ContractError("monthly revenue period is after observation month")
+    if "政府資料開放授權條款" not in observation["attribution"]["statement"]:
+        raise ContractError("official observation lacks visible OGL attribution")
+
+
 def _validate_evidence_refs(refs: list[dict[str, Any]], source_ids: set[str], as_of: str) -> None:
     for ref in refs:
         if ref["source_id"] not in source_ids:
