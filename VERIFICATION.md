@@ -24,7 +24,12 @@ This candidate maps the policy-gated TWSE OGL observation pattern to all ten Tai
 - Remote branch artifact build
   - [GitHub Actions run 33147291878](https://github.com/trionnemesis/StockmarketAgent/actions/runs/33147291878) succeeded. Its branch-only bootstrap workflow removed itself before the output commit; the final tree contains only the normal Quality and Deploy Pages workflows.
 
-The observation matrix is data-quality context only: every snapshot and evidence assessment remains `used_in_signal=false`, automation remains disabled, and the 3M synthetic stance is explicitly unchanged by official facts. Remote PR checks and the post-merge public Pages verification remain separate release gates.
+The observation matrix is data-quality context only: every snapshot and evidence assessment remains `used_in_signal=false`, automation remains disabled, and the 3M synthetic stance is explicitly unchanged by official facts. ### Remote release
+
+- [PR #6](https://github.com/trionnemesis/StockmarketAgent/pull/6) merged with fixed head `100b821c22aad063173a5cbfe039132bb97fefcf` into main commit `4f2f385e7da176b8821288b885c44fc14f496586`.
+- [PR Quality run 33147448649](https://github.com/trionnemesis/StockmarketAgent/actions/runs/33147448649) and [post-merge Quality run 33147477743](https://github.com/trionnemesis/StockmarketAgent/actions/runs/33147477743) both completed successfully.
+- [Deploy Pages run 33147477702](https://github.com/trionnemesis/StockmarketAgent/actions/runs/33147477702) completed successfully.
+- [Public Pages verification run 33147659528](https://github.com/trionnemesis/StockmarketAgent/actions/runs/33147659528) fetched 22 public routes: the Taiwan matrix, all ten Taiwan instrument pages, all ten observation JSON files, and latest signal JSON. Every route returned HTTP 200 with the expected content type and bytes identical to merge commit `4f2f385e7da176b8821288b885c44fc14f496586`; the matrix contained exactly ten rows and all official evidence remained signal-isolated.
 
 ## TSMC official-observation candidate (2026-08-28)
 
