@@ -290,7 +290,7 @@ def build_outputs(signal: dict[str, Any], sources: dict[str, Any], review: dict[
         ROOT / "docs" / "source-feasibility.md": sources_md,
         ROOT / "docs" / "universe-review.html": render_universe_review(review).encode("utf-8"),
         ROOT / "docs" / "source-feasibility.html": render_source_feasibility(sources).encode("utf-8"),
-        ROOT / "docs" / "index.html": render_home(signal).encode("utf-8"),
+        ROOT / "docs" / "index.html": render_home(signal, review, sources).encode("utf-8"),
         ROOT / "docs" / "methodology.html": render_methodology(signal).encode("utf-8"),
         ROOT / "docs" / "status.html": render_status(signal).encode("utf-8"),
         ROOT / "docs" / "history.html": render_history(history).encode("utf-8"),

@@ -149,8 +149,20 @@ class GeneratedArtifactTests(unittest.TestCase):
         self.assertTrue(all("/runs/" in path or path.startswith("agent-runs/") for path in self.run_record["outputs"]))
 
     def test_review_and_source_pages_are_human_visible(self) -> None:
+        home = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
         review = (ROOT / "docs" / "universe-review.html").read_text(encoding="utf-8")
         sources = (ROOT / "docs" / "source-feasibility.html").read_text(encoding="utf-8")
+        self.assertIn("部署版本可閱讀的查證資料", home)
+        self.assertIn(
+            f">{len(self.review['instruments'])}</strong><small>全部維持 proposed",
+            home,
+        )
+        self.assertIn(
+            f">{len(self.sources['sources'])}</strong><small>含授權與 Pages policy",
+            home,
+        )
+        self.assertIn("href=\"universe-review.html\"", home)
+        self.assertIn("href=\"source-feasibility.html\"", home)
         self.assertIn(self.review["evidence_as_of"], review)
         self.assertIn(self.review["instruments"][0]["selection_rationale"], review)
         self.assertIn(self.sources["sources"][0]["source_id"], sources)

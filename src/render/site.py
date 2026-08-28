@@ -173,9 +173,38 @@ def _instrument_rows(instruments: list[dict[str, Any]], prefix: str) -> str:
     return "".join(rows)
 
 
-def render_home(signal: dict[str, Any]) -> str:
+def render_home(
+    signal: dict[str, Any], review: dict[str, Any], sources: dict[str, Any]
+) -> str:
     run = signal["run"]
     summary = signal["summary"]
+    review_counts = {
+        "verified": len(review["instruments"]),
+        "tracking_indices": sum(
+            1 for item in review["instruments"] if "tracking_index" in item
+        ),
+        "sources": len(sources["sources"]),
+        "overlaps": len(review["overlap_groups"]),
+        "limited_history": sum(
+            1
+            for item in review["instruments"]
+            if item["history"]["live_age_status"] == "limited"
+        ),
+        "owner_decisions": len(review["owner_decisions"]),
+    }
+    review_cards = "".join(
+        f"""<article class="metric-card">
+  <span>{_e(label)}</span><strong>{review_counts[key]}</strong><small>{_e(note)}</small>
+</article>"""
+        for key, label, note in (
+            ("verified", "已審查標的", "全部維持 proposed"),
+            ("tracking_indices", "ETF tracking index", "與投資組合基準分離"),
+            ("sources", "來源紀錄", "含授權與 Pages policy"),
+            ("overlaps", "重疊群組", "等待集中度門檻"),
+            ("limited_history", "短 live history", "00919、00965"),
+            ("owner_decisions", "Owner decisions", "正式啟用前必須決定"),
+        )
+    )
     stance_cards = "".join(
         f"""<article class="metric-card">
   <span>{stance}</span><strong>{summary['stances'][stance]}</strong>
@@ -228,6 +257,19 @@ def render_home(signal: dict[str, Any]) -> str:
     <div><span>資料型態</span><strong>Fixed fixture</strong></div>
     <div><span>正式核准標的</span><strong>{summary['approved_enabled_count']} / 30</strong></div>
     <div><span>方向性訊號</span><strong>已關閉</strong></div>
+  </section>
+  <section class="section-card" id="evidence-review">
+    <div class="section-heading">
+      <div><p class="kicker">EVIDENCE REVIEW · {_e(review['evidence_as_of'])}</p><h2>部署版本可閱讀的查證資料</h2></div>
+      <span class="pill pill-neutral">owner decision required</span>
+    </div>
+    <p class="lead">30 檔候選的身分、歷史、流動性、tracking index、重疊與模型適用性已公開；這些是審查資料，不是即時行情或投資訊號。</p>
+    <div class="metric-grid">{review_cards}</div>
+    <div class="hero-actions">
+      <a class="button button-primary" href="universe-review.html">閱讀 30 檔證據審查</a>
+      <a class="button button-ghost" href="source-feasibility.html">查看來源可行性</a>
+    </div>
+    <div class="notice" role="note"><strong>安全邊界仍啟用</strong><span>所有標的維持 proposed / disabled；live adapters 與 BUY／SELL 均未啟用。</span></div>
   </section>
   <section class="section-card">
     <div class="section-heading">
