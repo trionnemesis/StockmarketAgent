@@ -2,6 +2,30 @@
 
 Observed on 2026-08-27 and re-verified on 2026-08-28. This record distinguishes generated, committed, pushed, deployed, and publicly reachable states.
 
+
+## Taiwan 10-candidate official-evidence matrix (2026-08-28)
+
+This candidate maps the policy-gated TWSE OGL observation pattern to all ten Taiwan candidates. Five stocks receive EOD, valuation, monthly revenue, and the applicable general-industry or financial-holding statements; five ETFs receive EOD and fund-profile facts. Each observation adds data-quality supporting evidence, counter-evidence, and invalidation conditions while remaining isolated from synthetic research attitudes.
+
+### Acceptance evidence
+
+- `python3 -m src.ingestion.twse_openapi`
+  - success; eight documented OpenAPI resources fetched sequentially with a declared User-Agent and at least two seconds between requests; ten normalized snapshots written without retaining full-market payloads.
+- Remote source revision `3dc74da28c830d9dfe21fd74bf7a5e357f875683`
+  - exact remote tree used by the deterministic build; run `20260827T120000Z-research-bb91267a`; 30 instruments; `research_only`; 84 generated outputs.
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py' -v`
+  - 69 tests passed locally and again on GitHub Actions. Coverage includes all-ten membership, schema and source bindings, general-industry／financial-holding／ETF routing, evidence lists, Pages JSON mirrors, ten matrix rows, internal links, and synthetic-provenance isolation.
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m src.pipeline validate`
+  - strict signal, source, observed-facts, generated-artifact, immutable-run, and source-revision consistency passed locally and on GitHub Actions.
+- Python compilation, workflow YAML parsing, and `git diff --check`
+  - passed.
+- Local GitHub Pages smoke test
+  - HTTP 200 with expected content types for home, Taiwan matrix, representative general stock, financial-holding and foreign-constituent ETF pages, two observation JSON files, latest signal JSON, source feasibility, and status.
+- Remote branch artifact build
+  - [GitHub Actions run 33147291878](https://github.com/trionnemesis/StockmarketAgent/actions/runs/33147291878) succeeded. Its branch-only bootstrap workflow removed itself before the output commit; the final tree contains only the normal Quality and Deploy Pages workflows.
+
+The observation matrix is data-quality context only: every snapshot and evidence assessment remains `used_in_signal=false`, automation remains disabled, and the 3M synthetic stance is explicitly unchanged by official facts. Remote PR checks and the post-merge public Pages verification remain separate release gates.
+
 ## TSMC official-observation candidate (2026-08-28)
 
 This candidate adds a manually refreshed, policy-gated snapshot of five documented TWSE OpenAPI resources to the 2330 page. The normalized facts are separately labeled, attributed under Taiwan Open Government Data License 1.0, and contractually excluded from synthetic scores, research attitudes, production routing, and trade execution.
