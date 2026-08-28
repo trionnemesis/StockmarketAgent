@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import re
 import unittest
 from html.parser import HTMLParser
@@ -8,7 +9,7 @@ from urllib.parse import unquote, urlsplit
 
 from src.pipeline import ROOT, build_outputs, build_signal, load_inputs
 from src.render.markdown import render_report
-from src.render.site import render_history
+from src.render.site import render_history, render_home
 
 
 class LinkCollector(HTMLParser):
@@ -165,13 +166,23 @@ class GeneratedArtifactTests(unittest.TestCase):
             item["symbol"]
             for item in self.review["instruments"]
             if item["history"]["live_age_status"] == "limited"
-        )
+        ) or "無"
         self.assertIn(f"<small>{limited_symbols}</small>", home)
         self.assertIn("href=\"universe-review.html\"", home)
         self.assertIn("href=\"source-feasibility.html\"", home)
         self.assertIn(self.review["evidence_as_of"], review)
         self.assertIn(self.review["instruments"][0]["selection_rationale"], review)
         self.assertIn(self.sources["sources"][0]["source_id"], sources)
+
+    def test_home_handles_zero_limited_history_instruments(self) -> None:
+        review = copy.deepcopy(self.review)
+        for item in review["instruments"]:
+            item["history"]["live_age_status"] = "sufficient"
+        home = render_home(self.signal, review, self.sources)
+        self.assertIn(
+            "<span>短 live history</span><strong>0</strong><small>無</small>",
+            home,
+        )
 
     def test_history_renderer_enumerates_dated_archives(self) -> None:
         older = {
