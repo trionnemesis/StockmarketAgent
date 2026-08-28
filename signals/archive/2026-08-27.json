@@ -4876,10 +4876,10 @@
     "data_kind": "fixture",
     "generated_at": "2026-08-27T12:00:00Z",
     "git_sha": "fixture",
-    "input_hash": "562e0e02da6c72f6f16e56fb88feabdee186437e61a534244311f42d54c3a51b",
+    "input_hash": "d489da9640b3ea0953101203456a8dc956f6c83d6f86873ccd5dd743d601605e",
     "mode": "research_only",
     "model_version": "0.1.0-fixture",
-    "run_id": "20260827T120000Z-fixture-562e0e02"
+    "run_id": "20260827T120000Z-fixture-d489da96"
   },
   "schema_version": "1.0.0",
   "source_manifest": [

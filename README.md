@@ -19,6 +19,7 @@
 - Latest + archive 輸出、fixture provenance、Agent Run record 與 staged rollback-aware 寫入。
 - 零 Python 第三方依賴的 contract、integration、link、consistency 與 secret-pattern tests。
 - GitHub Actions quality gate 與 GitHub Pages deployment。
+- 首頁直接呈現 evidence review 摘要與入口；數量由已驗證 JSON 動態產生，不在 HTML 手寫。
 
 ## B.1 Universe evidence review
 

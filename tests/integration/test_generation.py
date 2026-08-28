@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import re
 import unittest
 from html.parser import HTMLParser
@@ -8,7 +9,7 @@ from urllib.parse import unquote, urlsplit
 
 from src.pipeline import ROOT, build_outputs, build_signal, load_inputs
 from src.render.markdown import render_report
-from src.render.site import render_history
+from src.render.site import render_history, render_home
 
 
 class LinkCollector(HTMLParser):
@@ -149,11 +150,39 @@ class GeneratedArtifactTests(unittest.TestCase):
         self.assertTrue(all("/runs/" in path or path.startswith("agent-runs/") for path in self.run_record["outputs"]))
 
     def test_review_and_source_pages_are_human_visible(self) -> None:
+        home = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
         review = (ROOT / "docs" / "universe-review.html").read_text(encoding="utf-8")
         sources = (ROOT / "docs" / "source-feasibility.html").read_text(encoding="utf-8")
+        self.assertIn("部署版本可閱讀的查證資料", home)
+        self.assertIn(
+            f">{len(self.review['instruments'])}</strong><small>全部維持 proposed",
+            home,
+        )
+        self.assertIn(
+            f">{len(self.sources['sources'])}</strong><small>含授權與 Pages policy",
+            home,
+        )
+        limited_symbols = "、".join(
+            item["symbol"]
+            for item in self.review["instruments"]
+            if item["history"]["live_age_status"] == "limited"
+        ) or "無"
+        self.assertIn(f"<small>{limited_symbols}</small>", home)
+        self.assertIn("href=\"universe-review.html\"", home)
+        self.assertIn("href=\"source-feasibility.html\"", home)
         self.assertIn(self.review["evidence_as_of"], review)
         self.assertIn(self.review["instruments"][0]["selection_rationale"], review)
         self.assertIn(self.sources["sources"][0]["source_id"], sources)
+
+    def test_home_handles_zero_limited_history_instruments(self) -> None:
+        review = copy.deepcopy(self.review)
+        for item in review["instruments"]:
+            item["history"]["live_age_status"] = "sufficient"
+        home = render_home(self.signal, review, self.sources)
+        self.assertIn(
+            "<span>短 live history</span><strong>0</strong><small>無</small>",
+            home,
+        )
 
     def test_history_renderer_enumerates_dated_archives(self) -> None:
         older = {
