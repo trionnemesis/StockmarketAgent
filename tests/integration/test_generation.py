@@ -161,6 +161,12 @@ class GeneratedArtifactTests(unittest.TestCase):
             f">{len(self.sources['sources'])}</strong><small>含授權與 Pages policy",
             home,
         )
+        limited_symbols = "、".join(
+            item["symbol"]
+            for item in self.review["instruments"]
+            if item["history"]["live_age_status"] == "limited"
+        )
+        self.assertIn(f"<small>{limited_symbols}</small>", home)
         self.assertIn("href=\"universe-review.html\"", home)
         self.assertIn("href=\"source-feasibility.html\"", home)
         self.assertIn(self.review["evidence_as_of"], review)

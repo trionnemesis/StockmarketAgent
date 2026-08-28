@@ -178,6 +178,12 @@ def render_home(
 ) -> str:
     run = signal["run"]
     summary = signal["summary"]
+    limited_history = [
+        item
+        for item in review["instruments"]
+        if item["history"]["live_age_status"] == "limited"
+    ]
+    limited_history_note = "、".join(item["symbol"] for item in limited_history) or "無"
     review_counts = {
         "verified": len(review["instruments"]),
         "tracking_indices": sum(
@@ -185,11 +191,7 @@ def render_home(
         ),
         "sources": len(sources["sources"]),
         "overlaps": len(review["overlap_groups"]),
-        "limited_history": sum(
-            1
-            for item in review["instruments"]
-            if item["history"]["live_age_status"] == "limited"
-        ),
+        "limited_history": len(limited_history),
         "owner_decisions": len(review["owner_decisions"]),
     }
     review_cards = "".join(
@@ -201,7 +203,7 @@ def render_home(
             ("tracking_indices", "ETF tracking index", "與投資組合基準分離"),
             ("sources", "來源紀錄", "含授權與 Pages policy"),
             ("overlaps", "重疊群組", "等待集中度門檻"),
-            ("limited_history", "短 live history", "00919、00965"),
+            ("limited_history", "短 live history", limited_history_note),
             ("owner_decisions", "Owner decisions", "正式啟用前必須決定"),
         )
     )
