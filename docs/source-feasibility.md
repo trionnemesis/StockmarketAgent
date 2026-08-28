@@ -68,10 +68,10 @@
   - Limits: Numeric quota not published; short-period bulk access is prohibited. History: Date-list search under ten years; major periodic filings generally ten years.
   - Retention: Retain normalized filing metadata and permitted documents with accession dates. Redistribution: Derived summaries with attribution; document reuse follows filing terms.
   - Fallback: Issuer filings and a licensed disclosure feed. Gaps: API key, taxonomy drift, and fund-holdings normalization need implementation.
-| [JPX_ETF_REFERENCE](https://www.jpx.co.jp/english/equities/products/etfs/issues/01.html) | JP | listing_metadata, etf_fund_data | manual_download / False | not_supported | [metadata_only](https://www.jpx.co.jp/english/corporate/terms-of-use/index.html) / metadata_only | reference_only |
-  - Limits: No automated collection approved. History: Current facts; no immutable historical holdings API.
-  - Retention: Retain citation metadata only. Redistribution: Fund identity and links only.
-  - Fallback: Issuer product pages and EDINET filings. Gaps: No open PIT holdings, NAV, AUM, or spread history.
+| [JPX_ETF_REFERENCE](https://www.jpx.co.jp/english/equities/products/etfs/issues/01.html) | JP | listing_metadata, etf_fund_data, benchmark | manual_download / False | not_supported | [metadata_only](https://www.jpx.co.jp/english/corporate/terms-of-use/index.html) / metadata_only | reference_only |
+  - Limits: No automated collection approved. History: Current facts and tracking-index identity; no immutable historical holdings or index-series API.
+  - Retention: Retain citation metadata only. Redistribution: Fund and tracking-index identity with source links only.
+  - Fallback: Issuer product pages and EDINET filings. Gaps: No open PIT holdings, NAV, AUM, spread history, or benchmark series.
 | [JPX_CALENDAR_REFERENCE](https://www.jpx.co.jp/english/corporate/about-jpx/calendar/) | JP | market_calendar | manual_download / False | not_supported | [metadata_only](https://www.jpx.co.jp/english/corporate/terms-of-use/index.html) / metadata_only | reference_only |
   - Limits: No automated collection approved. History: Current and next year only.
   - Retention: Retain citation and manually versioned schedule metadata. Redistribution: Links and derived schedule summary only.
@@ -108,10 +108,10 @@
   - Limits: Subscription-specific. History: Product advertises 2012-05-01-present.
   - Retention: Contract-specific. Redistribution: External redistribution requires additional terms and fees; none are approved.
   - Fallback: SEC accessions and issuer notices. Gaps: Cboe BZX-only venue scope and revision vintages are undecided.
-| [STATE_STREET_ETF_REFERENCE](https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-500-etf-trust-spy) | US | listing_metadata, etf_fund_data | manual_download / False | not_supported | [metadata_only](https://www.ssga.com/us/en/intermediary/footer/terms-of-use) / metadata_only | reference_only |
-  - Limits: No automated collection approved. History: Current product metadata; no approved PIT holdings archive.
-  - Retention: Retain citation metadata only. Redistribution: Product identity and links only.
-  - Fallback: SEC fund filings. Gaps: Holdings, AUM, fees, and trading history need authorized vintages.
+| [STATE_STREET_ETF_REFERENCE](https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-500-etf-trust-spy) | US | listing_metadata, etf_fund_data, benchmark | manual_download / False | not_supported | [metadata_only](https://www.ssga.com/us/en/intermediary/footer/terms-of-use) / metadata_only | reference_only |
+  - Limits: No automated collection approved. History: Current product and tracking-index identity; no approved PIT holdings or benchmark-series archive.
+  - Retention: Retain citation metadata only. Redistribution: Product and tracking-index identity with source links only.
+  - Fallback: SEC fund filings. Gaps: Holdings, AUM, fees, trading history, and benchmark series need authorized vintages.
 | [INVESCO_ETF_REFERENCE](https://www.invesco.com/us/en/financial-products/etfs/invesco-qqq-trust-series-1.html) | US | listing_metadata, etf_fund_data | manual_download / False | not_supported | [metadata_only](https://www.invesco.com/us/en/footer/terms-of-use.html) / metadata_only | reference_only |
   - Limits: No automated collection approved. History: Current product metadata; no approved PIT holdings archive.
   - Retention: Retain citation metadata only. Redistribution: Product identity and links only.
@@ -159,7 +159,7 @@
 
 - `listing_metadata` — **conditional** — TWSE_OGL_COMPANY — Official identity snapshots; historical vintages incomplete.
 - `eod_prices` — **conditional** — TWSE_OGL_EOD — Current OGL snapshot only; full history unresolved.
-- `corporate_actions` — **conditional** — TWSE_OGL_ACTIONS, TWSE_OGL_COMPANY — Incomplete golden-source coverage.
+- `corporate_actions` — **conditional** — TWSE_OGL_ACTIONS — Incomplete golden-source coverage; no compatible fallback is approved.
 - `filings_financials` — **conditional** — TWSE_OGL_COMPANY — Archive every revision for PIT use.
 - `etf_fund_data` — **not_applicable** — N/A — Not applicable to stocks.
 - `market_calendar` — **ready** — TWSE_OGL_CALENDAR — Archive annual versions.
@@ -171,7 +171,7 @@
 - `listing_metadata` — **conditional** — TWSE_OGL_ETF — Current official ETF identity snapshots.
 - `eod_prices` — **conditional** — TWSE_OGL_EOD — Current OGL snapshot only.
 - `corporate_actions` — **conditional** — TWSE_OGL_ACTIONS — Fund events and distributions need fuller history.
-- `filings_financials` — **conditional** — SITCA_OGL_ETF, TWSE_OGL_ETF — Fund disclosure history is incomplete.
+- `filings_financials` — **conditional** — SITCA_OGL_ETF — Fund disclosure history is incomplete; no compatible fallback is approved.
 - `etf_fund_data` — **conditional** — TWSE_OGL_ETF, SITCA_OGL_ETF — NAV and basics available; PIT holdings remain a gap.
 - `market_calendar` — **ready** — TWSE_OGL_CALENDAR — Archive annual versions.
 - `fx` — **conditional** — CBC_OGL_FX, FED_H10_FX — Required for 00965 and cross-market comparison.

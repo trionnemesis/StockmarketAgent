@@ -172,6 +172,21 @@ class EvidenceReviewContractTests(unittest.TestCase):
         validate_source_contract(self.sources)
         validate_review_contract(self.universe, self.benchmarks, self.sources, self.review)
 
+    def test_rejects_incompatible_fallback_source(self) -> None:
+        mutated = copy.deepcopy(self.sources)
+        policy = next(item for item in mutated["policies"] if item["source_policy_id"] == "TW_STOCK_V1")
+        corporate_actions = next(item for item in policy["coverage"] if item["data_class"] == "corporate_actions")
+        corporate_actions["fallback_source_ids"] = ["TWSE_OGL_COMPANY"]
+        with self.assertRaises(ContractError):
+            validate_source_contract(mutated)
+
+    def test_public_evidence_never_uses_pages_prohibited_source(self) -> None:
+        pages_policy = {item["source_id"]: item["pages_policy"] for item in self.sources["sources"]}
+        refs = [ref for item in self.review["instruments"] for ref in item["evidence"]]
+        refs.extend(ref for item in self.review["overlap_groups"] for ref in item["evidence"])
+        refs.extend(ref for item in self.review["issuer_concentration"] for ref in item["evidence"])
+        self.assertTrue(all(pages_policy[ref["source_id"]] != "not_allowed" for ref in refs))
+
     def test_etfs_have_exact_tracking_index_source(self) -> None:
         for item in self.review["instruments"]:
             self.assertEqual("tracking_index" in item, item["asset_type"] == "etf")

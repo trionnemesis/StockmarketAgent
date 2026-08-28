@@ -119,7 +119,7 @@ Evidence: [JPX_LISTING_REFERENCE](https://group.ntt/en/group/at-a-glance.html)
 **Selection rationale:** TOPIX 廣泛市場候選；需核對追蹤誤差與費用。
 
 Model routing: h_model=not_applicable (此模型不適用此資產類型或目前研究問題。); reverse_dcf=not_applicable (此模型不適用此資產類型或目前研究問題。); etf_look_through=conditional (待 point-in-time 資料、回測與 owner 核准後才可適用。); cobweb_supply_demand=not_applicable (此模型不適用此資產類型或目前研究問題。)
-Evidence: [JPX_ETF_REFERENCE](https://nextfunds.jp/en/lineup/1306/), [JPX_BENCHMARK_CONTRACT](https://nextfunds.jp/en/lineup/1306/)
+Evidence: [JPX_ETF_REFERENCE](https://nextfunds.jp/en/lineup/1306/), [JPX_ETF_REFERENCE](https://nextfunds.jp/en/lineup/1306/)
 
 | JP:ETF:1321 | verified | sufficient | blocked | quantitative_review_pending | retain_for_owner_review |
 
@@ -133,7 +133,7 @@ Evidence: [JPX_ETF_REFERENCE](https://nextfunds.jp/en/lineup/1321/), [NIKKEI_IND
 **Selection rationale:** 低成本 TOPIX 候選；需驗證持股歷史可得性。
 
 Model routing: h_model=not_applicable (此模型不適用此資產類型或目前研究問題。); reverse_dcf=not_applicable (此模型不適用此資產類型或目前研究問題。); etf_look_through=conditional (待 point-in-time 資料、回測與 owner 核准後才可適用。); cobweb_supply_demand=not_applicable (此模型不適用此資產類型或目前研究問題。)
-Evidence: [JPX_ETF_REFERENCE](https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund), [JPX_BENCHMARK_CONTRACT](https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund)
+Evidence: [JPX_ETF_REFERENCE](https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund), [JPX_ETF_REFERENCE](https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund)
 
 | JP:ETF:1489 | verified_after_correction | sufficient | blocked | quantitative_review_pending | retain_for_owner_review |
 
@@ -189,7 +189,7 @@ Evidence: [SEC_OPEN](https://www.sec.gov/edgar/browse/?CIK=200406&owner=exclude)
 **Selection rationale:** 美國大型股基準候選；需核對持股與費用。
 
 Model routing: h_model=not_applicable (此模型不適用此資產類型或目前研究問題。); reverse_dcf=not_applicable (此模型不適用此資產類型或目前研究問題。); etf_look_through=conditional (待 point-in-time 資料、回測與 owner 核准後才可適用。); cobweb_supply_demand=not_applicable (此模型不適用此資產類型或目前研究問題。)
-Evidence: [STATE_STREET_ETF_REFERENCE](https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy), [SPDJI_BENCHMARK_CONTRACT](https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy)
+Evidence: [STATE_STREET_ETF_REFERENCE](https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy), [STATE_STREET_ETF_REFERENCE](https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy)
 
 | US:ETF:QQQ | verified_after_correction | sufficient | blocked | quantitative_review_pending | retain_for_owner_review |
 
@@ -224,7 +224,7 @@ Evidence: [ISHARES_ETF_REFERENCE](https://www.ishares.com/us/products/239695/ish
 - **TW_TAIWAN50_DUPLICATION (high)**: 兩檔追蹤相同 FTSE TWSE Taiwan 50 Index。 Members: TW:ETF:0050, TW:ETF:006208. Evidence: [FTSE_TWSE_INDEX_REFERENCE](https://www.yuantaetfs.com/product/detail/0050/Basic_information)
 - **TW_TAIWAN50_SINGLE_STOCK_LOOKTHROUGH (high)**: 大型股 ETF 與三檔成分股存在 look-through 集中風險。 Members: TW:ETF:0050, TW:ETF:006208, TW:STOCK:2330, TW:STOCK:2454, TW:STOCK:2308. Evidence: [TWSE_OGL_ETF](https://www.twse.com.tw/en/ETFortune-institute/etfInfo/006208)
 - **TW_HIGH_DIVIDEND_FACTOR (medium)**: 兩檔皆屬台灣高股息策略但指數規則不同。 Members: TW:ETF:00878, TW:ETF:00919. Evidence: [TIP_INDEX_REFERENCE](https://taiwanindex.com.tw/en/indexes/IX0170)
-- **JP_TOPIX_DUPLICATION (high)**: 兩檔目前均以 TOPIX Total Return Index 為基準。 Members: JP:ETF:1306, JP:ETF:1475. Evidence: [JPX_BENCHMARK_CONTRACT](https://nextfunds.jp/en/lineup/1306/)
+- **JP_TOPIX_DUPLICATION (high)**: 兩檔目前均以 TOPIX Total Return Index 為基準。 Members: JP:ETF:1306, JP:ETF:1475. Evidence: [JPX_ETF_REFERENCE](https://nextfunds.jp/en/lineup/1306/)
 - **JP_BROAD_LARGE_CAP_OVERLAP (medium)**: TOPIX 與 Nikkei 225 broad-market 曝險存在交集。 Members: JP:ETF:1306, JP:ETF:1321, JP:ETF:1475. Evidence: [JPX_ETF_REFERENCE](https://nextfunds.jp/en/lineup/1321/)
 - **US_MEGA_CAP_TECH_LOOKTHROUGH (high)**: ETF look-through 與個股直接持有造成大型科技集中。 Members: US:ETF:SPY, US:ETF:QQQ, US:ETF:SMH, US:STOCK:NVDA, US:STOCK:MSFT, US:STOCK:GOOGL. Evidence: [INVESCO_ETF_REFERENCE](https://www.invesco.com/qqq-etf/en/about.html)
 

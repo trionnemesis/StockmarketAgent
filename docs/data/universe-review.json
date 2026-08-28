@@ -1162,7 +1162,7 @@
           ],
           "observed_at": "2026-08-27",
           "publication_use": "metadata_link_only",
-          "source_id": "JPX_BENCHMARK_CONTRACT",
+          "source_id": "JPX_ETF_REFERENCE",
           "url": "https://nextfunds.jp/en/lineup/1306/"
         }
       ],
@@ -1215,7 +1215,7 @@
         "name": "TOPIX Total Return Index",
         "note": "追蹤指數與投資組合績效基準分開保存。",
         "official_url": "https://nextfunds.jp/en/lineup/1306/",
-        "source_id": "JPX_BENCHMARK_CONTRACT",
+        "source_id": "JPX_ETF_REFERENCE",
         "verification_status": "verified"
       },
       "trading_currency": "JPY",
@@ -1334,7 +1334,7 @@
           ],
           "observed_at": "2026-08-27",
           "publication_use": "metadata_link_only",
-          "source_id": "JPX_BENCHMARK_CONTRACT",
+          "source_id": "JPX_ETF_REFERENCE",
           "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund"
         }
       ],
@@ -1388,7 +1388,7 @@
         "name": "TOPIX Total Return Index",
         "note": "追蹤指數與投資組合績效基準分開保存。",
         "official_url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund",
-        "source_id": "JPX_BENCHMARK_CONTRACT",
+        "source_id": "JPX_ETF_REFERENCE",
         "verification_status": "verified"
       },
       "trading_currency": "JPY",
@@ -1945,7 +1945,7 @@
           ],
           "observed_at": "2026-08-27",
           "publication_use": "metadata_link_only",
-          "source_id": "SPDJI_BENCHMARK_CONTRACT",
+          "source_id": "STATE_STREET_ETF_REFERENCE",
           "url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy"
         }
       ],
@@ -1998,7 +1998,7 @@
         "name": "S&P 500 Index",
         "note": "追蹤指數與投資組合績效基準分開保存。",
         "official_url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
-        "source_id": "SPDJI_BENCHMARK_CONTRACT",
+        "source_id": "STATE_STREET_ETF_REFERENCE",
         "verification_status": "verified"
       },
       "trading_currency": "USD",
@@ -2486,7 +2486,7 @@
           ],
           "observed_at": "2026-08-27",
           "publication_use": "metadata_link_only",
-          "source_id": "JPX_BENCHMARK_CONTRACT",
+          "source_id": "JPX_ETF_REFERENCE",
           "url": "https://nextfunds.jp/en/lineup/1306/"
         }
       ],

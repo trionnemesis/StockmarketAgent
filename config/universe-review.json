@@ -1207,7 +1207,7 @@
           "publication_use": "metadata_link_only"
         },
         {
-          "source_id": "JPX_BENCHMARK_CONTRACT",
+          "source_id": "JPX_ETF_REFERENCE",
           "url": "https://nextfunds.jp/en/lineup/1306/",
           "observed_at": "2026-08-27",
           "claims": [
@@ -1220,7 +1220,7 @@
       "tracking_index": {
         "verification_status": "verified",
         "name": "TOPIX Total Return Index",
-        "source_id": "JPX_BENCHMARK_CONTRACT",
+        "source_id": "JPX_ETF_REFERENCE",
         "official_url": "https://nextfunds.jp/en/lineup/1306/",
         "note": "追蹤指數與投資組合績效基準分開保存。"
       }
@@ -1380,7 +1380,7 @@
           "publication_use": "metadata_link_only"
         },
         {
-          "source_id": "JPX_BENCHMARK_CONTRACT",
+          "source_id": "JPX_ETF_REFERENCE",
           "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund",
           "observed_at": "2026-08-27",
           "claims": [
@@ -1393,7 +1393,7 @@
       "tracking_index": {
         "verification_status": "verified",
         "name": "TOPIX Total Return Index",
-        "source_id": "JPX_BENCHMARK_CONTRACT",
+        "source_id": "JPX_ETF_REFERENCE",
         "official_url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf-fund",
         "note": "追蹤指數與投資組合績效基準分開保存。"
       }
@@ -1990,7 +1990,7 @@
           "publication_use": "metadata_link_only"
         },
         {
-          "source_id": "SPDJI_BENCHMARK_CONTRACT",
+          "source_id": "STATE_STREET_ETF_REFERENCE",
           "url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
           "observed_at": "2026-08-27",
           "claims": [
@@ -2003,7 +2003,7 @@
       "tracking_index": {
         "verification_status": "verified",
         "name": "S&P 500 Index",
-        "source_id": "SPDJI_BENCHMARK_CONTRACT",
+        "source_id": "STATE_STREET_ETF_REFERENCE",
         "official_url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
         "note": "追蹤指數與投資組合績效基準分開保存。"
       }
@@ -2436,7 +2436,7 @@
       "owner_question": "是否只保留一個 TOPIX wrapper？",
       "evidence": [
         {
-          "source_id": "JPX_BENCHMARK_CONTRACT",
+          "source_id": "JPX_ETF_REFERENCE",
           "url": "https://nextfunds.jp/en/lineup/1306/",
           "observed_at": "2026-08-27",
           "claims": [

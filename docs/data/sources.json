@@ -25,10 +25,8 @@
         },
         {
           "data_class": "corporate_actions",
-          "fallback_source_ids": [
-            "TWSE_OGL_COMPANY"
-          ],
-          "note": "Incomplete golden-source coverage.",
+          "fallback_source_ids": [],
+          "note": "Incomplete golden-source coverage; no compatible fallback is approved.",
           "primary_source_ids": [
             "TWSE_OGL_ACTIONS"
           ],
@@ -115,10 +113,8 @@
         },
         {
           "data_class": "filings_financials",
-          "fallback_source_ids": [
-            "TWSE_OGL_ETF"
-          ],
-          "note": "Fund disclosure history is incomplete.",
+          "fallback_source_ids": [],
+          "note": "Fund disclosure history is incomplete; no compatible fallback is approved.",
           "primary_source_ids": [
             "SITCA_OGL_ETF"
           ],
@@ -949,22 +945,23 @@
       "source_id": "EDINET_V2"
     },
     {
-      "access_method": "Manual official ETF lists and issuer links",
+      "access_method": "Manual official ETF list, tracking-index identity, and issuer links",
       "authentication": "manual_download",
       "countries": [
         "JP"
       ],
       "data_classes": [
         "listing_metadata",
-        "etf_fund_data"
+        "etf_fund_data",
+        "benchmark"
       ],
       "documentation_url": "https://www.jpx.co.jp/english/equities/products/etfs/issues/01.html",
       "fallback": "Issuer product pages and EDINET filings.",
       "feasibility": "reference_only",
       "gaps": [
-        "No open PIT holdings, NAV, AUM, or spread history."
+        "No open PIT holdings, NAV, AUM, spread history, or benchmark series."
       ],
-      "history_depth": "Current facts; no immutable historical holdings API.",
+      "history_depth": "Current facts and tracking-index identity; no immutable historical holdings or index-series API.",
       "key_required": false,
       "license_status": "metadata_only",
       "license_url": "https://www.jpx.co.jp/english/corporate/terms-of-use/index.html",
@@ -972,7 +969,7 @@
       "point_in_time_status": "not_supported",
       "publisher": "Japan Exchange Group",
       "rate_limit": "No automated collection approved.",
-      "redistribution": "Fund identity and links only.",
+      "redistribution": "Fund and tracking-index identity with source links only.",
       "retention": "Retain citation metadata only.",
       "source_id": "JPX_ETF_REFERENCE"
     },
@@ -1227,22 +1224,23 @@
       "source_id": "CBOE_ACTIONS_CONTRACT"
     },
     {
-      "access_method": "Manual official SPY product-page review",
+      "access_method": "Manual official SPY product and tracking-index identity review",
       "authentication": "manual_download",
       "countries": [
         "US"
       ],
       "data_classes": [
         "listing_metadata",
-        "etf_fund_data"
+        "etf_fund_data",
+        "benchmark"
       ],
       "documentation_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-500-etf-trust-spy",
       "fallback": "SEC fund filings.",
       "feasibility": "reference_only",
       "gaps": [
-        "Holdings, AUM, fees, and trading history need authorized vintages."
+        "Holdings, AUM, fees, trading history, and benchmark series need authorized vintages."
       ],
-      "history_depth": "Current product metadata; no approved PIT holdings archive.",
+      "history_depth": "Current product and tracking-index identity; no approved PIT holdings or benchmark-series archive.",
       "key_required": false,
       "license_status": "metadata_only",
       "license_url": "https://www.ssga.com/us/en/intermediary/footer/terms-of-use",
@@ -1250,7 +1248,7 @@
       "point_in_time_status": "not_supported",
       "publisher": "State Street Global Advisors",
       "rate_limit": "No automated collection approved.",
-      "redistribution": "Product identity and links only.",
+      "redistribution": "Product and tracking-index identity with source links only.",
       "retention": "Retain citation metadata only.",
       "source_id": "STATE_STREET_ETF_REFERENCE"
     },

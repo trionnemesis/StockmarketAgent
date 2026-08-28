@@ -287,7 +287,7 @@ def validate_source_contract(sources: dict[str, Any]) -> None:
                 if source_id not in source_map:
                     raise ContractError(f"unknown source_id: {source_id}")
                 source = source_map[source_id]
-                if source_id in entry["primary_source_ids"] and entry["data_class"] not in source["data_classes"]:
+                if entry["data_class"] not in source["data_classes"]:
                     raise ContractError(f"{source_id}: incompatible data class {entry['data_class']}")
                 if policy["country"] not in source["countries"] and "GLOBAL" not in source["countries"]:
                     raise ContractError(f"{source_id}: incompatible country {policy['country']}")
