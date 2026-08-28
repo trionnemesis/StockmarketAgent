@@ -343,13 +343,23 @@ def validate_observed_facts_contract(
         raise ContractError("observation as_of cannot be after fetched_at")
 
     source_map = {item["source_id"]: item for item in sources["sources"]}
-    expected_bindings = {
-        "eod_prices": "TWSE_OGL_EOD",
-        "valuation": "TWSE_OGL_EOD",
-        "monthly_revenue": "TWSE_OGL_FINANCIALS",
-        "quarterly_income": "TWSE_OGL_FINANCIALS",
-        "balance_sheet": "TWSE_OGL_FINANCIALS",
-    }
+    asset_type = observation["asset_type"]
+    expected_instrument_id = (
+        f"TW:{'STOCK' if asset_type == 'stock' else 'ETF'}:{observation['symbol']}"
+    )
+    if observation["instrument_id"] != expected_instrument_id:
+        raise ContractError("official observation instrument identity is inconsistent")
+    expected_bindings = (
+        {
+            "eod_prices": "TWSE_OGL_EOD",
+            "valuation": "TWSE_OGL_EOD",
+            "monthly_revenue": "TWSE_OGL_FINANCIALS",
+            "quarterly_income": "TWSE_OGL_FINANCIALS",
+            "balance_sheet": "TWSE_OGL_FINANCIALS",
+        }
+        if asset_type == "stock"
+        else {"eod_prices": "TWSE_OGL_EOD", "fund_profile": "TWSE_OGL_ETF"}
+    )
     resource_map = {item["resource_id"]: item for item in observation["resources"]}
     if len(resource_map) != len(observation["resources"]):
         raise ContractError("official observation resource_id values must be unique")
@@ -376,7 +386,9 @@ def validate_observed_facts_contract(
         resource_id = fact["source_resource_id"]
         if resource_id not in resource_map:
             raise ContractError(f"{fact_name}: fact references an unknown resource")
-        fact_date = fact.get("date", fact.get("published_date"))
+        fact_date = fact.get(
+            "date", fact.get("published_date", fact.get("profile_date"))
+        )
         if date.fromisoformat(fact_date) > as_of:
             raise ContractError(f"{fact_name}: fact date is after as_of")
 
@@ -386,12 +398,111 @@ def validate_observed_facts_contract(
         and market["low"] <= market["close"] <= market["high"]
     ):
         raise ContractError("market OHLC values are inconsistent")
-    if facts["valuation"]["date"] != market["date"]:
-        raise ContractError("valuation and EOD snapshots must use the same session")
-    if facts["quarterly_income"]["period"] != facts["balance_sheet"]["period"]:
-        raise ContractError("income statement and balance sheet periods disagree")
-    if facts["monthly_revenue"]["period"] > observation["as_of"][:7]:
-        raise ContractError("monthly revenue period is after observation month")
+    evidence = observation["evidence_assessment"]
+    if evidence["scope"] != "data_quality_context_only" or evidence["used_in_signal"]:
+        raise ContractError(
+            "official evidence assessment cannot become a directional signal"
+        )
+    if not all(
+        evidence[field]
+        for field in (
+            "supporting_evidence",
+            "contrary_evidence",
+            "invalidation_conditions",
+        )
+    ):
+        raise ContractError("official evidence assessment lists cannot be empty")
+
+    if asset_type == "stock":
+        expected_facts = {
+            "market_session",
+            "valuation",
+            "monthly_revenue",
+            "quarterly_income",
+            "balance_sheet",
+        }
+        if set(facts) != expected_facts:
+            raise ContractError("stock observation fact set is incomplete")
+        if facts["valuation"]["date"] != market["date"]:
+            raise ContractError("valuation and EOD snapshots must use the same session")
+        income = facts["quarterly_income"]
+        balance = facts["balance_sheet"]
+        if income["period"] != balance["period"]:
+            raise ContractError("income statement and balance sheet periods disagree")
+        if facts["monthly_revenue"]["period"] > observation["as_of"][:7]:
+            raise ContractError("monthly revenue period is after observation month")
+        if income["statement_type"] != balance["statement_type"]:
+            raise ContractError("financial statement types disagree")
+        common_income = {
+            "source_resource_id",
+            "statement_type",
+            "published_date",
+            "period",
+            "period_scope",
+            "currency",
+            "unit",
+            "pre_tax_income_twd_million",
+            "net_income_parent_twd_million",
+            "basic_eps_twd",
+        }
+        general_fields = {
+            "revenue_twd_million",
+            "gross_profit_twd_million",
+            "operating_income_twd_million",
+            "gross_margin_percent",
+            "operating_margin_percent",
+            "net_margin_parent_percent",
+        }
+        holding_fields = {
+            "net_interest_income_twd_million",
+            "non_interest_income_twd_million",
+        }
+        statement_type = income["statement_type"]
+        expected_income_fields = common_income | (
+            general_fields
+            if statement_type == "general_industry"
+            else holding_fields
+        )
+        if set(income) != expected_income_fields:
+            raise ContractError(f"{statement_type}: income field set mismatch")
+        if observation["symbol"] == "2891" and statement_type != "financial_holding":
+            raise ContractError(
+                "2891 must use the financial-holding statement template"
+            )
+        if observation["symbol"] != "2891" and statement_type != "general_industry":
+            raise ContractError(
+                "non-2891 stock must use the general-industry statement template"
+            )
+        if observation["coverage"]["available_fact_groups"] != [
+            "market_session",
+            "valuation",
+            "monthly_revenue",
+            "quarterly_income",
+            "balance_sheet",
+        ] or observation["coverage"]["not_applicable_fact_groups"] != [
+            "fund_profile"
+        ]:
+            raise ContractError("stock observation coverage mapping is inconsistent")
+    else:
+        if set(facts) != {"market_session", "fund_profile"}:
+            raise ContractError(
+                "ETF observation must contain only market and fund facts"
+            )
+        fund = facts["fund_profile"]
+        if fund["inception_date"] > fund["listing_date"]:
+            raise ContractError("ETF inception date cannot be after listing date")
+        if fund["listing_date"] > observation["as_of"]:
+            raise ContractError("ETF listing date cannot be after observation date")
+        if observation["coverage"]["available_fact_groups"] != [
+            "market_session",
+            "fund_profile",
+        ] or observation["coverage"]["not_applicable_fact_groups"] != [
+            "valuation",
+            "monthly_revenue",
+            "quarterly_income",
+            "balance_sheet",
+        ]:
+            raise ContractError("ETF observation coverage mapping is inconsistent")
     if "政府資料開放授權條款" not in observation["attribution"]["statement"]:
         raise ContractError("official observation lacks visible OGL attribution")
 

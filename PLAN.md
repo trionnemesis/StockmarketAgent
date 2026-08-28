@@ -15,6 +15,7 @@ The public MVP is deliberately research_only. It will not approve a production u
 5. Test universe contracts, strict JSON, research-only gating, determinism, generated-content consistency, links, and secret-like output.
 6. Publish the repository and deploy GitHub Pages from main through GitHub Actions.
 7. Add the smallest safe official-data slice for 2330: five documented TWSE OpenAPI resources, strict observed-facts JSON, OGL attribution, response hashes, and a visible signal-isolation boundary.
+8. Map the same policy-gated pattern to all ten Taiwan candidates, route stock／financial-holding／ETF facts correctly, and publish supporting evidence, counter-evidence, and invalidation conditions without changing signals.
 
 ## Release gates
 

@@ -51,7 +51,8 @@ FIXTURE_PATH = ROOT / "tests" / "fixtures" / "research_snapshot.json"
 ANALYSIS_FIXTURE_PATH = ROOT / "tests" / "fixtures" / "research_analysis_snapshot.json"
 ASSET_DIR = ROOT / "src" / "render" / "assets"
 SOCIAL_PREVIEW_PATH = ROOT / "docs" / "assets" / "og.png"
-TSMC_OBSERVATION_PATH = ROOT / "data" / "observations" / "twse" / "2330.json"
+TW_OBSERVATION_DIR = ROOT / "data" / "observations" / "twse"
+TSMC_OBSERVATION_PATH = TW_OBSERVATION_DIR / "2330.json"
 SOURCE_REVISION_PATHS = (
     "config",
     "data/observations",
@@ -441,13 +442,51 @@ def load_tsmc_observation(sources: dict[str, Any]) -> dict[str, Any]:
     return observation
 
 
+def load_tw_observations(
+    universe: dict[str, Any], sources: dict[str, Any]
+) -> dict[str, dict[str, Any]]:
+    candidates = [
+        item for item in universe["instruments"] if item["country"] == "TW"
+    ]
+    expected_symbols = {item["symbol"] for item in candidates}
+    paths = sorted(TW_OBSERVATION_DIR.glob("*.json"))
+    actual_symbols = {path.stem for path in paths}
+    if len(candidates) != 10 or len(expected_symbols) != 10:
+        raise ContractError("Taiwan observation universe must contain exactly 10 symbols")
+    if actual_symbols != expected_symbols:
+        raise ContractError(
+            "Taiwan observation files must exactly match the 10 candidate symbols"
+        )
+
+    observations: dict[str, dict[str, Any]] = {}
+    for candidate in candidates:
+        observation = load_json_strict(
+            TW_OBSERVATION_DIR / f"{candidate['symbol']}.json"
+        )
+        validate_document(observation, SCHEMAS / "observed-facts.schema.json")
+        validate_observed_facts_contract(observation, sources)
+        for field in (
+            "instrument_id",
+            "symbol",
+            "slug",
+            "name_zh",
+            "asset_type",
+        ):
+            if observation[field] != candidate[field]:
+                raise ContractError(
+                    f"{candidate['instrument_id']}: observation {field} mismatch"
+                )
+        observations[candidate["instrument_id"]] = observation
+    return observations
+
+
 def build_outputs(
     signal: dict[str, Any],
     sources: dict[str, Any],
     review: dict[str, Any],
-    observation: dict[str, Any] | None = None,
+    observations: dict[str, dict[str, Any]] | None = None,
 ) -> tuple[dict[Path, bytes], dict[str, Any]]:
-    observation = observation or load_tsmc_observation(sources)
+    observations = observations or load_tw_observations(signal, sources)
     as_of = signal["run"]["as_of"]
     run_id = signal["run"]["run_id"]
     year, month, _ = as_of.split("-")
@@ -478,9 +517,6 @@ def build_outputs(
         ROOT / "docs" / "data" / "runs" / f"{run_id}.json": signal_json,
         ROOT / "docs" / "data" / "universe-review.json": _pretty_json(review).encode("utf-8"),
         ROOT / "docs" / "data" / "sources.json": _pretty_json(sources).encode("utf-8"),
-        ROOT / "docs" / "data" / "observations" / "tsmc.json": _pretty_json(
-            observation
-        ).encode("utf-8"),
         ROOT / "docs" / "data" / "archive" / f"{as_of}.json": signal_json,
         ROOT / "docs" / "assets" / "css" / "site.css": (
             ASSET_DIR / "site.css"
@@ -499,14 +535,24 @@ def build_outputs(
         outputs[ROOT / "docs" / "data" / "archive" / f"{archive_date}.json"] = (
             _pretty_json(archived).encode("utf-8")
         )
+    for observation in observations.values():
+        outputs[
+            ROOT
+            / "docs"
+            / "data"
+            / "observations"
+            / f"{observation['slug']}.json"
+        ] = _pretty_json(observation).encode("utf-8")
     for country in ("TW", "JP", "US"):
         outputs[ROOT / "docs" / "markets" / f"{country.lower()}.html"] = (
-            render_market(signal, country).encode("utf-8")
+            render_market(
+                signal,
+                country,
+                observations if country == "TW" else None,
+            ).encode("utf-8")
         )
     for item in signal["instruments"]:
-        item_observation = (
-            observation if item["instrument_id"] == observation["instrument_id"] else None
-        )
+        item_observation = observations.get(item["instrument_id"])
         outputs[ROOT / "docs" / "instruments" / f"{item['slug']}.html"] = (
             render_instrument(
                 signal,
@@ -636,8 +682,8 @@ def command_build() -> dict[str, Any]:
     validate_document(signal, SCHEMAS / "signal.schema.json")
     thresholds = load_json_strict(CONFIG / "action_thresholds.json")
     validate_signal_contract(signal, approvals, thresholds)
-    observation = load_tsmc_observation(sources)
-    outputs, run_record = build_outputs(signal, sources, review, observation)
+    observations = load_tw_observations(universe, sources)
+    outputs, run_record = build_outputs(signal, sources, review, observations)
     validate_document(run_record, SCHEMAS / "agent-run.schema.json")
     validate_agent_run_contract(run_record)
     publish_atomically(outputs)
@@ -796,8 +842,8 @@ def _validate_immutable_run_history(
 
 
 def validate_existing() -> None:
-    _, approvals, _, _, _, _, sources, _ = load_inputs()
-    observation = load_tsmc_observation(sources)
+    universe, approvals, _, _, _, _, sources, _ = load_inputs()
+    observations = load_tw_observations(universe, sources)
     signal = load_json_strict(ROOT / "signals" / "latest.json")
     validate_document(signal, SCHEMAS / "signal.schema.json")
     thresholds = load_json_strict(CONFIG / "action_thresholds.json")
@@ -810,13 +856,27 @@ def validate_existing() -> None:
         raise ContractError("docs/data/latest.json diverges from signals/latest.json")
     if canonical_json(signal) != canonical_json(archive_signal):
         raise ContractError("archive signal diverges from latest signal")
-    docs_observation = load_json_strict(
-        ROOT / "docs" / "data" / "observations" / "tsmc.json"
-    )
-    validate_document(docs_observation, SCHEMAS / "observed-facts.schema.json")
-    validate_observed_facts_contract(docs_observation, sources)
-    if canonical_json(observation) != canonical_json(docs_observation):
-        raise ContractError("TSMC Pages observation diverges from source snapshot")
+    expected_page_files = {f"{item['slug']}.json" for item in observations.values()}
+    actual_page_files = {
+        path.name
+        for path in (ROOT / "docs" / "data" / "observations").glob("*.json")
+    }
+    if actual_page_files != expected_page_files:
+        raise ContractError("Taiwan Pages observation membership mismatch")
+    for observation in observations.values():
+        docs_observation = load_json_strict(
+            ROOT
+            / "docs"
+            / "data"
+            / "observations"
+            / f"{observation['slug']}.json"
+        )
+        validate_document(docs_observation, SCHEMAS / "observed-facts.schema.json")
+        validate_observed_facts_contract(docs_observation, sources)
+        if canonical_json(observation) != canonical_json(docs_observation):
+            raise ContractError(
+                f"{observation['symbol']}: Pages observation diverges from source"
+            )
     run_id = signal["run"]["run_id"]
     year, month, _ = signal["run"]["as_of"].split("-")
     run_record = load_json_strict(

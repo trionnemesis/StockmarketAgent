@@ -369,7 +369,80 @@ def render_home(
     )
 
 
-def render_market(signal: dict[str, Any], country: str) -> str:
+def _render_tw_observation_matrix(
+    instruments: list[dict[str, Any]],
+    observations: dict[str, dict[str, Any]],
+) -> str:
+    rows = []
+    coverage_labels = {
+        "market_session": "行情",
+        "valuation": "估值",
+        "monthly_revenue": "月營收",
+        "quarterly_income": "損益",
+        "balance_sheet": "資產負債",
+        "fund_profile": "基金基本資料",
+    }
+    for item in instruments:
+        observation = observations[item["instrument_id"]]
+        evidence = observation["evidence_assessment"]
+        horizon = _horizon(item)
+        facts = observation["facts"]
+        market = facts["market_session"]
+        if observation["asset_type"] == "stock":
+            latest_fact = (
+                f"收盤 NT$ {_formatted_number(market['close'])}；"
+                f"月營收 YoY {_formatted_number(facts['monthly_revenue']['year_over_year_percent'])}%；"
+                f"累計 EPS {_formatted_number(facts['quarterly_income']['basic_eps_twd'])}"
+            )
+        else:
+            fund = facts["fund_profile"]
+            latest_fact = (
+                f"收盤 NT$ {_formatted_number(market['close'])}；"
+                f"追蹤 {_e(fund['tracking_index_name'])}"
+            )
+        coverage = "、".join(
+            coverage_labels[name]
+            for name in observation["coverage"]["available_fact_groups"]
+        )
+        evidence_cells = []
+        for field in (
+            "supporting_evidence",
+            "contrary_evidence",
+            "invalidation_conditions",
+        ):
+            evidence_cells.append(
+                "<ul class=\"risk-list\">"
+                + "".join(f"<li>{_e(value)}</li>" for value in evidence[field])
+                + "</ul>"
+            )
+        rows.append(
+            f'''<tr data-observation-matrix="{_e(item['symbol'])}">
+  <td><a href="../instruments/{_e(item['slug'])}.html"><strong>{_e(item['symbol'])}</strong><br>{_e(item['name_zh'])}</a></td>
+  <td>{_e(item['asset_type'].upper())}</td>
+  <td>{_e(coverage)}<br><small>as of {_e(observation['as_of'])}</small></td>
+  <td>{latest_fact}</td>
+  <td>{_stance_badge(horizon['stance'])}<br><small>3M synthetic；官方事實未介入</small></td>
+  <td>{evidence_cells[0]}</td><td>{evidence_cells[1]}</td><td>{evidence_cells[2]}</td>
+</tr>'''
+        )
+    return f'''
+  <section class="section-card" data-tw-observation-matrix="10">
+    <div class="section-heading"><div><p class="kicker">OFFICIAL COVERAGE MATRIX</p><h2>台灣 10 檔官方觀測與證據矩陣</h2></div><span class="pill pill-neutral">10 / 10 · OGL · signal-isolated</span></div>
+    <div class="notice" role="note"><strong>兩條軌道分開閱讀</strong><span>官方欄位只描述資料品質、覆蓋與可追溯事實；3M 態度仍是未校準合成情境，不因本矩陣升降級。個股採公司財務，ETF 採基金基本資料，不以不適用欄位硬比。</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>候選標的</th><th>類型</th><th>官方覆蓋</th><th>最新官方事實</th><th>3M 態度</th><th>支持證據</th><th>反向證據</th><th>失效條件</th></tr></thead>
+        <tbody>{''.join(rows)}</tbody>
+      </table>
+    </div>
+  </section>'''
+
+
+def render_market(
+    signal: dict[str, Any],
+    country: str,
+    observations: dict[str, dict[str, Any]] | None = None,
+) -> str:
     market = next(item for item in signal["markets"] if item["country"] == country)
     instruments = [item for item in signal["instruments"] if item["country"] == country]
     stance_counts = _stance_counts(instruments)
@@ -387,6 +460,13 @@ def render_market(signal: dict[str, Any], country: str) -> str:
         1 for item in instruments if item["status"] == "approved" and item["enabled"]
     )
     name = MARKET_NAMES[country]
+    observation_matrix = ""
+    if country == "TW":
+        if observations is None or set(observations) != {
+            item["instrument_id"] for item in instruments
+        }:
+            raise ValueError("Taiwan market page requires all 10 official observations")
+        observation_matrix = _render_tw_observation_matrix(instruments, observations)
     body = f"""
 <header class="subhero">
   <div class="shell">
@@ -405,6 +485,7 @@ def render_market(signal: dict[str, Any], country: str) -> str:
     <div class="section-heading"><div><p class="kicker">SIGNAL GATE · 3M</p><h2>3M 研究態度分布</h2></div><span class="pill pill-neutral">uncalibrated</span></div>
     <div class="metric-grid">{stance_cards}</div>
   </section>
+{observation_matrix}
   <section class="section-card">
     <div class="section-heading"><div><p class="kicker">RESEARCH ATTITUDES</p><h2>候選標的</h2></div><span class="pill pill-neutral">合成情境</span></div>
     <div class="table-wrap">
@@ -435,47 +516,97 @@ def _render_observed_facts(observation: dict[str, Any] | None) -> str:
         return ""
     facts = observation["facts"]
     market = facts["market_session"]
-    valuation = facts["valuation"]
-    revenue = facts["monthly_revenue"]
-    income = facts["quarterly_income"]
-    balance = facts["balance_sheet"]
     resource_links = " · ".join(
         f'<a href="{_e(resource["dataset_url"])}">{_e(resource["resource_id"])}</a>'
         for resource in observation["resources"]
     )
-    cards = (
+    cards = [
         f'<article class="metric-card" data-observed-fact="close"><span>{_e(market["date"])} 收盤</span><strong>NT$ {_formatted_number(market["close"])}</strong><small>漲跌 {_formatted_number(market["change"], 4)}</small></article>'
         f'<article class="metric-card" data-observed-fact="volume"><span>成交股數</span><strong>{_formatted_number(market["volume_shares"] / 1_000_000)}M</strong><small>{market["transaction_count"]:,} 筆</small></article>'
-        f'<article class="metric-card" data-observed-fact="valuation"><span>本益比 / 股價淨值比</span><strong>{_formatted_number(valuation["pe_ratio"])} / {_formatted_number(valuation["pb_ratio"])}</strong><small>殖利率 {_formatted_number(valuation["dividend_yield_percent"])}%</small></article>'
-        f'<article class="metric-card" data-observed-fact="monthly-revenue"><span>{_e(revenue["period"])} 月營收</span><strong>NT$ {_formatted_number(revenue["revenue_twd_million"], 3)}M</strong><small>YoY {_formatted_number(revenue["year_over_year_percent"])}%</small></article>'
-        f'<article class="metric-card" data-observed-fact="ytd-revenue"><span>{_e(revenue["period"])} 累計營收</span><strong>NT$ {_formatted_number(revenue["year_to_date_twd_million"], 3)}M</strong><small>YoY {_formatted_number(revenue["year_to_date_yoy_percent"])}%</small></article>'
-        f'<article class="metric-card" data-observed-fact="eps"><span>{_e(income["period"])} 累計 EPS</span><strong>NT$ {_formatted_number(income["basic_eps_twd"])}</strong><small>year-to-date</small></article>'
-        f'<article class="metric-card" data-observed-fact="gross-margin"><span>{_e(income["period"])} 累計毛利率</span><strong>{_formatted_number(income["gross_margin_percent"])}%</strong><small>營業利益率 {_formatted_number(income["operating_margin_percent"])}%</small></article>'
-        f'<article class="metric-card" data-observed-fact="balance"><span>{_e(balance["period"])} 權益</span><strong>NT$ {_formatted_number(balance["total_equity_twd_million"], 3)}M</strong><small>每股淨值 {_formatted_number(balance["book_value_per_share_twd"])} 元</small></article>'
+    ]
+    if observation["asset_type"] == "stock":
+        valuation = facts["valuation"]
+        revenue = facts["monthly_revenue"]
+        income = facts["quarterly_income"]
+        balance = facts["balance_sheet"]
+        cards.extend(
+            [
+                f'<article class="metric-card" data-observed-fact="valuation"><span>本益比 / 股價淨值比</span><strong>{_formatted_number(valuation["pe_ratio"])} / {_formatted_number(valuation["pb_ratio"])}</strong><small>殖利率 {_formatted_number(valuation["dividend_yield_percent"])}%</small></article>',
+                f'<article class="metric-card" data-observed-fact="monthly-revenue"><span>{_e(revenue["period"])} 月營收</span><strong>NT$ {_formatted_number(revenue["revenue_twd_million"], 3)}M</strong><small>YoY {_formatted_number(revenue["year_over_year_percent"])}%</small></article>',
+                f'<article class="metric-card" data-observed-fact="ytd-revenue"><span>{_e(revenue["period"])} 累計營收</span><strong>NT$ {_formatted_number(revenue["year_to_date_twd_million"], 3)}M</strong><small>YoY {_formatted_number(revenue["year_to_date_yoy_percent"])}%</small></article>',
+                f'<article class="metric-card" data-observed-fact="eps"><span>{_e(income["period"])} 累計 EPS</span><strong>NT$ {_formatted_number(income["basic_eps_twd"])}</strong><small>year-to-date</small></article>',
+                f'<article class="metric-card" data-observed-fact="balance"><span>{_e(balance["period"])} 權益</span><strong>NT$ {_formatted_number(balance["total_equity_twd_million"], 3)}M</strong><small>每股淨值 {_formatted_number(balance["book_value_per_share_twd"])} 元</small></article>',
+            ]
+        )
+        if income["statement_type"] == "general_industry":
+            cards.append(
+                f'<article class="metric-card" data-observed-fact="gross-margin"><span>{_e(income["period"])} 累計毛利率</span><strong>{_formatted_number(income["gross_margin_percent"])}%</strong><small>營業利益率 {_formatted_number(income["operating_margin_percent"])}%</small></article>'
+            )
+            detail_rows = (
+                f"<div><dt>營業收入</dt><dd>NT$ {_formatted_number(income['revenue_twd_million'], 3)}M</dd></div>"
+                f"<div><dt>母公司業主淨利</dt><dd>NT$ {_formatted_number(income['net_income_parent_twd_million'], 3)}M</dd></div>"
+                f"<div><dt>母公司淨利率</dt><dd>{_formatted_number(income['net_margin_parent_percent'])}%</dd></div>"
+                f"<div><dt>負債 / 資產</dt><dd>{_formatted_number(balance['liabilities_to_assets_percent'])}%</dd></div>"
+            )
+        else:
+            cards.append(
+                f'<article class="metric-card" data-observed-fact="net-interest-income"><span>{_e(income["period"])} 累計淨利息收益</span><strong>NT$ {_formatted_number(income["net_interest_income_twd_million"], 3)}M</strong><small>非利息淨收益 {_formatted_number(income["non_interest_income_twd_million"], 3)}M</small></article>'
+            )
+            detail_rows = (
+                f"<div><dt>淨利息收益</dt><dd>NT$ {_formatted_number(income['net_interest_income_twd_million'], 3)}M</dd></div>"
+                f"<div><dt>非利息淨收益</dt><dd>NT$ {_formatted_number(income['non_interest_income_twd_million'], 3)}M</dd></div>"
+                f"<div><dt>母公司業主淨利</dt><dd>NT$ {_formatted_number(income['net_income_parent_twd_million'], 3)}M</dd></div>"
+                f"<div><dt>負債 / 資產</dt><dd>{_formatted_number(balance['liabilities_to_assets_percent'])}%</dd></div>"
+            )
+        detail_title = f"{_e(income['period'])} 累計財務"
+    else:
+        fund = facts["fund_profile"]
+        cards.extend(
+            [
+                f'<article class="metric-card" data-observed-fact="tracking-index"><span>官方追蹤指數</span><strong>{_e(fund["tracking_index_name"])}</strong><small>{_e(fund["fund_type"])}</small></article>',
+                f'<article class="metric-card" data-observed-fact="listing"><span>上市 / 成立</span><strong>{_e(fund["listing_date"])}</strong><small>成立 {_e(fund["inception_date"])}</small></article>',
+                f'<article class="metric-card" data-observed-fact="issued-units"><span>發行單位數</span><strong>{fund["issued_units"]:,}</strong><small>官方月度基本資料</small></article>',
+                f'<article class="metric-card" data-observed-fact="foreign-constituents"><span>國外成分股</span><strong>{"是" if fund["includes_foreign_constituents"] else "否"}</strong><small>客製／特別揭露指數：{"是" if fund["custom_index_or_disclosure_required"] else "否"}</small></article>',
+            ]
+        )
+        detail_title = "ETF 官方基金基本資料"
+        detail_rows = (
+            f"<div><dt>官方基金名稱</dt><dd>{_e(fund['official_name'])}</dd></div>"
+            f"<div><dt>基金類型</dt><dd>{_e(fund['fund_type'])}</dd></div>"
+            f"<div><dt>追蹤指數</dt><dd>{_e(fund['tracking_index_name'])}</dd></div>"
+            "<div><dt>公司財務欄位</dt><dd>不適用；未以個股基本面硬比</dd></div>"
+        )
+    evidence = observation["evidence_assessment"]
+    evidence_cards = "".join(
+        f'''<article class="event-card" data-official-evidence="{_e(field)}">
+  <h3>{_e(label)}</h3><ul class="risk-list">{''.join(f'<li>{_e(value)}</li>' for value in evidence[field])}</ul>
+</article>'''
+        for field, label in (
+            ("supporting_evidence", "支持證據"),
+            ("contrary_evidence", "反向證據"),
+            ("invalidation_conditions", "失效條件"),
+        )
     )
     return f"""
   <section class="section-card" data-observed-snapshot="{_e(observation['as_of'])}">
     <div class="section-heading"><div><p class="kicker">OFFICIAL OBSERVED FACTS</p><h2>TWSE 官方開放資料快照</h2></div><span class="pill pill-neutral">OGL attribution · not used in signal</span></div>
     <div class="notice" role="note"><strong>事實與訊號分流</strong><span>以下是 {_e(observation['fetched_at'])} 取得的官方 OpenAPI 正規化事實；不會改寫上方 synthetic 分數、研究態度或 production gate，也不是即時報價。</span></div>
-    <div class="metric-grid">{cards}</div>
+    <div class="metric-grid">{''.join(cards)}</div>
     <div class="split-grid">
       <article class="section-card">
-        <p class="kicker">FUNDAMENTAL DETAIL</p><h2>{_e(income['period'])} 累計財務</h2>
-        <dl class="fact-list">
-          <div><dt>營業收入</dt><dd>NT$ {_formatted_number(income['revenue_twd_million'], 3)}M</dd></div>
-          <div><dt>母公司業主淨利</dt><dd>NT$ {_formatted_number(income['net_income_parent_twd_million'], 3)}M</dd></div>
-          <div><dt>母公司淨利率</dt><dd>{_formatted_number(income['net_margin_parent_percent'])}%</dd></div>
-          <div><dt>負債 / 資產</dt><dd>{_formatted_number(balance['liabilities_to_assets_percent'])}%</dd></div>
-        </dl>
+        <p class="kicker">OBSERVATION DETAIL</p><h2>{detail_title}</h2>
+        <dl class="fact-list">{detail_rows}</dl>
       </article>
       <article class="section-card">
         <p class="kicker">PROVENANCE</p><h2>可追溯、可再建</h2>
         <p>介面：{_e(observation['collection_policy']['interface'])}；HTML scraping：{str(observation['collection_policy']['html_scraping']).lower()}；自動排程：{str(observation['automated_refresh_enabled']).lower()}。</p>
         <p>{_e(observation['attribution']['statement'])}</p>
         <p>{resource_links}</p>
-        <p><a href="../data/observations/tsmc.json">下載 strict observation JSON</a> · <a href="{_e(observation['attribution']['license_url'])}">授權條款</a> · <a href="{_e(observation['attribution']['terms_url'])}">TWSE 使用條款</a></p>
+        <p><a href="../data/observations/{_e(observation['slug'])}.json">下載 strict observation JSON</a> · <a href="{_e(observation['attribution']['license_url'])}">授權條款</a> · <a href="{_e(observation['attribution']['terms_url'])}">TWSE 使用條款</a></p>
       </article>
     </div>
+    <div class="section-heading"><div><p class="kicker">DATA-QUALITY EVIDENCE</p><h2>支持、反向證據與失效條件</h2></div><span class="pill pill-neutral">context only · not directional</span></div>
+    <div class="event-grid">{evidence_cards}</div>
   </section>"""
 
 

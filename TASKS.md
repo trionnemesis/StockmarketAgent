@@ -15,5 +15,8 @@
 - [x] Add a manual, rate-limited 2330 official-data ingestion adapter.
 - [x] Keep official observations outside synthetic scores, production routing, and schedules.
 - [x] Publish strict 2330 observed facts and provenance on the instrument page.
-- [ ] Build a revision-aware 2330 historical observation archive.
+- [x] Expand official observations and evidence mapping to all 10 Taiwan candidates.
+- [x] Route general-industry, financial-holding, and ETF fields without false cross-asset comparability.
+- [x] Add a Taiwan market matrix with supporting evidence, counter-evidence, and invalidation conditions.
+- [ ] Build a revision-aware Taiwan 10-candidate historical observation archive.
 - [ ] Add an approved exact TAIEX benchmark series and corporate-action history.

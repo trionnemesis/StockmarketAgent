@@ -15,11 +15,11 @@ from src.pipeline import (
     ROOT,
     SCHEMAS,
     SOURCE_REVISION_PATHS,
-    TSMC_OBSERVATION_PATH,
+    TW_OBSERVATION_DIR,
     build_run_record,
     build_signal,
     load_inputs,
-    load_tsmc_observation,
+    load_tw_observations,
     source_revision,
 )
 from src.validation.contracts import (
@@ -460,19 +460,26 @@ class EvidenceReviewContractTests(unittest.TestCase):
         validate_source_contract(self.sources)
         validate_review_contract(self.universe, self.benchmarks, self.sources, self.review)
 
-    def test_tsmc_official_observation_is_open_and_signal_isolated(self) -> None:
-        observation = load_tsmc_observation(self.sources)
-        validate_document(observation, SCHEMAS / "observed-facts.schema.json")
-        validate_observed_facts_contract(observation, self.sources)
-        self.assertEqual(TSMC_OBSERVATION_PATH.name, "2330.json")
-        self.assertFalse(observation["used_in_signal"])
-        self.assertFalse(observation["automated_refresh_enabled"])
-        self.assertFalse(observation["collection_policy"]["html_scraping"])
+    def test_taiwan_observations_are_open_complete_and_signal_isolated(self) -> None:
+        observations = load_tw_observations(self.universe, self.sources)
+        self.assertEqual(len(observations), 10)
+        self.assertEqual(len(list(TW_OBSERVATION_DIR.glob("*.json"))), 10)
         source_map = {item["source_id"]: item for item in self.sources["sources"]}
-        for resource in observation["resources"]:
-            source = source_map[resource["source_id"]]
-            self.assertEqual(source["license_status"], "open_with_attribution")
-            self.assertEqual(source["pages_policy"], "raw_with_attribution_allowed")
+        for observation in observations.values():
+            validate_document(observation, SCHEMAS / "observed-facts.schema.json")
+            validate_observed_facts_contract(observation, self.sources)
+            self.assertFalse(observation["used_in_signal"])
+            self.assertFalse(observation["automated_refresh_enabled"])
+            self.assertFalse(observation["collection_policy"]["html_scraping"])
+            self.assertTrue(observation["evidence_assessment"]["supporting_evidence"])
+            self.assertTrue(observation["evidence_assessment"]["contrary_evidence"])
+            self.assertTrue(observation["evidence_assessment"]["invalidation_conditions"])
+            for resource in observation["resources"]:
+                source = source_map[resource["source_id"]]
+                self.assertEqual(source["license_status"], "open_with_attribution")
+                self.assertEqual(
+                    source["pages_policy"], "raw_with_attribution_allowed"
+                )
 
     def test_rejects_incompatible_fallback_source(self) -> None:
         mutated = copy.deepcopy(self.sources)
