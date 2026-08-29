@@ -177,12 +177,16 @@ def _theme_badges(themes: list[str]) -> str:
     )
 
 
+def _stance_label(stance: str) -> str:
+    return "NO LIVE SIGNAL" if stance == "NO_SIGNAL" else f"SYNTHETIC {stance}"
+
+
 def _stance_badge(stance: str) -> str:
     icons = {"BUY": "↑", "HOLD": "—", "SELL": "↓", "NO_SIGNAL": "○"}
     css_name = stance.lower().replace("_", "-")
     return (
-        f'<span class="stance stance-{css_name}">'
-        f'<span aria-hidden="true">{icons[stance]}</span> {stance}</span>'
+        f'<span class="stance stance-{css_name}" data-input-kind="synthetic_fixture">'
+        f'<span aria-hidden="true">{icons[stance]}</span> {_e(_stance_label(stance))}</span>'
     )
 
 
@@ -246,7 +250,7 @@ def render_home(
     )
     stance_cards = "".join(
         f"""<article class="metric-card" data-summary-horizon="3M" data-stance="{stance}" data-count="{summary['stances'][stance]}">
-  <span>{stance}</span><strong>{summary['stances'][stance]}</strong>
+  <span>{_e(_stance_label(stance))}</span><strong>{summary['stances'][stance]}</strong>
   <small>{'Risk Gate 未放行' if stance == 'NO_SIGNAL' else '3M 合成研究情境'}</small>
 </article>"""
         for stance in STANCE_ORDER
@@ -372,6 +376,7 @@ def render_home(
 def _render_tw_observation_matrix(
     instruments: list[dict[str, Any]],
     observations: dict[str, dict[str, Any]],
+    statuses: dict[str, dict[str, Any]],
 ) -> str:
     rows = []
     coverage_labels = {
@@ -384,6 +389,9 @@ def _render_tw_observation_matrix(
     }
     for item in instruments:
         observation = observations[item["instrument_id"]]
+        status = statuses[item["instrument_id"]]
+        freshness = status["freshness"]
+        model_coverage = status["model_input_coverage"]
         evidence = observation["evidence_assessment"]
         horizon = _horizon(item)
         facts = observation["facts"]
@@ -419,9 +427,9 @@ def _render_tw_observation_matrix(
             f'''<tr data-observation-matrix="{_e(item['symbol'])}">
   <td><a href="../instruments/{_e(item['slug'])}.html"><strong>{_e(item['symbol'])}</strong><br>{_e(item['name_zh'])}</a></td>
   <td>{_e(item['asset_type'].upper())}</td>
-  <td>{_e(coverage)}<br><small>as of {_e(observation['as_of'])}</small></td>
+  <td data-source-kind="official_observation" data-official-as-of="{_e(status['official_as_of'])}" data-observation-freshness="{_e(freshness['freshness'])}" data-model-input-coverage="0">{_e(coverage)}<br><small>source official_observation · official as of {_e(status['official_as_of'])} · {_e(freshness['freshness'])} ({freshness['sessions_behind']} sessions behind)</small></td>
   <td>{latest_fact}</td>
-  <td>{_stance_badge(horizon['stance'])}<br><small>3M synthetic；官方事實未介入</small></td>
+  <td>{_stance_badge(horizon['stance'])}<br><small>NO LIVE SIGNAL · 官方觀測納入模型：{model_coverage['used_fact_group_count']} / {model_coverage['available_fact_group_count']}</small></td>
   <td>{evidence_cells[0]}</td><td>{evidence_cells[1]}</td><td>{evidence_cells[2]}</td>
 </tr>'''
         )
@@ -442,13 +450,14 @@ def render_market(
     signal: dict[str, Any],
     country: str,
     observations: dict[str, dict[str, Any]] | None = None,
+    observation_statuses: dict[str, dict[str, Any]] | None = None,
 ) -> str:
     market = next(item for item in signal["markets"] if item["country"] == country)
     instruments = [item for item in signal["instruments"] if item["country"] == country]
     stance_counts = _stance_counts(instruments)
     stance_cards = "".join(
         f"""<article class="metric-card" data-market-horizon="3M" data-stance="{stance}" data-count="{stance_counts[stance]}">
-  <span>{stance}</span><strong>{stance_counts[stance]}</strong><small>3M 合成研究情境</small>
+  <span>{_e(_stance_label(stance))}</span><strong>{stance_counts[stance]}</strong><small>3M 合成研究情境</small>
 </article>"""
         for stance in STANCE_ORDER
     )
@@ -466,7 +475,13 @@ def render_market(
             item["instrument_id"] for item in instruments
         }:
             raise ValueError("Taiwan market page requires all 10 official observations")
-        observation_matrix = _render_tw_observation_matrix(instruments, observations)
+        if observation_statuses is None or set(observation_statuses) != {
+            item["instrument_id"] for item in instruments
+        }:
+            raise ValueError("Taiwan market page requires all 10 observation statuses")
+        observation_matrix = _render_tw_observation_matrix(
+            instruments, observations, observation_statuses
+        )
     body = f"""
 <header class="subhero">
   <div class="shell">
@@ -511,18 +526,29 @@ def _formatted_number(value: int | float, decimals: int = 2) -> str:
     return rendered.rstrip("0").rstrip(".")
 
 
-def _render_observed_facts(observation: dict[str, Any] | None) -> str:
+def _render_observed_facts(
+    observation: dict[str, Any] | None,
+    status: dict[str, Any] | None = None,
+) -> str:
     if observation is None:
         return ""
+    if status is None:
+        raise ValueError("official observation requires a validated C1 catalog status")
     facts = observation["facts"]
     market = facts["market_session"]
+    freshness = status["freshness"]
+    model_coverage = status["model_input_coverage"]
     resource_links = " · ".join(
         f'<a href="{_e(resource["dataset_url"])}">{_e(resource["resource_id"])}</a>'
         for resource in observation["resources"]
     )
     cards = [
-        f'<article class="metric-card" data-observed-fact="close"><span>{_e(market["date"])} 收盤</span><strong>NT$ {_formatted_number(market["close"])}</strong><small>漲跌 {_formatted_number(market["change"], 4)}</small></article>'
-        f'<article class="metric-card" data-observed-fact="volume"><span>成交股數</span><strong>{_formatted_number(market["volume_shares"] / 1_000_000)}M</strong><small>{market["transaction_count"]:,} 筆</small></article>'
+        f'<article class="metric-card" data-source-kind="official_observation"><span>資料來源類型</span><strong>official_observation</strong><small>TWSE OGL · signal-isolated</small></article>',
+        f'<article class="metric-card" data-official-as-of="{_e(status["official_as_of"])}"><span>官方資料 as-of</span><strong>{_e(status["official_as_of"])}</strong><small>last checked {_e(status["last_checked_at"])}</small></article>',
+        f'<article class="metric-card" data-observation-freshness="{_e(freshness["freshness"])}"><span>資料新鮮度</span><strong>{_e(freshness["freshness"])}</strong><small>{_e(freshness["market_state"])} · expected {_e(freshness["expected_latest_session"])}</small></article>',
+        f'<article class="metric-card" data-model-input-coverage="0"><span>官方觀測納入模型：0</span><strong>0 / {model_coverage["available_fact_group_count"]}</strong><small>coverage 0% · NO LIVE SIGNAL</small></article>',
+        f'<article class="metric-card" data-observed-fact="close"><span>{_e(market["date"])} 收盤</span><strong>NT$ {_formatted_number(market["close"])}</strong><small>漲跌 {_formatted_number(market["change"], 4)}</small></article>',
+        f'<article class="metric-card" data-observed-fact="volume"><span>成交股數</span><strong>{_formatted_number(market["volume_shares"] / 1_000_000)}M</strong><small>{market["transaction_count"]:,} 筆</small></article>',
     ]
     if observation["asset_type"] == "stock":
         valuation = facts["valuation"]
@@ -602,7 +628,8 @@ def _render_observed_facts(observation: dict[str, Any] | None) -> str:
         <p>介面：{_e(observation['collection_policy']['interface'])}；HTML scraping：{str(observation['collection_policy']['html_scraping']).lower()}；自動排程：{str(observation['automated_refresh_enabled']).lower()}。</p>
         <p>{_e(observation['attribution']['statement'])}</p>
         <p>{resource_links}</p>
-        <p><a href="../data/observations/{_e(observation['slug'])}.json">下載 strict observation JSON</a> · <a href="{_e(observation['attribution']['license_url'])}">授權條款</a> · <a href="{_e(observation['attribution']['terms_url'])}">TWSE 使用條款</a></p>
+        <p><a href="../data/observations/{_e(observation['slug'])}.json">latest strict observation JSON</a> · <a href="../data/observations/{_e(status['latest_archive_path'])}">immutable archive entry</a> · <a href="../data/observations/catalog.json">catalog / last-known-good</a></p>
+        <p><a href="{_e(observation['attribution']['license_url'])}">授權條款</a> · <a href="{_e(observation['attribution']['terms_url'])}">TWSE 使用條款</a></p>
       </article>
     </div>
     <div class="section-heading"><div><p class="kicker">DATA-QUALITY EVIDENCE</p><h2>支持、反向證據與失效條件</h2></div><span class="pill pill-neutral">context only · not directional</span></div>
@@ -615,6 +642,7 @@ def render_instrument(
     item: dict[str, Any],
     review_item: dict[str, Any],
     observation: dict[str, Any] | None = None,
+    observation_status: dict[str, Any] | None = None,
 ) -> str:
     primary_horizon = _horizon(item)
     horizon_cards = "".join(
@@ -627,7 +655,7 @@ def render_instrument(
     )
     horizon_evidence = "".join(
         f"""<article class="event-card">
-  <div><span class="priority">{_e(entry['horizon'])}</span><span class="tag">{_e(entry['stance'])}</span></div>
+  <div><span class="priority">{_e(entry['horizon'])}</span><span class="tag">{_e(_stance_label(entry['stance']))}</span></div>
   <h3>支持證據</h3><ul class="risk-list">{''.join(f'<li>{_e(value)}</li>' for value in entry['supporting_evidence']) or '<li>無</li>'}</ul>
   <h3>反向證據</h3><ul class="risk-list">{''.join(f'<li>{_e(value)}</li>' for value in entry['contrary_evidence']) or '<li>無</li>'}</ul>
   <h3>失效條件</h3><ul class="risk-list">{''.join(f'<li>{_e(value)}</li>' for value in entry['invalidation_conditions']) or '<li>無</li>'}</ul>
@@ -648,14 +676,14 @@ def render_instrument(
     risks = "".join(
         f"<li>{_e(flag)}</li>" for flag in risk_flags
     )
-    observed_facts = _render_observed_facts(observation)
+    observed_facts = _render_observed_facts(observation, observation_status)
     body = f"""
 <header class="subhero instrument-hero">
   <div class="shell">
     <a class="back-link" href="../markets/{item['country'].lower()}.html">← 返回{MARKET_NAMES[item['country']]}市場</a>
     <div class="instrument-title">
       <div><p class="eyebrow">{_e(item['country'])} · {_e(item['asset_type'].upper())} · {_e(item['market'])}</p><h1>{_e(item['symbol'])} <span>{_e(item['name_zh'])}</span></h1><p>{_e(item['name_en'])}</p></div>
-      {_stance_badge(primary_horizon['stance'])}
+      <div>{_stance_badge(primary_horizon['stance'])}<p><span class="pill pill-risk">NO LIVE SIGNAL</span></p></div>
     </div>
     <div class="tag-row">{_theme_badges(item['themes'])}</div>
   </div>
@@ -729,7 +757,7 @@ def render_methodology(signal: dict[str, Any]) -> str:
     </ol>
   </section>
   <section class="split-grid">
-    <article class="section-card"><p class="kicker">STANCE</p><h2>四種未校準研究態度</h2><dl class="definition-list"><div><dt>BUY</dt><dd>合成情境分數高於研究門檻的方向標籤。</dd></div><div><dt>HOLD</dt><dd>合成情境中的中性研究標籤。</dd></div><div><dt>SELL</dt><dd>合成情境分數低於研究門檻的方向標籤。</dd></div><div><dt>NO_SIGNAL</dt><dd>Risk Gate 判定條件不足，不提供方向標籤。</dd></div></dl></article>
+    <article class="section-card"><p class="kicker">STANCE</p><h2>四種未校準研究態度</h2><dl class="definition-list"><div><dt>SYNTHETIC BUY</dt><dd>合成情境分數高於研究門檻的工程標籤。</dd></div><div><dt>SYNTHETIC HOLD</dt><dd>合成情境中的中性工程標籤。</dd></div><div><dt>SYNTHETIC SELL</dt><dd>合成情境分數低於研究門檻的工程標籤。</dd></div><div><dt>NO LIVE SIGNAL</dt><dd>Risk Gate 或 live-data gate 未通過，不提供 live 方向標籤。</dd></div></dl></article>
     <article class="section-card"><p class="kicker">RESEARCH BOUNDARY</p><h2>目前沒有的能力</h2><ul class="risk-list"><li>即時行情、新聞或當前市場事實</li><li>正式 Universe 核准與 production signal</li><li>回測、校準與可驗證的勝率敘述</li><li>個人化建議或自動下單</li><li>自動調權與模型自我修改</li></ul></article>
   </section>
   <section class="disclaimer"><p class="kicker">IMPORTANT</p><h2>研究態度不等於投資建議。</h2><p>分數與態度是版本化 synthetic scenario 的未校準輸出，不等於獲利機率、當前市場判斷，也不能取代個人的財務、稅務或風險評估。</p></section>
@@ -754,7 +782,7 @@ def render_status(signal: dict[str, Any]) -> str:
         for event in signal["events"]
     )
     stance_cards = "".join(
-        f"<article class='metric-card'><span>{stance}</span><strong>{signal['summary']['stances'][stance]}</strong><small>3M research fixture</small></article>"
+        f"<article class='metric-card'><span>{_e(_stance_label(stance))}</span><strong>{signal['summary']['stances'][stance]}</strong><small>3M research fixture</small></article>"
         for stance in STANCE_ORDER
     )
     manifest_rows = "".join(

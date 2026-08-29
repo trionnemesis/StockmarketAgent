@@ -15,7 +15,7 @@
 
 跨市場研究不能只顯示一個方向性標籤。StockmarketAgent 將候選 Universe、總體經濟、基本面、估值、技術面、循環與事件拆成可驗證欄位，再由版本化設定產生 1W／1M／3M／12M 的研究態度與風險理由。JSON 是唯一事實來源；Markdown 與靜態 HTML 只呈現同一份通過契約驗證的結果。
 
-目前完整分析路徑使用 **deterministic synthetic research snapshot**。研究頁可出現 `BUY`、`HOLD`、`SELL`、`NO_SIGNAL`，但這些態度尚未完成 point-in-time（PIT）回測與校準，不能解讀為正式投資訊號。台灣 10 檔候選另有一條完全分流的 **TWSE 官方 OGL observation snapshot**：5 檔個股呈現行情、估值、月營收與適用產業別財報；5 檔 ETF 呈現行情、基金身分與追蹤指數。每檔同時列出資料品質層級的支持證據、反向證據與失效條件，全部不會進入分數或態度。
+目前完整分析路徑使用 **deterministic synthetic research snapshot**。Pages 將方向標籤明示為 `SYNTHETIC BUY`、`SYNTHETIC HOLD`、`SYNTHETIC SELL` 或 `NO LIVE SIGNAL`；它們尚未完成 point-in-time（PIT）回測與校準，不能解讀為正式投資訊號。台灣 10 檔候選另有一條完全分流的 **TWSE 官方 OGL observation data layer**：5 檔個股呈現行情、估值、月營收與適用產業別財報；5 檔 ETF 呈現行情、基金身分與追蹤指數。每次成功擷取會寫入 append-only archive、revision／correction lineage、latest 與 last-known-good catalog；官方欄位仍全部不會進入分數或態度。
 
 > **研究邊界：分數與態度是未校準的合成資料研究輸出；另行標示的 TWSE 官方快照不是即時報價，也不會升級為投資訊號或交易指令。**
 
@@ -25,12 +25,21 @@
 |---|---|---|
 | Universe | 台／日／美各 5 個股 + 5 ETF，共 30 個候選；逐筆保存 listing、代號、交易場所、幣別、資產類型與選擇理由 | 30 個標的仍為 `proposed`、`disabled`，尚未取得 Owner 核准 |
 | Evidence review | 15 個 ETF tracking index、37 筆來源紀錄、6 組重疊與 issuer concentration 可供 Pages 閱讀 | reference metadata 不等於可用行情、PIT 歷史或再發布授權 |
-| Taiwan official matrix | 台灣 10 檔皆有 TWSE OGL 快照與證據矩陣；個股使用 EOD、估值、月營收與正確財報模板，ETF 使用 EOD 與基金基本資料 | `used_in_signal=false`、自動排程關閉；不宣稱完整 PIT history、benchmark return、correction stream 或即時報價 |
+| Taiwan official data layer | 台灣 10 檔皆有 TWSE OGL latest、append-only archive、revision／correction lineage、last-known-good、market-session／holiday／fresh／stale status 與證據矩陣 | archive 從 C1 baseline 開始；`used_in_signal=false`、自動排程關閉，仍不宣稱完整 EOD／benchmark／corporate-action history 或即時報價 |
 | Deterministic analysis | 以固定 synthetic fixture 計算 macro、fundamental、valuation、technical、cycle、events 研究元件 | 不包含 live provider observations；數值只供管線、契約與呈現驗證 |
 | Research attitudes | 1W／1M／3M／12M 可呈現 `BUY`、`HOLD`、`SELL`、`NO_SIGNAL`、信心、支持／反向證據與失效條件 | 態度為 `uncalibrated` research output，不是 production signal |
 | Risk Gate | 保留風險旗標、資料品質與核准狀態，阻止研究輸出被提升為正式訊號 | `production_signal_enabled` 維持 `false`；不因研究態度出現方向就放行 |
 | Traceability | Strict JSON Schema、來源 manifest、input hash、可解析的 Git source revision、immutable run、latest/archive、Markdown 與 HTML | Renderer 不重算模型；人工修改產出不會成為事實來源 |
 | Static delivery | 首頁、三市場、30 個標的、方法、狀態、歷史與證據頁部署至 GitHub Pages | 靜態網站不接收 credentials，也不提供券商下單或自動交易 |
+
+## TW-C1：revision-aware 台灣資料層
+
+台灣 10 檔官方 observation 現在使用兩層儲存：`data/observations/twse/<symbol>.json` 是 latest／last-known-good 快照；`data/observations/twse/archive/<symbol>/<market-session>/<sequence>-<hash>.json` 是不可覆寫的歷史 entry。`data/observations/twse/status/catalog.json` 維護 latest、last-known-good、history count、official as-of、資料新鮮度與 model-input coverage。
+
+- **Revision lineage**：同一 market session 的官方內容變動記為 `correction`；較新 session 記為 `new_session`；重複內容不建立假 revision；回滾到舊 hash 或舊 session 會拒絕。
+- **Fail closed**：10 檔必須整批通過 observed-facts、archive 與 catalog strict Schema。任一檔缺漏、hash／lineage 不一致或 publication promotion 失敗時，不更新 latest、last-known-good 或 catalog。
+- **Freshness**：`config/twse_calendar.json` 保存 TWSE 2026 官方開休市日期。當日資料在 Asia/Taipei 18:00 後才列為專案預期；18:00 是 StockmarketAgent 的 publication policy，不是 TWSE SLA。狀態明示 `trading_day`／`weekend`／`holiday` 與 `fresh`／`stale`／`missing`。
+- **Model isolation**：catalog 固定顯示官方觀測納入模型為 `0`、`coverage_percent=0`、`used_in_signal=false`。C1 沒有改動任何 score、weight、threshold 或 stance 值。
 
 ## 資料流程
 
@@ -45,8 +54,9 @@ flowchart TD
   G --> J[Versioned signal JSON]
   J --> O[Markdown and GitHub Pages]
   T[TWSE OGL 10-candidate snapshots] --> Q[Observed-facts contract]
-  Q --> O
-  Q -. never enters signal .-> G
+  Q --> H[Append-only archive + latest/LKG catalog]
+  H --> O
+  H -. model input coverage = 0 .-> G
 ```
 
 相同 fixture、設定與程式版本會產生相同核心輸出。每個新研究 run 的 `git_sha` 指向最近一次修改 `config/`、`data/observations/`、`schemas/`、`src/` 或 `tests/fixtures/` 的完整 Git commit；`input_hash` 再綁定實際輸入與 build fingerprint。Pipeline 先在 staging 完整產生檔案並執行 preflight，再以 rollback-aware promotion 更新輸出；GitHub Pages workflow 只有在 build 與測試通過後才上傳完整 artifact。
@@ -72,6 +82,7 @@ python3 -m http.server 8765 --directory docs
 
 ```bash
 python3 -m src.ingestion.twse_openapi
+python3 -m src.ingestion.twse_archive validate
 python3 -m src.pipeline build
 python3 -m src.pipeline validate
 ```
@@ -84,7 +95,8 @@ python3 -m src.pipeline validate
 |---|---|
 | `python3 -m src.pipeline build` | 驗證 versioned config 與 synthetic fixture，產生 signal、run record、Markdown 與 Pages artifact |
 | `python3 -m src.pipeline validate` | 驗證既有 latest、archive、Pages JSON 與 Agent Run 契約一致性 |
-| `python3 -m src.ingestion.twse_openapi` | 以 8 次共用請求手動更新台灣 10 檔 TWSE OGL 快照，正規化後逐檔原子寫入；不啟用排程或訊號 |
+| `python3 -m src.ingestion.twse_openapi` | 以 8 次共用請求手動更新台灣 10 檔 TWSE OGL 快照；整批驗證後寫入 append-only archive、latest 與 last-known-good catalog，不啟用排程或訊號 |
+| `python3 -m src.ingestion.twse_archive validate` | 驗證 10 檔 archive membership、hash、revision／correction lineage、latest／LKG、日曆 freshness 與 model-input isolation |
 | `python3 -m unittest discover -s tests -p 'test_*.py' -v` | 執行 contract、integration、link、consistency 與 secret-pattern tests |
 | `python3 -m http.server 8765 --directory docs` | 在本機預覽生成後的 GitHub Pages 靜態網站 |
 
@@ -107,14 +119,16 @@ python3 -m src.pipeline validate
 | `/data/latest.json` | 網站使用的最新 strict signal JSON |
 | `/data/universe-review.json` | Universe evidence review 的機器可讀版本 |
 | `/data/sources.json` | Source feasibility 的機器可讀版本 |
-| `/data/observations/<tw-slug>.json` | 台灣 10 檔官方 observation snapshot、覆蓋／缺口、授權、response hashes、正規化事實與證據條件 |
+| `/data/observations/<tw-slug>.json` | 台灣 10 檔 latest／last-known-good 官方 observation snapshot、覆蓋／缺口、授權、response hashes、正規化事實與證據條件 |
+| `/data/observations/catalog.json` | 10 檔 latest／last-known-good pointer、official as-of、fresh／stale／missing 與 model-input coverage |
+| `/data/observations/archive/<symbol>/<session>/<revision>.json` | C1 baseline 起的 immutable observation entry 與 revision／correction lineage |
 
 ## 資料信任邊界
 
 - 分數與研究態度的輸入仍是固定、可重現的 synthetic research fixture；它不讀取台灣、日本或美國市場的行情、財報、新聞或 ETF holdings。
 - 台灣 10 檔的官方 observation snapshots 是獨立資料產品，只採用 TWSE OpenAPI 對應的政府開放資料；`used_in_signal=false`、`automated_refresh_enabled=false`。
 - 30 個標的全部維持 `proposed`、`disabled`；evidence review 完成不代表 Owner 已核准正式 Universe。
-- `BUY`、`HOLD`、`SELL`、`NO_SIGNAL` 是未校準研究態度。Risk Gate 明確阻止它們成為 production signal。
+- Pages 將未校準研究態度明示為 `SYNTHETIC BUY`、`SYNTHETIC HOLD`、`SYNTHETIC SELL` 或 `NO LIVE SIGNAL`。原始 JSON stance enum 不變，Risk Gate 與 production gate 仍阻止它們成為正式訊號。
 - Repository 未啟用 live adapters、外部 provider credentials 或排程；唯一提交的 provider facts 是具有 OGL 顯名與 Pages 再發布依據的台灣 10 檔正規化快照。
 - 不執行券商下單、自動交易、個人資產配置或報酬保證。
 - JSON 是唯一事實來源；Renderer 只讀取已驗證 JSON，不從 HTML、Markdown 或 LLM 回推分數與態度。

@@ -1,0 +1,5236 @@
+{
+  "events": [
+    {
+      "event_id": "governance-universe-approval",
+      "event_type": "governance",
+      "instrument_ids": [],
+      "materiality": "high",
+      "priority": 100,
+      "published_at": "2026-08-27T12:00:00Z",
+      "source_confidence": 100,
+      "summary": "30 個標的維持 proposed 且 disabled；未校準研究態度不會升級為 production signal。",
+      "title": "Production signal 仍受 Owner 核准門檻保護"
+    },
+    {
+      "event_id": "data-synthetic-research-fixture",
+      "event_type": "data_quality",
+      "instrument_ids": [],
+      "materiality": "high",
+      "priority": 95,
+      "published_at": "2026-08-27T12:00:00Z",
+      "source_confidence": 100,
+      "summary": "六元件與四期間研究態度已啟用工程驗證，但不含 live 行情、財報、新聞或 ETF 持股事實。",
+      "title": "研究分析使用 synthetic scenario fixture"
+    }
+  ],
+  "instruments": [
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 44.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 40.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 37.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 34.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "TW:STOCK:2330",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Taiwan Semiconductor Manufacturing Company Limited",
+      "name_zh": "台積電",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "大型半導體製造候選；需確認資料授權、流動性與主題集中度。",
+      "slug": "tsmc",
+      "status": "proposed",
+      "symbol": "2330",
+      "themes": [
+        "ai",
+        "semiconductor"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 70,
+          "score": -4,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 72,
+          "score": 0,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 76,
+          "score": 5,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 80,
+          "score": 10,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 79,
+          "score": 8,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 74,
+          "score": -5,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 4.2,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 3.3,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 2.85,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 1.8,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "TW:STOCK:2454",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "MediaTek Inc.",
+      "name_zh": "聯發科",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "IC 設計候選；需驗證財報與產業循環資料可得性。",
+      "slug": "mediatek",
+      "status": "proposed",
+      "symbol": "2454",
+      "themes": [
+        "ai",
+        "semiconductor"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -44.75,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -42.25,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -40,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -38,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "TW:STOCK:2308",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Delta Electronics, Inc.",
+      "name_zh": "台達電",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "電源與基礎設施候選；需評估主題曝險與來源完整性。",
+      "slug": "delta-electronics",
+      "status": "proposed",
+      "symbol": "2308",
+      "themes": [
+        "ai_infrastructure"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "synthetic_required_feature"
+        ],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "CRITICAL_MISSING"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 44.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 40.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 37.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 34.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        }
+      ],
+      "instrument_id": "TW:STOCK:2412",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Chunghwa Telecom Co., Ltd.",
+      "name_zh": "中華電信",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "電信與股息候選；需確認股利與估值資料的 point-in-time 可得性。",
+      "slug": "chunghwa-telecom",
+      "status": "proposed",
+      "symbol": "2412",
+      "themes": [
+        "telecom",
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "stale",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "STALE_DATA"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -44.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -42.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -40,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -38,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        }
+      ],
+      "instrument_id": "TW:STOCK:2891",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "CTBC Financial Holding Co., Ltd.",
+      "name_zh": "中信金",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "金融與股息候選；需另定金融業適用模型。",
+      "slug": "ctbc-financial",
+      "status": "proposed",
+      "symbol": "2891",
+      "themes": [
+        "financials",
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 65,
+          "score": -20,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 75,
+          "score": 50,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 80,
+          "score": -60,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 70,
+          "score": 20,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 85,
+          "score": 60,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 75,
+          "score": -45,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "SOURCE_CONTRADICTION"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 34.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 17.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -1.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -17.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        }
+      ],
+      "instrument_id": "TW:ETF:0050",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Yuanta/P-shares Taiwan Top 50 ETF",
+      "name_zh": "元大台灣50",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "大型股基準型 ETF 候選；需核對持股歷史與費用。",
+      "slug": "yuanta-taiwan-50",
+      "status": "proposed",
+      "symbol": "0050",
+      "themes": [
+        "broad_market"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 44.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 40.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 37.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 34.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "TW:ETF:006208",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Fubon FTSE TWSE Taiwan 50 ETF",
+      "name_zh": "富邦台50",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "大型股 ETF 候選；需評估與 0050 的重疊度。",
+      "slug": "fubon-taiwan-50",
+      "status": "proposed",
+      "symbol": "006208",
+      "themes": [
+        "broad_market"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 70,
+          "score": -4,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 72,
+          "score": 0,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 76,
+          "score": 5,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 80,
+          "score": 10,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 79,
+          "score": 8,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 74,
+          "score": -5,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 4.2,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 3.3,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 2.85,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 1.8,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "TW:ETF:00878",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Cathay MSCI Taiwan ESG Sustainability High Dividend Yield ETF",
+      "name_zh": "國泰永續高股息",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "高股息 ETF 候選；需驗證指數規則與持股穿透。",
+      "slug": "cathay-esg-high-dividend",
+      "status": "proposed",
+      "symbol": "00878",
+      "themes": [
+        "dividend",
+        "esg"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -44.75,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -42.25,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -40,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -38,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "TW:ETF:00919",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Capital TIP Customized Taiwan Select High Dividend ETF",
+      "name_zh": "群益台灣精選高息",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "高股息 ETF 候選；需評估策略重疊與完整歷史。",
+      "slug": "capital-tip-customized-high-dividend",
+      "status": "proposed",
+      "symbol": "00919",
+      "themes": [
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "TW:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "TW",
+      "currency": "TWD",
+      "data_status": {
+        "critical_missing": [
+          "synthetic_required_feature"
+        ],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "CRITICAL_MISSING"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 44.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 40.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 37.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 34.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        }
+      ],
+      "instrument_id": "TW:ETF:00965",
+      "market": "TWSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Yuanta Global Aerospace and Defense Technology ETF",
+      "name_zh": "元大全球航太與防衛科技",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "TW:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "跨市場主題 ETF 候選；僅承接視覺參考，不沿用既有報告數字。",
+      "slug": "yuanta-global-aerospace-defense",
+      "status": "proposed",
+      "symbol": "00965",
+      "themes": [
+        "defense",
+        "aerospace",
+        "semiconductor",
+        "cybersecurity"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "stale",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "STALE_DATA"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -44.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -42.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -40,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -38,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        }
+      ],
+      "instrument_id": "JP:STOCK:7203",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Toyota Motor Corporation",
+      "name_zh": "豐田汽車",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "大型製造候選；需核對匯率與全球營收曝險。",
+      "slug": "toyota",
+      "status": "proposed",
+      "symbol": "7203",
+      "themes": [
+        "automotive"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 65,
+          "score": -20,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 75,
+          "score": 50,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 80,
+          "score": -60,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 70,
+          "score": 20,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 85,
+          "score": 60,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 75,
+          "score": -45,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "SOURCE_CONTRADICTION"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 34.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 17.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -1.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -17.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        }
+      ],
+      "instrument_id": "JP:STOCK:6758",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Sony Group Corporation",
+      "name_zh": "索尼集團",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "科技與內容候選；需定義跨事業部特徵。",
+      "slug": "sony-group",
+      "status": "proposed",
+      "symbol": "6758",
+      "themes": [
+        "ai",
+        "entertainment"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 44.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 40.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 37.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 34.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "JP:STOCK:8035",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Tokyo Electron Ltd.",
+      "name_zh": "東京威力科創",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "半導體設備候選；需驗證產業循環與訂單資料。",
+      "slug": "tokyo-electron",
+      "status": "proposed",
+      "symbol": "8035",
+      "themes": [
+        "semiconductor",
+        "ai"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 70,
+          "score": -4,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 72,
+          "score": 0,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 76,
+          "score": 5,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 80,
+          "score": 10,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 79,
+          "score": 8,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 74,
+          "score": -5,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 4.2,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 3.3,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 2.85,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 1.8,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "JP:STOCK:7011",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Mitsubishi Heavy Industries, Ltd.",
+      "name_zh": "三菱重工",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "國防與重工候選；需追蹤正式採購與交付來源。",
+      "slug": "mitsubishi-heavy-industries",
+      "status": "proposed",
+      "symbol": "7011",
+      "themes": [
+        "defense",
+        "aerospace"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -44.75,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -42.25,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -40,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -38,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "JP:STOCK:9432",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "NTT, Inc.",
+      "name_zh": "日本電信電話",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "電信與股息候選；需核對公司行動與股利歷史。",
+      "slug": "ntt",
+      "status": "proposed",
+      "symbol": "9432",
+      "themes": [
+        "telecom",
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [
+          "synthetic_required_feature"
+        ],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "CRITICAL_MISSING"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 44.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 40.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 37.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 34.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        }
+      ],
+      "instrument_id": "JP:ETF:1306",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "NEXT FUNDS TOPIX Exchange Traded Fund",
+      "name_zh": "NEXT FUNDS TOPIX連動型上市投資信託",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "TOPIX 廣泛市場候選；需核對追蹤誤差與費用。",
+      "slug": "next-funds-topix",
+      "status": "proposed",
+      "symbol": "1306",
+      "themes": [
+        "broad_market"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "stale",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "STALE_DATA"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -44.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -42.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -40,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -38,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        }
+      ],
+      "instrument_id": "JP:ETF:1321",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "NEXT FUNDS Nikkei 225 Exchange Traded Fund",
+      "name_zh": "NEXT FUNDS 日經225連動型上市投資信託",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "日經 225 候選；需評估與 TOPIX 的基準差異。",
+      "slug": "next-funds-nikkei-225",
+      "status": "proposed",
+      "symbol": "1321",
+      "themes": [
+        "broad_market"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 65,
+          "score": -20,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 75,
+          "score": 50,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 80,
+          "score": -60,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 70,
+          "score": 20,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 85,
+          "score": 60,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 75,
+          "score": -45,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "SOURCE_CONTRADICTION"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 34.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 17.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -1.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -17.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        }
+      ],
+      "instrument_id": "JP:ETF:1475",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "iShares Core TOPIX ETF",
+      "name_zh": "iShares Core TOPIX ETF",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "低成本 TOPIX 候選；需驗證持股歷史可得性。",
+      "slug": "ishares-core-topix",
+      "status": "proposed",
+      "symbol": "1475",
+      "themes": [
+        "broad_market"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 44.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 40.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 37.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 34.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "JP:ETF:1489",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "NEXT FUNDS Nikkei 225 High Dividend Yield Stock 50 Index Exchange Traded Fund",
+      "name_zh": "NEXT FUNDS 日經平均高股息股票50指數連動型上市投資信託",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "高股息因子候選；需驗證指數規則與換股資料。",
+      "slug": "next-funds-nikkei-high-dividend",
+      "status": "proposed",
+      "symbol": "1489",
+      "themes": [
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "JP:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 70,
+          "score": -4,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 72,
+          "score": 0,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 76,
+          "score": 5,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 80,
+          "score": 10,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 79,
+          "score": 8,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 74,
+          "score": -5,
+          "status": "evaluated"
+        }
+      },
+      "country": "JP",
+      "currency": "JPY",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 4.2,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 3.3,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 2.85,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 1.8,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "JP:ETF:2568",
+      "market": "TSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Listed Index Fund US Equity (NASDAQ100) No Currency Hedge",
+      "name_zh": "上場インデックスファンド米国株式 NASDAQ100 為替ヘッジなし",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "JP:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "日圓計價海外科技曝險候選；需明確處理匯率。",
+      "slug": "listed-index-fund-nasdaq100",
+      "status": "proposed",
+      "symbol": "2568",
+      "themes": [
+        "large_cap_growth",
+        "technology_tilt",
+        "fx_unhedged"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -44.75,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -42.25,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -40,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -38,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "US:STOCK:NVDA",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "NVIDIA Corporation",
+      "name_zh": "輝達",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "AI 與半導體候選；需驗證估值與供應鏈資料。",
+      "slug": "nvidia",
+      "status": "proposed",
+      "symbol": "NVDA",
+      "themes": [
+        "ai",
+        "semiconductor"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "synthetic_required_feature"
+        ],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "CRITICAL_MISSING"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 44.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 40.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 37.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 34.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        }
+      ],
+      "instrument_id": "US:STOCK:MSFT",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Microsoft Corporation",
+      "name_zh": "微軟",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "大型軟體與雲端候選；需定義事件與財報權重。",
+      "slug": "microsoft",
+      "status": "proposed",
+      "symbol": "MSFT",
+      "themes": [
+        "ai",
+        "cybersecurity"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "stale",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "STALE_DATA"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -44.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -42.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -40,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -38,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        }
+      ],
+      "instrument_id": "US:STOCK:GOOGL",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Alphabet Inc.",
+      "name_zh": "Alphabet Inc.",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "大型科技候選；需評估多事業營運特徵。",
+      "slug": "alphabet",
+      "status": "proposed",
+      "symbol": "GOOGL",
+      "themes": [
+        "ai"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 65,
+          "score": -20,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 75,
+          "score": 50,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 80,
+          "score": -60,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 70,
+          "score": 20,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 85,
+          "score": 60,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 75,
+          "score": -45,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "SOURCE_CONTRADICTION"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 34.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 17.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -1.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -17.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        }
+      ],
+      "instrument_id": "US:STOCK:LMT",
+      "market": "NYSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Lockheed Martin Corporation",
+      "name_zh": "洛克希德馬丁",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "國防航太候選；需追蹤採購、積壓訂單與交付。",
+      "slug": "lockheed-martin",
+      "status": "proposed",
+      "symbol": "LMT",
+      "themes": [
+        "defense",
+        "aerospace",
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "stock",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 44.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 40.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 37.75,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 34.5,
+          "stance": "BUY",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "US:STOCK:JNJ",
+      "market": "NYSE",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Johnson & Johnson",
+      "name_zh": "嬌生",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "醫療與股息候選；需定義訴訟事件的風險處理。",
+      "slug": "johnson-johnson",
+      "status": "proposed",
+      "symbol": "JNJ",
+      "themes": [
+        "healthcare",
+        "dividend"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 70,
+          "score": -4,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 72,
+          "score": 0,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 76,
+          "score": 5,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 80,
+          "score": 10,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 79,
+          "score": 8,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 74,
+          "score": -5,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 4.2,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 3.3,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 2.85,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 69,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: small positive and negative components offset."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": 1.8,
+          "stance": "HOLD",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: balanced test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "US:ETF:SPY",
+      "market": "NYSE_ARCA",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "SPDR S&P 500 ETF Trust",
+      "name_zh": "SPDR S&P 500 ETF Trust",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "美國大型股基準候選；需核對持股與費用。",
+      "slug": "spdr-sp500",
+      "status": "proposed",
+      "symbol": "SPY",
+      "themes": [
+        "broad_market"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -44.75,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -42.25,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -40,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: no live observations support this test direction."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Discard if this fixture is presented as observed market data."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED"
+          ],
+          "score": -38,
+          "stance": "SELL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative multi-factor test evidence."
+          ]
+        }
+      ],
+      "instrument_id": "US:ETF:QQQ",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "Invesco QQQ Trust, Series 1",
+      "name_zh": "Invesco QQQ",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "大型成長科技候選；需評估集中度與估值。",
+      "slug": "invesco-qqq",
+      "status": "proposed",
+      "symbol": "QQQ",
+      "themes": [
+        "large_cap_growth",
+        "technology_tilt"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 75,
+          "score": 30,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 82,
+          "score": 40,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": 45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": 35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 84,
+          "score": 55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 78,
+          "score": 20,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [
+          "synthetic_required_feature"
+        ],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "CRITICAL_MISSING"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 44.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 40.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 37.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 75,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: a required fixture feature is deliberately missing."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after all required inputs pass validation."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "CRITICAL_MISSING"
+          ],
+          "score": 34.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: positive score exists only to test gate precedence."
+          ]
+        }
+      ],
+      "instrument_id": "US:ETF:SMH",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "VanEck Semiconductor ETF",
+      "name_zh": "VanEck 半導體 ETF",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "半導體產業候選；需持股穿透與循環模型。",
+      "slug": "vaneck-semiconductor",
+      "status": "proposed",
+      "symbol": "SMH",
+      "themes": [
+        "semiconductor"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 82,
+          "score": -40,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 84,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 88,
+          "score": -45,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 85,
+          "score": -35,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 86,
+          "score": -55,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 80,
+          "score": -30,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "stale",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "STALE_DATA"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -44.75,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -42.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -40,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 72,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fixture freshness is deliberately stale."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after freshness validation succeeds."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "STALE_DATA"
+          ],
+          "score": -38,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: negative score exists only to test stale-data gating."
+          ]
+        }
+      ],
+      "instrument_id": "US:ETF:CIBR",
+      "market": "NASDAQ",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "First Trust NASDAQ Cybersecurity ETF",
+      "name_zh": "First Trust NASDAQ Cybersecurity ETF",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "資安主題候選；需核對指數分類與重疊。",
+      "slug": "first-trust-nasdaq-cybersecurity",
+      "status": "proposed",
+      "symbol": "CIBR",
+      "themes": [
+        "cybersecurity"
+      ]
+    },
+    {
+      "asset_type": "etf",
+      "benchmark_id": "US:BROAD_MARKET",
+      "components": {
+        "cycle": {
+          "confidence": 65,
+          "score": -20,
+          "status": "evaluated"
+        },
+        "events": {
+          "confidence": 75,
+          "score": 50,
+          "status": "evaluated"
+        },
+        "fundamental": {
+          "confidence": 80,
+          "score": -60,
+          "status": "evaluated"
+        },
+        "macro": {
+          "confidence": 70,
+          "score": 20,
+          "status": "evaluated"
+        },
+        "technical": {
+          "confidence": 85,
+          "score": 60,
+          "status": "evaluated"
+        },
+        "valuation": {
+          "confidence": 75,
+          "score": -45,
+          "status": "evaluated"
+        }
+      },
+      "country": "US",
+      "currency": "USD",
+      "data_status": {
+        "critical_missing": [],
+        "last_market_session": null,
+        "status": "research_fixture",
+        "warnings": [
+          "SYNTHETIC_RESEARCH_FIXTURE",
+          "MODEL_UNCALIBRATED",
+          "SOURCE_CONTRADICTION"
+        ]
+      },
+      "enabled": false,
+      "horizons": [
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1W",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 34.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "1M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": 17.5,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "3M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -1.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        },
+        {
+          "calibration_status": "uncalibrated",
+          "confidence": 46,
+          "contrary_evidence": [
+            "SYNTHETIC_SCENARIO: fundamentals and valuation deliberately conflict."
+          ],
+          "horizon": "12M",
+          "invalidation_conditions": [
+            "Remove the gate only after contradictory inputs are reconciled."
+          ],
+          "risk_flags": [
+            "RESEARCH_FIXTURE",
+            "MODEL_UNCALIBRATED",
+            "SOURCE_CONTRADICTION"
+          ],
+          "score": -17.25,
+          "stance": "NO_SIGNAL",
+          "supporting_evidence": [
+            "SYNTHETIC_SCENARIO: momentum and event components are deliberately positive."
+          ]
+        }
+      ],
+      "instrument_id": "US:ETF:USMV",
+      "market": "CBOE_BZX",
+      "model_applicability": {
+        "applicable": true,
+        "reason": "僅適用於 deterministic synthetic scenario 的工程驗證；production routing、live 資料與回測校準仍未核准。"
+      },
+      "name_en": "iShares MSCI USA Min Vol Factor ETF",
+      "name_zh": "iShares MSCI USA Min Vol Factor ETF",
+      "provenance": [
+        {
+          "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+          "disclaimer": "Synthetic research fixture inputs; not market facts or live market data.",
+          "fetched_at": "2026-08-27T12:00:00Z",
+          "license_class": "project_fixture",
+          "market_session_date": null,
+          "observed_at": "2026-08-27T12:00:00Z",
+          "parser_version": "1.0.0",
+          "published_at": null,
+          "publisher": "StockmarketAgent test suite",
+          "raw_retained": false,
+          "source_id": "synthetic-research-scenarios-v1",
+          "source_type": "synthetic_research_fixture",
+          "source_url": "tests/fixtures/research_analysis_snapshot.json"
+        }
+      ],
+      "relative_performance": {
+        "benchmark_id": "US:BROAD_MARKET",
+        "period": "3M",
+        "status": "not_available",
+        "value": null
+      },
+      "selection_rationale": "低波動因子候選；需檢驗因子與市場狀態適用性。",
+      "slug": "ishares-msci-usa-min-vol",
+      "status": "proposed",
+      "symbol": "USMV",
+      "themes": [
+        "low_volatility"
+      ]
+    }
+  ],
+  "markets": [
+    {
+      "country": "TW",
+      "instrument_count": 10,
+      "last_market_session": null,
+      "name_zh": "台灣",
+      "notice": "Synthetic scenario fixture；不含 live 行情或當前市場日期，研究態度尚未校準。",
+      "status": "research_fixture"
+    },
+    {
+      "country": "JP",
+      "instrument_count": 10,
+      "last_market_session": null,
+      "name_zh": "日本",
+      "notice": "Synthetic scenario fixture；不含 live 行情或當前市場日期，研究態度尚未校準。",
+      "status": "research_fixture"
+    },
+    {
+      "country": "US",
+      "instrument_count": 10,
+      "last_market_session": null,
+      "name_zh": "美國",
+      "notice": "Synthetic scenario fixture；不含 live 行情或當前市場日期，研究態度尚未校準。",
+      "status": "research_fixture"
+    }
+  ],
+  "run": {
+    "as_of": "2026-08-27",
+    "data_kind": "research_fixture",
+    "generated_at": "2026-08-27T12:00:00Z",
+    "git_sha": "92532bb81a54bf3edba187ba4a9bb54c1492c73a",
+    "input_hash": "9419772a3fcbd8c1f5a78bfd581efabe545cecfb29bf2884db8058b2bffb7874",
+    "mode": "research_only",
+    "model_version": "0.2.0-research-scenario",
+    "run_id": "20260827T120000Z-research-9419772a"
+  },
+  "schema_version": "1.1.0",
+  "source_manifest": [
+    {
+      "content_hash": "d8f6bece537bc4ee56bd99ecd8c1293508156e9f877399985b9eb067be3566cb",
+      "kind": "research_fixture",
+      "path": "tests/fixtures/research_analysis_snapshot.json",
+      "source_id": "synthetic-research-scenarios-v1"
+    },
+    {
+      "content_hash": "fe1a81a0ccd51092dcbe3ff009e24ab82dac25fd483022bb721d6e7664d0afab",
+      "kind": "research_fixture",
+      "path": "tests/fixtures/research_snapshot.json",
+      "source_id": "fixture-tri-market-v1"
+    }
+  ],
+  "summary": {
+    "approved_enabled_count": 0,
+    "critical_events": 2,
+    "proposed_count": 30,
+    "stances": {
+      "BUY": 5,
+      "HOLD": 5,
+      "NO_SIGNAL": 15,
+      "SELL": 5
+    },
+    "tracked_count": 30
+  }
+}

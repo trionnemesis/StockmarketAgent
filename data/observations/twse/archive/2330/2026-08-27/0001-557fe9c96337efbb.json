@@ -1,0 +1,226 @@
+{
+  "archive_id": "TW:STOCK:2330@2026-08-27#557fe9c96337efbb",
+  "archive_path": "archive/2330/2026-08-27/0001-557fe9c96337efbb.json",
+  "asset_type": "stock",
+  "content_sha256": "557fe9c96337efbb508b529098317793f1807f5c7c9e86f7ee07430536fe633f",
+  "fetched_at": "2026-08-28T05:56:32Z",
+  "instrument_id": "TW:STOCK:2330",
+  "market_session_date": "2026-08-27",
+  "observation": {
+    "as_of": "2026-08-28",
+    "asset_type": "stock",
+    "attribution": {
+      "api_documentation_url": "https://openapi.twse.com.tw/v1/swagger.json",
+      "license_name": "政府資料開放授權條款－第1版",
+      "license_url": "https://data.gov.tw/license",
+      "publisher": "金融監督管理委員會證券期貨局／臺灣證券交易所",
+      "statement": "金融監督管理委員會證券期貨局／臺灣證券交易所（2026）開放資料；依政府資料開放授權條款－第1版使用。",
+      "terms_url": "https://www.twse.com.tw/zh/terms/use.html"
+    },
+    "automated_refresh_enabled": false,
+    "collection_policy": {
+      "basis": "Only documented OpenAPI endpoints tied to OGL datasets are collected; generic TWSE/MOPS HTML crawling is excluded.",
+      "html_scraping": false,
+      "interface": "documented_openapi",
+      "minimum_interval_seconds": 2,
+      "robots_status": "not_published_404_checked_2026-08-28",
+      "robots_url": "https://openapi.twse.com.tw/robots.txt",
+      "user_agent": "StockmarketAgent/0.3 (+https://github.com/trionnemesis/StockmarketAgent; research-only)"
+    },
+    "coverage": {
+      "available_fact_groups": [
+        "market_session",
+        "valuation",
+        "monthly_revenue",
+        "quarterly_income",
+        "balance_sheet"
+      ],
+      "gaps": [
+        "immutable_revision_history",
+        "full_eod_history",
+        "benchmark_return_series",
+        "corporate_action_history"
+      ],
+      "not_applicable_fact_groups": [
+        "fund_profile"
+      ]
+    },
+    "evidence_assessment": {
+      "contrary_evidence": [
+        "目前只保存最新快照，缺少完整修訂與更正歷史，不能作為 PIT 趨勢證據。",
+        "單日行情與未基準化估值不足以支持方向性投資結論。"
+      ],
+      "invalidation_conditions": [
+        "代號、資產類型或來源綁定不一致時，整份快照失效。",
+        "官方後續修訂改變已保存事實時，必須以新版本取代並保留修訂紀錄。",
+        "資源日期晚於取得時間、必要紀錄不是唯一一筆或契約驗證失敗時，拒絕發布。"
+      ],
+      "scope": "data_quality_context_only",
+      "supporting_evidence": [
+        "官方 EOD 單一代號紀錄已通過日期、OHLC、成交量與來源雜湊驗證。",
+        "估值、月營收與適用產業別的季度財務皆有同代號官方紀錄。"
+      ],
+      "used_in_signal": false
+    },
+    "facts": {
+      "balance_sheet": {
+        "book_value_per_share_twd": 248.05,
+        "currency": "TWD",
+        "liabilities_to_assets_percent": 30.94,
+        "period": "2026-Q2",
+        "published_date": "2026-08-28",
+        "source_resource_id": "balance_sheet",
+        "statement_type": "general_industry",
+        "total_assets_twd_million": 9375654.727,
+        "total_equity_twd_million": 6474470.981,
+        "total_liabilities_twd_million": 2901183.746,
+        "unit": "million"
+      },
+      "market_session": {
+        "change": -5.0,
+        "close": 2410.0,
+        "currency": "TWD",
+        "date": "2026-08-27",
+        "high": 2435.0,
+        "low": 2410.0,
+        "open": 2430.0,
+        "source_resource_id": "eod_prices",
+        "trade_value_twd": 46545167227,
+        "transaction_count": 60122,
+        "volume_shares": 19214481
+      },
+      "monthly_revenue": {
+        "audit_status": "company_reported_unaudited",
+        "currency": "TWD",
+        "month_over_month_percent": 5.62,
+        "period": "2026-07",
+        "previous_month_twd_million": 442679.969,
+        "prior_year_month_twd_million": 323165.707,
+        "published_date": "2026-08-17",
+        "revenue_twd_million": 467580.548,
+        "source_resource_id": "monthly_revenue",
+        "unit": "million",
+        "year_over_year_percent": 44.69,
+        "year_to_date_twd_million": 2872064.238,
+        "year_to_date_yoy_percent": 37.01
+      },
+      "quarterly_income": {
+        "basic_eps_twd": 49.33,
+        "currency": "TWD",
+        "gross_margin_percent": 67.03,
+        "gross_profit_twd_million": 1611606.116,
+        "net_income_parent_twd_million": 1279041.69,
+        "net_margin_parent_percent": 53.19,
+        "operating_income_twd_million": 1425568.793,
+        "operating_margin_percent": 59.29,
+        "period": "2026-Q2",
+        "period_scope": "year_to_date",
+        "pre_tax_income_twd_million": 1550229.773,
+        "published_date": "2026-08-28",
+        "revenue_twd_million": 2404483.69,
+        "source_resource_id": "quarterly_income",
+        "statement_type": "general_industry",
+        "unit": "million"
+      },
+      "valuation": {
+        "date": "2026-08-27",
+        "dividend_yield_percent": 0.91,
+        "pb_ratio": 9.72,
+        "pe_ratio": 27.94,
+        "source_resource_id": "valuation"
+      }
+    },
+    "fetched_at": "2026-08-28T05:56:32Z",
+    "instrument_id": "TW:STOCK:2330",
+    "mode": "observed_research_snapshot",
+    "name_zh": "台積電",
+    "normalization": {
+      "financial_display_unit": "TWD millions",
+      "financial_source_unit": "TWD thousands",
+      "ratio_rounding_decimals": 2,
+      "roc_calendar": "Gregorian year = ROC year + 1911"
+    },
+    "resources": [
+      {
+        "content_sha256": "b95e5681a069021aef4efb42b40c315748687895d3b913cbd7b1a18b371796cb",
+        "dataset_url": "https://data.gov.tw/dataset/11549",
+        "endpoint": "https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL",
+        "etag": "\"6a90aa2c-4dcae\"",
+        "last_modified": "Thu, 27 Aug 2026 21:20:44 GMT",
+        "observed_at": "2026-08-27",
+        "raw_retained": false,
+        "records_received": 1377,
+        "resource_id": "eod_prices",
+        "source_id": "TWSE_OGL_EOD"
+      },
+      {
+        "content_sha256": "5bd596dbcfacc85a5f24338520ec0c1b1435f8f668629d64d8d663349fa8eca7",
+        "dataset_url": "https://data.gov.tw/dataset/11547",
+        "endpoint": "https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL",
+        "etag": "\"6a90aa21-1c6ef\"",
+        "last_modified": "Thu, 27 Aug 2026 21:20:33 GMT",
+        "observed_at": "2026-08-27",
+        "raw_retained": false,
+        "records_received": 1081,
+        "resource_id": "valuation",
+        "source_id": "TWSE_OGL_EOD"
+      },
+      {
+        "content_sha256": "56076345ef920828d7e2cca0a1488833e5bebf5cac12f0a8809a47d8f6c2e36e",
+        "dataset_url": "https://data.gov.tw/dataset/18420",
+        "endpoint": "https://openapi.twse.com.tw/v1/opendata/t187ap05_L",
+        "etag": "\"6a90ab14-9393a\"",
+        "last_modified": "Thu, 27 Aug 2026 21:24:36 GMT",
+        "observed_at": "2026-08-17",
+        "raw_retained": false,
+        "records_received": 1085,
+        "resource_id": "monthly_revenue",
+        "source_id": "TWSE_OGL_FINANCIALS"
+      },
+      {
+        "content_sha256": "6711129e2d34d77e0704003246bdd601ae8f105945478033457f6af7102e45bf",
+        "dataset_url": "https://data.gov.tw/dataset/91998",
+        "endpoint": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+        "etag": "\"6a90ac1d-14fa7b\"",
+        "last_modified": "Thu, 27 Aug 2026 21:29:01 GMT",
+        "observed_at": "2026-08-28",
+        "raw_retained": false,
+        "records_received": 1017,
+        "resource_id": "quarterly_income",
+        "source_id": "TWSE_OGL_FINANCIALS"
+      },
+      {
+        "content_sha256": "1a8a1d7313545176da9abd464bf84597d2ba583b8d2f4d9e3379fb9e34179265",
+        "dataset_url": "https://data.gov.tw/dataset/94831",
+        "endpoint": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci",
+        "etag": "\"6a90ac36-d3a26\"",
+        "last_modified": "Thu, 27 Aug 2026 21:29:26 GMT",
+        "observed_at": "2026-08-28",
+        "raw_retained": false,
+        "records_received": 1017,
+        "resource_id": "balance_sheet",
+        "source_id": "TWSE_OGL_FINANCIALS"
+      }
+    ],
+    "schema_version": "1.1.0",
+    "slug": "tsmc",
+    "symbol": "2330",
+    "used_in_signal": false,
+    "warnings": [
+      "Point-in-time revision history is incomplete.",
+      "Snapshot facts and evidence assessment are not used to calculate or upgrade research attitudes.",
+      "No automatic refresh schedule is enabled."
+    ]
+  },
+  "official_as_of": "2026-08-28",
+  "revision": {
+    "correction_of_archive_id": null,
+    "previous_archive_id": null,
+    "relation": "initial",
+    "sequence": 1
+  },
+  "schema_version": "1.0.0",
+  "slug": "tsmc",
+  "source_kind": "official_observation",
+  "symbol": "2330"
+}

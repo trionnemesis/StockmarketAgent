@@ -32,7 +32,7 @@
     <a class="back-link" href="../markets/tw.html">← 返回台灣市場</a>
     <div class="instrument-title">
       <div><p class="eyebrow">TW · ETF · TWSE</p><h1>006208 <span>富邦台50</span></h1><p>Fubon FTSE TWSE Taiwan 50 ETF</p></div>
-      <span class="stance stance-buy"><span aria-hidden="true">↑</span> BUY</span>
+      <div><span class="stance stance-buy" data-input-kind="synthetic_fixture"><span aria-hidden="true">↑</span> SYNTHETIC BUY</span><p><span class="pill pill-risk">NO LIVE SIGNAL</span></p></div>
     </div>
     <div class="tag-row"><span class="tag">廣泛市場</span></div>
   </div>
@@ -42,7 +42,7 @@
   <section class="section-card" data-observed-snapshot="2026-08-27">
     <div class="section-heading"><div><p class="kicker">OFFICIAL OBSERVED FACTS</p><h2>TWSE 官方開放資料快照</h2></div><span class="pill pill-neutral">OGL attribution · not used in signal</span></div>
     <div class="notice" role="note"><strong>事實與訊號分流</strong><span>以下是 2026-08-28T05:56:32Z 取得的官方 OpenAPI 正規化事實；不會改寫上方 synthetic 分數、研究態度或 production gate，也不是即時報價。</span></div>
-    <div class="metric-grid"><article class="metric-card" data-observed-fact="close"><span>2026-08-27 收盤</span><strong>NT$ 243.15</strong><small>漲跌 0.3</small></article><article class="metric-card" data-observed-fact="volume"><span>成交股數</span><strong>1.87M</strong><small>8,191 筆</small></article><article class="metric-card" data-observed-fact="tracking-index"><span>官方追蹤指數</span><strong>臺灣50指數</strong><small>國內成分證券指數股票型基金</small></article><article class="metric-card" data-observed-fact="listing"><span>上市 / 成立</span><strong>2012-07-17</strong><small>成立 2012-06-22</small></article><article class="metric-card" data-observed-fact="issued-units"><span>發行單位數</span><strong>1,860,040,000</strong><small>官方月度基本資料</small></article><article class="metric-card" data-observed-fact="foreign-constituents"><span>國外成分股</span><strong>否</strong><small>客製／特別揭露指數：否</small></article></div>
+    <div class="metric-grid"><article class="metric-card" data-source-kind="official_observation"><span>資料來源類型</span><strong>official_observation</strong><small>TWSE OGL · signal-isolated</small></article><article class="metric-card" data-official-as-of="2026-08-27"><span>官方資料 as-of</span><strong>2026-08-27</strong><small>last checked 2026-08-28T05:56:32Z</small></article><article class="metric-card" data-observation-freshness="fresh"><span>資料新鮮度</span><strong>fresh</strong><small>trading_day · expected 2026-08-27</small></article><article class="metric-card" data-model-input-coverage="0"><span>官方觀測納入模型：0</span><strong>0 / 2</strong><small>coverage 0% · NO LIVE SIGNAL</small></article><article class="metric-card" data-observed-fact="close"><span>2026-08-27 收盤</span><strong>NT$ 243.15</strong><small>漲跌 0.3</small></article><article class="metric-card" data-observed-fact="volume"><span>成交股數</span><strong>1.87M</strong><small>8,191 筆</small></article><article class="metric-card" data-observed-fact="tracking-index"><span>官方追蹤指數</span><strong>臺灣50指數</strong><small>國內成分證券指數股票型基金</small></article><article class="metric-card" data-observed-fact="listing"><span>上市 / 成立</span><strong>2012-07-17</strong><small>成立 2012-06-22</small></article><article class="metric-card" data-observed-fact="issued-units"><span>發行單位數</span><strong>1,860,040,000</strong><small>官方月度基本資料</small></article><article class="metric-card" data-observed-fact="foreign-constituents"><span>國外成分股</span><strong>否</strong><small>客製／特別揭露指數：否</small></article></div>
     <div class="split-grid">
       <article class="section-card">
         <p class="kicker">OBSERVATION DETAIL</p><h2>ETF 官方基金基本資料</h2>
@@ -53,7 +53,8 @@
         <p>介面：documented_openapi；HTML scraping：false；自動排程：false。</p>
         <p>金融監督管理委員會證券期貨局／臺灣證券交易所（2026）開放資料；依政府資料開放授權條款－第1版使用。</p>
         <p><a href="https://data.gov.tw/dataset/11549">eod_prices</a> · <a href="https://data.gov.tw/dataset/157399">fund_profile</a></p>
-        <p><a href="../data/observations/fubon-taiwan-50.json">下載 strict observation JSON</a> · <a href="https://data.gov.tw/license">授權條款</a> · <a href="https://www.twse.com.tw/zh/terms/use.html">TWSE 使用條款</a></p>
+        <p><a href="../data/observations/fubon-taiwan-50.json">latest strict observation JSON</a> · <a href="../data/observations/archive/006208/2026-08-27/0001-eb99b465558717f5.json">immutable archive entry</a> · <a href="../data/observations/catalog.json">catalog / last-known-good</a></p>
+        <p><a href="https://data.gov.tw/license">授權條款</a> · <a href="https://www.twse.com.tw/zh/terms/use.html">TWSE 使用條款</a></p>
       </article>
     </div>
     <div class="section-heading"><div><p class="kicker">DATA-QUALITY EVIDENCE</p><h2>支持、反向證據與失效條件</h2></div><span class="pill pill-neutral">context only · not directional</span></div>
@@ -69,19 +70,19 @@
     <div class="section-heading"><div><p class="kicker">MULTI-HORIZON</p><h2>四個期間研究態度</h2></div><span class="pill pill-neutral">uncalibrated · synthetic scenario</span></div>
     <div class="notice notice-warning" role="note"><strong>研究態度，不是市場建議</strong><span>下列 score、confidence 與 BUY／HOLD／SELL／NO_SIGNAL 都取自 research fixture；不讀取另行標示的官方觀測快照，也未經模型校準。</span></div>
     <div class="horizon-grid"><article class="horizon-card" data-horizon="1W" data-score="44.5" data-stance="BUY" data-confidence="75" data-calibration="uncalibrated">
-  <span>1W</span><span class="stance stance-buy"><span aria-hidden="true">↑</span> BUY</span>
+  <span>1W</span><span class="stance stance-buy" data-input-kind="synthetic_fixture"><span aria-hidden="true">↑</span> SYNTHETIC BUY</span>
   <div><strong>44.5</strong><small>research score</small></div>
   <p>confidence 75 · uncalibrated</p>
 </article><article class="horizon-card" data-horizon="1M" data-score="40.75" data-stance="BUY" data-confidence="75" data-calibration="uncalibrated">
-  <span>1M</span><span class="stance stance-buy"><span aria-hidden="true">↑</span> BUY</span>
+  <span>1M</span><span class="stance stance-buy" data-input-kind="synthetic_fixture"><span aria-hidden="true">↑</span> SYNTHETIC BUY</span>
   <div><strong>40.75</strong><small>research score</small></div>
   <p>confidence 75 · uncalibrated</p>
 </article><article class="horizon-card" data-horizon="3M" data-score="37.75" data-stance="BUY" data-confidence="75" data-calibration="uncalibrated">
-  <span>3M</span><span class="stance stance-buy"><span aria-hidden="true">↑</span> BUY</span>
+  <span>3M</span><span class="stance stance-buy" data-input-kind="synthetic_fixture"><span aria-hidden="true">↑</span> SYNTHETIC BUY</span>
   <div><strong>37.75</strong><small>research score</small></div>
   <p>confidence 75 · uncalibrated</p>
 </article><article class="horizon-card" data-horizon="12M" data-score="34.5" data-stance="BUY" data-confidence="75" data-calibration="uncalibrated">
-  <span>12M</span><span class="stance stance-buy"><span aria-hidden="true">↑</span> BUY</span>
+  <span>12M</span><span class="stance stance-buy" data-input-kind="synthetic_fixture"><span aria-hidden="true">↑</span> SYNTHETIC BUY</span>
   <div><strong>34.5</strong><small>research score</small></div>
   <p>confidence 75 · uncalibrated</p>
 </article></div>
@@ -105,22 +106,22 @@
   <section class="section-card">
     <div class="section-heading"><div><p class="kicker">EXPLAINABILITY</p><h2>支持、反向證據與失效條件</h2></div><span class="pill pill-neutral">四期間 · synthetic scenario</span></div>
     <div class="event-grid"><article class="event-card">
-  <div><span class="priority">1W</span><span class="tag">BUY</span></div>
+  <div><span class="priority">1W</span><span class="tag">SYNTHETIC BUY</span></div>
   <h3>支持證據</h3><ul class="risk-list"><li>SYNTHETIC_SCENARIO: positive multi-factor test evidence.</li></ul>
   <h3>反向證據</h3><ul class="risk-list"><li>SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum.</li></ul>
   <h3>失效條件</h3><ul class="risk-list"><li>Discard if this fixture is presented as observed market data.</li></ul>
 </article><article class="event-card">
-  <div><span class="priority">1M</span><span class="tag">BUY</span></div>
+  <div><span class="priority">1M</span><span class="tag">SYNTHETIC BUY</span></div>
   <h3>支持證據</h3><ul class="risk-list"><li>SYNTHETIC_SCENARIO: positive multi-factor test evidence.</li></ul>
   <h3>反向證據</h3><ul class="risk-list"><li>SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum.</li></ul>
   <h3>失效條件</h3><ul class="risk-list"><li>Discard if this fixture is presented as observed market data.</li></ul>
 </article><article class="event-card">
-  <div><span class="priority">3M</span><span class="tag">BUY</span></div>
+  <div><span class="priority">3M</span><span class="tag">SYNTHETIC BUY</span></div>
   <h3>支持證據</h3><ul class="risk-list"><li>SYNTHETIC_SCENARIO: positive multi-factor test evidence.</li></ul>
   <h3>反向證據</h3><ul class="risk-list"><li>SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum.</li></ul>
   <h3>失效條件</h3><ul class="risk-list"><li>Discard if this fixture is presented as observed market data.</li></ul>
 </article><article class="event-card">
-  <div><span class="priority">12M</span><span class="tag">BUY</span></div>
+  <div><span class="priority">12M</span><span class="tag">SYNTHETIC BUY</span></div>
   <h3>支持證據</h3><ul class="risk-list"><li>SYNTHETIC_SCENARIO: positive multi-factor test evidence.</li></ul>
   <h3>反向證據</h3><ul class="risk-list"><li>SYNTHETIC_SCENARIO: valuation strength is deliberately lower than momentum.</li></ul>
   <h3>失效條件</h3><ul class="risk-list"><li>Discard if this fixture is presented as observed market data.</li></ul>
