@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from src.analysis import AnalysisInputError, build_research_analysis
+from src.ingestion.twse_archive import load_and_validate_store
 from src.render.markdown import render_report, render_source_feasibility as render_source_feasibility_md, render_universe_review as render_universe_review_md
 from src.render.site import (
     SITE_URL,
@@ -449,7 +450,9 @@ def load_tw_observations(
         item for item in universe["instruments"] if item["country"] == "TW"
     ]
     expected_symbols = {item["symbol"] for item in candidates}
-    paths = sorted(TW_OBSERVATION_DIR.glob("*.json"))
+    paths = sorted(
+        path for path in TW_OBSERVATION_DIR.glob("*.json") if path.stem.isdigit()
+    )
     actual_symbols = {path.stem for path in paths}
     if len(candidates) != 10 or len(expected_symbols) != 10:
         raise ContractError("Taiwan observation universe must contain exactly 10 symbols")
@@ -485,8 +488,17 @@ def build_outputs(
     sources: dict[str, Any],
     review: dict[str, Any],
     observations: dict[str, dict[str, Any]] | None = None,
+    catalog: dict[str, Any] | None = None,
+    archive_entries: dict[Path, dict[str, Any]] | None = None,
 ) -> tuple[dict[Path, bytes], dict[str, Any]]:
     observations = observations or load_tw_observations(signal, sources)
+    if catalog is None or archive_entries is None:
+        catalog, archive_entries = load_and_validate_store(
+            signal, sources, observation_dir=TW_OBSERVATION_DIR
+        )
+    observation_statuses = {
+        item["instrument_id"]: item for item in catalog["instruments"]
+    }
     as_of = signal["run"]["as_of"]
     run_id = signal["run"]["run_id"]
     year, month, _ = as_of.split("-")
@@ -517,6 +529,7 @@ def build_outputs(
         ROOT / "docs" / "data" / "runs" / f"{run_id}.json": signal_json,
         ROOT / "docs" / "data" / "universe-review.json": _pretty_json(review).encode("utf-8"),
         ROOT / "docs" / "data" / "sources.json": _pretty_json(sources).encode("utf-8"),
+        ROOT / "docs" / "data" / "observations" / "catalog.json": _pretty_json(catalog).encode("utf-8"),
         ROOT / "docs" / "data" / "archive" / f"{as_of}.json": signal_json,
         ROOT / "docs" / "assets" / "css" / "site.css": (
             ASSET_DIR / "site.css"
@@ -543,12 +556,18 @@ def build_outputs(
             / "observations"
             / f"{observation['slug']}.json"
         ] = _pretty_json(observation).encode("utf-8")
+    for archive_path, archive_entry in archive_entries.items():
+        relative = archive_path.relative_to(TW_OBSERVATION_DIR)
+        outputs[
+            ROOT / "docs" / "data" / "observations" / relative
+        ] = _pretty_json(archive_entry).encode("utf-8")
     for country in ("TW", "JP", "US"):
         outputs[ROOT / "docs" / "markets" / f"{country.lower()}.html"] = (
             render_market(
                 signal,
                 country,
                 observations if country == "TW" else None,
+                observation_statuses if country == "TW" else None,
             ).encode("utf-8")
         )
     for item in signal["instruments"]:
@@ -563,6 +582,7 @@ def build_outputs(
                     if review_item["instrument_id"] == item["instrument_id"]
                 ),
                 item_observation,
+                observation_statuses.get(item["instrument_id"]),
             ).encode("utf-8")
         )
     for schema_path in sorted(SCHEMAS.glob("*.schema.json")):
@@ -683,7 +703,17 @@ def command_build() -> dict[str, Any]:
     thresholds = load_json_strict(CONFIG / "action_thresholds.json")
     validate_signal_contract(signal, approvals, thresholds)
     observations = load_tw_observations(universe, sources)
-    outputs, run_record = build_outputs(signal, sources, review, observations)
+    catalog, archive_entries = load_and_validate_store(
+        universe, sources, observation_dir=TW_OBSERVATION_DIR
+    )
+    outputs, run_record = build_outputs(
+        signal,
+        sources,
+        review,
+        observations,
+        catalog,
+        archive_entries,
+    )
     validate_document(run_record, SCHEMAS / "agent-run.schema.json")
     validate_agent_run_contract(run_record)
     publish_atomically(outputs)
@@ -844,6 +874,9 @@ def _validate_immutable_run_history(
 def validate_existing() -> None:
     universe, approvals, _, _, _, _, sources, _ = load_inputs()
     observations = load_tw_observations(universe, sources)
+    catalog, archive_entries = load_and_validate_store(
+        universe, sources, observation_dir=TW_OBSERVATION_DIR
+    )
     signal = load_json_strict(ROOT / "signals" / "latest.json")
     validate_document(signal, SCHEMAS / "signal.schema.json")
     thresholds = load_json_strict(CONFIG / "action_thresholds.json")
@@ -856,13 +889,37 @@ def validate_existing() -> None:
         raise ContractError("docs/data/latest.json diverges from signals/latest.json")
     if canonical_json(signal) != canonical_json(archive_signal):
         raise ContractError("archive signal diverges from latest signal")
-    expected_page_files = {f"{item['slug']}.json" for item in observations.values()}
+    expected_page_files = {
+        f"{item['slug']}.json" for item in observations.values()
+    } | {"catalog.json"}
     actual_page_files = {
         path.name
         for path in (ROOT / "docs" / "data" / "observations").glob("*.json")
     }
     if actual_page_files != expected_page_files:
         raise ContractError("Taiwan Pages observation membership mismatch")
+    docs_catalog = load_json_strict(
+        ROOT / "docs" / "data" / "observations" / "catalog.json"
+    )
+    if canonical_json(catalog) != canonical_json(docs_catalog):
+        raise ContractError("Taiwan Pages observation catalog diverges from source")
+    expected_archive_paths = {
+        path.relative_to(TW_OBSERVATION_DIR)
+        for path in archive_entries
+    }
+    actual_archive_paths = {
+        path.relative_to(ROOT / "docs" / "data" / "observations")
+        for path in (ROOT / "docs" / "data" / "observations" / "archive").glob("*/*/*.json")
+    }
+    if actual_archive_paths != expected_archive_paths:
+        raise ContractError("Taiwan Pages observation archive membership mismatch")
+    for source_path, archive_entry in archive_entries.items():
+        relative = source_path.relative_to(TW_OBSERVATION_DIR)
+        docs_entry = load_json_strict(
+            ROOT / "docs" / "data" / "observations" / relative
+        )
+        if canonical_json(archive_entry) != canonical_json(docs_entry):
+            raise ContractError(f"{relative}: Pages archive entry diverges from source")
     for observation in observations.values():
         docs_observation = load_json_strict(
             ROOT
