@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import base64
 import hashlib
+import os
 import zlib
 from pathlib import Path
 
@@ -31,3 +32,48 @@ for path in paths:
 payload = "".join(parts)
 source = zlib.decompress(base64.b64decode(payload)).decode("utf-8")
 exec(compile(source, "tools/implement_tw_c1.py", "exec"))
+
+
+def replace_exact(path: str, old: str, new: str, expected_count: int) -> None:
+    target = ROOT / path
+    text = target.read_text(encoding="utf-8")
+    actual = text.count(old)
+    if actual != expected_count:
+        raise RuntimeError(
+            f"{path}: expected {expected_count} occurrences of {old!r}, found {actual}"
+        )
+    target.write_text(text.replace(old, new), encoding="utf-8")
+
+
+# Keep the source root at exactly ten latest observation JSON files for backward
+# compatibility; the mutable catalog lives below status/ while Pages still
+# publishes it at /data/observations/catalog.json.
+replace_exact(
+    "src/ingestion/twse_archive.py",
+    'observation_dir / "catalog.json"',
+    'observation_dir / "status" / "catalog.json"',
+    3,
+)
+replace_exact(
+    "tests/unit/test_twse_archive.py",
+    'root / "catalog.json"',
+    'root / "status" / "catalog.json"',
+    2,
+)
+replace_exact(
+    "src/render/site.py",
+    '<span>官方觀測納入模型</span>',
+    '<span>官方觀測納入模型：0</span>',
+    1,
+)
+replace_exact(
+    "README.md",
+    '`catalog.json` 維護 latest、last-known-good、history count、official as-of、資料新鮮度與 model-input coverage。',
+    '`data/observations/twse/status/catalog.json` 維護 latest、last-known-good、history count、official as-of、資料新鮮度與 model-input coverage。',
+    1,
+)
+source_catalog = ROOT / "data" / "observations" / "twse" / "catalog.json"
+target_catalog = ROOT / "data" / "observations" / "twse" / "status" / "catalog.json"
+target_catalog.parent.mkdir(parents=True, exist_ok=True)
+os.replace(source_catalog, target_catalog)
+print("TW-C1 compatibility fixes applied")
