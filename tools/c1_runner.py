@@ -15,7 +15,7 @@ expected = {
 }
 parts = []
 for path in sorted((ROOT / "tools").glob("c1_payload_*.txt")):
-    raw = path.read_bytes()
+    raw = path.read_text(encoding="utf-8").strip().encode("utf-8")
     digest = hashlib.sha256(raw).hexdigest()
     print(f"{path.name} size={len(raw)} sha256={digest}")
     if expected.get(path.name) != digest:
