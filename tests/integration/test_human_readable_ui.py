@@ -27,9 +27,10 @@ class HumanReadableUiTests(unittest.TestCase):
 
     def test_engineering_labels_have_plain_language_mappings(self) -> None:
         required_mappings = {
-            "SYNTHETIC BUY": "模擬情境偏多",
-            "SYNTHETIC HOLD": "模擬情境中性",
-            "SYNTHETIC SELL": "模擬情境偏空",
+            "BUY": "模擬情境偏多",
+            "HOLD": "模擬情境中性",
+            "SELL": "模擬情境偏空",
+            "NO_SIGNAL": "目前沒有可用的即時買賣訊號",
             "RESEARCH ONLY": "研究預覽",
             "research_fixture": "模擬研究資料",
             "uncalibrated": "尚未完成回測校準",
