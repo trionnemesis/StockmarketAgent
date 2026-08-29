@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trionnemesis.github.io/StockmarketAgent/schemas/observation-catalog.schema.json",
+  "title": "Taiwan Observation Catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "catalog_id", "market", "source_kind", "calendar_id", "evaluated_at", "instruments"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "catalog_id": {"type": "string", "minLength": 1},
+    "market": {"const": "TWSE"},
+    "source_kind": {"const": "official_observation"},
+    "calendar_id": {"type": "string", "minLength": 1},
+    "evaluated_at": {"type": "string", "format": "date-time"},
+    "instruments": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["instrument_id", "symbol", "slug", "asset_type", "source_kind", "official_as_of", "last_checked_at", "latest_archive_id", "latest_archive_path", "last_known_good_archive_id", "last_known_good_archive_path", "history_count", "freshness", "model_input_coverage"],
+        "properties": {
+          "instrument_id": {"type": "string", "minLength": 1},
+          "symbol": {"type": "string", "pattern": "^[0-9]{4,6}$"},
+          "slug": {"type": "string", "minLength": 1},
+          "asset_type": {"enum": ["stock", "etf"]},
+          "source_kind": {"const": "official_observation"},
+          "official_as_of": {"type": "string", "format": "date"},
+          "last_checked_at": {"type": "string", "format": "date-time"},
+          "latest_archive_id": {"type": "string", "minLength": 1},
+          "latest_archive_path": {"type": "string", "minLength": 1},
+          "last_known_good_archive_id": {"type": "string", "minLength": 1},
+          "last_known_good_archive_path": {"type": "string", "minLength": 1},
+          "history_count": {"type": "integer", "minimum": 1},
+          "freshness": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["evaluated_at", "market_state", "market_state_reason", "expected_latest_session", "observed_market_session", "freshness", "sessions_behind", "reason"],
+            "properties": {
+              "evaluated_at": {"type": "string", "format": "date-time"},
+              "market_state": {"enum": ["trading_day", "weekend", "holiday"]},
+              "market_state_reason": {"type": "string", "minLength": 1},
+              "expected_latest_session": {"type": "string", "format": "date"},
+              "observed_market_session": {"type": ["string", "null"], "format": "date"},
+              "freshness": {"enum": ["fresh", "stale", "missing"]},
+              "sessions_behind": {"type": ["integer", "null"], "minimum": 0},
+              "reason": {"type": "string", "minLength": 1}
+            }
+          },
+          "model_input_coverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["available_fact_groups", "available_fact_group_count", "used_fact_groups", "used_fact_group_count", "coverage_percent", "used_in_signal", "status"],
+            "properties": {
+              "available_fact_groups": {"type": "array", "items": {"type": "string", "minLength": 1}},
+              "available_fact_group_count": {"type": "integer", "minimum": 1},
+              "used_fact_groups": {"type": "array", "maxItems": 0},
+              "used_fact_group_count": {"const": 0},
+              "coverage_percent": {"const": 0},
+              "used_in_signal": {"const": false},
+              "status": {"const": "not_connected"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

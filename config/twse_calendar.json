@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "calendar_id": "TWSE-2026-OFFICIAL-115",
+  "market": "TWSE",
+  "timezone": "Asia/Taipei",
+  "source": {
+    "publisher": "臺灣證券交易所",
+    "url": "https://www.twse.com.tw/rwd/zh/holidaySchedule/holidaySchedule?response=json&queryYear=115",
+    "query_year_roc": 115,
+    "retrieved_at": "2026-08-29"
+  },
+  "coverage": {
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "weekend_days": [5, 6],
+  "closed_dates": [
+    {"date": "2026-01-01", "reason": "中華民國開國紀念日"},
+    {"date": "2026-02-12", "reason": "農曆春節前市場無交易，僅辦理結算交割"},
+    {"date": "2026-02-13", "reason": "農曆春節前市場無交易，僅辦理結算交割"},
+    {"date": "2026-02-16", "reason": "農曆除夕"},
+    {"date": "2026-02-17", "reason": "農曆春節"},
+    {"date": "2026-02-18", "reason": "農曆春節"},
+    {"date": "2026-02-19", "reason": "農曆春節"},
+    {"date": "2026-02-20", "reason": "農曆春節調整放假"},
+    {"date": "2026-02-27", "reason": "和平紀念日補假"},
+    {"date": "2026-04-03", "reason": "兒童節補假"},
+    {"date": "2026-04-06", "reason": "清明節補假"},
+    {"date": "2026-05-01", "reason": "勞動節"},
+    {"date": "2026-06-19", "reason": "端午節"},
+    {"date": "2026-09-25", "reason": "中秋節"},
+    {"date": "2026-09-28", "reason": "孔子誕辰紀念日／教師節"},
+    {"date": "2026-10-09", "reason": "國慶日補假"},
+    {"date": "2026-10-26", "reason": "臺灣光復暨金門古寧頭大捷紀念日補假"},
+    {"date": "2026-12-25", "reason": "行憲紀念日"}
+  ],
+  "freshness_policy": {
+    "policy_kind": "project_defined",
+    "same_day_expected_after": "18:00:00",
+    "description": "A trading-day observation is expected after 18:00 Asia/Taipei; before that cutoff, the prior market session remains the expected latest session. This is a StockmarketAgent publication policy, not a TWSE service-level guarantee."
+  }
+}

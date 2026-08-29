@@ -12,6 +12,8 @@ from pathlib import Path
 from typing import Any, Mapping
 from urllib.request import Request, urlopen
 
+from src.ingestion.twse_archive import ArchiveError, archive_and_publish
+
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUTPUT_DIR = ROOT / "data" / "observations" / "twse"
@@ -269,7 +271,7 @@ def _evidence_assessment(asset_type: str) -> dict[str, Any]:
     if asset_type == "stock":
         supporting.append("估值、月營收與適用產業別的季度財務皆有同代號官方紀錄。")
         contrary = [
-            "目前只保存最新快照，缺少完整修訂與更正歷史，不能作為 PIT 趨勢證據。",
+            "修訂感知 archive 從 C1 baseline 開始；baseline 以前的完整 PIT 修訂歷史仍不可得。",
             "單日行情與未基準化估值不足以支持方向性投資結論。",
         ]
     else:
@@ -336,12 +338,12 @@ def build_snapshots(payloads: Mapping[str, Mapping[str, Any]], *, fetched_at: st
             facts.update(_stock_facts(selected, observed_dates, instrument["financial_statement_type"]))
             available = ["market_session", "valuation", "monthly_revenue", "quarterly_income", "balance_sheet"]
             not_applicable = ["fund_profile"]
-            gaps = ["immutable_revision_history", "full_eod_history", "benchmark_return_series", "corporate_action_history"]
+            gaps = ["pre_archive_revision_history", "full_eod_history", "benchmark_return_series", "corporate_action_history"]
         else:
             facts["fund_profile"] = _fund_fact(selected["fund_profile"], observed_dates["fund_profile"])
             available = ["market_session", "fund_profile"]
             not_applicable = ["valuation", "monthly_revenue", "quarterly_income", "balance_sheet"]
-            gaps = ["immutable_revision_history", "full_eod_history", "pit_holdings", "nav_and_premium_discount_history", "benchmark_return_series"]
+            gaps = ["pre_archive_revision_history", "full_eod_history", "pit_holdings", "nav_and_premium_discount_history", "benchmark_return_series"]
         as_of = max(observed_dates.values())
         if as_of > parsed_fetched_at.date().isoformat():
             raise IngestionError(f"{symbol}: official observation date is after fetched_at")
@@ -385,7 +387,7 @@ def build_snapshots(payloads: Mapping[str, Mapping[str, Any]], *, fetched_at: st
             "facts": facts,
             "evidence_assessment": _evidence_assessment(instrument["asset_type"]),
             "warnings": [
-                "Point-in-time revision history is incomplete.",
+                "Revision-aware history starts at the committed C1 baseline; earlier PIT revisions are unavailable.",
                 "Snapshot facts and evidence assessment are not used to calculate or upgrade research attitudes.",
                 "No automatic refresh schedule is enabled.",
             ],
@@ -431,9 +433,12 @@ def main() -> int:
     fetched_at = args.fetched_at or datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     try:
         snapshots = build_snapshots(fetch_payloads(timeout_seconds=args.timeout), fetched_at=fetched_at)
-        for symbol, snapshot in snapshots.items():
-            write_atomically(args.output_dir / f"{symbol}.json", snapshot)
-    except IngestionError as exc:
+        archive_result = archive_and_publish(
+            snapshots,
+            observation_dir=args.output_dir,
+            evaluated_at=fetched_at,
+        )
+    except (IngestionError, ArchiveError) as exc:
         print(f"ingestion error: {exc}")
         return 1
     print(json.dumps({
@@ -442,6 +447,7 @@ def main() -> int:
         "instruments": len(snapshots),
         "resources_fetched": len(PAYLOAD_SPECS),
         "output_dir": str(args.output_dir),
+        "archive": archive_result,
     }, ensure_ascii=False, sort_keys=True))
     return 0
 

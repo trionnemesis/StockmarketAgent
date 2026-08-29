@@ -1,0 +1,385 @@
+{
+  "calendar_id": "TWSE-2026-OFFICIAL-115",
+  "catalog_id": "twse-official-observations@2026-08-28T05:56:32Z",
+  "evaluated_at": "2026-08-28T05:56:32Z",
+  "instruments": [
+    {
+      "asset_type": "etf",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:ETF:0050",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:ETF:0050@2026-08-27#9fef28777ea40842",
+      "last_known_good_archive_path": "archive/0050/2026-08-27/0001-9fef28777ea40842.json",
+      "latest_archive_id": "TW:ETF:0050@2026-08-27#9fef28777ea40842",
+      "latest_archive_path": "archive/0050/2026-08-27/0001-9fef28777ea40842.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 2,
+        "available_fact_groups": [
+          "market_session",
+          "fund_profile"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-27",
+      "slug": "yuanta-taiwan-50",
+      "source_kind": "official_observation",
+      "symbol": "0050"
+    },
+    {
+      "asset_type": "etf",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:ETF:006208",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:ETF:006208@2026-08-27#eb99b465558717f5",
+      "last_known_good_archive_path": "archive/006208/2026-08-27/0001-eb99b465558717f5.json",
+      "latest_archive_id": "TW:ETF:006208@2026-08-27#eb99b465558717f5",
+      "latest_archive_path": "archive/006208/2026-08-27/0001-eb99b465558717f5.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 2,
+        "available_fact_groups": [
+          "market_session",
+          "fund_profile"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-27",
+      "slug": "fubon-taiwan-50",
+      "source_kind": "official_observation",
+      "symbol": "006208"
+    },
+    {
+      "asset_type": "etf",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:ETF:00878",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:ETF:00878@2026-08-27#0f066a6c84f66c53",
+      "last_known_good_archive_path": "archive/00878/2026-08-27/0001-0f066a6c84f66c53.json",
+      "latest_archive_id": "TW:ETF:00878@2026-08-27#0f066a6c84f66c53",
+      "latest_archive_path": "archive/00878/2026-08-27/0001-0f066a6c84f66c53.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 2,
+        "available_fact_groups": [
+          "market_session",
+          "fund_profile"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-27",
+      "slug": "cathay-esg-high-dividend",
+      "source_kind": "official_observation",
+      "symbol": "00878"
+    },
+    {
+      "asset_type": "etf",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:ETF:00919",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:ETF:00919@2026-08-27#95029edd5a88610f",
+      "last_known_good_archive_path": "archive/00919/2026-08-27/0001-95029edd5a88610f.json",
+      "latest_archive_id": "TW:ETF:00919@2026-08-27#95029edd5a88610f",
+      "latest_archive_path": "archive/00919/2026-08-27/0001-95029edd5a88610f.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 2,
+        "available_fact_groups": [
+          "market_session",
+          "fund_profile"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-27",
+      "slug": "capital-tip-customized-high-dividend",
+      "source_kind": "official_observation",
+      "symbol": "00919"
+    },
+    {
+      "asset_type": "etf",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:ETF:00965",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:ETF:00965@2026-08-27#fa7d343c2e517eeb",
+      "last_known_good_archive_path": "archive/00965/2026-08-27/0001-fa7d343c2e517eeb.json",
+      "latest_archive_id": "TW:ETF:00965@2026-08-27#fa7d343c2e517eeb",
+      "latest_archive_path": "archive/00965/2026-08-27/0001-fa7d343c2e517eeb.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 2,
+        "available_fact_groups": [
+          "market_session",
+          "fund_profile"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-27",
+      "slug": "yuanta-global-aerospace-defense",
+      "source_kind": "official_observation",
+      "symbol": "00965"
+    },
+    {
+      "asset_type": "stock",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:STOCK:2308",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:STOCK:2308@2026-08-27#a61a1db3503e4fa5",
+      "last_known_good_archive_path": "archive/2308/2026-08-27/0001-a61a1db3503e4fa5.json",
+      "latest_archive_id": "TW:STOCK:2308@2026-08-27#a61a1db3503e4fa5",
+      "latest_archive_path": "archive/2308/2026-08-27/0001-a61a1db3503e4fa5.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 5,
+        "available_fact_groups": [
+          "market_session",
+          "valuation",
+          "monthly_revenue",
+          "quarterly_income",
+          "balance_sheet"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-28",
+      "slug": "delta-electronics",
+      "source_kind": "official_observation",
+      "symbol": "2308"
+    },
+    {
+      "asset_type": "stock",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:STOCK:2330",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:STOCK:2330@2026-08-27#557fe9c96337efbb",
+      "last_known_good_archive_path": "archive/2330/2026-08-27/0001-557fe9c96337efbb.json",
+      "latest_archive_id": "TW:STOCK:2330@2026-08-27#557fe9c96337efbb",
+      "latest_archive_path": "archive/2330/2026-08-27/0001-557fe9c96337efbb.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 5,
+        "available_fact_groups": [
+          "market_session",
+          "valuation",
+          "monthly_revenue",
+          "quarterly_income",
+          "balance_sheet"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-28",
+      "slug": "tsmc",
+      "source_kind": "official_observation",
+      "symbol": "2330"
+    },
+    {
+      "asset_type": "stock",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:STOCK:2412",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:STOCK:2412@2026-08-27#21bff31200bde9c4",
+      "last_known_good_archive_path": "archive/2412/2026-08-27/0001-21bff31200bde9c4.json",
+      "latest_archive_id": "TW:STOCK:2412@2026-08-27#21bff31200bde9c4",
+      "latest_archive_path": "archive/2412/2026-08-27/0001-21bff31200bde9c4.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 5,
+        "available_fact_groups": [
+          "market_session",
+          "valuation",
+          "monthly_revenue",
+          "quarterly_income",
+          "balance_sheet"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-28",
+      "slug": "chunghwa-telecom",
+      "source_kind": "official_observation",
+      "symbol": "2412"
+    },
+    {
+      "asset_type": "stock",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:STOCK:2454",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:STOCK:2454@2026-08-27#a01661ef4e5679a0",
+      "last_known_good_archive_path": "archive/2454/2026-08-27/0001-a01661ef4e5679a0.json",
+      "latest_archive_id": "TW:STOCK:2454@2026-08-27#a01661ef4e5679a0",
+      "latest_archive_path": "archive/2454/2026-08-27/0001-a01661ef4e5679a0.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 5,
+        "available_fact_groups": [
+          "market_session",
+          "valuation",
+          "monthly_revenue",
+          "quarterly_income",
+          "balance_sheet"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-28",
+      "slug": "mediatek",
+      "source_kind": "official_observation",
+      "symbol": "2454"
+    },
+    {
+      "asset_type": "stock",
+      "freshness": {
+        "evaluated_at": "2026-08-28T05:56:32Z",
+        "expected_latest_session": "2026-08-27",
+        "freshness": "fresh",
+        "market_state": "trading_day",
+        "market_state_reason": "regular trading day",
+        "observed_market_session": "2026-08-27",
+        "reason": "validated observation matches the expected latest market session",
+        "sessions_behind": 0
+      },
+      "history_count": 1,
+      "instrument_id": "TW:STOCK:2891",
+      "last_checked_at": "2026-08-28T05:56:32Z",
+      "last_known_good_archive_id": "TW:STOCK:2891@2026-08-27#d93373bbed1bba94",
+      "last_known_good_archive_path": "archive/2891/2026-08-27/0001-d93373bbed1bba94.json",
+      "latest_archive_id": "TW:STOCK:2891@2026-08-27#d93373bbed1bba94",
+      "latest_archive_path": "archive/2891/2026-08-27/0001-d93373bbed1bba94.json",
+      "model_input_coverage": {
+        "available_fact_group_count": 5,
+        "available_fact_groups": [
+          "market_session",
+          "valuation",
+          "monthly_revenue",
+          "quarterly_income",
+          "balance_sheet"
+        ],
+        "coverage_percent": 0,
+        "status": "not_connected",
+        "used_fact_group_count": 0,
+        "used_fact_groups": [],
+        "used_in_signal": false
+      },
+      "official_as_of": "2026-08-28",
+      "slug": "ctbc-financial",
+      "source_kind": "official_observation",
+      "symbol": "2891"
+    }
+  ],
+  "market": "TWSE",
+  "schema_version": "1.0.0",
+  "source_kind": "official_observation"
+}

@@ -18,5 +18,5 @@
 - [x] Expand official observations and evidence mapping to all 10 Taiwan candidates.
 - [x] Route general-industry, financial-holding, and ETF fields without false cross-asset comparability.
 - [x] Add a Taiwan market matrix with supporting evidence, counter-evidence, and invalidation conditions.
-- [ ] Build a revision-aware Taiwan 10-candidate historical observation archive.
+- [x] Build a revision-aware Taiwan 10-candidate historical observation archive with correction lineage, latest/LKG catalog, freshness semantics, strict validation, and Pages source/model-boundary labels.
 - [ ] Add an approved exact TAIEX benchmark series and corporate-action history.
