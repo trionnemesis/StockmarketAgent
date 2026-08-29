@@ -5,9 +5,7 @@ on:
     branches:
       - feat/tw-c1-revision-aware-data-layer
     paths:
-      - tools/c1_runner.py
-      - tools/c1_payload_*.txt
-      - .github/workflows/c1-bootstrap.yml
+      - tools/c1_ready.txt
 
 permissions:
   contents: write
@@ -66,7 +64,7 @@ jobs:
       - name: Remove one-time bootstrap files
         run: |
           rm -f .github/workflows/c1-bootstrap.yml
-          rm -f tools/c1_runner.py tools/c1_payload_*.txt
+          rm -f tools/c1_ready.txt tools/c1_runner.py tools/c1_payload_*.txt
           rmdir tools 2>/dev/null || true
           git add -A
           git commit -m "chore: remove C1 bootstrap tooling"
