@@ -28,4 +28,8 @@ The public MVP is deliberately research_only. It will not approve a production u
 
 ## Deferred by design
 
-Complete point-in-time archives, correction streams, exact benchmark history, corporate actions, market calendars, news classification, scoring calibration, backtesting, scheduled refresh PRs, and production BUY/SELL activation require separate reviewed changes and explicit owner approval where specified.
+Complete point-in-time archives, correction streams, exact benchmark history, complete corporate-action history, market calendars, news classification, scoring calibration, backtesting, scheduled refresh PRs, and production BUY/SELL activation require separate reviewed changes and explicit owner approval where specified. A current-forecast slice of corporate actions (ex-right/ex-dividend) for the five Taiwan stock candidates is now ingestible as an optional, signal-isolated observed fact (see TW-C2 below); it is not a complete historical golden source and its field mapping awaits a human diff review against a live TWSE response.
+
+## TW-C2: optional corporate-action forecast (not yet populated)
+
+`src/ingestion/twse_openapi.py` can now fetch and normalize the documented "上市個股除權除息預告表" TWSE OpenAPI dataset (`data.gov.tw/dataset/89748`) into an optional `facts.corporate_actions` group on each of the five Taiwan stock snapshots, filtered by stock code with zero-or-more matches (most stocks have no upcoming event at any given time). It remains `used_in_signal=false` and is additive to the existing observed-facts contract: snapshots without it stay valid. This sandbox's network policy blocks `openapi.twse.com.tw`, so the endpoint path and field keys are the author's best-effort mapping, not verified against a live response — consistent with this project's existing policy that API values need manual diff review before a live run, no committed snapshot has been re-fetched with this capability yet.

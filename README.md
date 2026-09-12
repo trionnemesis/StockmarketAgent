@@ -41,6 +41,12 @@
 - **Freshness**：`config/twse_calendar.json` 保存 TWSE 2026 官方開休市日期。當日資料在 Asia/Taipei 18:00 後才列為專案預期；18:00 是 StockmarketAgent 的 publication policy，不是 TWSE SLA。狀態明示 `trading_day`／`weekend`／`holiday` 與 `fresh`／`stale`／`missing`。
 - **Model isolation**：catalog 固定顯示官方觀測納入模型為 `0`、`coverage_percent=0`、`used_in_signal=false`。C1 沒有改動任何 score、weight、threshold 或 stance 值。
 
+## TW-C2：除權除息預告（尚未回填實際資料）
+
+台灣 5 檔個股的官方快照現在可額外納入一組**選填**的 `corporate_actions` 事實，來源為 TWSE OpenAPI 文件化的「上市個股除權除息預告表」（[data.gov.tw/dataset/89748](https://data.gov.tw/dataset/89748)），依股票代號過濾、允許零筆或多筆預告事件，仍是 `used_in_signal=false`。既有已提交的 5 檔個股快照沒有這個欄位也照樣通過驗證（向下相容），要等下一次人工執行 `python3 -m src.ingestion.twse_openapi` 才會實際回填。
+
+> **已知限制**：此執行環境的網路政策封鎖 `openapi.twse.com.tw`，因此端點路徑與 JSON 欄位名稱是作者依公開文件的最佳推斷，尚未對照真實回應驗證；第一次實際執行前必須先人工比對 diff，這與既有「API 數值上線前仍需人工檢視 diff」的專案慣例一致。TAIEX benchmark series（價格／報酬指數選擇與可再發布歷史授權）仍待 Owner 決策，本次未實作。
+
 ## 資料流程
 
 ```mermaid
