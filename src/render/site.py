@@ -386,6 +386,7 @@ def _render_tw_observation_matrix(
         "quarterly_income": "損益",
         "balance_sheet": "資產負債",
         "fund_profile": "基金基本資料",
+        "corporate_actions": "除權除息預告",
     }
     for item in instruments:
         observation = observations[item["instrument_id"]]
@@ -585,6 +586,22 @@ def _render_observed_facts(
                 f"<div><dt>負債 / 資產</dt><dd>{_formatted_number(balance['liabilities_to_assets_percent'])}%</dd></div>"
             )
         detail_title = f"{_e(income['period'])} 累計財務"
+        corporate_actions = facts.get("corporate_actions")
+        if corporate_actions is not None:
+            events = corporate_actions["events"]
+            if events:
+                soonest = events[0]
+                cards.append(
+                    f'<article class="metric-card" data-observed-fact="corporate-actions"><span>近期除權除息預告</span><strong>{len(events)} 筆</strong><small>最近 {_e(soonest["ex_rights_date"])}：現金股利 {_formatted_number(soonest["cash_dividend_per_share_twd"])} 元</small></article>'
+                )
+                detail_rows += "".join(
+                    f"<div><dt>除權息 {_e(event['ex_rights_date'])}</dt><dd>現金股利 {_formatted_number(event['cash_dividend_per_share_twd'])} 元 · 無償配股 {_formatted_number(event['stock_dividend_shares_per_thousand'])} / 仟股 · 參考價 NT$ {_formatted_number(event['reference_price_twd'])}</dd></div>"
+                    for event in events
+                )
+            else:
+                cards.append(
+                    '<article class="metric-card" data-observed-fact="corporate-actions"><span>近期除權除息預告</span><strong>0 筆</strong><small>官方預告表目前無此代號資料</small></article>'
+                )
     else:
         fund = facts["fund_profile"]
         cards.extend(

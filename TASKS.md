@@ -19,4 +19,5 @@
 - [x] Route general-industry, financial-holding, and ETF fields without false cross-asset comparability.
 - [x] Add a Taiwan market matrix with supporting evidence, counter-evidence, and invalidation conditions.
 - [x] Build a revision-aware Taiwan 10-candidate historical observation archive with correction lineage, latest/LKG catalog, freshness semantics, strict validation, and Pages source/model-boundary labels.
-- [ ] Add an approved exact TAIEX benchmark series and corporate-action history.
+- [x] Add optional corporate-action (ex-right/ex-dividend forecast) ingestion, schema, and Pages rendering for the five Taiwan stock candidates, isolated from signals. Endpoint and field names are a best-effort mapping of the documented TWSE OGL dataset and need a human diff review against a live response before the next real fetch (this sandbox cannot reach `openapi.twse.com.tw` to verify); no committed snapshot has been repopulated with live data yet.
+- [ ] Add an approved exact TAIEX benchmark series (price vs. total-return decision, licensed reusable history) — still `owner_decision_required`; not attempted in this change.

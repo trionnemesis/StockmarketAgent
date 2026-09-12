@@ -45,6 +45,12 @@ PAYLOAD_SPECS = (
     {"payload_id": "quarterly_income_financial_holding", "resource_id": "quarterly_income", "source_id": "TWSE_OGL_FINANCIALS", "endpoint": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_fh", "dataset_url": "https://data.gov.tw/dataset/91999", "code_key": "公司代號"},
     {"payload_id": "balance_sheet_financial_holding", "resource_id": "balance_sheet", "source_id": "TWSE_OGL_FINANCIALS", "endpoint": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_fh", "dataset_url": "https://data.gov.tw/dataset/94832", "code_key": "公司代號"},
     {"payload_id": "fund_profile", "resource_id": "fund_profile", "source_id": "TWSE_OGL_ETF", "endpoint": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L", "dataset_url": "https://data.gov.tw/dataset/157399", "code_key": "基金代號"},
+    # NEEDS LIVE VERIFICATION: this sandbox's network policy blocks openapi.twse.com.tw, so the
+    # endpoint path and the field keys read in _corporate_actions_fact() below are a best-effort
+    # mapping of the documented "上市個股除權除息預告表" dataset (data.gov.tw/dataset/89748), not
+    # verified against a live response. A human must diff-review the first real fetch (same policy
+    # already applied to every other endpoint here) before this feeds any published snapshot.
+    {"payload_id": "corporate_actions", "resource_id": "corporate_actions", "source_id": "TWSE_OGL_ACTIONS", "endpoint": "https://openapi.twse.com.tw/v1/exchangeReport/TWT48U_ALL", "dataset_url": "https://data.gov.tw/dataset/89748", "code_key": "股票代號"},
 )
 
 
@@ -130,12 +136,17 @@ def _required_payload_ids(instrument: Mapping[str, str]) -> tuple[str, ...]:
         "monthly_revenue",
         f"quarterly_income_{suffix}",
         f"balance_sheet_{suffix}",
+        "corporate_actions",
     )
 
 
-def _one_record(records: list[dict[str, Any]], payload_id: str, symbol: str) -> dict[str, Any]:
+def _matching_records(records: list[dict[str, Any]], payload_id: str, symbol: str) -> list[dict[str, Any]]:
     spec = _payload_spec(payload_id)
-    matches = [item for item in records if str(item.get(spec["code_key"], "")).strip() == symbol]
+    return [item for item in records if str(item.get(spec["code_key"], "")).strip() == symbol]
+
+
+def _one_record(records: list[dict[str, Any]], payload_id: str, symbol: str) -> dict[str, Any]:
+    matches = _matching_records(records, payload_id, symbol)
     if len(matches) != 1:
         raise IngestionError(f"{payload_id}: expected exactly one {symbol} record, found {len(matches)}")
     return matches[0]
@@ -266,7 +277,34 @@ def _fund_fact(record: Mapping[str, Any], observed_at: str) -> dict[str, Any]:
     }
 
 
-def _evidence_assessment(asset_type: str) -> dict[str, Any]:
+def _corporate_actions_batch_date(records: list[dict[str, Any]]) -> str:
+    if not records:
+        raise IngestionError("corporate_actions: no forecast table records available to establish a batch date")
+    return _roc_date(str(records[0]["資料日期"]))
+
+
+def _corporate_actions_fact(
+    records: list[dict[str, Any]], published_date: str
+) -> dict[str, Any]:
+    events = [
+        {
+            "ex_rights_date": _roc_date(str(record["除權除息日期"])),
+            "cash_dividend_per_share_twd": _number(record, "現金股利", 4),
+            "stock_dividend_shares_per_thousand": _number(record, "每仟股無償配股", 4),
+            "previous_close_twd": _number(record, "除權息前收盤價"),
+            "reference_price_twd": _number(record, "除權息參考價"),
+        }
+        for record in records
+    ]
+    events.sort(key=lambda item: item["ex_rights_date"])
+    return {
+        "source_resource_id": "corporate_actions",
+        "published_date": published_date,
+        "events": events,
+    }
+
+
+def _evidence_assessment(asset_type: str, *, has_corporate_actions: bool = False) -> dict[str, Any]:
     supporting = ["官方 EOD 單一代號紀錄已通過日期、OHLC、成交量與來源雜湊驗證。"]
     if asset_type == "stock":
         supporting.append("估值、月營收與適用產業別的季度財務皆有同代號官方紀錄。")
@@ -274,6 +312,11 @@ def _evidence_assessment(asset_type: str) -> dict[str, Any]:
             "修訂感知 archive 從 C1 baseline 開始；baseline 以前的完整 PIT 修訂歷史仍不可得。",
             "單日行情與未基準化估值不足以支持方向性投資結論。",
         ]
+        if has_corporate_actions:
+            supporting.append("除權除息預告表已依股票代號過濾，且批次資料日期通過驗證。")
+            contrary.append(
+                "除權除息僅為官方預告表當前快照，非完整歷史事件紀錄；欄位對應為作者自行推斷，尚待人工比對正式 TWSE OpenAPI 回應後方可視為已驗證。"
+            )
     else:
         supporting.append("基金代號、基金類型、上市日與追蹤指數皆有同代號官方紀錄。")
         contrary = [
@@ -315,8 +358,13 @@ def build_snapshots(payloads: Mapping[str, Mapping[str, Any]], *, fetched_at: st
     for instrument in INSTRUMENT_SPECS:
         symbol = instrument["symbol"]
         required_ids = _required_payload_ids(instrument)
-        selected = {payload_id: _one_record(records_by_payload[payload_id], payload_id, symbol) for payload_id in required_ids}
-        observed_dates = {payload_id: _resource_observed_at(payload_id, selected[payload_id]) for payload_id in required_ids}
+        exact_ids = tuple(payload_id for payload_id in required_ids if payload_id != "corporate_actions")
+        selected = {payload_id: _one_record(records_by_payload[payload_id], payload_id, symbol) for payload_id in exact_ids}
+        observed_dates = {payload_id: _resource_observed_at(payload_id, selected[payload_id]) for payload_id in exact_ids}
+        corporate_actions_records: list[dict[str, Any]] = []
+        if "corporate_actions" in required_ids:
+            corporate_actions_records = _matching_records(records_by_payload["corporate_actions"], "corporate_actions", symbol)
+            observed_dates["corporate_actions"] = _corporate_actions_batch_date(records_by_payload["corporate_actions"])
         resources = []
         for payload_id in required_ids:
             spec = _payload_spec(payload_id)
@@ -334,11 +382,15 @@ def build_snapshots(payloads: Mapping[str, Mapping[str, Any]], *, fetched_at: st
                 "raw_retained": False,
             })
         facts = {"market_session": _market_fact(selected["eod_prices"], observed_dates["eod_prices"])}
+        has_corporate_actions = "corporate_actions" in required_ids
         if instrument["asset_type"] == "stock":
             facts.update(_stock_facts(selected, observed_dates, instrument["financial_statement_type"]))
-            available = ["market_session", "valuation", "monthly_revenue", "quarterly_income", "balance_sheet"]
+            facts["corporate_actions"] = _corporate_actions_fact(
+                corporate_actions_records, observed_dates["corporate_actions"]
+            )
+            available = ["market_session", "valuation", "monthly_revenue", "quarterly_income", "balance_sheet", "corporate_actions"]
             not_applicable = ["fund_profile"]
-            gaps = ["pre_archive_revision_history", "full_eod_history", "benchmark_return_series", "corporate_action_history"]
+            gaps = ["pre_archive_revision_history", "full_eod_history", "benchmark_return_series", "corporate_action_full_history"]
         else:
             facts["fund_profile"] = _fund_fact(selected["fund_profile"], observed_dates["fund_profile"])
             available = ["market_session", "fund_profile"]
@@ -385,7 +437,9 @@ def build_snapshots(payloads: Mapping[str, Mapping[str, Any]], *, fetched_at: st
             "coverage": {"available_fact_groups": available, "not_applicable_fact_groups": not_applicable, "gaps": gaps},
             "resources": resources,
             "facts": facts,
-            "evidence_assessment": _evidence_assessment(instrument["asset_type"]),
+            "evidence_assessment": _evidence_assessment(
+                instrument["asset_type"], has_corporate_actions=has_corporate_actions
+            ),
             "warnings": [
                 "Revision-aware history starts at the committed C1 baseline; earlier PIT revisions are unavailable.",
                 "Snapshot facts and evidence assessment are not used to calculate or upgrade research attitudes.",

@@ -45,17 +45,18 @@
       "type": "object", "additionalProperties": false,
       "required": ["available_fact_groups", "not_applicable_fact_groups", "gaps"],
       "properties": {
-        "available_fact_groups": {"type": "array", "minItems": 2, "maxItems": 5, "uniqueItems": true, "items": {"enum": ["market_session", "valuation", "monthly_revenue", "quarterly_income", "balance_sheet", "fund_profile"]}},
+        "available_fact_groups": {"type": "array", "minItems": 2, "maxItems": 6, "uniqueItems": true, "items": {"enum": ["market_session", "valuation", "monthly_revenue", "quarterly_income", "balance_sheet", "fund_profile", "corporate_actions"]}},
         "not_applicable_fact_groups": {"type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": {"enum": ["valuation", "monthly_revenue", "quarterly_income", "balance_sheet", "fund_profile"]}},
         "gaps": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
       }
     },
-    "resources": {"type": "array", "minItems": 2, "maxItems": 5, "items": {"$ref": "#/$defs/resource"}},
+    "resources": {"type": "array", "minItems": 2, "maxItems": 6, "items": {"$ref": "#/$defs/resource"}},
     "facts": {
       "type": "object", "additionalProperties": false, "required": ["market_session"],
       "properties": {
         "market_session": {"$ref": "#/$defs/market_session"}, "valuation": {"$ref": "#/$defs/valuation"}, "monthly_revenue": {"$ref": "#/$defs/monthly_revenue"},
-        "quarterly_income": {"$ref": "#/$defs/quarterly_income"}, "balance_sheet": {"$ref": "#/$defs/balance_sheet"}, "fund_profile": {"$ref": "#/$defs/fund_profile"}
+        "quarterly_income": {"$ref": "#/$defs/quarterly_income"}, "balance_sheet": {"$ref": "#/$defs/balance_sheet"}, "fund_profile": {"$ref": "#/$defs/fund_profile"},
+        "corporate_actions": {"$ref": "#/$defs/corporate_actions"}
       }
     },
     "evidence_assessment": {
@@ -74,7 +75,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["resource_id", "source_id", "endpoint", "dataset_url", "observed_at", "records_received", "content_sha256", "etag", "last_modified", "raw_retained"],
       "properties": {
-        "resource_id": {"enum": ["eod_prices", "valuation", "monthly_revenue", "quarterly_income", "balance_sheet", "fund_profile"]}, "source_id": {"enum": ["TWSE_OGL_EOD", "TWSE_OGL_FINANCIALS", "TWSE_OGL_ETF"]},
+        "resource_id": {"enum": ["eod_prices", "valuation", "monthly_revenue", "quarterly_income", "balance_sheet", "fund_profile", "corporate_actions"]}, "source_id": {"enum": ["TWSE_OGL_EOD", "TWSE_OGL_FINANCIALS", "TWSE_OGL_ETF", "TWSE_OGL_ACTIONS"]},
         "endpoint": {"type": "string", "pattern": "^https://openapi\\.twse\\.com\\.tw/v1/"}, "dataset_url": {"type": "string", "pattern": "^https://data\\.gov\\.tw/dataset/"}, "observed_at": {"type": "string", "format": "date"},
         "records_received": {"type": "integer", "minimum": 1}, "content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "etag": {"type": ["string", "null"]}, "last_modified": {"type": ["string", "null"]}, "raw_retained": {"const": false}
       }
@@ -111,6 +112,26 @@
       "type": "object", "additionalProperties": false,
       "required": ["source_resource_id", "profile_date", "fund_type", "official_name", "tracking_index_name", "custom_index_or_disclosure_required", "includes_foreign_constituents", "inception_date", "listing_date", "issued_units"],
       "properties": {"source_resource_id": {"const": "fund_profile"}, "profile_date": {"type": "string", "format": "date"}, "fund_type": {"type": "string", "minLength": 1}, "official_name": {"type": "string", "minLength": 1}, "tracking_index_name": {"type": "string", "minLength": 1}, "custom_index_or_disclosure_required": {"type": "boolean"}, "includes_foreign_constituents": {"type": "boolean"}, "inception_date": {"type": "string", "format": "date"}, "listing_date": {"type": "string", "format": "date"}, "issued_units": {"type": "integer", "minimum": 1}}
+    },
+    "corporate_actions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_resource_id", "published_date", "events"],
+      "properties": {
+        "source_resource_id": {"const": "corporate_actions"},
+        "published_date": {"type": "string", "format": "date"},
+        "events": {"type": "array", "items": {"$ref": "#/$defs/corporate_action_event"}}
+      }
+    },
+    "corporate_action_event": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ex_rights_date", "cash_dividend_per_share_twd", "stock_dividend_shares_per_thousand", "previous_close_twd", "reference_price_twd"],
+      "properties": {
+        "ex_rights_date": {"type": "string", "format": "date"},
+        "cash_dividend_per_share_twd": {"type": "number", "minimum": 0},
+        "stock_dividend_shares_per_thousand": {"type": "number", "minimum": 0},
+        "previous_close_twd": {"type": "number", "minimum": 0},
+        "reference_price_twd": {"type": "number", "minimum": 0}
+      }
     }
   }
 }

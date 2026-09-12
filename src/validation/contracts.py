@@ -349,6 +349,7 @@ def validate_observed_facts_contract(
     )
     if observation["instrument_id"] != expected_instrument_id:
         raise ContractError("official observation instrument identity is inconsistent")
+    has_corporate_actions = asset_type == "stock" and "corporate_actions" in observation["facts"]
     expected_bindings = (
         {
             "eod_prices": "TWSE_OGL_EOD",
@@ -360,6 +361,8 @@ def validate_observed_facts_contract(
         if asset_type == "stock"
         else {"eod_prices": "TWSE_OGL_EOD", "fund_profile": "TWSE_OGL_ETF"}
     )
+    if has_corporate_actions:
+        expected_bindings = {**expected_bindings, "corporate_actions": "TWSE_OGL_ACTIONS"}
     resource_map = {item["resource_id"]: item for item in observation["resources"]}
     if len(resource_map) != len(observation["resources"]):
         raise ContractError("official observation resource_id values must be unique")
@@ -421,6 +424,8 @@ def validate_observed_facts_contract(
             "quarterly_income",
             "balance_sheet",
         }
+        if has_corporate_actions:
+            expected_facts = expected_facts | {"corporate_actions"}
         if set(facts) != expected_facts:
             raise ContractError("stock observation fact set is incomplete")
         if facts["valuation"]["date"] != market["date"]:
@@ -473,16 +478,28 @@ def validate_observed_facts_contract(
             raise ContractError(
                 "non-2891 stock must use the general-industry statement template"
             )
-        if observation["coverage"]["available_fact_groups"] != [
+        expected_available = [
             "market_session",
             "valuation",
             "monthly_revenue",
             "quarterly_income",
             "balance_sheet",
-        ] or observation["coverage"]["not_applicable_fact_groups"] != [
-            "fund_profile"
-        ]:
+        ]
+        if has_corporate_actions:
+            expected_available = expected_available + ["corporate_actions"]
+        if observation["coverage"]["available_fact_groups"] != expected_available or observation[
+            "coverage"
+        ]["not_applicable_fact_groups"] != ["fund_profile"]:
             raise ContractError("stock observation coverage mapping is inconsistent")
+        if has_corporate_actions:
+            actions = facts["corporate_actions"]
+            for event in actions["events"]:
+                if date.fromisoformat(event["ex_rights_date"]) < date.fromisoformat(
+                    actions["published_date"]
+                ):
+                    raise ContractError(
+                        "corporate action ex-rights date cannot precede the forecast publication date"
+                    )
     else:
         if set(facts) != {"market_session", "fund_profile"}:
             raise ContractError(

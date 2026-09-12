@@ -1,7 +1,27 @@
 # Verification record
 
-Observed on 2026-08-27 and re-verified on 2026-08-28. This record distinguishes generated, committed, pushed, deployed, and publicly reachable states.
+Observed on 2026-08-27 and re-verified on 2026-08-28 and 2026-09-12. This record distinguishes generated, committed, pushed, deployed, and publicly reachable states.
 
+## Optional corporate-action forecast ingestion (2026-09-12)
+
+Adds an optional `facts.corporate_actions` group (TWSE ex-right/ex-dividend forecast table, `data.gov.tw/dataset/89748`) to the five Taiwan stock observed-facts snapshots. It is additive to the existing contract — snapshots without it remain valid — filtered by stock code with zero-or-more matches, and stays `used_in_signal=false`. No committed snapshot has been repopulated with live data: this execution environment's network policy blocks `openapi.twse.com.tw`, so the endpoint path and field keys are a best-effort mapping of the documented dataset, not verified against a live response. A human diff review against a real fetch is required before the next `python3 -m src.ingestion.twse_openapi` run is trusted, consistent with this project's existing policy that API values need manual review before going live. The TAIEX benchmark series follow-up remains `owner_decision_required` and was not attempted.
+
+### Local acceptance
+
+- `python3 -m src.pipeline build`
+  - success; run `20260827T120000Z-research-f5edb0b8`; 30 instruments; `research_only`; 98 generated outputs.
+- `python3 -m src.pipeline validate`
+  - `{"status":"valid"}`.
+- `python3 -m src.ingestion.twse_archive validate`
+  - `{"status":"valid"}`; 10 archive entries; 10 instruments; unchanged from the prior TW-C1 baseline (no existing archive entry was modified).
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py'`
+  - 77 tests passed, including new coverage for the optional fact (populated, empty, and missing-resource cases) and the existing TW-C1, contract, and generated-artifact suites unmodified in behavior.
+- `python3 -m py_compile` across `src/` and `tests/`, and workflow YAML parsing (`quality.yml`, `deploy-pages.yml`)
+  - passed.
+- `git diff --check`
+  - no whitespace errors.
+
+Remote PR checks, merge alignment, and the post-merge Pages deployment are verified separately before this candidate is called released.
 
 ## Taiwan 10-candidate official-evidence matrix (2026-08-28)
 

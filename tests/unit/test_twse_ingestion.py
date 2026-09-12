@@ -131,6 +131,17 @@ def _payloads() -> dict[str, dict[str, object]]:
         }
         for symbol in ETFS
     ]
+    corporate_actions = [
+        {
+            "資料日期": "1150827",
+            "股票代號": "2330",
+            "除權除息日期": "1150915",
+            "現金股利": "2.7500",
+            "每仟股無償配股": "0.0000",
+            "除權息前收盤價": "1050.00",
+            "除權息參考價": "1047.25",
+        }
+    ]
     return {
         "eod_prices": _payload(eod),
         "valuation": _payload(valuation),
@@ -140,6 +151,7 @@ def _payloads() -> dict[str, dict[str, object]]:
         "quarterly_income_financial_holding": _payload(holding_income),
         "balance_sheet_financial_holding": _payload(holding_balance),
         "fund_profile": _payload(profiles),
+        "corporate_actions": _payload(corporate_actions),
     }
 
 
@@ -164,7 +176,14 @@ class TwseOpenApiIngestionTests(unittest.TestCase):
             tsmc["facts"]["quarterly_income"]["statement_type"],
             "general_industry",
         )
-        self.assertEqual(len(tsmc["resources"]), 5)
+        self.assertEqual(len(tsmc["resources"]), 6)
+        self.assertEqual(tsmc["facts"]["corporate_actions"]["published_date"], "2026-08-27")
+        self.assertEqual(len(tsmc["facts"]["corporate_actions"]["events"]), 1)
+        tsmc_event = tsmc["facts"]["corporate_actions"]["events"][0]
+        self.assertEqual(tsmc_event["ex_rights_date"], "2026-09-15")
+        self.assertEqual(tsmc_event["cash_dividend_per_share_twd"], 2.75)
+        self.assertEqual(tsmc_event["reference_price_twd"], 1047.25)
+        self.assertIn("corporate_actions", tsmc["coverage"]["available_fact_groups"])
 
         holding = snapshots["2891"]
         self.assertEqual(
@@ -175,6 +194,8 @@ class TwseOpenApiIngestionTests(unittest.TestCase):
             "net_interest_income_twd_million",
             holding["facts"]["quarterly_income"],
         )
+        self.assertEqual(holding["facts"]["corporate_actions"]["events"], [])
+        self.assertEqual(holding["facts"]["corporate_actions"]["published_date"], "2026-08-27")
 
         etf = snapshots["00965"]
         self.assertEqual(set(etf["facts"]), {"market_session", "fund_profile"})
@@ -188,6 +209,18 @@ class TwseOpenApiIngestionTests(unittest.TestCase):
     def test_rejects_missing_resource(self) -> None:
         payloads = _payloads()
         payloads.pop("valuation")
+        with self.assertRaises(IngestionError):
+            build_snapshots(payloads, fetched_at="2026-08-28T05:00:00Z")
+
+    def test_rejects_missing_corporate_actions_resource(self) -> None:
+        payloads = _payloads()
+        payloads.pop("corporate_actions")
+        with self.assertRaises(IngestionError):
+            build_snapshots(payloads, fetched_at="2026-08-28T05:00:00Z")
+
+    def test_rejects_empty_corporate_actions_table(self) -> None:
+        payloads = _payloads()
+        payloads["corporate_actions"] = _payload([])
         with self.assertRaises(IngestionError):
             build_snapshots(payloads, fetched_at="2026-08-28T05:00:00Z")
 
